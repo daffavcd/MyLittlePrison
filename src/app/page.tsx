@@ -1,7 +1,7 @@
 "use client";
 import Image from 'next/image'
 import Link from 'next/link'
-import Map from './components/map'
+import Game from './components/game'
 import { useState } from 'react';
 
 export default function Home() {
@@ -11,9 +11,7 @@ export default function Home() {
   }
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Hello, Home page!</h1>
-
-      <Map likes={likes} handleClick={handleClick} />
+      <Game />
     </main>
   )
 }
