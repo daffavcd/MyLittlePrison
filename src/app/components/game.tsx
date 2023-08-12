@@ -26,12 +26,9 @@ export default function Game() {
             }
         } else if (event.key == "ArrowRight") {
             if ((characterPosition.colCell + 1) <= mapLayout.maxColCell) {
-                if (characterPosition.colCell % mapLayout.maxColCellEachRow == 0) {
-                    setCharacterPosition({ rowCell: characterPosition.rowCell + 1, colCell: characterPosition.colCell + 1 });
-                } else {
+                if (characterPosition.colCell % mapLayout.maxColCellEachRow != 0) {
                     setCharacterPosition({ rowCell: characterPosition.rowCell, colCell: characterPosition.colCell + 1 });
                 }
-
             }
         } else if (event.key == "ArrowDown") {
             if ((characterPosition.rowCell + 1) <= mapLayout.maxRowCell) {
@@ -39,9 +36,7 @@ export default function Game() {
             }
         } else if (event.key == "ArrowLeft") {
             if ((characterPosition.colCell - 1) >= 1) {
-                if (characterPosition.colCell % mapLayout.maxColCellEachRow == 1) {
-                    setCharacterPosition({ rowCell: characterPosition.rowCell - 1, colCell: characterPosition.colCell - 1 });
-                } else {
+                if (characterPosition.colCell % mapLayout.maxColCellEachRow != 1) {
                     setCharacterPosition({ rowCell: characterPosition.rowCell, colCell: characterPosition.colCell - 1 });
                 }
             }
