@@ -43,8 +43,11 @@ export default function Game() {
     };
 
     return (
-        <div className="relative w-full h-64 border-sky-500 border-4" style={{ backgroundColor: "#d2a985" }}>
-            <div id="my-character" className="absolute" style={characterStyle}>THIS IS MY MAP!</div>
+        <div className="col-span-12 pl-24 pr-24">
+            <div className="relative h-96">
+                <div className="dark-overlay-game rounded"></div>
+                <div id="my-character" className="absolute text-white" style={characterStyle}>THIS IS MY MAP!</div>
+            </div>
         </div>
     )
 }

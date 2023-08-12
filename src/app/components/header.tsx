@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export default function Header() {
     return (
-        <div className="w-full z-10">
+        <div className="col-span-12 z-10">
             <Image
                 src="/images/logo.svg"
                 width={250}
