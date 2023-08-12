@@ -20,7 +20,7 @@ export default function Home() {
           }}
         />
         <div className="dark-overlay"></div>
-        <main className="grid grid-cols-12 h-screen gap-12 pt-5 pr-10 pb-5 pl-10">
+        <main className="grid grid-cols-12 h-screen pt-5 pr-10 pb-5 pl-10">
           <Header />
           <Game />
         </main>
