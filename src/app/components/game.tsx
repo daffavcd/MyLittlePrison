@@ -1,19 +1,20 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Character from './parts/character';
 import { log } from 'console';
 
 export default function Game() {
-    const mapLayout = { maxWidth: 1000, maxHeight: 240, maxRowCell: 3, maxColCell: 27, maxColCellEachRow: 9, widthCell: 110, colCenter: 14 };
+    const mapLayout = { maxWidth: 1000, maxHeight: 240, maxRowCell: 3, maxColCell: 27, maxColCellEachRow: 9, colCenter: 14 };
     let row = 1;
-    let currentHeading = "None";
 
     const [characterPosition, setCharacterPosition] = useState({ rowCell: 2, colCell: 14 });
-
     const [isCharacterMoving, setIsCharacterMoving] = useState(false);
-    const [translation, setTranslation] = useState({ dx: "", dy: "" });
+    let translation = useRef({ dx: "", dy: "" });
+    let cellHeight = useRef(90);
 
+
+    // LISTENING TO KEYBOARD EVENT
     useEffect(() => {
         document.body.addEventListener('keydown', moveDisplayCharacter);
         return () => {
@@ -21,40 +22,49 @@ export default function Game() {
         }
     })
 
+    // GETTING THE CENTER CELL HEIGHT
     useEffect(() => {
-        if (isCharacterMoving) {
-            const transitionTimeout = setTimeout(() => {
-                setIsCharacterMoving(false);
-            }, 300);
-            return () => {
-                clearTimeout(transitionTimeout);
-            }
+        let centerCell = document.getElementById('cell-row-2-col-14');
+        if (centerCell != null || centerCell != undefined) {
+            cellHeight.current = centerCell.offsetHeight;
+            console.log("New cell width detected!");
         }
-    }, [isCharacterMoving]);
+    }, []);
 
     const moveDisplayCharacter = (event: KeyboardEvent) => {
-        // console.log(characterPosition);
-        if (event.key == "ArrowUp") {
-            if ((characterPosition.rowCell - 1) >= 1) {
-                moveAnimation("Up");
-            }
-        } else if (event.key == "ArrowRight") {
-            if ((characterPosition.colCell + 1) <= mapLayout.maxColCell) {
-                if (characterPosition.colCell % mapLayout.maxColCellEachRow != 0) {
-                    moveAnimation("Right");
-                }
-            }
-        } else if (event.key == "ArrowDown") {
-            if ((characterPosition.rowCell + 1) <= mapLayout.maxRowCell) {
-                moveAnimation("Down");
-            }
-        } else if (event.key == "ArrowLeft") {
-            if ((characterPosition.colCell - 1) >= 1) {
-                if (characterPosition.colCell % mapLayout.maxColCellEachRow != 1) {
-                    moveAnimation("Left");
-                }
-            }
+        // ABORTING MOVEMENT IF THE CHARACTER STILL ON ANIMATION
+        if (isCharacterMoving) return;
+
+        // CONDITION TO MOVE THE CHARACTER WAS FULFILLED
+        const key = event.key;
+        if (key === "ArrowUp" && characterPosition.rowCell > 1) {
+            moveAnimation("Up");
+        } else if (key === "ArrowRight" && characterPosition.colCell < mapLayout.maxColCell && characterPosition.colCell % mapLayout.maxColCellEachRow !== 0) {
+            moveAnimation("Right");
+        } else if (key === "ArrowDown" && characterPosition.rowCell < mapLayout.maxRowCell) {
+            moveAnimation("Down");
+        } else if (key === "ArrowLeft" && characterPosition.colCell > 1 && characterPosition.colCell % mapLayout.maxColCellEachRow !== 1) {
+            moveAnimation("Left");
         }
+    }
+
+    const moveAnimation = (heading: string) => {
+        // CHANGE THE STATE TO MOVING
+        if (heading == "Up") {
+            translation.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
+        } else if (heading == "Right") {
+            translation.current = { dx: `${cellHeight.current}px`, dy: `0px` };
+        } else if (heading == "Down") {
+            translation.current = { dx: `0px`, dy: `${cellHeight.current}px` };
+        } else if (heading == "Left") {
+            translation.current = { dx: `-${cellHeight.current}px`, dy: `0px` };
+        }
+        setIsCharacterMoving(true);
+        setTimeout(() => {
+            moveStateCharacter(heading);
+            // CHANGE THE STATE TO NOT MOVING
+            setIsCharacterMoving(false);
+        }, 200);
     }
 
     const moveStateCharacter = (heading: string) => {
@@ -67,22 +77,6 @@ export default function Game() {
         } else if (heading == "Left") {
             setCharacterPosition({ rowCell: characterPosition.rowCell, colCell: characterPosition.colCell - 1 });
         }
-    }
-
-    const moveAnimation = (heading: string) => {
-        setIsCharacterMoving(true);
-        if (heading == "Up") {
-            setTranslation({ dx: `0px`, dy: `-${mapLayout.widthCell}px` })
-        } else if (heading == "Right") {
-            setTranslation({ dx: `${mapLayout.widthCell}px`, dy: `0px` })
-        } else if (heading == "Down") {
-            setTranslation({ dx: `0px`, dy: `${mapLayout.widthCell}px` })
-        } else if (heading == "Left") {
-            setTranslation({ dx: `-${mapLayout.widthCell}px`, dy: `0px` })
-        }
-        setTimeout(() => {
-            moveStateCharacter(heading);
-        }, 300);
     }
 
 
@@ -100,42 +94,30 @@ export default function Game() {
                             return (
                                 <div key={j}
                                     id={`cell-row-${row}-col-${j + 1}`}
-                                    className={`col-span-1 text-center z-10 border-solid border-2 border-white relative`}
-
+                                    className={`character-container col-span-1 text-center z-10 border-solid border-2 border-white relative`}
                                 >
                                     {/* CONDITION TO SHOW CHARACTER  */}
                                     {
                                         (j + 1 == characterPosition.colCell && row == characterPosition.rowCell) ? (
                                             // <Character />
                                             <Image
+                                                alt="Character"
                                                 src="/images/sprites/0_Warrior_Idle Blinking_000.png"
                                                 fill={true}
-                                                alt="Character"
-                                                objectFit="contain"
-                                                className={`${isCharacterMoving ? 'character-transition' : ''}`}
+                                                sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
                                                 style={{
-                                                    width: "100%",
-                                                    height: "100%",
-                                                    transition: 'transform 0.3s ease-in-out',
-                                                    transform: isCharacterMoving ? `translate(${translation.dx}, ${translation.dy})` : 'none',
+                                                    objectFit: 'cover',
+                                                    transition: 'transform 0.2s ease-in-out',
+                                                    transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
                                                 }}
                                             />
                                         ) : null
                                     }
-                                    {/* <Image
-                                        src="/images/lands/land_1.png"
-                                        fill={true}
-                                        alt="Character"
-                                        objectFit="contain"
-                                        style={{ width: '100%', height: '100%' }}
-                                    /> */}
                                 </div>
                             )
                         })}
                 </div>
-
             </div>
-
         </div >
     )
 }
