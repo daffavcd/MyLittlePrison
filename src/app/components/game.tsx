@@ -2,18 +2,18 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Character from './parts/character';
-import { log } from 'console';
 
 export default function Game() {
-    const mapLayout = { maxWidth: 1000, maxHeight: 240, maxRowCell: 3, maxColCell: 27, maxColCellEachRow: 9, colCenter: 14 };
-    let row = 1;
 
     const [isCharacterMoving, setIsCharacterMoving] = useState(false);
-    const characterPosition = useRef({ rowCell: 2, colCell: 14 });
+
+    // mapLayout.rowCenter and mapLayout.colCenter is the center cell of the displayed map
+    // characterPosition.rowCell and characterPosition.colCell is the current cell of the character
+    const mapLayout = useRef({ maxRowCell: 9, maxColCell: 81, maxColCellEachRow: 9, maxColCellDisplayed: 27, rowCenter: 5, colCenter: 41 });
+    const characterPosition = useRef({ rowCell: 5, colCell: 41 });
     let translation = useRef({ dx: "", dy: "" });
     let cellHeight = useRef(90);
     let cellWidth = useRef(90);
-
 
     // LISTENING TO KEYBOARD EVENT
     useEffect(() => {
@@ -25,11 +25,11 @@ export default function Game() {
 
     // GETTING THE CENTER CELL HEIGHT FOR THE FIRST TIME
     useEffect(() => {
-        let centerCell = document.getElementById('cell-row-2-col-14');
+        let centerCell = document.getElementById(`cell-row-${mapLayout.current.rowCenter}-col-${mapLayout.current.colCenter}`);
         if (centerCell != null || centerCell != undefined) {
             cellHeight.current = centerCell.offsetHeight;
             cellWidth.current = centerCell.offsetWidth;
-            console.log(`New cell width detected! ${cellHeight.current}px x ${cellWidth.current}px `);
+            console.log(`New cell dimension detected! ${cellHeight.current}px x ${cellWidth.current}px `);
         }
     }, []);
 
@@ -41,11 +41,11 @@ export default function Game() {
         const key = event.key;
         if (key === "ArrowUp" && characterPosition.current.rowCell > 1) {
             moveAnimation("Up");
-        } else if (key === "ArrowRight" && characterPosition.current.colCell < mapLayout.maxColCell && characterPosition.current.colCell % mapLayout.maxColCellEachRow !== 0) {
+        } else if (key === "ArrowRight" && characterPosition.current.colCell < mapLayout.current.maxColCell && characterPosition.current.colCell % mapLayout.current.maxColCellEachRow !== 0) {
             moveAnimation("Right");
-        } else if (key === "ArrowDown" && characterPosition.current.rowCell < mapLayout.maxRowCell) {
+        } else if (key === "ArrowDown" && characterPosition.current.rowCell < mapLayout.current.maxRowCell) {
             moveAnimation("Down");
-        } else if (key === "ArrowLeft" && characterPosition.current.colCell > 1 && characterPosition.current.colCell % mapLayout.maxColCellEachRow !== 1) {
+        } else if (key === "ArrowLeft" && characterPosition.current.colCell > 1 && characterPosition.current.colCell % mapLayout.current.maxColCellEachRow !== 1) {
             moveAnimation("Left");
         }
     }
@@ -53,15 +53,28 @@ export default function Game() {
     const moveAnimation = (heading: string) => {
         // CHANGE THE STATE TO MOVING
         if (heading == "Up") {
+            // MOVE UP DISPLAYED MAP ONCE ? IF THERE IS ANOTHER TOP AND IF NOT AT THE VERY TOP
+            if (characterPosition.current.rowCell - 1 > 1 && characterPosition.current.rowCell - 1 < mapLayout.current.rowCenter) {
+                mapLayout.current.rowCenter = mapLayout.current.rowCenter - 1;
+                mapLayout.current.colCenter = mapLayout.current.colCenter - mapLayout.current.maxColCellEachRow;
+            }
             translation.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
+
         } else if (heading == "Right") {
             translation.current = { dx: `${cellWidth.current}px`, dy: `0px` };
         } else if (heading == "Down") {
+            // MOVE DOWN DISPLAYED MAP ONCE IF THERE IS ANOTHER BOTTOM AND IF NOT AT THE VERY BOTTOM
+            if (characterPosition.current.rowCell + 1 < mapLayout.current.maxRowCell && characterPosition.current.rowCell + 1 > mapLayout.current.rowCenter) {
+                mapLayout.current.rowCenter = mapLayout.current.rowCenter + 1;
+                mapLayout.current.colCenter = mapLayout.current.colCenter + mapLayout.current.maxColCellEachRow;
+            }
             translation.current = { dx: `0px`, dy: `${cellHeight.current}px` };
+
         } else if (heading == "Left") {
             translation.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
         }
-        // CHANGE THE STATE HERE
+
+        // CHANGE THE STATE HERE TO RE RENDER THE DISPLAYED MAP
         setIsCharacterMoving(true);
         setTimeout(() => {
             moveRefCharacter(heading);
@@ -72,16 +85,15 @@ export default function Game() {
 
     const moveRefCharacter = (heading: string) => {
         if (heading == "Up") {
-            characterPosition.current = { rowCell: characterPosition.current.rowCell - 1, colCell: characterPosition.current.colCell - mapLayout.maxColCellEachRow };
+            characterPosition.current = { rowCell: characterPosition.current.rowCell - 1, colCell: characterPosition.current.colCell - mapLayout.current.maxColCellEachRow };
         } else if (heading == "Right") {
             characterPosition.current = { rowCell: characterPosition.current.rowCell, colCell: characterPosition.current.colCell + 1 };
         } else if (heading == "Down") {
-            characterPosition.current = { rowCell: characterPosition.current.rowCell + 1, colCell: characterPosition.current.colCell + mapLayout.maxColCellEachRow };
+            characterPosition.current = { rowCell: characterPosition.current.rowCell + 1, colCell: characterPosition.current.colCell + mapLayout.current.maxColCellEachRow };
         } else if (heading == "Left") {
             characterPosition.current = { rowCell: characterPosition.current.rowCell, colCell: characterPosition.current.colCell - 1 };
         }
     }
-
 
     return (
         <div className="col-span-12 pl-24 pr-24" id="game-map">
@@ -89,26 +101,32 @@ export default function Game() {
                 <div className="dark-overlay-game rounded"></div>
                 <div id="cell-row" className="grid grid-cols-9 gap-0 p-4 h-full">
                     {
-                        [...Array(mapLayout.maxColCell)].map((x, j) => {
-                            // CONDITION TO CHANGE ROW
-                            if (j % mapLayout.maxColCellEachRow == 0 && j != 0) {
-                                row = row + 1;
-                            }
+                        [...Array(mapLayout.current.maxColCellDisplayed)].map((x, j) => {
+                            // These rules created to make it dynamic when displaying/maping the game map (The key is the displayed COL CENTER).
+                            // (if you want to change the map dimension, just change the variable ref declared at the very above *use odds number*).
+                            // The rules to get the current iteration of row and col is:
+                            // GET CURRENT COL RULES= (current iteration + current displayed coll center) - (total coll for a row + floor of total coll for a row / 2).
+                            // Get curret row = (current iteration(j) + center coll of displayed map) - total distance to the first column of the displayed map from center coll of displayed map.
+                            const currentCol = (j + mapLayout.current.colCenter) - (mapLayout.current.maxColCellEachRow + Math.floor(mapLayout.current.maxColCellEachRow / 2));
+                            const currentRow = Math.ceil(currentCol / mapLayout.current.maxColCellEachRow);
                             return (
                                 <div key={j}
-                                    id={`cell-row-${row}-col-${j + 1}`}
-                                    className={`character-container col-span-1 text-center z-10 border border-indigo-600 relative`}
+                                    id={`cell-row-${currentRow}-col-${currentCol}`}
+                                    className={`character-container col-span-1 text-center border border-indigo-600 relative`}
                                 >
-                                    {/* CONDITION TO SHOW CHARACTER  */}
+
+                                    {/* CONDITION IF ROW & COLL CELL MATCH, TO SHOW CHARACTER  */}
                                     {
-                                        (j + 1 == characterPosition.current.colCell && row == characterPosition.current.rowCell) ? (
+                                        (currentRow == characterPosition.current.rowCell && currentCol == characterPosition.current.colCell) ? (
                                             // <Character />
                                             <Image
                                                 alt="Character"
+                                                className='z-20'
                                                 src="/images/sprites/0_Warrior_Idle Blinking_000.png"
                                                 fill={true}
                                                 sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
                                                 style={{
+                                                    position: 'absolute',
                                                     objectFit: 'cover',
                                                     transition: 'transform 0.2s ease-in-out',
                                                     transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
@@ -116,6 +134,8 @@ export default function Game() {
                                             />
                                         ) : null
                                     }
+
+
                                 </div>
                             )
                         })}
