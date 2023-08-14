@@ -8,10 +8,11 @@ export default function Game() {
     const mapLayout = { maxWidth: 1000, maxHeight: 240, maxRowCell: 3, maxColCell: 27, maxColCellEachRow: 9, colCenter: 14 };
     let row = 1;
 
-    const [characterPosition, setCharacterPosition] = useState({ rowCell: 2, colCell: 14 });
     const [isCharacterMoving, setIsCharacterMoving] = useState(false);
+    const characterPosition = useRef({ rowCell: 2, colCell: 14 });
     let translation = useRef({ dx: "", dy: "" });
     let cellHeight = useRef(90);
+    let cellWidth = useRef(90);
 
 
     // LISTENING TO KEYBOARD EVENT
@@ -22,12 +23,13 @@ export default function Game() {
         }
     })
 
-    // GETTING THE CENTER CELL HEIGHT
+    // GETTING THE CENTER CELL HEIGHT FOR THE FIRST TIME
     useEffect(() => {
         let centerCell = document.getElementById('cell-row-2-col-14');
         if (centerCell != null || centerCell != undefined) {
             cellHeight.current = centerCell.offsetHeight;
-            console.log("New cell width detected!");
+            cellWidth.current = centerCell.offsetWidth;
+            console.log(`New cell width detected! ${cellHeight.current}px x ${cellWidth.current}px `);
         }
     }, []);
 
@@ -37,13 +39,13 @@ export default function Game() {
 
         // CONDITION TO MOVE THE CHARACTER WAS FULFILLED
         const key = event.key;
-        if (key === "ArrowUp" && characterPosition.rowCell > 1) {
+        if (key === "ArrowUp" && characterPosition.current.rowCell > 1) {
             moveAnimation("Up");
-        } else if (key === "ArrowRight" && characterPosition.colCell < mapLayout.maxColCell && characterPosition.colCell % mapLayout.maxColCellEachRow !== 0) {
+        } else if (key === "ArrowRight" && characterPosition.current.colCell < mapLayout.maxColCell && characterPosition.current.colCell % mapLayout.maxColCellEachRow !== 0) {
             moveAnimation("Right");
-        } else if (key === "ArrowDown" && characterPosition.rowCell < mapLayout.maxRowCell) {
+        } else if (key === "ArrowDown" && characterPosition.current.rowCell < mapLayout.maxRowCell) {
             moveAnimation("Down");
-        } else if (key === "ArrowLeft" && characterPosition.colCell > 1 && characterPosition.colCell % mapLayout.maxColCellEachRow !== 1) {
+        } else if (key === "ArrowLeft" && characterPosition.current.colCell > 1 && characterPosition.current.colCell % mapLayout.maxColCellEachRow !== 1) {
             moveAnimation("Left");
         }
     }
@@ -53,29 +55,30 @@ export default function Game() {
         if (heading == "Up") {
             translation.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
         } else if (heading == "Right") {
-            translation.current = { dx: `${cellHeight.current}px`, dy: `0px` };
+            translation.current = { dx: `${cellWidth.current}px`, dy: `0px` };
         } else if (heading == "Down") {
             translation.current = { dx: `0px`, dy: `${cellHeight.current}px` };
         } else if (heading == "Left") {
-            translation.current = { dx: `-${cellHeight.current}px`, dy: `0px` };
+            translation.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
         }
+        // CHANGE THE STATE HERE
         setIsCharacterMoving(true);
         setTimeout(() => {
-            moveStateCharacter(heading);
+            moveRefCharacter(heading);
             // CHANGE THE STATE TO NOT MOVING
             setIsCharacterMoving(false);
         }, 200);
     }
 
-    const moveStateCharacter = (heading: string) => {
+    const moveRefCharacter = (heading: string) => {
         if (heading == "Up") {
-            setCharacterPosition({ rowCell: characterPosition.rowCell - 1, colCell: characterPosition.colCell - mapLayout.maxColCellEachRow });
+            characterPosition.current = { rowCell: characterPosition.current.rowCell - 1, colCell: characterPosition.current.colCell - mapLayout.maxColCellEachRow };
         } else if (heading == "Right") {
-            setCharacterPosition({ rowCell: characterPosition.rowCell, colCell: characterPosition.colCell + 1 });
+            characterPosition.current = { rowCell: characterPosition.current.rowCell, colCell: characterPosition.current.colCell + 1 };
         } else if (heading == "Down") {
-            setCharacterPosition({ rowCell: characterPosition.rowCell + 1, colCell: characterPosition.colCell + mapLayout.maxColCellEachRow });
+            characterPosition.current = { rowCell: characterPosition.current.rowCell + 1, colCell: characterPosition.current.colCell + mapLayout.maxColCellEachRow };
         } else if (heading == "Left") {
-            setCharacterPosition({ rowCell: characterPosition.rowCell, colCell: characterPosition.colCell - 1 });
+            characterPosition.current = { rowCell: characterPosition.current.rowCell, colCell: characterPosition.current.colCell - 1 };
         }
     }
 
@@ -84,7 +87,7 @@ export default function Game() {
         <div className="col-span-12 pl-24 pr-24" id="game-map">
             <div className="relative h-96">
                 <div className="dark-overlay-game rounded"></div>
-                <div id="cell-row" className="grid grid-cols-9 gap-1 p-4 h-full">
+                <div id="cell-row" className="grid grid-cols-9 gap-0 p-4 h-full">
                     {
                         [...Array(mapLayout.maxColCell)].map((x, j) => {
                             // CONDITION TO CHANGE ROW
@@ -94,11 +97,11 @@ export default function Game() {
                             return (
                                 <div key={j}
                                     id={`cell-row-${row}-col-${j + 1}`}
-                                    className={`character-container col-span-1 text-center z-10 border-solid border-2 border-white relative`}
+                                    className={`character-container col-span-1 text-center z-10 border border-indigo-600 relative`}
                                 >
                                     {/* CONDITION TO SHOW CHARACTER  */}
                                     {
-                                        (j + 1 == characterPosition.colCell && row == characterPosition.rowCell) ? (
+                                        (j + 1 == characterPosition.current.colCell && row == characterPosition.current.rowCell) ? (
                                             // <Character />
                                             <Image
                                                 alt="Character"
