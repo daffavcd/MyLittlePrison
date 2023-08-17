@@ -9,9 +9,21 @@ export default function Game() {
 
     // mapLayout.rowCenter and mapLayout.colCenter is the center cell of the displayed map
     // characterPosition.rowCell and characterPosition.colCell is the current cell of the character
-    const mapLayout = useRef({ maxRowCell: 9, maxColCell: 81, maxColCellEachRow: 9, maxColCellDisplayed: 27, rowCenter: 5, colCenter: 41 });
+    const mapLayout = useRef(
+        {
+            maxRowCell: 9,
+            maxColCell: 81,
+            maxColCellEachRow: 9,
+            maxColCellDisplayed: 27,
+            rowCenter: 5,
+            colCenter: 41,
+            portfolioColCell: [13, 37, 52, 79],
+        }
+    );
+
     const characterPosition = useRef({ rowCell: 5, colCell: 41 });
     let translation = useRef({ dx: "", dy: "" });
+    let translationObject = useRef({ dx: "", dy: "" });
     let cellHeight = useRef(90);
     let cellWidth = useRef(90);
 
@@ -51,6 +63,13 @@ export default function Game() {
     }
 
     const moveAnimation = (heading: string) => {
+        
+        // ABORT ANIMATION IF THE CHARACTER IS COLLIDING WITH AN OBJECT
+        if (isColliding(heading)) return;
+
+        const startingDisplayedCol = mapLayout.current.colCenter - Math.floor(mapLayout.current.maxColCellDisplayed / 2);
+        const endingDisplayedCol = mapLayout.current.colCenter + Math.floor(mapLayout.current.maxColCellDisplayed / 2);
+
         // CHANGE THE STATE TO MOVING
         if (heading == "Up") {
             // MOVE UP DISPLAYED MAP ONCE ? IF THERE IS ANOTHER TOP AND IF NOT AT THE VERY TOP
@@ -58,20 +77,26 @@ export default function Game() {
                 mapLayout.current.rowCenter = mapLayout.current.rowCenter - 1;
                 mapLayout.current.colCenter = mapLayout.current.colCenter - mapLayout.current.maxColCellEachRow;
             }
+
             translation.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
+            translationObject.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
 
         } else if (heading == "Right") {
             translation.current = { dx: `${cellWidth.current}px`, dy: `0px` };
+            translationObject.current = { dx: `0px`, dy: `$0px` };
         } else if (heading == "Down") {
             // MOVE DOWN DISPLAYED MAP ONCE IF THERE IS ANOTHER BOTTOM AND IF NOT AT THE VERY BOTTOM
             if (characterPosition.current.rowCell + 1 < mapLayout.current.maxRowCell && characterPosition.current.rowCell + 1 > mapLayout.current.rowCenter) {
                 mapLayout.current.rowCenter = mapLayout.current.rowCenter + 1;
                 mapLayout.current.colCenter = mapLayout.current.colCenter + mapLayout.current.maxColCellEachRow;
             }
+
             translation.current = { dx: `0px`, dy: `${cellHeight.current}px` };
+            translationObject.current = { dx: `0px`, dy: `${cellHeight.current}px` };
 
         } else if (heading == "Left") {
             translation.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
+            translationObject.current = { dx: `0px`, dy: `$0px` };
         }
 
         // CHANGE THE STATE HERE TO RE RENDER THE DISPLAYED MAP
@@ -95,6 +120,29 @@ export default function Game() {
         }
     }
 
+    const isColliding = (heading: string) => {
+        let isColliding = false;
+        // CHECKING IF THE CHARACTER IS COLLIDING WITH OBJECT
+        if (heading == "Up") {
+            if (mapLayout.current.portfolioColCell.includes(characterPosition.current.colCell - mapLayout.current.maxColCellEachRow)) {
+                isColliding = true;
+            }
+        } else if (heading == "Right") {
+            if (mapLayout.current.portfolioColCell.includes(characterPosition.current.colCell + 1)) {
+                isColliding = true;
+            }
+        } else if (heading == "Down") {
+            if (mapLayout.current.portfolioColCell.includes(characterPosition.current.colCell + mapLayout.current.maxColCellEachRow)) {
+                isColliding = true;
+            }
+        } else if (heading == "Left") {
+            if (mapLayout.current.portfolioColCell.includes(characterPosition.current.colCell - 1)) {
+                isColliding = true;
+            }
+        }
+        return isColliding;
+    }
+
     return (
         <div className="col-span-12 pl-24 pr-24" id="game-map">
             <div className="relative h-96">
@@ -112,7 +160,7 @@ export default function Game() {
                             return (
                                 <div key={j}
                                     id={`cell-row-${currentRow}-col-${currentCol}`}
-                                    className={`character-container col-span-1 text-center border border-indigo-600 relative`}
+                                    className={`character-container bg-lime-900 col-span-1 text-center border border-indigo-600 relative`}
                                 >
 
                                     {/* CONDITION IF ROW & COLL CELL MATCH, TO SHOW CHARACTER  */}
@@ -134,6 +182,25 @@ export default function Game() {
                                             />
                                         ) : null
                                     }
+                                    {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO  */}
+                                    {
+                                        (mapLayout.current.portfolioColCell.includes(currentCol)) ? (
+                                            <Image
+                                                alt="Portfolio"
+                                                className='z-20'
+                                                src="/images/objects/decor_9.png"
+                                                fill={true}
+                                                sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
+                                                style={{
+                                                    position: 'absolute',
+                                                    objectFit: 'contain',
+                                                    transition: 'transform 0.2s ease-in-out',
+                                                    transform: isCharacterMoving ? `translate(${translationObject.current.dx}, ${translationObject.current.dy})` : 'none',
+                                                }}
+                                            />
+                                        ) : null
+                                    }
+
 
 
                                 </div>
