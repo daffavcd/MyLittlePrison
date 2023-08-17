@@ -1,9 +1,16 @@
 "use client";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Fragment } from 'react';
 import Image from 'next/image';
 import Character from './parts/character';
+import Modal from './modal';
+import { Dialog, Transition } from '@headlessui/react'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
 export default function Game() {
+
+    const [modalOpen, setModalOpen] = useState(true)
+
+    const cancelButtonRef = useRef(null)
 
     const [isCharacterMoving, setIsCharacterMoving] = useState(false);
 
@@ -17,7 +24,7 @@ export default function Game() {
             maxColCellDisplayed: 27,
             rowCenter: 5,
             colCenter: 41,
-            portfolioColCell: [13, 37, 52, 79],
+            portfolioColCell: [1, 25, 37, 52, 79],
         }
     );
 
@@ -49,6 +56,8 @@ export default function Game() {
         // ABORTING MOVEMENT IF THE CHARACTER STILL ON ANIMATION
         if (isCharacterMoving) return;
 
+        isPortfolioAround(event.key);
+
         // CONDITION TO MOVE THE CHARACTER WAS FULFILLED
         const key = event.key;
         if (key === "ArrowUp" && characterPosition.current.rowCell > 1) {
@@ -63,12 +72,12 @@ export default function Game() {
     }
 
     const moveAnimation = (heading: string) => {
-        
+        // IN THE CASE OF OBJECT IMAGE IS OUTSIDE OF THE RENDERED IMAHE 
+        // OBJECT ANIMATION CANNOT ANIMATED
+        // I THINK I SHOULD'VE RENDER ALL OF THE CELL AT ONCE
+
         // ABORT ANIMATION IF THE CHARACTER IS COLLIDING WITH AN OBJECT
         if (isColliding(heading)) return;
-
-        const startingDisplayedCol = mapLayout.current.colCenter - Math.floor(mapLayout.current.maxColCellDisplayed / 2);
-        const endingDisplayedCol = mapLayout.current.colCenter + Math.floor(mapLayout.current.maxColCellDisplayed / 2);
 
         // CHANGE THE STATE TO MOVING
         if (heading == "Up") {
@@ -79,7 +88,13 @@ export default function Game() {
             }
 
             translation.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
-            translationObject.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
+
+            // DONT ANIMATE OBJECT DOWN IF THE CHARACTER WITHIN TWO ROW FROM THE TOP OR BOTTOM
+            if (characterPosition.current.rowCell <= 2 || characterPosition.current.rowCell == mapLayout.current.maxRowCell) {
+                translationObject.current = { dx: `0px`, dy: `0px` };
+            } else {
+                translationObject.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
+            }
 
         } else if (heading == "Right") {
             translation.current = { dx: `${cellWidth.current}px`, dy: `0px` };
@@ -92,7 +107,13 @@ export default function Game() {
             }
 
             translation.current = { dx: `0px`, dy: `${cellHeight.current}px` };
-            translationObject.current = { dx: `0px`, dy: `${cellHeight.current}px` };
+
+            // DONT ANIMATE OBJECT UP IF THE CHARACTER WITHIN TWO ROW FROM THE TOP OR BOTTOM
+            if (characterPosition.current.rowCell == 1 || characterPosition.current.rowCell == mapLayout.current.maxRowCell - 1) {
+                translationObject.current = { dx: `0px`, dy: `0px` };
+            } else {
+                translationObject.current = { dx: `0px`, dy: `${cellHeight.current}px` };
+            }
 
         } else if (heading == "Left") {
             translation.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
@@ -141,6 +162,22 @@ export default function Game() {
             }
         }
         return isColliding;
+    }
+
+    const isPortfolioAround = (event: string) => {
+        const key = event;
+        const characterCoordinate = characterPosition.current.colCell;
+        if (key === "Enter") {
+            if (
+                mapLayout.current.portfolioColCell.includes(characterCoordinate - 1) ||
+                mapLayout.current.portfolioColCell.includes(characterCoordinate + 1) ||
+                mapLayout.current.portfolioColCell.includes(characterCoordinate - mapLayout.current.maxColCellEachRow) ||
+                mapLayout.current.portfolioColCell.includes(characterCoordinate + mapLayout.current.maxColCellEachRow)
+            ) {
+                console.log("around");
+                setModalOpen(true);
+            }
+        }
     }
 
     return (
@@ -208,6 +245,7 @@ export default function Game() {
                         })}
                 </div>
             </div>
+            <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} cancelButtonRef={cancelButtonRef} />
         </div >
     )
 }
