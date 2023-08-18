@@ -47,3 +47,27 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+.text-blood {
+  color: #e50914;
+}
+
+.bg-blood {
+  background-color: #e50914;
+}
+
+.animate-bounce-mlp {
+  animation: bounce 1s infinite;
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translateY(-5%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+}

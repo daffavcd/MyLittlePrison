@@ -1,14 +1,12 @@
 "use client";
 import { useState, useEffect, useRef, Fragment } from 'react';
 import Image from 'next/image';
-import Character from './parts/character';
 import Modal from './modal';
-import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { InformationCircleIcon } from '@heroicons/react/24/outline'
 
 export default function Game() {
 
-    const [modalOpen, setModalOpen] = useState(true)
+    const [modalOpen, setModalOpen] = useState(false)
 
     const cancelButtonRef = useRef(null)
 
@@ -24,7 +22,7 @@ export default function Game() {
             maxColCellDisplayed: 27,
             rowCenter: 5,
             colCenter: 41,
-            portfolioColCell: [1, 25, 37, 52, 79],
+            portfolioColCell: [1, 25, 37, 52, 62, 79],
         }
     );
 
@@ -77,7 +75,7 @@ export default function Game() {
         // I THINK I SHOULD'VE RENDER ALL OF THE CELL AT ONCE
 
         // ABORT ANIMATION IF THE CHARACTER IS COLLIDING WITH AN OBJECT
-        if (isColliding(heading)) return;
+        // if (isColliding(heading)) return;
 
         // CHANGE THE STATE TO MOVING
         if (heading == "Up") {
@@ -167,16 +165,9 @@ export default function Game() {
     const isPortfolioAround = (event: string) => {
         const key = event;
         const characterCoordinate = characterPosition.current.colCell;
-        if (key === "Enter") {
-            if (
-                mapLayout.current.portfolioColCell.includes(characterCoordinate - 1) ||
-                mapLayout.current.portfolioColCell.includes(characterCoordinate + 1) ||
-                mapLayout.current.portfolioColCell.includes(characterCoordinate - mapLayout.current.maxColCellEachRow) ||
-                mapLayout.current.portfolioColCell.includes(characterCoordinate + mapLayout.current.maxColCellEachRow)
-            ) {
-                console.log("around");
-                setModalOpen(true);
-            }
+        if (key === "Enter" && mapLayout.current.portfolioColCell.includes(characterCoordinate)) {
+            console.log("around");
+            setModalOpen(true);
         }
     }
 
@@ -197,7 +188,7 @@ export default function Game() {
                             return (
                                 <div key={j}
                                     id={`cell-row-${currentRow}-col-${currentCol}`}
-                                    className={`character-container bg-lime-900 col-span-1 text-center border border-indigo-600 relative`}
+                                    className={`character-container flex items-center justify-center  col-span-1 text-center border border-indigo-600 relative`}
                                 >
 
                                     {/* CONDITION IF ROW & COLL CELL MATCH, TO SHOW CHARACTER  */}
@@ -206,13 +197,14 @@ export default function Game() {
                                             // <Character />
                                             <Image
                                                 alt="Character"
-                                                className='z-20'
+                                                className='z-30'
                                                 src="/images/sprites/0_Warrior_Idle Blinking_000.png"
                                                 fill={true}
                                                 sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
                                                 style={{
+                                                    height: '100%',
+                                                    width: '100%',
                                                     position: 'absolute',
-                                                    objectFit: 'cover',
                                                     transition: 'transform 0.2s ease-in-out',
                                                     transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
                                                 }}
@@ -222,24 +214,18 @@ export default function Game() {
                                     {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO  */}
                                     {
                                         (mapLayout.current.portfolioColCell.includes(currentCol)) ? (
-                                            <Image
-                                                alt="Portfolio"
-                                                className='z-20'
-                                                src="/images/objects/decor_9.png"
-                                                fill={true}
-                                                sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
+                                            <InformationCircleIcon className="text-blood animate-bounce-mlp shadow" aria-hidden="true"
                                                 style={{
+                                                    width: '45%',
+                                                    height: '45%',
                                                     position: 'absolute',
-                                                    objectFit: 'contain',
-                                                    transition: 'transform 0.2s ease-in-out',
-                                                    transform: isCharacterMoving ? `translate(${translationObject.current.dx}, ${translationObject.current.dy})` : 'none',
+                                                    objectFit: 'fill',
+                                                    // transition: 'transform 0.2s ease-in-out',
+                                                    // transform: isCharacterMoving ? `translate(${translationObject.current.dx}, ${translationObject.current.dy})` : 'none',
                                                 }}
                                             />
                                         ) : null
                                     }
-
-
-
                                 </div>
                             )
                         })}
