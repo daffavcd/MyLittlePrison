@@ -51,6 +51,12 @@ export default function Game() {
     }, []);
 
     const moveDisplayCharacter = (event: KeyboardEvent) => {
+        // ABORTING MOVEMENT IF THE MODAL IS OPEN
+        if (modalOpen && event.key === "Enter" || event.key === "Esc") {
+            setModalOpen(false);
+        }
+
+        if (modalOpen) return;
         // ABORTING MOVEMENT IF THE CHARACTER STILL ON ANIMATION
         if (isCharacterMoving) return;
 
@@ -214,7 +220,7 @@ export default function Game() {
                                     {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO  */}
                                     {
                                         (mapLayout.current.portfolioColCell.includes(currentCol)) ? (
-                                            <InformationCircleIcon className="text-blood animate-bounce-mlp shadow" aria-hidden="true"
+                                            <InformationCircleIcon className="text-blood animate-bounce-mlp shadow cursor-pointer hover:text-white"  aria-hidden="true" onClick={() => setModalOpen(true)}
                                                 style={{
                                                     width: '45%',
                                                     height: '45%',

@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import Image from 'next/image';
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationCircleIcon } from '@heroicons/react/24/outline'
-import { Carousel } from 'flowbite-react';
+import { DocumentIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import ImageCarousel from './parts/imageCarousel';
 
 export default function Modal({ modalOpen, setModalOpen, cancelButtonRef }: { modalOpen: boolean, setModalOpen: any, cancelButtonRef: any }) {
     return (
@@ -31,58 +31,63 @@ export default function Modal({ modalOpen, setModalOpen, cancelButtonRef }: { mo
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                            <Dialog.Panel className="relative h-96 transform overflow-hidden rounded-lg bg-slate-800 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
-                                <div className="bg-slate-800 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                            <Dialog.Panel className="relative h-1/4 transform overflow-hidden rounded-lg bg-slate-800 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
+                                <div className="bg-slate-800 px-6 pb-6 pt-5 sm:p-8 sm:pb-8">
                                     <div className="sm:flex sm:items-start">
-                                        <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                                            <ExclamationCircleIcon className="h-6 w-6 text-blood" aria-hidden="true" />
-                                        </div>
-                                        <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                                            <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-white">
+                                        <div className="mt-3 text-center sm:mt-0 sm:text-left">
+                                            <Dialog.Title as="h3" className="text-2xl text-center font-semibold leading-6 text-white">
                                                 My Desired Utopias
                                             </Dialog.Title>
                                             <div className="mt-2">
-                                                <p className="text-sm text-white">
-                                                    PWA Front-End Catalog Restaurant Using Webpack, Hapi, Automation Testing and pure css,js.
+                                                <ImageCarousel />
+                                                <p className="text-base text-justify mt-3 text-white indent-8">
+                                                    🍔🍕 My Desired Utopias is the culmination of my Dicoding &quot;Becoming a Web Front-End Developer Expert&quot; certification journey. This project showcases modern front-end development, featuring a Progressive Web App (PWA) that fetches restaurant data from the Dicoding server using Hapi, Webpack, and pure CSS/JS
+                                                    <a href='https://github.com/daffavcd/restaurant-catalog' className='text-red-600 text-sm italic inline hover:text-white' tabIndex={2} target="_blank" rel="noopener noreferrer">[https://github.com/daffavcd/restaurant-catalog]</a>
+                                                    .
                                                 </p>
-                                                <div>
-                                                    <Carousel className='z-60'>
-                                                        <Image
-                                                            alt="Portfolio"
-                                                            className='z-60 static'
-                                                            src="/images/portfolios/resto_1.png"
-                                                            fill={true}
-                                                            style={{
-                                                                objectFit: 'cover',
-                                                                height: '100%',
-                                                                width: '100%',
-                                                            }}
-                                                        />
-                                                        <Image
-                                                            alt="Portfolio"
-                                                            className='z-60 static'
-                                                            src="/images/portfolios/resto_2.png"
-                                                            fill={true}
-                                                            style={{
-                                                                objectFit: 'cover',
-                                                                height: '100%',
-                                                                width: '100%',
-                                                            }}
-                                                        />
-                                                    </Carousel>
+                                                <p className="text-lg mt-2 text-left font-semibold text-white">
+                                                    Key Features :
+                                                </p>
+                                                <div className='grid mt-2 gap-0 grid-cols-1 pl-7 pr-7 text-white'>
+                                                    <ul className="list-disc">
+                                                        <li>Seamless catalog data fetching from Dicoding&quot;s API</li>
+                                                        <li>Responsive design with pure CSS/JS for optimal user experience</li>
+                                                        <li>Harnessing the power of Hapi server for efficient routing</li>
+                                                        <li>Embracing the PWA paradigm for offline access and speed</li>
+                                                        <li>Upholding code quality through automated testing</li>
+                                                    </ul>
+                                                </div>
+                                                <p className="text-lg mt-2 text-left font-semibold text-white">
+                                                    Tech Used :
+                                                </p>
+                                                <div className='grid mt-2 gap-0 pl-7 pr-7 grid-cols-12'>
+                                                    <Image
+                                                        src="/images/langs/js.png"
+                                                        className='rounded'
+                                                        alt="ImageDescription"
+                                                        height={50}
+                                                        width={50}
+                                                        style={{
+                                                            objectFit: 'cover',
+                                                        }}
+                                                    />
+                                                    <Image
+                                                        src="/images/langs/webpack.png"
+                                                        className='rounded'
+                                                        alt="ImageDescription"
+                                                        height={50}
+                                                        width={50}
+                                                        style={{
+                                                            objectFit: 'cover',
+                                                        }}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="bg-slate-800 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                    <button
-                                        type="button"
-                                        className="inline-flex w-full justify-center rounded bg-blood px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                                        onClick={() => setModalOpen(false)}
-                                    >
-                                        Close
-                                    </button>
+                                <div className='absolute top-3 right-3 text-2xl rounded-full p-2 bg-black/20 text-blood hover:text-white cursor-pointer' tabIndex={1} onClick={() => setModalOpen(false)}>
+                                    <XMarkIcon className="h-8 w-8" aria-hidden="true" />
                                 </div>
                             </Dialog.Panel>
                         </Transition.Child>
