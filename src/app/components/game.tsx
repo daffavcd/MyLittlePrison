@@ -12,6 +12,16 @@ export default function Game() {
 
     const [isCharacterMoving, setIsCharacterMoving] = useState(false);
 
+    const [portfolio, setPortfolio] = useState({
+        colCell: 0,
+        title: "",
+        desc: "",
+        repoLink: "",
+        features: [],
+        imagesPath: [],
+        techImagesPath: []
+    });
+
     // mapLayout.rowCenter and mapLayout.colCenter is the center cell of the displayed map
     // characterPosition.rowCell and characterPosition.colCell is the current cell of the character
     const mapLayout = useRef(
@@ -22,7 +32,79 @@ export default function Game() {
             maxColCellDisplayed: 27,
             rowCenter: 5,
             colCenter: 41,
-            portfolioColCell: [1, 25, 37, 52, 62, 79],
+            objectCell: [1, 2],
+            portfolioCell: [
+                {
+                    colCell: 51,
+                    title: "My Desired Utopias - Find Your Restaurant Catalog Here!",
+                    desc: '🍔🍕 My Desired Utopias is the culmination of my Dicoding "Becoming a Web Front- End Developer Expert" certification journey. This project showcases modern front-end development, featuring a Progressive Web App (PWA) that fetches restaurant data from the Dicoding server using Hapi, Webpack, and pure CSS/JS',
+                    repoLink: 'https://github.com/daffavcd/restaurant-catalog',
+                    features: [
+                        'Seamless catalog data fetching from Dicoding&quot;s API',
+                        'Responsive design with pure CSS/JS for optimal user experience',
+                        'Harnessing the power of Hapi server for efficient routin',
+                        'Embracing the PWA paradigm for offline access and speed',
+                        'Upholding code quality through automated testing',
+                    ],
+                    imagesPath: [
+                        '/images/portfolios/resto_1',
+                        '/images/portfolios/resto_2',
+                    ],
+                    techImagesPath: [
+                        '/images/langs/javascript',
+                        '/images/langs/css',
+                        '/images/langs/webpack',
+                    ]
+                },
+                {
+                    colCell: 37,
+                    title: "Chatting Converse: Real-Time Chat Web App with Pusher Integration and MySQL",
+                    desc: '⚡️💬 An immersive real-time chat web application designed to bring people closer through seamless communication. This project leverages the power of Pusher for real-time updates and integrates jQuery for dynamic interactions. The conversations are not only live but also persistent, thanks to the integration with MySQL for storing and retrieving chat data',
+                    repoLink: 'https://github.com/daffavcd/chatting-converse',
+                    features: [
+                        'Experience the excitement of instant messaging with real-time updates. Chatting Converse ensures that messages are delivered and displayed in a fraction of a second.',
+                        'The magic of real-time communication comes to life through Pusher, enabling users to chat simultaneously and experience the thrill of instant interactions',
+                        'Every conversation matters. By integrating with MySQL, Chatting Converse ensures that your conversations are saved',
+                        'Allowing users to share images and documents. File are seamlessly integrated into the chat interface, enhancing the overall communication experience.',
+                    ],
+                    imagesPath: [
+                        '/images/portfolios/chat_1',
+                        '/images/portfolios/chat_2',
+                        '/images/portfolios/chat_3',
+                        '/images/portfolios/chat_4',
+                    ],
+                    techImagesPath: [
+                        '/images/langs/javascript',
+                        '/images/langs/laravel',
+                        '/images/langs/php',
+                        '/images/langs/jquery',
+                        '/images/langs/pusher',
+                        '/images/langs/mysql',
+                    ]
+                },
+                {
+                    colCell: 30,
+                    title: "Ticketing API Bot: Enhancing Ticketing Management with Web Service and Telegram Bot Integration",
+                    desc: '🌐🔐 Ticketing API Bot project is a solution designed to streamline and optimize ticketing management for Nakula Sadewa through the synergistic integration of a web service and a Telegram bot. By employing technologies such as a RESTful API server, Telegram bot capabilities, and the secure Sanctum token-based authentication, this project epitomizes efficiency and modernity in digital operations',
+                    repoLink: 'https://github.com/chicken-porridge/ticketing-api-bot',
+                    features: [
+                        "RESTful API server, acting as a bridge that connects Nakula Sadewa&quot;s multi-platform applications. This enables seamless communication and data exchange for efficient ticketing management.",
+                        'The Telegram bot takes user interaction to the next level. Users can effortlessly create, view, and manage tickets directly from the convenience of their Telegram app, enhancing accessibility and user engagement',
+                        'Security is paramount. This project leverages Sanctum token authentication to ensure secure access to the system, safeguarding sensitive data and ensuring user privacy.',
+                    ],
+                    imagesPath: [
+                        '/images/portfolios/ticket_1',
+                        '/images/portfolios/ticket_2',
+                        '/images/portfolios/ticket_2',
+                        '/images/portfolios/ticket_2',
+                    ],
+                    techImagesPath: [
+                        '/images/langs/laravel',
+                        '/images/langs/php',
+                        '/images/langs/botman',
+                    ]
+                },
+            ],
         }
     );
 
@@ -149,31 +231,40 @@ export default function Game() {
         let isColliding = false;
         // CHECKING IF THE CHARACTER IS COLLIDING WITH OBJECT
         if (heading == "Up") {
-            if (mapLayout.current.portfolioColCell.includes(characterPosition.current.colCell - mapLayout.current.maxColCellEachRow)) {
+            if (mapLayout.current.objectCell.includes(characterPosition.current.colCell - mapLayout.current.maxColCellEachRow)) {
                 isColliding = true;
             }
         } else if (heading == "Right") {
-            if (mapLayout.current.portfolioColCell.includes(characterPosition.current.colCell + 1)) {
+            if (mapLayout.current.objectCell.includes(characterPosition.current.colCell + 1)) {
                 isColliding = true;
             }
         } else if (heading == "Down") {
-            if (mapLayout.current.portfolioColCell.includes(characterPosition.current.colCell + mapLayout.current.maxColCellEachRow)) {
+            if (mapLayout.current.objectCell.includes(characterPosition.current.colCell + mapLayout.current.maxColCellEachRow)) {
                 isColliding = true;
             }
         } else if (heading == "Left") {
-            if (mapLayout.current.portfolioColCell.includes(characterPosition.current.colCell - 1)) {
+            if (mapLayout.current.objectCell.includes(characterPosition.current.colCell - 1)) {
                 isColliding = true;
             }
         }
         return isColliding;
     }
 
+    const clickPortfolio = (currentPortfolio: object) => {
+        setPortfolio(prevState => ({
+            ...prevState,
+            ...currentPortfolio
+        }));
+        setModalOpen(true);
+    }
+
     const isPortfolioAround = (event: string) => {
         const key = event;
         const characterCoordinate = characterPosition.current.colCell;
-        if (key === "Enter" && mapLayout.current.portfolioColCell.includes(characterCoordinate)) {
-            console.log("around");
-            setModalOpen(true);
+        const portfolioCoordinate = mapLayout.current.portfolioCell.map((x) => x.colCell);
+
+        if (key === "Enter" && portfolioCoordinate.includes(characterCoordinate)) {
+            clickPortfolio(mapLayout.current.portfolioCell[portfolioCoordinate.indexOf(characterCoordinate)]);
         }
     }
 
@@ -218,9 +309,11 @@ export default function Game() {
                                         ) : null
                                     }
                                     {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO  */}
-                                    {
-                                        (mapLayout.current.portfolioColCell.includes(currentCol)) ? (
-                                            <InformationCircleIcon className="text-blood animate-bounce-mlp shadow cursor-pointer hover:text-white"  aria-hidden="true" onClick={() => setModalOpen(true)}
+                                    {mapLayout.current.portfolioCell.map((portfolio, k) => (
+                                        currentCol === portfolio.colCell ? (
+                                            <InformationCircleIcon
+                                                key={k}
+                                                className="text-blood animate-bounce-mlp shadow cursor-pointer hover:text-white" aria-hidden="true" onClick={() => clickPortfolio(portfolio)}
                                                 style={{
                                                     width: '45%',
                                                     height: '45%',
@@ -231,13 +324,13 @@ export default function Game() {
                                                 }}
                                             />
                                         ) : null
-                                    }
+                                    ))}
                                 </div>
                             )
                         })}
                 </div>
             </div>
-            <Modal modalOpen={modalOpen} setModalOpen={setModalOpen} cancelButtonRef={cancelButtonRef} />
+            <Modal portfolio={portfolio} modalOpen={modalOpen} setModalOpen={setModalOpen} cancelButtonRef={cancelButtonRef} />
         </div >
     )
 }

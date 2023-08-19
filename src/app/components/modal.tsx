@@ -4,8 +4,9 @@ import { Dialog, Transition } from '@headlessui/react'
 import { DocumentIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import ImageCarousel from './parts/imageCarousel';
 
-export default function Modal({ modalOpen, setModalOpen, cancelButtonRef }: { modalOpen: boolean, setModalOpen: any, cancelButtonRef: any }) {
+export default function Modal({ portfolio, modalOpen, setModalOpen, cancelButtonRef }: { portfolio: any, modalOpen: boolean, setModalOpen: any, cancelButtonRef: any }) {
     return (
+
         <Transition.Root show={modalOpen} as={Fragment}>
             <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={setModalOpen}>
                 <Transition.Child
@@ -35,14 +36,14 @@ export default function Modal({ modalOpen, setModalOpen, cancelButtonRef }: { mo
                                 <div className="bg-slate-800 px-6 pb-6 pt-5 sm:p-8 sm:pb-8">
                                     <div className="sm:flex sm:items-start">
                                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
-                                            <Dialog.Title as="h3" className="text-2xl text-center font-semibold leading-6 text-white">
-                                                My Desired Utopias
+                                            <Dialog.Title as="h3" className="text-2xl text-center font-semibold leading-6 pl-4 pr-4 text-white">
+                                                {portfolio.title}
                                             </Dialog.Title>
                                             <div className="mt-2">
-                                                <ImageCarousel />
+                                                <ImageCarousel images={portfolio.imagesPath} />
                                                 <p className="text-base text-justify mt-3 text-white indent-8">
-                                                    🍔🍕 My Desired Utopias is the culmination of my Dicoding &quot;Becoming a Web Front-End Developer Expert&quot; certification journey. This project showcases modern front-end development, featuring a Progressive Web App (PWA) that fetches restaurant data from the Dicoding server using Hapi, Webpack, and pure CSS/JS
-                                                    <a href='https://github.com/daffavcd/restaurant-catalog' className='text-red-600 text-sm italic inline hover:text-white' tabIndex={2} target="_blank" rel="noopener noreferrer">[https://github.com/daffavcd/restaurant-catalog]</a>
+                                                    {portfolio.desc}&nbsp;
+                                                    <a href={portfolio.repoLink != "Private" ? portfolio.repoLink : "#"} className='text-red-600 text-sm italic inline hover:text-white' tabIndex={2} target="_blank" rel="noopener noreferrer">[{portfolio.repoLink}]</a>
                                                     .
                                                 </p>
                                                 <p className="text-lg mt-2 text-left font-semibold text-white">
@@ -50,37 +51,29 @@ export default function Modal({ modalOpen, setModalOpen, cancelButtonRef }: { mo
                                                 </p>
                                                 <div className='grid mt-2 gap-0 grid-cols-1 pl-7 pr-7 text-white'>
                                                     <ul className="list-disc">
-                                                        <li>Seamless catalog data fetching from Dicoding&quot;s API</li>
-                                                        <li>Responsive design with pure CSS/JS for optimal user experience</li>
-                                                        <li>Harnessing the power of Hapi server for efficient routing</li>
-                                                        <li>Embracing the PWA paradigm for offline access and speed</li>
-                                                        <li>Upholding code quality through automated testing</li>
+                                                        {portfolio.features.map((feature: string) => (
+                                                            <li key={feature}>{feature}</li>
+                                                        ))}
                                                     </ul>
                                                 </div>
                                                 <p className="text-lg mt-2 text-left font-semibold text-white">
                                                     Tech Used :
                                                 </p>
                                                 <div className='grid mt-2 gap-0 pl-7 pr-7 grid-cols-12'>
-                                                    <Image
-                                                        src="/images/langs/js.png"
-                                                        className='rounded'
-                                                        alt="ImageDescription"
-                                                        height={50}
-                                                        width={50}
-                                                        style={{
-                                                            objectFit: 'cover',
-                                                        }}
-                                                    />
-                                                    <Image
-                                                        src="/images/langs/webpack.png"
-                                                        className='rounded'
-                                                        alt="ImageDescription"
-                                                        height={50}
-                                                        width={50}
-                                                        style={{
-                                                            objectFit: 'cover',
-                                                        }}
-                                                    />
+                                                    {portfolio.techImagesPath.map((tech: string) => (
+                                                        <Image
+                                                            src={`${tech}.png`}
+                                                            className='rounded'
+                                                            title={tech.split("/")[3].toUpperCase()}
+                                                            alt={tech.split("/")[3].toUpperCase()}
+                                                            key={tech}
+                                                            height={50}
+                                                            width={50}
+                                                            style={{
+                                                                objectFit: 'cover',
+                                                            }}
+                                                        />
+                                                    ))}
                                                 </div>
                                             </div>
                                         </div>
