@@ -5,8 +5,10 @@ import { Poppins } from 'next/font/google'
 const poppins = Poppins({ weight: "400", subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'My Little Prison',
-  description: 'A collective of my desired prisoners.',
+  title: "My Little Prison",
+  description: "The collective of Daffa's works and codes.",
+  creator: "Daffa' Athallah",
+  themeColor: "#333333",
 }
 
 export default function RootLayout({

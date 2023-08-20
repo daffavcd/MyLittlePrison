@@ -95,8 +95,8 @@ export default function Game() {
                     imagesPath: [
                         '/images/portfolios/ticket_1',
                         '/images/portfolios/ticket_2',
-                        '/images/portfolios/ticket_2',
-                        '/images/portfolios/ticket_2',
+                        '/images/portfolios/ticket_3',
+                        '/images/portfolios/ticket_4',
                     ],
                     techImagesPath: [
                         '/images/langs/laravel',
@@ -295,7 +295,7 @@ export default function Game() {
                                             <Image
                                                 alt="Character"
                                                 className='z-30'
-                                                src="/images/sprites/0_Warrior_Idle Blinking_000.png"
+                                                src="/images/sprites/warior_idle.png"
                                                 fill={true}
                                                 sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
                                                 style={{
