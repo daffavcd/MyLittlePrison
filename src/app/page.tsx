@@ -24,6 +24,7 @@ export default function Home() {
           <Header />
           <Game />
         </main>
+
         <Footer />
       </div>
     </>

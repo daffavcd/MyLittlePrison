@@ -60,14 +60,14 @@ export default function ImageCarousel({ images }: { images: any }) {
                     <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-red-800 cursor-pointer'>
                         <ChevronRightIcon className="h-8 w-8" aria-hidden="true" onClick={nextSlide} />
                     </div>
-                    <div className='hidden group-hover:flex absolute left-[50%] -translate-x-[50%] bottom-4 text-2xl rounded-md p-2 bg-black/20 cursor-pointer'>
+                    <div className='hidden group-hover:flex absolute left-[50%] -translate-x-[50%] bottom-0 text-2xl p-2 cursor-pointer'>
                         {slides.current.map((slide: string, slideIndex: number) => (
                             <div
                                 key={slideIndex}
                                 onClick={() => goToSlide(slideIndex)}
                                 className='text-2xl cursor-pointer'
                             >
-                                {slideIndex === currentIndex ? <StopIcon className="h-5 w-5 text-red-800" aria-hidden="true" /> : <StopOutline className="h-5 w-5 text-red-800" aria-hidden="true" />}
+                                {slideIndex === currentIndex ? <StopIcon className="h-5 w-5 text-red-800" aria-hidden="true" /> : <StopIcon className="h-5 w-5 text-black/20" aria-hidden="true" />}
                             </div>
                         ))}
                     </div>

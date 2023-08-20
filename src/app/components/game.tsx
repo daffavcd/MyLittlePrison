@@ -1,8 +1,9 @@
 "use client";
 import { useState, useEffect, useRef, Fragment } from 'react';
 import Image from 'next/image';
-import Modal from './modal';
+import ModalPortfolio from './modalPortfolio';
 import { InformationCircleIcon } from '@heroicons/react/24/outline'
+import { LightBulbIcon } from '@heroicons/react/24/solid'
 
 export default function Game() {
 
@@ -311,7 +312,7 @@ export default function Game() {
                                     {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO  */}
                                     {mapLayout.current.portfolioCell.map((portfolio, k) => (
                                         currentCol === portfolio.colCell ? (
-                                            <InformationCircleIcon
+                                            <LightBulbIcon
                                                 key={k}
                                                 className="text-blood animate-bounce-mlp shadow cursor-pointer hover:text-white" aria-hidden="true" onClick={() => clickPortfolio(portfolio)}
                                                 style={{
@@ -330,7 +331,7 @@ export default function Game() {
                         })}
                 </div>
             </div>
-            <Modal portfolio={portfolio} modalOpen={modalOpen} setModalOpen={setModalOpen} cancelButtonRef={cancelButtonRef} />
+            <ModalPortfolio portfolio={portfolio} modalOpen={modalOpen} setModalOpen={setModalOpen} cancelButtonRef={cancelButtonRef} />
         </div >
     )
 }

@@ -6,7 +6,7 @@ const poppins = Poppins({ weight: "400", subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: "My Little Prison",
-  description: "The collective of Daffa's works and codes.",
+  description: "The collection of Daffa's projects and codes.",
   creator: "Daffa' Athallah",
   themeColor: "#333333",
 }

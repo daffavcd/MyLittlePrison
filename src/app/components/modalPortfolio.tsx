@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { DocumentIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import ImageCarousel from './parts/imageCarousel';
 
-export default function Modal({ portfolio, modalOpen, setModalOpen, cancelButtonRef }: { portfolio: any, modalOpen: boolean, setModalOpen: any, cancelButtonRef: any }) {
+export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, cancelButtonRef }: { portfolio: any, modalOpen: boolean, setModalOpen: any, cancelButtonRef: any }) {
     return (
 
         <Transition.Root show={modalOpen} as={Fragment}>
