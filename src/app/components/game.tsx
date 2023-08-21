@@ -42,7 +42,7 @@ export default function Game() {
                     desc: '🍔🍕 My Desired Utopias is the culmination of my Dicoding "Becoming a Web Front- End Developer Expert" certification journey. This project showcases modern front-end development, featuring a Progressive Web App (PWA) that fetches restaurant data from the Dicoding server using Hapi, Webpack, and pure CSS/JS',
                     repoLink: 'https://github.com/daffavcd/restaurant-catalog',
                     features: [
-                        'Seamless catalog data fetching from Dicoding&quot;s API',
+                        "Seamless catalog data fetching from Dicoding's API",
                         'Responsive design with pure CSS/JS for optimal user experience',
                         'Harnessing the power of Hapi server for efficient routin',
                         'Embracing the PWA paradigm for offline access and speed',
@@ -90,7 +90,7 @@ export default function Game() {
                     desc: '🌐🔐 Ticketing API Bot project is a solution designed to streamline and optimize ticketing management for Nakula Sadewa through the synergistic integration of a web service and a Telegram bot. By employing technologies such as a RESTful API server, Telegram bot capabilities, and the secure Sanctum token-based authentication, this project epitomizes efficiency and modernity in digital operations',
                     repoLink: 'https://github.com/chicken-porridge/ticketing-api-bot',
                     features: [
-                        "RESTful API server, acting as a bridge that connects Nakula Sadewa&quot;s multi-platform applications. This enables seamless communication and data exchange for efficient ticketing management.",
+                        "RESTful API server, acting as a bridge that connects Nakula Sadewa's multi-platform applications. This enables seamless communication and data exchange for efficient ticketing management.",
                         'The Telegram bot takes user interaction to the next level. Users can effortlessly create, view, and manage tickets directly from the convenience of their Telegram app, enhancing accessibility and user engagement',
                         'Security is paramount. This project leverages Sanctum token authentication to ensure secure access to the system, safeguarding sensitive data and ensuring user privacy.',
                     ],

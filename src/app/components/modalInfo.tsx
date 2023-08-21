@@ -59,7 +59,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         title="Tutorial 1"
                                                         className="inline"
                                                         width={180}
-                                                        height={180}
+                                                        height={120}
                                                     />
                                                     <p className="text-lg mt-2 text-justify font-medium text-white">
                                                         <ol className="list-decimal">
@@ -74,7 +74,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         title="Tutorial 1"
                                                         className="inline"
                                                         width={180}
-                                                        height={180}
+                                                        height={120}
                                                     />
                                                     <p className="text-lg mt-2 text-justify font-medium text-white">
                                                         <ol className="list-decimal" start={2}>
@@ -89,7 +89,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         title="Tutorial 1"
                                                         className="inline"
                                                         width={180}
-                                                        height={180}
+                                                        height={120}
                                                     />
                                                     <p className="text-lg mt-2 text-justify font-medium text-white">
                                                         <ol className="list-decimal" start={3}>
@@ -104,7 +104,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         title="Tutorial 1"
                                                         className="inline"
                                                         width={180}
-                                                        height={180}
+                                                        height={120}
                                                     />
                                                     <p className="text-lg mt-2 text-justify font-medium text-white">
                                                         <ol className="list-decimal" start={4}>
