@@ -11,7 +11,7 @@ export default function Game() {
 
     const cancelButtonRef = useRef(null)
 
-    const [isDesktop, setIsDesktop] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(true);
 
     const [isCharacterMoving, setIsCharacterMoving] = useState(false);
     const [characterImage, setCharacterImage] = useState('idle_blinking');
@@ -139,10 +139,10 @@ export default function Game() {
 
     // GET WINDOW RESOLUTION
     useEffect(() => {
-        const mediaQuery = window.matchMedia('(min-width: 640px)');
-        setIsDesktop(mediaQuery.matches);
+        const mediaQuery = window.matchMedia('(max-width: 639px)');
+        setIsDesktop(!mediaQuery.matches);
         const handleMediaQueryChange = (e: MediaQueryListEvent) => {
-            setIsDesktop(e.matches);
+            setIsDesktop(!e.matches);
         };
 
         mediaQuery.addEventListener('change', handleMediaQueryChange);
@@ -300,7 +300,7 @@ export default function Game() {
                 <div className="dark-overlay-game rounded"></div>
                 {!isDesktop ? (
                     <div className='flex items-center text-lg font-medium p-4 text-white text-center sm:invisible relative z-10 h-full'>
-                        To explore my projects, please utilize a desktop (width of 640 pixels or more) and a keyboard to move the character.
+                        To explore my projects, please utilize a desktop (width of 640 pixels or more) and provide a keyboard to move the character.
                     </div>
                 ) : null}
                 <div id="cell-row" className="hidden sm:grid grid-cols-9 gap-0 p-4 h-full">
