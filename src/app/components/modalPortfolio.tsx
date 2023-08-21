@@ -62,10 +62,10 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                 <div className='grid mt-2 gap-0 pl-7 pr-7 grid-cols-12'>
                                                     {portfolio.techImagesPath.map((tech: string) => (
                                                         <Image
-                                                            src={`${tech}.png`}
+                                                            src={`/images/langs/${tech}.svg`}
                                                             className='rounded'
-                                                            title={tech.split("/")[3].toUpperCase()}
-                                                            alt={tech.split("/")[3].toUpperCase()}
+                                                            title={tech.toUpperCase()}
+                                                            alt={tech.toUpperCase()}
                                                             key={tech}
                                                             height={50}
                                                             width={50}

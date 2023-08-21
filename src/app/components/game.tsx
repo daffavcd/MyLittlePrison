@@ -12,6 +12,7 @@ export default function Game() {
     const cancelButtonRef = useRef(null)
 
     const [isCharacterMoving, setIsCharacterMoving] = useState(false);
+    const [characterImage, setCharacterImage] = useState('idle_blinking');
 
     const [portfolio, setPortfolio] = useState({
         colCell: 0,
@@ -48,13 +49,13 @@ export default function Game() {
                         'Upholding code quality through automated testing',
                     ],
                     imagesPath: [
-                        '/images/portfolios/resto_1',
-                        '/images/portfolios/resto_2',
+                        'resto_1',
+                        'resto_2',
                     ],
                     techImagesPath: [
-                        '/images/langs/javascript',
-                        '/images/langs/css',
-                        '/images/langs/webpack',
+                        'javascript',
+                        'css',
+                        'webpack',
                     ]
                 },
                 {
@@ -69,18 +70,18 @@ export default function Game() {
                         'Allowing users to share images and documents. File are seamlessly integrated into the chat interface, enhancing the overall communication experience.',
                     ],
                     imagesPath: [
-                        '/images/portfolios/chat_1',
-                        '/images/portfolios/chat_2',
-                        '/images/portfolios/chat_3',
-                        '/images/portfolios/chat_4',
+                        'chat_1',
+                        'chat_2',
+                        'chat_3',
+                        'chat_4',
                     ],
                     techImagesPath: [
-                        '/images/langs/javascript',
-                        '/images/langs/laravel',
-                        '/images/langs/php',
-                        '/images/langs/jquery',
-                        '/images/langs/pusher',
-                        '/images/langs/mysql',
+                        'javascript',
+                        'laravel',
+                        'php',
+                        'jquery',
+                        'pusher',
+                        'mysql',
                     ]
                 },
                 {
@@ -94,15 +95,16 @@ export default function Game() {
                         'Security is paramount. This project leverages Sanctum token authentication to ensure secure access to the system, safeguarding sensitive data and ensuring user privacy.',
                     ],
                     imagesPath: [
-                        '/images/portfolios/ticket_1',
-                        '/images/portfolios/ticket_2',
-                        '/images/portfolios/ticket_3',
-                        '/images/portfolios/ticket_4',
+                        'ticket_1',
+                        'ticket_2',
+                        'ticket_3',
+                        'ticket_4',
                     ],
                     techImagesPath: [
-                        '/images/langs/laravel',
-                        '/images/langs/php',
-                        '/images/langs/botman',
+                        'laravel',
+                        'php',
+                        'botman',
+                        'mysql',
                     ]
                 },
             ],
@@ -159,8 +161,9 @@ export default function Game() {
     }
 
     const moveAnimation = (heading: string) => {
+        let nextCharacterImage = "";
         // IN THE CASE OF OBJECT IMAGE IS OUTSIDE OF THE RENDERED IMAHE 
-        // OBJECT ANIMATION CANNOT ANIMATED
+        // OBJECT ANIMATION CANNOT BE ANIMATED
         // I THINK I SHOULD'VE RENDER ALL OF THE CELL AT ONCE
 
         // ABORT ANIMATION IF THE CHARACTER IS COLLIDING WITH AN OBJECT
@@ -175,6 +178,7 @@ export default function Game() {
             }
 
             translation.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
+            nextCharacterImage = "run_up";
 
             // DONT ANIMATE OBJECT DOWN IF THE CHARACTER WITHIN TWO ROW FROM THE TOP OR BOTTOM
             if (characterPosition.current.rowCell <= 2 || characterPosition.current.rowCell == mapLayout.current.maxRowCell) {
@@ -185,6 +189,7 @@ export default function Game() {
 
         } else if (heading == "Right") {
             translation.current = { dx: `${cellWidth.current}px`, dy: `0px` };
+            nextCharacterImage = "run_right";
             translationObject.current = { dx: `0px`, dy: `$0px` };
         } else if (heading == "Down") {
             // MOVE DOWN DISPLAYED MAP ONCE IF THERE IS ANOTHER BOTTOM AND IF NOT AT THE VERY BOTTOM
@@ -193,6 +198,7 @@ export default function Game() {
                 mapLayout.current.colCenter = mapLayout.current.colCenter + mapLayout.current.maxColCellEachRow;
             }
 
+            nextCharacterImage = "run_down";
             translation.current = { dx: `0px`, dy: `${cellHeight.current}px` };
 
             // DONT ANIMATE OBJECT UP IF THE CHARACTER WITHIN TWO ROW FROM THE TOP OR BOTTOM
@@ -204,16 +210,19 @@ export default function Game() {
 
         } else if (heading == "Left") {
             translation.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
+            nextCharacterImage = "run_left";
             translationObject.current = { dx: `0px`, dy: `$0px` };
         }
 
         // CHANGE THE STATE HERE TO RE RENDER THE DISPLAYED MAP
+        setCharacterImage(nextCharacterImage);
         setIsCharacterMoving(true);
         setTimeout(() => {
             moveRefCharacter(heading);
             // CHANGE THE STATE TO NOT MOVING
+            setCharacterImage("idle_blinking");
             setIsCharacterMoving(false);
-        }, 200);
+        }, 300);
     }
 
     const moveRefCharacter = (heading: string) => {
@@ -296,14 +305,14 @@ export default function Game() {
                                             <Image
                                                 alt="Character"
                                                 className='z-30'
-                                                src="/images/sprites/warior_idle.png"
+                                                src={`/images/sprites/${characterImage}.gif`}
                                                 fill={true}
                                                 sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
                                                 style={{
                                                     height: '100%',
                                                     width: '100%',
                                                     position: 'absolute',
-                                                    transition: 'transform 0.2s ease-in-out',
+                                                    transition: 'transform 0.3s ease-in-out',
                                                     transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
                                                 }}
                                             />

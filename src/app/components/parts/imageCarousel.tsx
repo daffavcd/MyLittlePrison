@@ -41,10 +41,10 @@ export default function ImageCarousel({ images }: { images: any }) {
             <div className="flex items-center justify-center col-span-12 h-full">
                 <div className='max-w-[1400px] h-[300px] w-full m-auto py-16 px-4 relative group shadow-2xl'>
                     <Image
-                        src={`${slides.current[currentIndex]}.png`}
+                        src={`/images/portfolios/${slides.current[currentIndex]}.png`}
                         className='rounded transition duration-500 ease-in-out'
-                        alt={slides.current[currentIndex].split("/")[3].toUpperCase()}
-                        title={slides.current[currentIndex].split("/")[3].toUpperCase()}
+                        alt={slides.current[currentIndex].toUpperCase()}
+                        title={slides.current[currentIndex].toUpperCase()}
                         fill={true}
                         style={{
                             objectFit: 'cover',
