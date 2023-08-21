@@ -4,6 +4,7 @@ import Image from 'next/image';
 import ModalPortfolio from './modalPortfolio';
 import { InformationCircleIcon } from '@heroicons/react/24/outline'
 import { LightBulbIcon } from '@heroicons/react/24/solid'
+import { portfolios } from '../data/portfolios';
 
 export default function Game() {
 
@@ -37,79 +38,7 @@ export default function Game() {
             rowCenter: 5,
             colCenter: 41,
             objectCell: [1, 2],
-            portfolioCell: [
-                {
-                    colCell: 51,
-                    title: "My Desired Utopias - Find Your Restaurant Catalog Here!",
-                    desc: '🍔🍕 My Desired Utopias is the culmination of my Dicoding "Becoming a Web Front- End Developer Expert" certification journey. This project showcases modern front-end development, featuring a Progressive Web App (PWA) that fetches restaurant data from the Dicoding server using Hapi, Webpack, and pure CSS/JS',
-                    repoLink: 'https://github.com/daffavcd/restaurant-catalog',
-                    features: [
-                        "Seamless catalog data fetching from Dicoding's API",
-                        'Responsive design with pure CSS/JS for optimal user experience',
-                        'Harnessing the power of Hapi server for efficient routin',
-                        'Embracing the PWA paradigm for offline access and speed',
-                        'Upholding code quality through automated testing',
-                    ],
-                    imagesPath: [
-                        'resto_1',
-                        'resto_2',
-                    ],
-                    techImagesPath: [
-                        'javascript',
-                        'css',
-                        'webpack',
-                    ]
-                },
-                {
-                    colCell: 37,
-                    title: "Chatting Converse: Real-Time Chat Web App with Pusher Integration and MySQL",
-                    desc: '⚡️💬 An immersive real-time chat web application designed to bring people closer through seamless communication. This project leverages the power of Pusher for real-time updates and integrates jQuery for dynamic interactions. The conversations are not only live but also persistent, thanks to the integration with MySQL for storing and retrieving chat data',
-                    repoLink: 'https://github.com/daffavcd/chatting-converse',
-                    features: [
-                        'Experience the excitement of instant messaging with real-time updates. Chatting Converse ensures that messages are delivered and displayed in a fraction of a second.',
-                        'The magic of real-time communication comes to life through Pusher, enabling users to chat simultaneously and experience the thrill of instant interactions',
-                        'Every conversation matters. By integrating with MySQL, Chatting Converse ensures that your conversations are saved',
-                        'Allowing users to share images and documents. File are seamlessly integrated into the chat interface, enhancing the overall communication experience.',
-                    ],
-                    imagesPath: [
-                        'chat_1',
-                        'chat_2',
-                        'chat_3',
-                        'chat_4',
-                    ],
-                    techImagesPath: [
-                        'javascript',
-                        'laravel',
-                        'php',
-                        'jquery',
-                        'pusher',
-                        'mysql',
-                    ]
-                },
-                {
-                    colCell: 30,
-                    title: "Ticketing API Bot: Enhancing Ticketing Management with Web Service and Telegram Bot Integration",
-                    desc: '🌐🔐 Ticketing API Bot project is a solution designed to streamline and optimize ticketing management for Nakula Sadewa through the synergistic integration of a web service and a Telegram bot. By employing technologies such as a RESTful API server, Telegram bot capabilities, and the secure Sanctum token-based authentication, this project epitomizes efficiency and modernity in digital operations',
-                    repoLink: 'https://github.com/chicken-porridge/ticketing-api-bot',
-                    features: [
-                        "RESTful API server, acting as a bridge that connects Nakula Sadewa's multi-platform applications. This enables seamless communication and data exchange for efficient ticketing management.",
-                        'The Telegram bot takes user interaction to the next level. Users can effortlessly create, view, and manage tickets directly from the convenience of their Telegram app, enhancing accessibility and user engagement',
-                        'Security is paramount. This project leverages Sanctum token authentication to ensure secure access to the system, safeguarding sensitive data and ensuring user privacy.',
-                    ],
-                    imagesPath: [
-                        'ticket_1',
-                        'ticket_2',
-                        'ticket_3',
-                        'ticket_4',
-                    ],
-                    techImagesPath: [
-                        'laravel',
-                        'php',
-                        'botman',
-                        'mysql',
-                    ]
-                },
-            ],
+            portfolioCell: portfolios
         }
     );
 
@@ -298,11 +227,6 @@ export default function Game() {
         <div className="col-span-12 sm:pl-24 sm:pr-24" id="game-map">
             <div className="relative h-96">
                 <div className="dark-overlay-game rounded"></div>
-                {!isDesktop ? (
-                    <div className='flex items-center text-lg font-medium p-4 text-white text-center sm:invisible relative z-10 h-full'>
-                        To explore my projects, please utilize a desktop (width of 640 pixels or more) and provide a keyboard to move the character.
-                    </div>
-                ) : null}
                 <div id="cell-row" className="hidden sm:grid grid-cols-9 gap-0 p-4 h-full">
                     {
                         [...Array(mapLayout.current.maxColCellDisplayed)].map((x, j) => {
@@ -361,6 +285,11 @@ export default function Game() {
                             )
                         })}
                 </div>
+                {!isDesktop ? (
+                    <div className='flex items-center text-lg font-medium p-4 text-white text-center sm:invisible relative z-10 h-full'>
+                        To explore my projects, please utilize a desktop (width of 640 pixels or more) and provide a keyboard to move the character.
+                    </div>
+                ) : null}
             </div>
             <ModalPortfolio portfolio={portfolio} modalOpen={modalOpen} setModalOpen={setModalOpen} cancelButtonRef={cancelButtonRef} />
         </div >
