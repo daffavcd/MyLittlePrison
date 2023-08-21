@@ -61,11 +61,9 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         width={180}
                                                         height={120}
                                                     />
-                                                    <p className="text-lg mt-2 text-justify font-medium text-white">
-                                                        <ol className="list-decimal">
-                                                            <li>Use your arrow keyboard to navigate the character across the map.</li>
-                                                        </ol>
-                                                    </p>
+                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal">
+                                                        <li>Use your arrow keyboard to navigate the character across the map.</li>
+                                                    </ol>
                                                 </div>
                                                 <div className="col-span-6 pl-6 pr-6 text-center">
                                                     <Image
@@ -76,11 +74,9 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         width={180}
                                                         height={120}
                                                     />
-                                                    <p className="text-lg mt-2 text-justify font-medium text-white">
-                                                        <ol className="list-decimal" start={2}>
-                                                            <li>Locate the Light Blup to discover the projects by using the arrow keys.</li>
-                                                        </ol>
-                                                    </p>
+                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal " start={2}>
+                                                        <li>Locate the Light Blup to discover the projects by using the arrow keys.</li>
+                                                    </ol>
                                                 </div>
                                                 <div className="col-span-6 pl-6 pr-6 text-center mt-2">
                                                     <Image
@@ -91,11 +87,9 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         width={180}
                                                         height={120}
                                                     />
-                                                    <p className="text-lg mt-2 text-justify font-medium text-white">
-                                                        <ol className="list-decimal" start={3}>
-                                                            <li>Position the character precisely over where the Light Blup is located.</li>
-                                                        </ol>
-                                                    </p>
+                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal" start={3}>
+                                                        <li>Position the character precisely over where the Light Blup is located.</li>
+                                                    </ol>
                                                 </div>
                                                 <div className="col-span-6 pl-6 pr-6 text-center mt-2">
                                                     <Image
@@ -106,11 +100,9 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         width={180}
                                                         height={120}
                                                     />
-                                                    <p className="text-lg mt-2 text-justify font-medium text-white">
-                                                        <ol className="list-decimal" start={4}>
-                                                            <li>Show the projects by pressing Enter or left-clicking with your mouse.</li>
-                                                        </ol>
-                                                    </p>
+                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal" start={4}>
+                                                        <li>Show the projects by pressing Enter or left-clicking with your mouse.</li>
+                                                    </ol>
                                                 </div>
                                             </div>
 
