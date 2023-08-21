@@ -22,8 +22,8 @@ export default function Header() {
                 />
             </div >
             <div className="col-span-3 z-10 text-right">
-                <div className='rounded-xl inline-flex gap-2 p-1 bg-blood shadow-2xl' style={{ width: "fit-content", maxHeight: "50px" }}>
-                    <QuestionMarkCircleIcon className="h-10 w-10 animate-pulse text-black hover:text-white cursor-pointer pointer-events-auto" aria-hidden="true"
+                <div className='rounded-xl hidden sm:inline-flex gap-2 p-1 bg-blood shadow-2xl' style={{ width: "fit-content", maxHeight: "50px" }}>
+                    <QuestionMarkCircleIcon className="h-10 w-10 animate-pulse text-black hover:text-white cursor-pointer " aria-hidden="true"
                         onClick={() => setModalInfoOpen(true)}
                     />
                     <UserCircleIcon className="h-10 w-10 text-black hover:text-white cursor-pointer" aria-hidden="true" />
