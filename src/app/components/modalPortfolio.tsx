@@ -37,7 +37,7 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                 <div className="bg-slate-800 px-6 pb-6 pt-5 sm:p-8 sm:pb-8">
                                     <div className="sm:flex sm:items-start">
                                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
-                                            <Dialog.Title as="h3" className="text-2xl text-center font-semibold leading-6 pl-4 pr-4 text-white">
+                                            <Dialog.Title as="h3" className="text-2xl text-center font-semibold leading-8 pl-4 pr-4 text-white">
                                                 {portfolio.title}
                                             </Dialog.Title>
                                             <div className="mt-2">

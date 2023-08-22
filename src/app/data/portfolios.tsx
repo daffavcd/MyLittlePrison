@@ -17,11 +17,11 @@ export const portfolios: Portfolio[] = [
         repoLink: 'https://github.com/daffavcd/restaurant-catalog',
         year: '2022',
         features: [
+            'Upholding code quality through automated testing.',
             "Seamless catalog data fetching from Dicoding's API.",
-            'Responsive design with pure CSS/JS for optimal user experience.',
             'Harnessing the power of Hapi server for efficient routin.',
             'Embracing the PWA paradigm for offline access and speed.',
-            'Upholding code quality through automated testing.',
+            'Responsive design with pure CSS/JS for optimal user experience.',
         ],
         imagesPath: [
             'resto_1',
@@ -43,10 +43,10 @@ export const portfolios: Portfolio[] = [
         repoLink: 'https://github.com/daffavcd/chatting-converse',
         year: '2021',
         features: [
-            'Experience the excitement of instant messaging with real-time updates. Chatting Converse ensures that messages are delivered and displayed in a fraction of a second.',
-            'The magic of real-time communication comes to life through Pusher, enabling users to chat simultaneously and experience the thrill of instant interactions.',
-            'Every conversation matters. By integrating with MySQL, Chatting Converse ensures that your conversations are saved.',
-            'Allowing users to share images and documents. File are seamlessly integrated into the chat interface, enhancing the overall communication experience.',
+            'Share images and documents seamlessly in the chat interface.',
+            'MySQL integration saves and stores every important conversation.',
+            'Experience instant interactions via Pusher for simultaneous chatting.',
+            'Enjoy instant messaging with real-time updates on Chatting Converse.',
         ],
         imagesPath: [
             'chat_1',
@@ -70,9 +70,9 @@ export const portfolios: Portfolio[] = [
         repoLink: 'https://github.com/chicken-porridge/ticketing-api-bot',
         year: '2022',
         features: [
-            "RESTful API server, acting as a bridge that connects Nakula Sadewa's multi-platform applications. This enables seamless communication and data exchange for efficient ticketing management.",
-            'The Telegram bot takes user interaction to the next level. Users can effortlessly create, view, and manage tickets directly from the convenience of their Telegram app, enhancing accessibility and user engagement.',
-            'Security is paramount. This project leverages Sanctum token authentication to ensure secure access to the system, safeguarding sensitive data and ensuring user privacy.',
+            'Security ensured through Sanctum token authentication for data privacy.',
+            'Telegram bot using BotMan to elevates user interaction—create and manage tickets.',
+            "RESTful API server connects Nakula Sadewa's multi-platform apps for efficient ticketing.",
         ],
         imagesPath: [
             'ticket_1',
@@ -94,10 +94,10 @@ export const portfolios: Portfolio[] = [
         repoLink: 'Private',
         year: '2022',
         features: [
-            "Adopting a Single Page Application architecture ensures a smooth and seamless user experience by minimizing page reloads and enhancing overall responsiveness.",
-            'Leveraging the power of Laravel as the back-end and ReactJS as the front-end.',
-            'The core objective of MNE-1001 is to provide an efficient platform for managing and monitoring CSR programs.',
-            'The web app offers comprehensive monitoring capabilities, enabling stakeholders to track the progress, impact, and effectiveness of CSR projects in real time.',
+            'Backend powered by Laravel, front-end by ReactJS.',
+            "Single Page App design for smooth user experience, reduced reloads.",
+            'Provide an efficient platform for managing and monitoring CSR programs.',
+            'Enabling stakeholders to track the progress and effectiveness of the CSR projects in real time.',
         ],
         imagesPath: [
             'mne_1',
@@ -129,10 +129,10 @@ export const portfolios: Portfolio[] = [
         repoLink: 'Private',
         year: '2021',
         features: [
-            "Seamlessly manage and record scoring rankings while enjoying a game of golf with friends, adding a competitive and engaging dimension to your rounds.",
-            'Explore a range of lesson packages to enhance your golfing skills. Easily schedule caddie appointments for personalized training sessions.',
-            'Create, participate in, and manage golf events within the J-Golf community, fostering a sense of camaraderie and friendly competition.',
-            "Access dynamic leaderboards to track event standings and compare golf statistics—yours and others'—providing valuable insights into your progress.",
+            'Join, organize golf events in J-Golf for exhibition and competition.',
+            "Manage scores, adding competitiveness to golf rounds with friends.",
+            "Track standings, compare stats on dynamic leaderboards for insights.",
+            'Improve golfing skills with varied lessons; schedule personalized caddie training.',
         ],
         imagesPath: [
             'jgolf_1',
@@ -163,9 +163,9 @@ export const portfolios: Portfolio[] = [
         repoLink: 'Private',
         year: '2021',
         features: [
-            "Seamlessly manage incoming and outgoing goods, maintaining an accurate overview of inventory levels and transactions.",
-            'Automate transaction calculations to ensure accurate records of each transaction, minimizing human error.',
-            'Generate detailed transaction reports in PDF format, enabling easy record-keeping and sharing without relying on handwritten documents.',
+            'Automation for precise transaction calculations, reducing errors.',
+            "Handling incoming and outgoing goods, keeping track of inventory.",
+            'Create PDF transaction reports for organized record-keeping and sharing.',
         ],
         imagesPath: [
             'blb_1',
@@ -186,14 +186,14 @@ export const portfolios: Portfolio[] = [
     },
     {
         colCell: 32,
-        title: "Kamar Pasien: Empowering Medical Emergency Reservations Using Google Maps API Integration",
-        desc: "🚑🗺️ Kamar Pasien was my milestone project during the Dicoding SIB Kampus Merdeka Class (Goverment Program). This project operates as a panic button, providing users with a seamless and efficient way to make medical reservations during emergencies. Kamar Pasien possess Google Maps API JavaScript to display nearby medical facilities, enabling users to access the routes and location using Google Maps of the intended facilty. Kamar Pasien stands out by offering a mobile web application experience with Progressive Web App (PWA) capabilities",
+        title: "Kamar Pasien: Medical Emergency Reservations Using Google Maps API Integration",
+        desc: "🚑🗺️ Kamar Pasien was my milestone project during the Dicoding SIB Kampus Merdeka Program. This project aim to be a panic button, providing users with a seamless and efficient way to make medical reservations during emergencies. Kamar Pasien possess Google Maps API JavaScript to display nearby medical facilities, enabling users to access the routes and location using Google Maps to the intended facilty. Kamar Pasien stands out by offering a mobile web application experience with Progressive Web App",
         repoLink: 'Private',
         year: '2022',
         features: [
-            "Facilitate swift medical emergency reservations through a panic button feature, for urgent situations.",
-            'Utilize Google Maps API JavaScript to showcase nearby medical facilities on a map, empowering users to find the nearest help.',
-            'Enable users to install Kamar Pasien as a PWA on their devices, ensuring instant access and a seamless experience as a Single Page Application.',
+            "Quick medical emergency reservations with panic button feature.",
+            'Can be installed on User devices for instant access as a PWA App.',
+            'Google Maps API to find nearby medical facilities for easy access.',
         ],
         imagesPath: [
             'kp_1',
