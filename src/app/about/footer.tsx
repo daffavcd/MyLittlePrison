@@ -1,4 +1,4 @@
-export default function Footer() {
+export default function FooterAbout() {
     return (
         <footer className='grid grid-cols-12 max-w-full'>
             <div className="relative col-span-12">

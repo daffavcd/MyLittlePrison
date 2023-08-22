@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <div className="flex flex-col h-screen">
         <Image
-          className="bg-repeat-y bg-repeat"
+          className="bg-repeat"
           alt="Background Image"
           src="/images/red-velvet.jpg"
           quality={100}
@@ -24,7 +24,7 @@ export default function Home() {
           <Header />
           <Game />
         </main>
-          <Footer />
+        <Footer />
       </div>
     </>
   )
