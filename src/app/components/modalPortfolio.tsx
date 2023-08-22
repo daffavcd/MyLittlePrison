@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Dialog, Transition } from '@headlessui/react'
 import { DocumentIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import ImageCarousel from './parts/imageCarousel';
+import Link from 'next/link'
 
 export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, cancelButtonRef }: { portfolio: any, modalOpen: boolean, setModalOpen: any, cancelButtonRef: any }) {
     return (
@@ -43,7 +44,12 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                 <ImageCarousel images={portfolio.imagesPath} />
                                                 <p className="text-base text-justify mt-3 text-white indent-8">
                                                     {portfolio.desc}&nbsp;
-                                                    <a href={portfolio.repoLink != "Private" ? portfolio.repoLink : "#"} className='text-red-600 text-sm italic inline hover:text-white' tabIndex={2} target="_blank" rel="noopener noreferrer">[{portfolio.repoLink}]</a>
+                                                    {portfolio.repoLink == "Private" ? (
+                                                        <div className='text-red-600 text-sm italic inline hover:text-white cursor-pointer'>[Private - {portfolio.year}]</div>
+                                                    ) : (
+                                                        <Link href={portfolio.repoLink} className='text-red-600 text-sm italic inline hover:text-white' tabIndex={2} target="_blank" rel="noopener noreferrer">[{portfolio.repoLink} - {portfolio.year}]</Link>
+                                                    )}
+
                                                     .
                                                 </p>
                                                 <p className="text-lg mt-2 text-left font-semibold text-white">
