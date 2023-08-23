@@ -150,7 +150,7 @@ export default function Content() {
                 </div>
                 <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
                     <div className='col-span-6 text-left text-base'>
-                        I created this project out of my boredom when I had nothing to do, while I was trying to find a job after my graduation. I trully appreciate it if you have come this far. Just sent me a any dm, I would really love to hear it from you.
+                        I created this project out of my boredom when I had nothing to do, while I was trying to find a job after my graduation. I trully appreciate it if you have come this far. Just sent me a any dms, I would really love to hear it from you.
                     </div>
                     <div className='col-span-6 text-right text-lg'>
                         {`© 2023 thePromisedDesire`}
