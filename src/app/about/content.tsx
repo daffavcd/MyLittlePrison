@@ -114,10 +114,9 @@ export default function Content() {
                         />
                     </div>
                     <div className='col-span-2 flex justify-end items-center gap-4'>
-                        <Link href="https://mail.google.com/mail/?view=cm&fs=1&to=daffavcd@gmail.com" target="_blank" rel="noopener noreferrer">
+                        <Link href="https://mail.google.com/mail/?fs=1&to=daffavcd@gmail.com&tf=cm" target="_blank" rel="noopener noreferrer">
                             <FontAwesomeIcon className='h-10 w-h-10 text-blood hover:text-white cursor-pointer' icon={faGoogle} />
                         </Link>
-
                         <Link href="https://twitter.com/messages/compose?recipient_id=813202528816930816" target="_blank" rel="noopener noreferrer">
                             <FontAwesomeIcon className='h-10 w-h-10 text-blood hover:text-white cursor-pointer' icon={faTwitter} />
                         </Link>
