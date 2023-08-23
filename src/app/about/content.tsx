@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { ChevronRightIcon, ChevronLeftIcon, EnvelopeIcon } from '@heroicons/react/20/solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,6 +23,28 @@ export default function Content() {
             mediaQuery.removeEventListener('change', handleMediaQueryChange);
         };
     }, []);
+
+    const slides = useRef([
+        'merdeka',
+        'fundamental',
+        'tsa',
+        'expert',
+    ],);
+
+    const [currentCertificate, setCurrentCertificate] = useState(0);
+
+
+    const prevSlide = () => {
+        const isFirstSlide = currentCertificate === 0;
+        const newIndex = isFirstSlide ? slides.current.length - 1 : currentCertificate - 1;
+        setCurrentCertificate(newIndex);
+    };
+
+    const nextSlide = () => {
+        const isLastSlide = currentCertificate === slides.current.length - 1;
+        const newIndex = isLastSlide ? 0 : currentCertificate + 1;
+        setCurrentCertificate(newIndex);
+    };
 
     return (
         <>
@@ -54,57 +76,58 @@ export default function Content() {
                     </div>
                 </div>
                 <div className='grid grid-cols-12 pt-8 pb-8 pl-6 pr-6 gap-4 text-center relative'>
-                    <div className='absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg'>
-                        <ChevronLeftIcon className="h-11 w-11" aria-hidden="true" />
-                    </div>
-                    {/* Right Arrow */}
-                    <div className='absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg'>
-                        <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
-                    </div>
                     {isDesktop ? (
-                        <div className='col-span-4'>
-                            <div className='relative' id='left-certificate'>
+                        <div className='col-span-4 flex justify-end items-end'>
+                            <div className='relative' id='left-certificate'
+                                draggable="false">
                                 <Image
-                                    src="/images/certificates/expert.jpg"
+                                    src={currentCertificate === 0 ? `/images/certificates/${slides.current[slides.current.length - 1]}.jpg` : `/images/certificates/${slides.current[currentCertificate - 1]}.jpg`}
                                     className='z-0'
-                                    width={580}
-                                    height={50}
-                                    alt="Picture of the author"
+                                    width={472}
+                                    height={335}
+                                    alt="Picture of the certificate"
                                     style={{ objectFit: 'cover' }}
                                 />
                                 <div className="dark-overlay"></div>
                             </div>
                         </div>
                     ) : null}
-                    <div className={isDesktop ? 'col-span-4' : 'col-span-12 text-center'}>
-                        <div className='certificate-container inline-flex' id='center-certificate'>
+                    <div className={isDesktop ? 'col-span-4 flex justify-center items-end' : 'col-span-12 flex justify-center items-end'}>
+                        <div className='relative shadow-inner' id='center-certificate'>
                             <Image
-                                src="/images/certificates/merdeka.jpg"
+                                src={`/images/certificates/${slides.current[currentCertificate]}.jpg`}
                                 className='z-10'
-                                width={580}
-                                height={50}
-                                alt="Picture of the author"
+                                width={472}
+                                height={335}
+                                alt="Picture of the certificate"
                                 style={{ objectFit: 'cover' }}
                             />
                         </div>
                     </div>
                     {isDesktop ? (
-                        <div className='col-span-4'>
+                        <div className='col-span-4 flex justify-start items-end'>
                             <div className='relative' id='right-certificate'>
                                 <Image
-                                    src="/images/certificates/fundamental.jpg"
+                                    src={currentCertificate === slides.current.length - 1 ? `/images/certificates/${slides.current[0]}.jpg` : `/images/certificates/${slides.current[currentCertificate + 1]}.jpg`}
                                     className='z-0'
-                                    width={580}
-                                    height={50}
-                                    alt="Picture of the author"
+                                    width={472}
+                                    height={335}
+                                    alt="Picture of the certificate"
                                     style={{ objectFit: 'cover' }}
                                 />
                                 <div className="dark-overlay"></div>
                             </div>
                         </div>
                     ) : null}
+                    <div className='absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg' onClick={prevSlide}>
+                        <ChevronLeftIcon className="h-11 w-11" aria-hidden="true" />
+                    </div>
+                    {/* Right Arrow */}
+                    <div className='absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg' onClick={nextSlide}>
+                        <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
+                    </div>
                 </div>
-                <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
+                <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white pointer-events-none'>
                     <div className='col-span-10 text-left'>
                         <Image
                             src="/images/logo-full.svg"

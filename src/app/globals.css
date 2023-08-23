@@ -60,6 +60,14 @@ body {
   background-color: #e50914bf;
 }
 
+.non-draggable {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
 .animate-bounce-mlp {
   animation: bounce 1s infinite;
 
