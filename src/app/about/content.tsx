@@ -22,28 +22,56 @@ export default function Content() {
     // }, []);
 
     return (
-        <div className="col-span-12">
-            <div className="flex flex-col h-screen -mt-24">
-                <Image
-                    alt="Background Image"
-                    src="/images/luffy.jpg"
-                    quality={100}
-                    fill
-                    sizes="100vw"
-                    style={{
-                        objectFit: 'cover',
-                    }}
-                />
-                <div className="dark-overlay"></div>
-                <div className='flex items-center pl-24 pr-24 text-4xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
-                    Yes you right, the concept of this portfolio website i took it from Netflix.
+        <>
+            <div className="col-span-12">
+                <div className="flex flex-col h-screen" style={{ marginTop: "-95px" }}>
+                    <Image
+                        alt="Background Image"
+                        src="/images/luffy1.jpg"
+                        quality={100}
+                        fill
+                        sizes="100vw"
+                        style={{
+                            objectFit: 'cover',
+                        }}
+                    />
+                    <div className="dark-overlay"></div>
+                    <div className='flex items-center pl-6 pr-6 sm:pl-24 sm:pr-24 text-4xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
+                        Yes, as some of you may already be aware, the theme of this portfolio web app i took it from Netflix.
+                    </div>
                 </div>
-            </div>
-            <div className='grid grid-cols-12 bg-black'>
-                <div className='col-span-12  pt-16 pb-16 pl-6 pr-6 sm:pl-72 sm:pr-72 text-white text-xl text-center'>
-                    {`"I'm very aware that this project still very far from the excepted main concept that's called "Prison". I really need to make a time to create the whole assets prison stuff that i really want." - @daffavcd`}
+                <div className='grid grid-cols-12'>
+                    <div className='col-span-12  pt-32 pb-32 pl-6 pr-6 md:pl-80 md:pr-80 text-white text-xl text-center'>
+                        {`"I'm very aware that this project still very far from the excepted main concept that so called "Prison". I really need to make a time to create the whole assets prison stuff that i really want." - @daffavcd`}
+                    </div>
                 </div>
-            </div>
-        </div >
+                <div className='grid grid-cols-12'>
+                    <div className='col-span-12  pt-14 pb-14 pl-6 pr-6 text-white font-semibold text-4xl text-center'>
+                        {`Some of my certifications`}
+                    </div>
+                </div>
+                <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
+                    <div className='col-span-6 text-left'>
+                        <Image
+                            src="/images/logo-full.svg"
+                            width={190}
+                            height={80}
+                            alt="Picture of the author"
+                        />
+                    </div>
+                    <div className='col-span-6 text-right'>
+                        {`Logos Social Media`}
+                    </div>
+                </div>
+                <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
+                    <div className='col-span-6 text-left'>
+
+                    </div>
+                    <div className='col-span-6 text-right'>
+                        {`© 2023 thePromisedDesire`}
+                    </div>
+                </div>
+            </div >
+        </>
     )
 }

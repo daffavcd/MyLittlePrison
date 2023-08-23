@@ -7,7 +7,7 @@ import Content from './content'
 export default function About() {
   return (
     <>
-      <main className='scroll-smooth'>
+      <main className='scroll-smooth bg-black'>
         <Header />
         <Content />
         {/* <Footer /> */}

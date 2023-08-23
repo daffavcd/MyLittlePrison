@@ -11,7 +11,7 @@ export default function Home() {
         <Image
           className="bg-repeat"
           alt="Background Image"
-          src="/images/red-velvet.jpg"
+          src="/images/red-velvet1.jpg"
           quality={100}
           fill
           sizes="100vw"
