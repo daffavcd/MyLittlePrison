@@ -56,6 +56,10 @@ body {
   background-color: #e50914;
 }
 
+.bg-blood-90 {
+  background-color: #e50914bf;
+}
+
 .animate-bounce-mlp {
   animation: bounce 1s infinite;
 

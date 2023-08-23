@@ -39,7 +39,7 @@ export default function HeaderAbout() {
                         </Link>
                     </div >
                     <div className="col-span-3 z-10 text-right">
-                        <div className='rounded-xl inline-flex gap-2 p-1 bg-blood shadow-2xl w-fit max-h-11'>
+                        <div className='rounded-xl inline-flex gap-2 p-1 bg-blood drop-shadow-2xl w-fit max-h-11 '>
                             <Link href={`/`}>
                                 <ArrowUturnLeftIcon className="h-9 w-9 text-black hover:text-white cursor-pointer" aria-hidden="true" />
                             </Link>
