@@ -70,8 +70,8 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                         <Image
                                                             src={`/images/langs/${tech}.svg`}
                                                             className='rounded'
-                                                            title={tech.toUpperCase()}
-                                                            alt={tech.toUpperCase()}
+                                                            title={tech.charAt(0).toUpperCase() + tech.slice(1)}
+                                                            alt={tech.charAt(0).toUpperCase() + tech.slice(1)}
                                                             key={tech}
                                                             height={50}
                                                             width={50}

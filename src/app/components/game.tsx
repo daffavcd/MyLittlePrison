@@ -8,6 +8,9 @@ import { portfolios } from '../data/portfolios';
 
 export default function Game() {
 
+    const IDLE_TIME = 5000; // 5 milliseconds
+    const [isIdle, setIsIdle] = useState(false);
+
     const [modalOpen, setModalOpen] = useState(false)
 
     const cancelButtonRef = useRef(null)
@@ -29,7 +32,7 @@ export default function Game() {
 
     // mapLayout.rowCenter and mapLayout.colCenter is the center cell of the displayed map
     // characterPosition.rowCell and characterPosition.colCell is the current cell of the character
-    const mapLayout = useRef(
+    const [mapLayout, setMapLayout] = useState(
         {
             maxRowCell: 9,
             maxColCell: 81,
@@ -48,6 +51,18 @@ export default function Game() {
     let cellHeight = useRef(90);
     let cellWidth = useRef(90);
 
+    // TRACKING IDLE TIME
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setIsIdle(true);
+            console.log('User is idle');
+        }, IDLE_TIME);
+
+        return () => {
+            clearTimeout(timeoutId); // Cleanup the timer on unmount
+        };
+    }); // Empty dependency array means this effect runs once on mount
+
     // LISTENING TO KEYBOARD EVENT
     useEffect(() => {
         document.body.addEventListener('keydown', moveDisplayCharacter);
@@ -58,13 +73,13 @@ export default function Game() {
 
     // GETTING THE CENTER CELL HEIGHT FOR THE FIRST TIME
     useEffect(() => {
-        let centerCell = document.getElementById(`cell-row-${mapLayout.current.rowCenter}-col-${mapLayout.current.colCenter}`);
+        let centerCell = document.getElementById(`cell-row-${mapLayout.rowCenter}-col-${mapLayout.colCenter}`);
         if (centerCell != null || centerCell != undefined) {
             cellHeight.current = centerCell.offsetHeight;
             cellWidth.current = centerCell.offsetWidth;
             console.log(`New cell dimension detected! ${cellHeight.current}px x ${cellWidth.current}px `);
         }
-    }, []);
+    }, [mapLayout.rowCenter, mapLayout.colCenter]);
 
     // GET WINDOW RESOLUTION
     useEffect(() => {
@@ -81,6 +96,8 @@ export default function Game() {
     }, []);
 
     const moveDisplayCharacter = (event: KeyboardEvent) => {
+        // RESET IDLE IF THE USER NOT AFK
+        setIsIdle(false);
         // ABORTING MOVEMENT IF THE MODAL IS OPEN
         if (modalOpen && event.key === "Enter" || event.key === "Esc") {
             setModalOpen(false);
@@ -96,69 +113,63 @@ export default function Game() {
         const key = event.key;
         if (key === "ArrowUp" && characterPosition.current.rowCell > 1) {
             moveAnimation("Up");
-        } else if (key === "ArrowRight" && characterPosition.current.colCell < mapLayout.current.maxColCell && characterPosition.current.colCell % mapLayout.current.maxColCellEachRow !== 0) {
+        } else if (key === "ArrowRight" && characterPosition.current.colCell < mapLayout.maxColCell && characterPosition.current.colCell % mapLayout.maxColCellEachRow !== 0) {
             moveAnimation("Right");
-        } else if (key === "ArrowDown" && characterPosition.current.rowCell < mapLayout.current.maxRowCell) {
+        } else if (key === "ArrowDown" && characterPosition.current.rowCell < mapLayout.maxRowCell) {
             moveAnimation("Down");
-        } else if (key === "ArrowLeft" && characterPosition.current.colCell > 1 && characterPosition.current.colCell % mapLayout.current.maxColCellEachRow !== 1) {
+        } else if (key === "ArrowLeft" && characterPosition.current.colCell > 1 && characterPosition.current.colCell % mapLayout.maxColCellEachRow !== 1) {
             moveAnimation("Left");
         }
     }
 
     const moveAnimation = (heading: string) => {
         let nextCharacterImage = "";
-        // IN THE CASE OF OBJECT IMAGE IS OUTSIDE OF THE RENDERED IMAHE 
-        // OBJECT ANIMATION CANNOT BE ANIMATED
-        // I THINK I SHOULD'VE RENDER ALL OF THE CELL AT ONCE
+        let nextLayout = "";
 
         // ABORT ANIMATION IF THE CHARACTER IS COLLIDING WITH AN OBJECT
         // if (isColliding(heading)) return;
 
         // CHANGE THE STATE TO MOVING
         if (heading == "Up") {
-            // MOVE UP DISPLAYED MAP ONCE ? IF THERE IS ANOTHER TOP AND IF NOT AT THE VERY TOP
-            if (characterPosition.current.rowCell - 1 > 1 && characterPosition.current.rowCell - 1 < mapLayout.current.rowCenter) {
-                mapLayout.current.rowCenter = mapLayout.current.rowCenter - 1;
-                mapLayout.current.colCenter = mapLayout.current.colCenter - mapLayout.current.maxColCellEachRow;
-            }
-
-            translation.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
             nextCharacterImage = "char_run_up";
-
-            // DONT ANIMATE OBJECT DOWN IF THE CHARACTER WITHIN TWO ROW FROM THE TOP OR BOTTOM
-            if (characterPosition.current.rowCell <= 2 || characterPosition.current.rowCell == mapLayout.current.maxRowCell) {
-                translationObject.current = { dx: `0px`, dy: `0px` };
-            } else {
-                translationObject.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
+            // MOVE UP DISPLAYED MAP ONCE ? IF THERE IS ANOTHER TOP AND IF NOT AT THE VERY TOP
+            if (characterPosition.current.rowCell - 1 > 1 && characterPosition.current.rowCell - 1 < mapLayout.rowCenter) {
+                nextLayout = "Up";
             }
 
-        } else if (heading == "Right") {
-            translation.current = { dx: `${cellWidth.current}px`, dy: `0px` };
-            nextCharacterImage = "char_run_right";
-            translationObject.current = { dx: `0px`, dy: `$0px` };
-        } else if (heading == "Down") {
-            // MOVE DOWN DISPLAYED MAP ONCE IF THERE IS ANOTHER BOTTOM AND IF NOT AT THE VERY BOTTOM
-            if (characterPosition.current.rowCell + 1 < mapLayout.current.maxRowCell && characterPosition.current.rowCell + 1 > mapLayout.current.rowCenter) {
-                mapLayout.current.rowCenter = mapLayout.current.rowCenter + 1;
-                mapLayout.current.colCenter = mapLayout.current.colCenter + mapLayout.current.maxColCellEachRow;
-            }
-
-            nextCharacterImage = "char_run_down";
-            translation.current = { dx: `0px`, dy: `${cellHeight.current}px` };
-
-            // DONT ANIMATE OBJECT UP IF THE CHARACTER WITHIN TWO ROW FROM THE TOP OR BOTTOM
-            if (characterPosition.current.rowCell == 1 || characterPosition.current.rowCell == mapLayout.current.maxRowCell - 1) {
+            // DONT TRANSLATE OBJECT DOWN IF THE CHARACTER WITHIN TWO ROW FROM THE TOP OR BOTTOM
+            if (characterPosition.current.rowCell <= 2 || characterPosition.current.rowCell == mapLayout.maxRowCell) {
+                translation.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
                 translationObject.current = { dx: `0px`, dy: `0px` };
             } else {
+                translation.current = { dx: `0px`, dy: `0px` };
                 translationObject.current = { dx: `0px`, dy: `${cellHeight.current}px` };
             }
 
+        } else if (heading == "Right") {
+            nextCharacterImage = "char_run_right";
+            translation.current = { dx: `${cellWidth.current}px`, dy: `0px` };
+            translationObject.current = { dx: `0px`, dy: `$0px` };
+        } else if (heading == "Down") {
+            nextCharacterImage = "char_run_down";
+            // MOVE DOWN DISPLAYED MAP ONCE IF THERE IS ANOTHER BOTTOM AND IF NOT AT THE VERY BOTTOM
+            if (characterPosition.current.rowCell + 1 < mapLayout.maxRowCell && characterPosition.current.rowCell + 1 > mapLayout.rowCenter) {
+                nextLayout = "Down";
+            }
+
+            // DONT TRANSLATE OBJECT UP IF THE CHARACTER WITHIN TWO ROW FROM THE TOP OR BOTTOM
+            if (characterPosition.current.rowCell == 1 || characterPosition.current.rowCell == mapLayout.maxRowCell - 1) {
+                translation.current = { dx: `0px`, dy: `${cellHeight.current}px` };
+                translationObject.current = { dx: `0px`, dy: `0px` };
+            } else {
+                translation.current = { dx: `0px`, dy: `0px` };
+                translationObject.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
+            }
         } else if (heading == "Left") {
             translation.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
             nextCharacterImage = "char_run_left";
             translationObject.current = { dx: `0px`, dy: `$0px` };
         }
-
         // CHANGE THE STATE HERE TO RE RENDER THE DISPLAYED MAP
         setCharacterImage(nextCharacterImage);
         setIsCharacterMoving(true);
@@ -167,16 +178,40 @@ export default function Game() {
             // CHANGE THE STATE TO NOT MOVING
             setCharacterImage("char_idle");
             setIsCharacterMoving(false);
+            if (nextLayout != "") {
+                changeMapLayout(nextLayout);
+            }
         }, 300);
+    }
+
+    const changeMapLayout = (heading: string) => {
+        console.log("CHANGE MAP LAYOUT");
+
+        if (heading == "Up") {
+            setMapLayout(
+                {
+                    ...mapLayout,
+                    rowCenter: mapLayout.rowCenter - 1,
+                    colCenter: mapLayout.colCenter - mapLayout.maxColCellEachRow,
+                }
+            );
+        } else if (heading == "Down") {
+            setMapLayout({
+                ...mapLayout,
+                rowCenter: mapLayout.rowCenter + 1,
+                colCenter: mapLayout.colCenter + mapLayout.maxColCellEachRow,
+
+            })
+        }
     }
 
     const moveRefCharacter = (heading: string) => {
         if (heading == "Up") {
-            characterPosition.current = { rowCell: characterPosition.current.rowCell - 1, colCell: characterPosition.current.colCell - mapLayout.current.maxColCellEachRow };
+            characterPosition.current = { rowCell: characterPosition.current.rowCell - 1, colCell: characterPosition.current.colCell - mapLayout.maxColCellEachRow };
         } else if (heading == "Right") {
             characterPosition.current = { rowCell: characterPosition.current.rowCell, colCell: characterPosition.current.colCell + 1 };
         } else if (heading == "Down") {
-            characterPosition.current = { rowCell: characterPosition.current.rowCell + 1, colCell: characterPosition.current.colCell + mapLayout.current.maxColCellEachRow };
+            characterPosition.current = { rowCell: characterPosition.current.rowCell + 1, colCell: characterPosition.current.colCell + mapLayout.maxColCellEachRow };
         } else if (heading == "Left") {
             characterPosition.current = { rowCell: characterPosition.current.rowCell, colCell: characterPosition.current.colCell - 1 };
         }
@@ -186,19 +221,19 @@ export default function Game() {
         let isColliding = false;
         // CHECKING IF THE CHARACTER IS COLLIDING WITH OBJECT
         if (heading == "Up") {
-            if (mapLayout.current.objectCell.includes(characterPosition.current.colCell - mapLayout.current.maxColCellEachRow)) {
+            if (mapLayout.objectCell.includes(characterPosition.current.colCell - mapLayout.maxColCellEachRow)) {
                 isColliding = true;
             }
         } else if (heading == "Right") {
-            if (mapLayout.current.objectCell.includes(characterPosition.current.colCell + 1)) {
+            if (mapLayout.objectCell.includes(characterPosition.current.colCell + 1)) {
                 isColliding = true;
             }
         } else if (heading == "Down") {
-            if (mapLayout.current.objectCell.includes(characterPosition.current.colCell + mapLayout.current.maxColCellEachRow)) {
+            if (mapLayout.objectCell.includes(characterPosition.current.colCell + mapLayout.maxColCellEachRow)) {
                 isColliding = true;
             }
         } else if (heading == "Left") {
-            if (mapLayout.current.objectCell.includes(characterPosition.current.colCell - 1)) {
+            if (mapLayout.objectCell.includes(characterPosition.current.colCell - 1)) {
                 isColliding = true;
             }
         }
@@ -216,10 +251,10 @@ export default function Game() {
     const isPortfolioAround = (event: string) => {
         const key = event;
         const characterCoordinate = characterPosition.current.colCell;
-        const portfolioCoordinate = mapLayout.current.portfolioCell.map((x) => x.colCell);
+        const portfolioCoordinate = mapLayout.portfolioCell.map((x) => x.colCell);
 
         if (key === "Enter" && portfolioCoordinate.includes(characterCoordinate)) {
-            clickPortfolio(mapLayout.current.portfolioCell[portfolioCoordinate.indexOf(characterCoordinate)]);
+            clickPortfolio(mapLayout.portfolioCell[portfolioCoordinate.indexOf(characterCoordinate)]);
         }
     }
 
@@ -227,16 +262,16 @@ export default function Game() {
         <div className="col-span-12 sm:pl-24 sm:pr-24" id="game-map">
             <div className="relative h-96">
                 <div className="dark-overlay-game rounded"></div>
-                <div id="cell-row" className="hidden sm:grid grid-cols-9 gap-0 p-4 h-full">
+                <div id="cell-row" className="hidden sm:grid grid-cols-9 gap-0 p-4 h-full overflow-hidden">
                     {
-                        [...Array(mapLayout.current.maxColCellDisplayed)].map((x, j) => {
+                        [...Array(mapLayout.maxColCellDisplayed)].map((x, j) => {
                             // These rules created to make it dynamic when displaying/maping the game map (The key is the displayed COL CENTER).
                             // (if you want to change the map dimension, just change the variable ref declared at the very above *use odds number*).
                             // The rules to get the current iteration of row and col is:
                             // GET CURRENT COL RULES= (current iteration + current displayed coll center) - (total coll for a row + floor of total coll for a row / 2).
                             // Get curret row = (current iteration(j) + center coll of displayed map) - total distance to the first column of the displayed map from center coll of displayed map.
-                            const currentCol = (j + mapLayout.current.colCenter) - (mapLayout.current.maxColCellEachRow + Math.floor(mapLayout.current.maxColCellEachRow / 2));
-                            const currentRow = Math.ceil(currentCol / mapLayout.current.maxColCellEachRow);
+                            const currentCol = (j + mapLayout.colCenter) - (mapLayout.maxColCellEachRow + Math.floor(mapLayout.maxColCellEachRow / 2));
+                            const currentRow = Math.ceil(currentCol / mapLayout.maxColCellEachRow);
                             return (
                                 <div key={j}
                                     id={`cell-row-${currentRow}-col-${currentCol}`}
@@ -264,19 +299,19 @@ export default function Game() {
                                             />
                                         ) : null
                                     }
-                                    {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO  */}
-                                    {mapLayout.current.portfolioCell.map((portfolio, k) => (
+                                    {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO OBJECT */}
+                                    {mapLayout.portfolioCell.map((portfolio, k) => (
                                         currentCol === portfolio.colCell ? (
                                             <LightBulbIcon
                                                 key={k}
-                                                className="text-blood animate-bounce-mlp shadow cursor-pointer hover:text-white" aria-hidden="true" onClick={() => clickPortfolio(portfolio)}
+                                                className={`${isIdle ? 'animate-bounce-mlp' : ''} text-blood shadow cursor-pointer hover:text-white`} aria-hidden="true" onClick={() => clickPortfolio(portfolio)}
                                                 style={{
+                                                    objectFit: 'cover',
                                                     width: '45%',
                                                     height: '45%',
                                                     position: 'absolute',
-                                                    objectFit: 'fill',
-                                                    // transition: 'transform 0.2s ease-in-out',
-                                                    // transform: isCharacterMoving ? `translate(${translationObject.current.dx}, ${translationObject.current.dy})` : 'none',
+                                                    transition: 'transform 0.2s ease-in-out',
+                                                    transform: isCharacterMoving ? `translate(${translationObject.current.dx}, ${translationObject.current.dy})` : 'none',
                                                 }}
                                             />
                                         ) : null

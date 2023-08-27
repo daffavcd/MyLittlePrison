@@ -60,6 +60,13 @@ body {
   background-color: #e50914bf;
 }
 
+.portfolio-object-container {
+  position: absolute;
+  width: 45%;
+  height: 45%;
+  transition: transform 0.2s ease-in-out;
+}
+
 .non-draggable {
   -webkit-user-drag: none;
   user-select: none;

@@ -140,7 +140,7 @@ export default function Content() {
                     </div>
                 </div>
                 <div className='grid grid-cols-12 pt-32 pb-32 pl-6 pr-6' style={{
-                    backgroundImage: `url('/images/blur.jpg')`,
+                    backgroundImage: `url('/images/blur2.jpg')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
