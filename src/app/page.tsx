@@ -11,9 +11,10 @@ export default function Home() {
         <Image
           className="bg-repeat"
           alt="Background Image"
-          src="/images/red-velvet1.jpg"
+          src="/images/blur.jpg"
           quality={100}
           fill
+          priority
           sizes="100vw"
           style={{
             objectFit: 'cover',

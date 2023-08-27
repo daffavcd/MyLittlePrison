@@ -10,6 +10,15 @@ export default function Content() {
 
     const [isDesktop, setIsDesktop] = useState(true);
 
+    const slides = useRef([
+        'merdeka',
+        'fundamental',
+        'tsa',
+        'expert',
+    ],);
+
+    const [currentCertificate, setCurrentCertificate] = useState(0);
+
     // GET WINDOW RESOLUTION
     useEffect(() => {
         const mediaQuery = window.matchMedia('(max-width: 1279px)');
@@ -24,14 +33,16 @@ export default function Content() {
         };
     }, []);
 
-    const slides = useRef([
-        'merdeka',
-        'fundamental',
-        'tsa',
-        'expert',
-    ],);
+    useEffect(() => {
+        const changeSlide = setInterval(() => {
+            const isLastSlide = currentCertificate === slides.current.length - 1;
+            const newIndex = isLastSlide ? 0 : currentCertificate + 1;
+            setCurrentCertificate(newIndex);
+        }, 4000);
+        return () => clearInterval(changeSlide);
+    }, [currentCertificate]);
 
-    const [currentCertificate, setCurrentCertificate] = useState(0);
+
 
 
     const prevSlide = () => {
@@ -55,6 +66,7 @@ export default function Content() {
                         src="/images/luffy1.jpg"
                         quality={100}
                         fill
+                        priority
                         sizes="100vw"
                         style={{
                             objectFit: 'cover',
@@ -119,11 +131,11 @@ export default function Content() {
                             </div>
                         </div>
                     ) : null}
-                    <div className='absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg' onClick={prevSlide}>
+                    <div className='absolute top-[40%] -translate-x-0 translate-y-[-40%] left-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg' onClick={prevSlide}>
                         <ChevronLeftIcon className="h-11 w-11" aria-hidden="true" />
                     </div>
                     {/* Right Arrow */}
-                    <div className='absolute top-[50%] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg' onClick={nextSlide}>
+                    <div className='absolute top-[40%] -translate-x-0 translate-y-[-40%] right-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg' onClick={nextSlide}>
                         <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
                     </div>
                 </div>
@@ -187,7 +199,7 @@ export default function Content() {
                         I created this project out of my boredom when I had nothing to do, while I was trying to find a job after my graduation. I trully appreciate it if you have come this far. Just sent me any dms, I would really love to hear it from you.
                     </div>
                     <div className='col-span-12 text-center sm:col-span-6 sm:text-right text-lg'>
-                        {`© 2023`}<br /> thePromisedDesire
+                        {`© 2023`}<br />{`thePromisedDesire`}
                     </div>
                 </div>
             </div >

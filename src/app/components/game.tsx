@@ -15,7 +15,7 @@ export default function Game() {
     const [isDesktop, setIsDesktop] = useState(true);
 
     const [isCharacterMoving, setIsCharacterMoving] = useState(false);
-    const [characterImage, setCharacterImage] = useState('idle_blinking');
+    const [characterImage, setCharacterImage] = useState('char_idle');
 
     const [portfolio, setPortfolio] = useState({
         colCell: 0,
@@ -123,7 +123,7 @@ export default function Game() {
             }
 
             translation.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
-            nextCharacterImage = "run_up";
+            nextCharacterImage = "char_run_up";
 
             // DONT ANIMATE OBJECT DOWN IF THE CHARACTER WITHIN TWO ROW FROM THE TOP OR BOTTOM
             if (characterPosition.current.rowCell <= 2 || characterPosition.current.rowCell == mapLayout.current.maxRowCell) {
@@ -134,7 +134,7 @@ export default function Game() {
 
         } else if (heading == "Right") {
             translation.current = { dx: `${cellWidth.current}px`, dy: `0px` };
-            nextCharacterImage = "run_right";
+            nextCharacterImage = "char_run_right";
             translationObject.current = { dx: `0px`, dy: `$0px` };
         } else if (heading == "Down") {
             // MOVE DOWN DISPLAYED MAP ONCE IF THERE IS ANOTHER BOTTOM AND IF NOT AT THE VERY BOTTOM
@@ -143,7 +143,7 @@ export default function Game() {
                 mapLayout.current.colCenter = mapLayout.current.colCenter + mapLayout.current.maxColCellEachRow;
             }
 
-            nextCharacterImage = "run_down";
+            nextCharacterImage = "char_run_down";
             translation.current = { dx: `0px`, dy: `${cellHeight.current}px` };
 
             // DONT ANIMATE OBJECT UP IF THE CHARACTER WITHIN TWO ROW FROM THE TOP OR BOTTOM
@@ -155,7 +155,7 @@ export default function Game() {
 
         } else if (heading == "Left") {
             translation.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
-            nextCharacterImage = "run_left";
+            nextCharacterImage = "char_run_left";
             translationObject.current = { dx: `0px`, dy: `$0px` };
         }
 
@@ -165,7 +165,7 @@ export default function Game() {
         setTimeout(() => {
             moveRefCharacter(heading);
             // CHANGE THE STATE TO NOT MOVING
-            setCharacterImage("idle_blinking");
+            setCharacterImage("char_idle");
             setIsCharacterMoving(false);
         }, 300);
     }
@@ -287,7 +287,7 @@ export default function Game() {
                 </div>
                 {!isDesktop ? (
                     <div className='flex items-center text-lg font-medium p-4 text-white text-center sm:invisible relative z-10 h-full'>
-                        {`To explore my projects, please utilize a desktop (width of 640 pixels or more) and provide a keyboard to move the character. I'm trying to make it as a game-like experience`}
+                        {`To explore my projects, please utilize a desktop (width of 640 pixels or more) and provide a keyboard. I'm trying to make it as a game-like experience.`}
                     </div>
                 ) : null}
             </div>

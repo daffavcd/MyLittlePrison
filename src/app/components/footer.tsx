@@ -5,7 +5,7 @@ export default function Footer() {
                 <div className="dark-overlay-game"></div>
                 <div className="grid grid-cols-12 gap-0 pt-5 pb-5">
                     <div className="col-span-12 text-center z-10 text-zinc-400">
-                        © 2023 thePromisedDesire.
+                        {`Move The Character With Arrow Keys`}
                     </div>
                 </div>
             </div>
