@@ -287,7 +287,7 @@ export default function Game() {
                 </div>
                 {!isDesktop ? (
                     <div className='flex items-center text-lg font-medium p-4 text-white text-center sm:invisible relative z-10 h-full'>
-                        To explore my projects, please utilize a desktop (width of 640 pixels or more) and provide a keyboard to move the character.
+                        {`To explore my projects, please utilize a desktop (width of 640 pixels or more) and provide a keyboard to move the character. I'm trying to make it as a game-like experience`}
                     </div>
                 ) : null}
             </div>

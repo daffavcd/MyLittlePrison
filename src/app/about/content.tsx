@@ -61,21 +61,21 @@ export default function Content() {
                         }}
                     />
                     <div className="dark-overlay"></div>
-                    <div className='flex items-center pl-6 pr-6 sm:pl-24 sm:pr-24 text-4xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
+                    <div className='flex items-center pl-6 pr-6 sm:pl-24 sm:pr-24 text-3xl sm:text-4xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
                         <p className='shadow'>Yes, as some of you may already be aware, the theme of this mini portfolio website i took it from Netflix. </p >
                     </div>
                 </div>
                 <div className='grid grid-cols-12'>
-                    <div className='col-span-12  pt-32 pb-32 pl-6 pr-6 md:pl-80 md:pr-80 text-white text-2xl text-center'>
+                    <div className='col-span-12  pt-32 pb-32 pl-6 pr-6 md:pl-80 md:pr-80 text-white text-xl sm:text-2xl text-center'>
                         {`"I'm well aware that this project still very far from the excepted main concept that so called "Prison". I really need to make a time to create the whole assets prison stuff that have in mind." - @daffavcd`}
                     </div>
                 </div>
                 <div className='grid grid-cols-12'>
-                    <div className='col-span-12  pt-14 pb-14 pl-6 pr-6 text-white font-semibold text-4xl text-center'>
-                        {`Some of my certifications`}
+                    <div className='col-span-12  pt-14 pb-14 pl-6 pr-6 text-white font-bold text-3xl sm:text-4xl text-center'>
+                        {`Some of My Certifications`}
                     </div>
                 </div>
-                <div className='grid grid-cols-12 pt-8 pb-8 pl-6 pr-6 gap-4 text-center relative'>
+                <div className='grid grid-cols-12 pt-8 pb-28 pl-6 pr-6 gap-4 text-center relative '>
                     {isDesktop ? (
                         <div className='col-span-4 flex justify-end items-end'>
                             <div className='relative' id='left-certificate'
@@ -127,6 +127,41 @@ export default function Content() {
                         <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
                     </div>
                 </div>
+                <div className='grid grid-cols-12 pt-32 pb-32 pl-6 pr-6' style={{
+                    backgroundImage: `url('/images/blur.jpg')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    position: 'relative', // Ensure proper stacking of children
+                }}>
+                    <div className="dark-overlay"></div>
+                    <div className='col-span-12 text-white font-bold text-3xl sm:text-4xl text-center pt-5 pb-5 z-10'>
+                        {`Technologies Used`}
+                    </div>
+                    <div className='col-span-12 flex justify-center items-center gap-20 pt-5 pb-5 z-10'>
+
+                        <Image
+                            src={`/images/next-js.svg`}
+                            title="Next.Js"
+                            alt="Next.Js"
+                            height={125}
+                            width={125}
+                            style={{
+                                objectFit: 'cover',
+                            }}
+                        />
+                        <Image
+                            src={`/images/tailwind.svg`}
+                            title="Tailwind"
+                            alt="Tailwind"
+                            height={125}
+                            width={125}
+                            style={{
+                                objectFit: 'cover',
+                            }}
+                        />
+                    </div>
+                </div>
                 <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
                     <div className='col-span-10 text-left'>
                         <Image
@@ -149,7 +184,7 @@ export default function Content() {
                     </div>
                 </div>
                 <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
-                    <div className='col-span-6 text-left text-base'>
+                    <div className='col-span-6 invisible sm:visible text-left text-base'>
                         I created this project out of my boredom when I had nothing to do, while I was trying to find a job after my graduation. I trully appreciate it if you have come this far. Just sent me any dms, I would really love to hear it from you.
                     </div>
                     <div className='col-span-6 text-right text-lg'>
