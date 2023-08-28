@@ -10,7 +10,7 @@ export default function Game() {
 
     let actualCol = 0;
 
-    const [isDesktop, setIsDesktop] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(true);
 
     const IDLE_TIME = 5000; // 5 milliseconds
     const [isIdle, setIsIdle] = useState(false);
@@ -40,8 +40,8 @@ export default function Game() {
         {
             maxRowCell: 9,
             maxColCell: 81,
-            maxColCellEachRowDisplayed: 3,
-            maxColCellDisplayed: 9,
+            maxColCellEachRowDisplayed: 9,
+            maxColCellDisplayed: 27,
             maxColCellEachRow: 9,
             rowCenter: 5,
             colCenter: 41,
@@ -374,7 +374,7 @@ export default function Game() {
                 onTouchEnd={handleTouchEnd}
             >
                 <div className="dark-overlay-game rounded"></div>
-                <div id="cell-row" className={`grid grid-cols-${mapLayout.maxColCellEachRowDisplayed} gap-0 p-4 h-full overflow-hidden`}>
+                <div id="cell-row" className={`grid grid-cols-3 sm:grid-cols-9 gap-0 p-4 h-full overflow-hidden`}>
                     {
                         [...Array(mapLayout.maxColCellDisplayed)].map((x, j) => {
                             // These rules created to make it dynamic when displaying/maping the game map (The key is the displayed COL CENTER).
