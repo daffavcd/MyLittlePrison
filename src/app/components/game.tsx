@@ -150,19 +150,17 @@ export default function Game() {
         if (!isDesktop) {
             setMapLayout(m => ({
                 ...m,
-                maxColCellDisplayed: 9,
                 maxColCellEachRowDisplayed: 3,
+                maxColCellDisplayed: 9,
             }));
         } else {
             setMapLayout(m => ({
                 ...m,
-                maxColCellDisplayed: 27,
                 maxColCellEachRowDisplayed: 9,
+                maxColCellDisplayed: 27,
             }));
         }
     }, [isDesktop]);
-
-
 
     const moveDisplayCharacter = (event: KeyboardEvent) => {
         // RESET IDLE IF THE USER NOT AFK
@@ -403,7 +401,7 @@ export default function Game() {
                             return (
                                 <div key={j}
                                     id={`cell-row-${currentRow}-col-${actualCol}`}
-                                    className={`character-container flex items-center justify-center  col-span-1 text-center border border-indigo-600 relative`}
+                                    className={`character-container flex items-center justify-center col-span-1 text-center border border-indigo-600 relative`}
                                 >
 
                                     {/* CONDITION IF ROW & COLL CELL MATCH, TO SHOW CHARACTER  */}
