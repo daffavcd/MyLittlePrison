@@ -413,6 +413,7 @@ export default function Game() {
                                                 className='z-30'
                                                 src={`/images/sprites/${characterImage}.gif`}
                                                 fill={true}
+                                                priority={true}
                                                 sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
                                                 style={{
                                                     objectFit: 'cover',
