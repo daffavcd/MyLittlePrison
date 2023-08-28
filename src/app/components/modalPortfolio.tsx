@@ -37,12 +37,12 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                 <div className="bg-slate-800 px-6 pb-6 pt-5 sm:p-8 sm:pb-8">
                                     <div className="sm:flex sm:items-start">
                                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
-                                            <Dialog.Title as="h3" className="text-2xl text-center font-semibold leading-8 pl-4 pr-4 text-white">
+                                            <Dialog.Title as="h3" className="text-xl sm:text-2xl text-center font-semibold leading-8 pl-4 pr-4 text-white">
                                                 {portfolio.title}
                                             </Dialog.Title>
                                             <div className="mt-2">
                                                 <ImageCarousel images={portfolio.imagesPath} />
-                                                <p className="text-base text-justify mt-3 text-white indent-8">
+                                                <p className="text-base text-justify mt-3 text-white indent-8 break-all sm:break-normal">
                                                     {portfolio.desc}&nbsp;
                                                     {portfolio.repoLink == "Private" ? (
                                                         <div className='text-red-600 text-sm italic inline hover:text-white cursor-pointer'>[Private - {portfolio.year}]</div>
@@ -56,7 +56,7 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                     Key Features :
                                                 </p>
                                                 <div className='grid mt-2 gap-0 grid-cols-1 pl-7 pr-7 text-white'>
-                                                    <ul className="list-disc">
+                                                    <ul className="list-disc text-left">
                                                         {portfolio.features.map((feature: string) => (
                                                             <li key={feature}>{feature}</li>
                                                         ))}
@@ -65,11 +65,11 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                 <p className="text-lg mt-2 text-left font-semibold text-white">
                                                     Tech Used :
                                                 </p>
-                                                <div className='grid mt-2 gap-0 pl-7 pr-7 grid-cols-12'>
+                                                <div className='mt-2 pl-7 pr-7 flex justify-start items-start gap-2 flex-wrap'>
                                                     {portfolio.techImagesPath.map((tech: string) => (
                                                         <Image
                                                             src={`/images/langs/${tech}.svg`}
-                                                            className='rounded'
+                                                            className='rounded w-12 h-12'
                                                             title={tech.charAt(0).toUpperCase() + tech.slice(1)}
                                                             alt={tech.charAt(0).toUpperCase() + tech.slice(1)}
                                                             key={tech}
@@ -86,7 +86,7 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                     </div>
                                 </div>
                                 <div className='absolute top-3 right-3 text-2xl rounded-full p-2 bg-black/20 text-blood hover:text-white cursor-pointer' tabIndex={1} onClick={() => setModalOpen(false)}>
-                                    <XMarkIcon className="h-8 w-8" aria-hidden="true" />
+                                    <XMarkIcon className="h-5 w-5 sm:h-8 sm:w-8" aria-hidden="true" />
                                 </div>
                             </Dialog.Panel>
                         </Transition.Child>
