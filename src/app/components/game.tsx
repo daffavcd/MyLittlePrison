@@ -10,7 +10,7 @@ export default function Game() {
 
     let actualCol = 0;
 
-    const [isDesktop, setIsDesktop] = useState(true);
+    const [isDesktop, setIsDesktop] = useState(false);
 
     const IDLE_TIME = 5000; // 5 milliseconds
     const [isIdle, setIsIdle] = useState(false);
@@ -40,8 +40,8 @@ export default function Game() {
         {
             maxRowCell: 9,
             maxColCell: 81,
-            maxColCellEachRowDisplayed: 9,
-            maxColCellDisplayed: 27,
+            maxColCellEachRowDisplayed: 3,
+            maxColCellDisplayed: 9,
             maxColCellEachRow: 9,
             rowCenter: 5,
             colCenter: 41,
