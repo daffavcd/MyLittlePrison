@@ -77,7 +77,7 @@ export default function Game() {
 
         let simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'None' });
 
-        if (Math.abs(deltaX) > 110 || Math.abs(deltaY) > 110) {
+        if (Math.abs(deltaX) > 90 || Math.abs(deltaY) > 90) {
             if (Math.abs(deltaX) > Math.abs(deltaY)) {
                 if (deltaX > 0) {
                     simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' });
