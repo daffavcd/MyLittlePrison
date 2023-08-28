@@ -8,14 +8,16 @@ import { portfolios } from '../data/portfolios';
 
 export default function Game() {
 
+    const [isDesktop, setIsDesktop] = useState(true);
+
     const IDLE_TIME = 5000; // 5 milliseconds
     const [isIdle, setIsIdle] = useState(false);
 
+    const startX = useRef<number | null>(null);
+    const startY = useRef<number | null>(null);
+
     const [modalOpen, setModalOpen] = useState(false)
-
     const cancelButtonRef = useRef(null)
-
-    const [isDesktop, setIsDesktop] = useState(true);
 
     const [isCharacterMoving, setIsCharacterMoving] = useState(false);
     const [characterImage, setCharacterImage] = useState('char_idle');
@@ -51,6 +53,51 @@ export default function Game() {
     let cellHeight = useRef(90);
     let cellWidth = useRef(90);
 
+    // ====================================START OF FUNCTION ====================================
+
+    const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+        startX.current = e.touches[0].clientX;
+        startY.current = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+        if (startX.current === null || startY.current === null) return;
+
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+
+        const deltaX = currentX - startX.current;
+        const deltaY = currentY - startY.current;
+
+        let simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'None' });
+
+        if (Math.abs(deltaX) > 50 || Math.abs(deltaY) > 50) {
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                if (deltaX > 0) {
+                    simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' });
+                    console.log("Swiped right!");
+                } else {
+                    simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
+                    console.log("Swiped left!");
+                }
+            } else {
+                if (deltaY > 0) {
+                    simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'ArrowDown' });
+                    console.log("Swiped down!");
+                } else {
+                    simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'ArrowUp' });
+                    console.log("Swiped up!");
+                }
+            }
+            moveDisplayCharacter(simulatedKeyEvent);
+        }
+    };
+
+    const handleTouchEnd = () => {
+        startX.current = null;
+        startY.current = null;
+    };
+
     // TRACKING IDLE TIME
     useEffect(() => {
         const timeoutId = setTimeout(() => {
@@ -79,7 +126,7 @@ export default function Game() {
             cellWidth.current = centerCell.offsetWidth;
             console.log(`New cell dimension detected! ${cellHeight.current}px x ${cellWidth.current}px `);
         }
-    }, [mapLayout.rowCenter, mapLayout.colCenter]);
+    }, [mapLayout]);
 
     // GET WINDOW RESOLUTION
     useEffect(() => {
@@ -260,7 +307,11 @@ export default function Game() {
 
     return (
         <div className="col-span-12 sm:pl-24 sm:pr-24" id="game-map">
-            <div className="relative h-96">
+            <div className="relative h-96"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+            >
                 <div className="dark-overlay-game rounded"></div>
                 <div id="cell-row" className="hidden sm:grid grid-cols-9 gap-0 p-4 h-full overflow-hidden">
                     {
