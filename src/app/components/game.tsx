@@ -8,6 +8,8 @@ import { portfolios } from '../data/portfolios';
 
 export default function Game() {
 
+    let actualCol = 0;
+
     const [isDesktop, setIsDesktop] = useState(true);
 
     const IDLE_TIME = 5000; // 5 milliseconds
@@ -38,8 +40,9 @@ export default function Game() {
         {
             maxRowCell: 9,
             maxColCell: 81,
-            maxColCellEachRow: 9,
+            maxColCellEachRowDisplayed: 9,
             maxColCellDisplayed: 27,
+            maxColCellEachRow: 9,
             rowCenter: 5,
             colCenter: 41,
             objectCell: [1, 2],
@@ -61,6 +64,9 @@ export default function Game() {
     };
 
     const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+        // ABORTING MOVEMENT IF THE CHARACTER STILL ON ANIMATION
+        if (isCharacterMoving) return;
+
         if (startX.current === null || startY.current === null) return;
 
         const currentX = e.touches[0].clientX;
@@ -71,22 +77,18 @@ export default function Game() {
 
         let simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'None' });
 
-        if (Math.abs(deltaX) > 50 || Math.abs(deltaY) > 50) {
+        if (Math.abs(deltaX) > 110 || Math.abs(deltaY) > 110) {
             if (Math.abs(deltaX) > Math.abs(deltaY)) {
                 if (deltaX > 0) {
                     simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' });
-                    console.log("Swiped right!");
                 } else {
                     simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
-                    console.log("Swiped left!");
                 }
             } else {
                 if (deltaY > 0) {
                     simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'ArrowDown' });
-                    console.log("Swiped down!");
                 } else {
                     simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'ArrowUp' });
-                    console.log("Swiped up!");
                 }
             }
             moveDisplayCharacter(simulatedKeyEvent);
@@ -136,11 +138,31 @@ export default function Game() {
             setIsDesktop(!e.matches);
         };
 
+
         mediaQuery.addEventListener('change', handleMediaQueryChange);
         return () => {
             mediaQuery.removeEventListener('change', handleMediaQueryChange);
         };
     }, []);
+
+    // CHANGE MAP LAYOUT BASED ON WINDOW RESOLUTION
+    useEffect(() => {
+        if (!isDesktop) {
+            setMapLayout(m => ({
+                ...m,
+                maxColCellDisplayed: 9,
+                maxColCellEachRowDisplayed: 3,
+            }));
+        } else {
+            setMapLayout(m => ({
+                ...m,
+                maxColCellDisplayed: 27,
+                maxColCellEachRowDisplayed: 9,
+            }));
+        }
+    }, [isDesktop]);
+
+
 
     const moveDisplayCharacter = (event: KeyboardEvent) => {
         // RESET IDLE IF THE USER NOT AFK
@@ -170,8 +192,8 @@ export default function Game() {
     }
 
     const moveAnimation = (heading: string) => {
-        let nextCharacterImage = "";
-        let nextLayout = "";
+        let nextCharacterImage = "char_idle";
+        let nextLayout = "None";
 
         // ABORT ANIMATION IF THE CHARACTER IS COLLIDING WITH AN OBJECT
         // if (isColliding(heading)) return;
@@ -195,8 +217,23 @@ export default function Game() {
 
         } else if (heading == "Right") {
             nextCharacterImage = "char_run_right";
-            translation.current = { dx: `${cellWidth.current}px`, dy: `0px` };
-            translationObject.current = { dx: `0px`, dy: `$0px` };
+
+            if (((characterPosition.current.colCell + 1) % mapLayout.maxColCellEachRow) != 0 && ((characterPosition.current.colCell + 1) % mapLayout.maxColCellEachRow) > 2 && mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+                nextLayout = "Right";
+            }
+
+            // IF ON THE RIGHTMOST OF THE MAP, TRANSLATE THE CHAR ONLY AND NOT THE OBJECT
+            if (characterPosition.current.colCell % mapLayout.maxColCellEachRow == 8 || characterPosition.current.colCell % mapLayout.maxColCellEachRow == 1 && mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+                translation.current = { dx: `${cellWidth.current}px`, dy: `0px` };
+                translationObject.current = { dx: `0px`, dy: `0px` };
+            } else if (mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+                translation.current = { dx: `0px`, dy: `0px` };
+                translationObject.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
+            } else { // IF DESKTOP JUST DO NORMAL TRANSLATION
+                translation.current = { dx: `${cellWidth.current}px`, dy: `0px` };
+                translationObject.current = { dx: `0px`, dy: `$0px` };
+            }
+
         } else if (heading == "Down") {
             nextCharacterImage = "char_run_down";
             // MOVE DOWN DISPLAYED MAP ONCE IF THERE IS ANOTHER BOTTOM AND IF NOT AT THE VERY BOTTOM
@@ -213,9 +250,24 @@ export default function Game() {
                 translationObject.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
             }
         } else if (heading == "Left") {
-            translation.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
             nextCharacterImage = "char_run_left";
-            translationObject.current = { dx: `0px`, dy: `$0px` };
+
+            // CHANGE LAYOUT TO LEFT IF THERE IS ANOTHER LEFT AND IF NOT AT THE VERY LEFT
+            if (((characterPosition.current.colCell - 1) % mapLayout.maxColCellEachRow) != 1 && ((characterPosition.current.colCell - 1) % mapLayout.maxColCellEachRow) < 8 && mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+                nextLayout = "Left";
+            }
+
+            // IF ON THE LEFTMOST OF THE MAP, TRANSLATE THE CHAR ONLY AND NOT THE OBJECT
+            if (characterPosition.current.colCell % mapLayout.maxColCellEachRow == 0 || characterPosition.current.colCell % mapLayout.maxColCellEachRow == 2 && mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+                translation.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
+                translationObject.current = { dx: `0px`, dy: `0px` };
+            } else if (mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+                translation.current = { dx: `0px`, dy: `0px` };
+                translationObject.current = { dx: `${cellWidth.current}px`, dy: `0px` };
+            } else { // IF DESKTOP JUST DO NORMAL TRANSLATION
+                translation.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
+                translationObject.current = { dx: `0px`, dy: `$0px` };
+            }
         }
         // CHANGE THE STATE HERE TO RE RENDER THE DISPLAYED MAP
         setCharacterImage(nextCharacterImage);
@@ -225,15 +277,15 @@ export default function Game() {
             // CHANGE THE STATE TO NOT MOVING
             setCharacterImage("char_idle");
             setIsCharacterMoving(false);
-            if (nextLayout != "") {
+            handleTouchEnd();
+            if (nextLayout != "None") {
                 changeMapLayout(nextLayout);
             }
         }, 300);
     }
 
     const changeMapLayout = (heading: string) => {
-        console.log("CHANGE MAP LAYOUT");
-
+        console.log("Map Layout Changed!");
         if (heading == "Up") {
             setMapLayout(
                 {
@@ -248,6 +300,16 @@ export default function Game() {
                 rowCenter: mapLayout.rowCenter + 1,
                 colCenter: mapLayout.colCenter + mapLayout.maxColCellEachRow,
 
+            })
+        } else if (heading == "Right") {
+            setMapLayout({
+                ...mapLayout,
+                colCenter: mapLayout.colCenter + 1,
+            })
+        } else if (heading == "Left") {
+            setMapLayout({
+                ...mapLayout,
+                colCenter: mapLayout.colCenter - 1,
             })
         }
     }
@@ -305,6 +367,7 @@ export default function Game() {
         }
     }
 
+
     return (
         <div className="col-span-12 sm:pl-24 sm:pr-24" id="game-map">
             <div className="relative h-96"
@@ -313,7 +376,7 @@ export default function Game() {
                 onTouchEnd={handleTouchEnd}
             >
                 <div className="dark-overlay-game rounded"></div>
-                <div id="cell-row" className="hidden sm:grid grid-cols-9 gap-0 p-4 h-full overflow-hidden">
+                <div id="cell-row" className={`grid grid-cols-${mapLayout.maxColCellEachRowDisplayed} gap-0 p-4 h-full overflow-hidden`}>
                     {
                         [...Array(mapLayout.maxColCellDisplayed)].map((x, j) => {
                             // These rules created to make it dynamic when displaying/maping the game map (The key is the displayed COL CENTER).
@@ -321,17 +384,31 @@ export default function Game() {
                             // The rules to get the current iteration of row and col is:
                             // GET CURRENT COL RULES= (current iteration + current displayed coll center) - (total coll for a row + floor of total coll for a row / 2).
                             // Get curret row = (current iteration(j) + center coll of displayed map) - total distance to the first column of the displayed map from center coll of displayed map.
-                            const currentCol = (j + mapLayout.colCenter) - (mapLayout.maxColCellEachRow + Math.floor(mapLayout.maxColCellEachRow / 2));
-                            const currentRow = Math.ceil(currentCol / mapLayout.maxColCellEachRow);
+                            const currentCol = (j + mapLayout.colCenter) - (mapLayout.maxColCellEachRow + Math.floor(mapLayout.maxColCellEachRowDisplayed / 2))
+
+                            if (actualCol == 0) {
+                                actualCol = currentCol;
+                            } else {
+                                actualCol = actualCol + 1;
+                            }
+
+                            // IF THE CURRENT COL IS THE LAST COL OF THE DISPLAYED MAP, THEN ADD ACTUAL COLL.
+                            if (j % mapLayout.maxColCellEachRowDisplayed == 0 && j != 0 && mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+                                actualCol = actualCol + (mapLayout.maxColCellEachRow - mapLayout.maxColCellEachRowDisplayed);
+                            }
+
+                            const currentRow = Math.ceil(actualCol / mapLayout.maxColCellEachRow);
+
+
                             return (
                                 <div key={j}
-                                    id={`cell-row-${currentRow}-col-${currentCol}`}
+                                    id={`cell-row-${currentRow}-col-${actualCol}`}
                                     className={`character-container flex items-center justify-center  col-span-1 text-center border border-indigo-600 relative`}
                                 >
 
                                     {/* CONDITION IF ROW & COLL CELL MATCH, TO SHOW CHARACTER  */}
                                     {
-                                        (currentRow == characterPosition.current.rowCell && currentCol == characterPosition.current.colCell) ? (
+                                        (currentRow == characterPosition.current.rowCell && actualCol == characterPosition.current.colCell) ? (
                                             // <Character />
                                             <Image
                                                 alt="Character"
@@ -352,7 +429,7 @@ export default function Game() {
                                     }
                                     {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO OBJECT */}
                                     {mapLayout.portfolioCell.map((portfolio, k) => (
-                                        currentCol === portfolio.colCell ? (
+                                        actualCol === portfolio.colCell ? (
                                             <LightBulbIcon
                                                 key={k}
                                                 className={`${isIdle ? 'animate-bounce-mlp' : ''} text-blood shadow cursor-pointer hover:text-white`} aria-hidden="true" onClick={() => clickPortfolio(portfolio)}
@@ -371,11 +448,11 @@ export default function Game() {
                             )
                         })}
                 </div>
-                {!isDesktop ? (
+                {/* {!isDesktop ? (
                     <div className='flex items-center text-lg font-medium p-4 text-white text-center sm:invisible relative z-10 h-full'>
                         {`To explore my projects, please utilize a desktop (width of 640 pixels or more) and provide a keyboard. I'm trying to make it as a game-like experience.`}
                     </div>
-                ) : null}
+                ) : null} */}
             </div>
             <ModalPortfolio portfolio={portfolio} modalOpen={modalOpen} setModalOpen={setModalOpen} cancelButtonRef={cancelButtonRef} />
         </div >
