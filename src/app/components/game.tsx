@@ -50,7 +50,8 @@ export default function Game() {
         }
     );
 
-    const characterPosition = useRef({ rowCell: 5, colCell: 41 });
+    const [characterPosition, setCharacterPosition] = useState({ rowCell: 5, colCell: 41 });
+
     let translation = useRef({ dx: "", dy: "" });
     let translationObject = useRef({ dx: "", dy: "" });
     let cellHeight = useRef(90);
@@ -183,13 +184,13 @@ export default function Game() {
             // IF ENTER WASN'T PRESSED AND PRESS ANOTHER KEY
             // CHECK IF CHARACTER STILL INSIDE THE MAP
             const key = event.key;
-            if (key === "ArrowUp" && characterPosition.current.rowCell > 1) {
+            if (key === "ArrowUp" && characterPosition.rowCell > 1) {
                 moveAnimation("Up");
-            } else if (key === "ArrowRight" && characterPosition.current.colCell < mapLayout.maxColCell && characterPosition.current.colCell % mapLayout.maxColCellEachRow !== 0) {
+            } else if (key === "ArrowRight" && characterPosition.colCell < mapLayout.maxColCell && characterPosition.colCell % mapLayout.maxColCellEachRow !== 0) {
                 moveAnimation("Right");
-            } else if (key === "ArrowDown" && characterPosition.current.rowCell < mapLayout.maxRowCell) {
+            } else if (key === "ArrowDown" && characterPosition.rowCell < mapLayout.maxRowCell) {
                 moveAnimation("Down");
-            } else if (key === "ArrowLeft" && characterPosition.current.colCell > 1 && characterPosition.current.colCell % mapLayout.maxColCellEachRow !== 1) {
+            } else if (key === "ArrowLeft" && characterPosition.colCell > 1 && characterPosition.colCell % mapLayout.maxColCellEachRow !== 1) {
                 moveAnimation("Left");
             }
         }
@@ -206,12 +207,12 @@ export default function Game() {
         if (heading == "Up") {
             nextCharacterImage = "char_run_up";
             // MOVE UP DISPLAYED MAP ONCE ? IF THERE IS ANOTHER TOP AND IF NOT AT THE VERY TOP
-            if (characterPosition.current.rowCell - 1 > 1 && characterPosition.current.rowCell - 1 < mapLayout.rowCenter) {
+            if (characterPosition.rowCell - 1 > 1 && characterPosition.rowCell - 1 < mapLayout.rowCenter) {
                 nextLayout = "Up";
             }
 
             // DONT TRANSLATE OBJECT DOWN IF THE CHARACTER WITHIN TWO ROW FROM THE TOP OR BOTTOM
-            if (characterPosition.current.rowCell <= 2 || characterPosition.current.rowCell == mapLayout.maxRowCell) {
+            if (characterPosition.rowCell <= 2 || characterPosition.rowCell == mapLayout.maxRowCell) {
                 translation.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
                 translationObject.current = { dx: `0px`, dy: `0px` };
             } else {
@@ -222,12 +223,12 @@ export default function Game() {
         } else if (heading == "Right") {
             nextCharacterImage = "char_run_right";
 
-            if (((characterPosition.current.colCell + 1) % mapLayout.maxColCellEachRow) != 0 && ((characterPosition.current.colCell + 1) % mapLayout.maxColCellEachRow) > 2 && !isDesktop) {
+            if (((characterPosition.colCell + 1) % mapLayout.maxColCellEachRow) != 0 && ((characterPosition.colCell + 1) % mapLayout.maxColCellEachRow) > 2 && !isDesktop) {
                 nextLayout = "Right";
             }
 
             // IF ON THE RIGHTMOST OF THE MAP, TRANSLATE THE CHAR ONLY AND NOT THE OBJECT
-            if (characterPosition.current.colCell % mapLayout.maxColCellEachRow == 8 || characterPosition.current.colCell % mapLayout.maxColCellEachRow == 1 && !isDesktop) {
+            if (characterPosition.colCell % mapLayout.maxColCellEachRow == 8 || characterPosition.colCell % mapLayout.maxColCellEachRow == 1 && !isDesktop) {
                 translation.current = { dx: `${cellWidth.current}px`, dy: `0px` };
                 translationObject.current = { dx: `0px`, dy: `0px` };
             } else if (!isDesktop) {
@@ -241,12 +242,12 @@ export default function Game() {
         } else if (heading == "Down") {
             nextCharacterImage = "char_run_down";
             // MOVE DOWN DISPLAYED MAP ONCE IF THERE IS ANOTHER BOTTOM AND IF NOT AT THE VERY BOTTOM
-            if (characterPosition.current.rowCell + 1 < mapLayout.maxRowCell && characterPosition.current.rowCell + 1 > mapLayout.rowCenter) {
+            if (characterPosition.rowCell + 1 < mapLayout.maxRowCell && characterPosition.rowCell + 1 > mapLayout.rowCenter) {
                 nextLayout = "Down";
             }
 
             // DONT TRANSLATE OBJECT UP IF THE CHARACTER WITHIN TWO ROW FROM THE TOP OR BOTTOM
-            if (characterPosition.current.rowCell == 1 || characterPosition.current.rowCell == mapLayout.maxRowCell - 1) {
+            if (characterPosition.rowCell == 1 || characterPosition.rowCell == mapLayout.maxRowCell - 1) {
                 translation.current = { dx: `0px`, dy: `${cellHeight.current}px` };
                 translationObject.current = { dx: `0px`, dy: `0px` };
             } else {
@@ -257,12 +258,12 @@ export default function Game() {
             nextCharacterImage = "char_run_left";
 
             // CHANGE LAYOUT TO LEFT IF THERE IS ANOTHER LEFT AND IF NOT AT THE VERY LEFT
-            if (((characterPosition.current.colCell - 1) % mapLayout.maxColCellEachRow) != 1 && ((characterPosition.current.colCell - 1) % mapLayout.maxColCellEachRow) < 8 && !isDesktop) {
+            if (((characterPosition.colCell - 1) % mapLayout.maxColCellEachRow) != 1 && ((characterPosition.colCell - 1) % mapLayout.maxColCellEachRow) < 8 && !isDesktop) {
                 nextLayout = "Left";
             }
 
             // IF ON THE LEFTMOST OF THE MAP, TRANSLATE THE CHAR ONLY AND NOT THE OBJECT
-            if (characterPosition.current.colCell % mapLayout.maxColCellEachRow == 0 || characterPosition.current.colCell % mapLayout.maxColCellEachRow == 2 && !isDesktop) {
+            if (characterPosition.colCell % mapLayout.maxColCellEachRow == 0 || characterPosition.colCell % mapLayout.maxColCellEachRow == 2 && !isDesktop) {
                 translation.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
                 translationObject.current = { dx: `0px`, dy: `0px` };
             } else if (!isDesktop) {
@@ -277,10 +278,10 @@ export default function Game() {
         setCharacterImage(nextCharacterImage);
         setIsCharacterMoving(true);
         setTimeout(() => {
-            moveRefCharacter(heading);
             // CHANGE THE STATE TO NOT MOVING
             setCharacterImage("char_idle");
             setIsCharacterMoving(false);
+            moveRefCharacter(heading);
             handleTouchEnd();
             if (nextLayout != "None") {
                 changeMapLayout(nextLayout);
@@ -320,13 +321,13 @@ export default function Game() {
 
     const moveRefCharacter = (heading: string) => {
         if (heading == "Up") {
-            characterPosition.current = { rowCell: characterPosition.current.rowCell - 1, colCell: characterPosition.current.colCell - mapLayout.maxColCellEachRow };
+            setCharacterPosition({ rowCell: characterPosition.rowCell - 1, colCell: characterPosition.colCell - mapLayout.maxColCellEachRow });
         } else if (heading == "Right") {
-            characterPosition.current = { rowCell: characterPosition.current.rowCell, colCell: characterPosition.current.colCell + 1 };
+            setCharacterPosition({ rowCell: characterPosition.rowCell, colCell: characterPosition.colCell + 1 });
         } else if (heading == "Down") {
-            characterPosition.current = { rowCell: characterPosition.current.rowCell + 1, colCell: characterPosition.current.colCell + mapLayout.maxColCellEachRow };
+            setCharacterPosition({ rowCell: characterPosition.rowCell + 1, colCell: characterPosition.colCell + mapLayout.maxColCellEachRow });
         } else if (heading == "Left") {
-            characterPosition.current = { rowCell: characterPosition.current.rowCell, colCell: characterPosition.current.colCell - 1 };
+            setCharacterPosition({ rowCell: characterPosition.rowCell, colCell: characterPosition.colCell - 1 });
         }
     }
 
@@ -334,19 +335,19 @@ export default function Game() {
         let isColliding = false;
         // CHECKING IF THE CHARACTER IS COLLIDING WITH OBJECT
         if (heading == "Up") {
-            if (mapLayout.objectCell.includes(characterPosition.current.colCell - mapLayout.maxColCellEachRow)) {
+            if (mapLayout.objectCell.includes(characterPosition.colCell - mapLayout.maxColCellEachRow)) {
                 isColliding = true;
             }
         } else if (heading == "Right") {
-            if (mapLayout.objectCell.includes(characterPosition.current.colCell + 1)) {
+            if (mapLayout.objectCell.includes(characterPosition.colCell + 1)) {
                 isColliding = true;
             }
         } else if (heading == "Down") {
-            if (mapLayout.objectCell.includes(characterPosition.current.colCell + mapLayout.maxColCellEachRow)) {
+            if (mapLayout.objectCell.includes(characterPosition.colCell + mapLayout.maxColCellEachRow)) {
                 isColliding = true;
             }
         } else if (heading == "Left") {
-            if (mapLayout.objectCell.includes(characterPosition.current.colCell - 1)) {
+            if (mapLayout.objectCell.includes(characterPosition.colCell - 1)) {
                 isColliding = true;
             }
         }
@@ -363,7 +364,7 @@ export default function Game() {
 
     const isPortfolioAround = (event: string) => {
         const key = event;
-        const characterCoordinate = characterPosition.current.colCell;
+        const characterCoordinate = characterPosition.colCell;
         const portfolioCoordinate = mapLayout.portfolioCell.map((x) => x.colCell);
 
         if (key === "Enter" && portfolioCoordinate.includes(characterCoordinate)) {
@@ -416,7 +417,7 @@ export default function Game() {
 
                                     {/* CONDITION IF ROW & COLL CELL MATCH, TO SHOW CHARACTER  */}
                                     {
-                                        (currentRow == characterPosition.current.rowCell && actualCol == characterPosition.current.colCell) ? (
+                                        (currentRow == characterPosition.rowCell && actualCol == characterPosition.colCell) ? (
                                             // <Character />
                                             <Image
                                                 alt="Character"
