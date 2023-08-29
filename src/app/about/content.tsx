@@ -74,12 +74,12 @@ export default function Content() {
                         }}
                     />
                     <div className="dark-overlay"></div>
-                    <div className='flex items-center pl-6 pr-6 sm:pl-24 sm:pr-24 text-3xl sm:text-4xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
+                    <div className='flex items-center pl-6 pr-6 md:pl-24 md:pr-24 text-3xl sm:text-4xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
                         <p className='shadow'>Yes, as some of you may already be aware, the theme of this mini portfolio website i took it from Netflix. </p >
                     </div>
                 </div>
                 <div className='grid grid-cols-12'>
-                    <div className='col-span-12  pt-32 pb-32 pl-6 pr-6 md:pl-80 md:pr-80 text-white text-xl sm:text-2xl text-center'>
+                    <div className='col-span-12  pt-32 pb-32 pl-6 pr-6 lg:pl-80 lg:pr-80 text-white text-xl sm:text-2xl text-center'>
                         {`"I'm well aware that this project still very far from the excepted main concept that so called "Prison". I really need to make a time to create the whole assets prison stuff that have in mind." - @daffavcd`}
                     </div>
                 </div>
@@ -140,7 +140,7 @@ export default function Content() {
                         <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
                     </div>
                 </div>
-                <div className='grid grid-cols-12 pt-0 pb-0 pl-6 pr-6 sm:pl-36 sm:pr-36 bg-black gap-5'>
+                <div className='grid grid-cols-12 pt-0 pb-0 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
                     <div className='col-span-12 sm:col-span-6 flex justify-center overflow-hidden'>
                         <Player
                             autoplay
@@ -155,7 +155,7 @@ export default function Content() {
                         {`While lately I've been focusing on Front-End Development, I used to prefer being a Back-End Developer when i just started the journey of software development.`}
                     </div>
                 </div>
-                <div className='grid grid-cols-12 pt-0 pb-28 pl-6 pr-6 sm:pl-36 sm:pr-36 bg-black gap-5'>
+                <div className='grid grid-cols-12 pt-0 pb-28 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
                     <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white'>
                         <span className='text-2xl font-semibold mb-4'>{`7 Years of Study`}</span>
                         {`Recently, I just graduated as a Bachelor of Applied Science in Informatics Engineering major. I've studied a broad range of computer disciplines since I was in vocational high school.`}
