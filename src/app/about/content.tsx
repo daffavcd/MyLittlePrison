@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { ChevronRightIcon, ChevronLeftIcon, EnvelopeIcon } from '@heroicons/react/20/solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { Player } from '@lottiefiles/react-lottie-player';
 import Link from 'next/link'
 
 export default function Content() {
@@ -87,7 +88,7 @@ export default function Content() {
                         {`Some of My Certifications`}
                     </div>
                 </div>
-                <div className='grid grid-cols-12 pt-8 pb-28 pl-6 pr-6 gap-4 text-center relative '>
+                <div className='grid grid-cols-12 pt-8 pb-28 pl-6 pr-6 gap-4 text-center relative'>
                     {isDesktop ? (
                         <div className='col-span-4 flex justify-end items-end'>
                             <div className='relative' id='left-certificate'
@@ -137,6 +138,36 @@ export default function Content() {
                     {/* Right Arrow */}
                     <div className='absolute top-[40%] -translate-x-0 translate-y-[-40%] right-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg' onClick={nextSlide}>
                         <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
+                    </div>
+                </div>
+                <div className='grid grid-cols-12 pt-0 pb-0 pl-6 pr-6 sm:pl-36 sm:pr-36 bg-black gap-5'>
+                    <div className='col-span-12 sm:col-span-6 flex justify-center overflow-hidden'>
+                        <Player
+                            autoplay
+                            loop
+                            src="/images/lottie/work-red.json"
+                            style={{ height: '400px', width: '400px' }}
+                        >
+                        </Player>
+                    </div>
+                    <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white'>
+                        <span className='text-2xl font-semibold mb-4'>{`Full-Stack Developer`}</span>
+                        {`While lately I've been focusing on Front-End Development, I used to prefer being a Back-End Developer when i just started the journey of software development.`}
+                    </div>
+                </div>
+                <div className='grid grid-cols-12 pt-0 pb-28 pl-6 pr-6 sm:pl-36 sm:pr-36 bg-black gap-5'>
+                    <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white'>
+                        <span className='text-2xl font-semibold mb-4'>{`7 Years of Study`}</span>
+                        {`Recently, I just graduated as a Bachelor of Applied Science in Informatics Engineering major. I've studied a broad range of computer disciplines since I was in vocational high school.`}
+                    </div>
+                    <div className='col-span-12 sm:col-span-6 flex justify-center order-first sm:order-last overflow-hidden'>
+                        <Player
+                            autoplay
+                            loop
+                            src="/images/lottie/red-education.json"
+                            style={{ height: '400px', width: '400px' }}
+                        >
+                        </Player>
                     </div>
                 </div>
                 <div className='grid grid-cols-12 pt-32 pb-32 pl-6 pr-6' style={{
