@@ -59,6 +59,9 @@ export default function Game() {
     // ====================================START OF FUNCTION ====================================
 
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+        // ABORTING MOVEMENT IF THE CHARACTER STILL ON ANIMATION
+        if (isCharacterMoving) return;
+
         startX.current = e.touches[0].clientX;
         startY.current = e.touches[0].clientY;
     };
