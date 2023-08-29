@@ -45,7 +45,7 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                 <p className="text-base text-justify mt-3 text-white indent-8 break-all sm:break-normal">
                                                     {portfolio.desc}&nbsp;
                                                     {portfolio.repoLink == "Private" ? (
-                                                        <div className='text-red-600 text-sm italic inline hover:text-white cursor-pointer'>[Private - {portfolio.year}]</div>
+                                                        <span className='text-red-600 text-sm italic inline hover:text-white cursor-pointer'>[Private - {portfolio.year}]</span>
                                                     ) : (
                                                         <Link href={portfolio.repoLink} className='text-red-600 text-sm italic inline hover:text-white' tabIndex={2} target="_blank" rel="noopener noreferrer">[{portfolio.repoLink} - {portfolio.year}]</Link>
                                                     )}

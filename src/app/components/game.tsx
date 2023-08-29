@@ -77,7 +77,7 @@ export default function Game() {
 
         let simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'None' });
 
-        if (Math.abs(deltaX) > 90 || Math.abs(deltaY) > 90) {
+        if (Math.abs(deltaX) > 65 || Math.abs(deltaY) > 65) {
             if (Math.abs(deltaX) > Math.abs(deltaY)) {
                 if (deltaX > 0) {
                     simulatedKeyEvent = new KeyboardEvent('keydown', { key: 'ArrowRight' });
@@ -174,18 +174,21 @@ export default function Game() {
         // ABORTING MOVEMENT IF THE CHARACTER STILL ON ANIMATION
         if (isCharacterMoving) return;
 
-        isPortfolioAround(event.key);
-
-        // CONDITION TO MOVE THE CHARACTER WAS FULFILLED
-        const key = event.key;
-        if (key === "ArrowUp" && characterPosition.current.rowCell > 1) {
-            moveAnimation("Up");
-        } else if (key === "ArrowRight" && characterPosition.current.colCell < mapLayout.maxColCell && characterPosition.current.colCell % mapLayout.maxColCellEachRow !== 0) {
-            moveAnimation("Right");
-        } else if (key === "ArrowDown" && characterPosition.current.rowCell < mapLayout.maxRowCell) {
-            moveAnimation("Down");
-        } else if (key === "ArrowLeft" && characterPosition.current.colCell > 1 && characterPosition.current.colCell % mapLayout.maxColCellEachRow !== 1) {
-            moveAnimation("Left");
+        if (isPortfolioAround(event.key)) {
+            return;
+        } else {
+            // IF ENTER WASN'T PRESSED AND PRESS ANOTHER KEY
+            // CHECK IF CHARACTER STILL INSIDE THE MAP
+            const key = event.key;
+            if (key === "ArrowUp" && characterPosition.current.rowCell > 1) {
+                moveAnimation("Up");
+            } else if (key === "ArrowRight" && characterPosition.current.colCell < mapLayout.maxColCell && characterPosition.current.colCell % mapLayout.maxColCellEachRow !== 0) {
+                moveAnimation("Right");
+            } else if (key === "ArrowDown" && characterPosition.current.rowCell < mapLayout.maxRowCell) {
+                moveAnimation("Down");
+            } else if (key === "ArrowLeft" && characterPosition.current.colCell > 1 && characterPosition.current.colCell % mapLayout.maxColCellEachRow !== 1) {
+                moveAnimation("Left");
+            }
         }
     }
 
@@ -216,15 +219,15 @@ export default function Game() {
         } else if (heading == "Right") {
             nextCharacterImage = "char_run_right";
 
-            if (((characterPosition.current.colCell + 1) % mapLayout.maxColCellEachRow) != 0 && ((characterPosition.current.colCell + 1) % mapLayout.maxColCellEachRow) > 2 && mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+            if (((characterPosition.current.colCell + 1) % mapLayout.maxColCellEachRow) != 0 && ((characterPosition.current.colCell + 1) % mapLayout.maxColCellEachRow) > 2 && !isDesktop) {
                 nextLayout = "Right";
             }
 
             // IF ON THE RIGHTMOST OF THE MAP, TRANSLATE THE CHAR ONLY AND NOT THE OBJECT
-            if (characterPosition.current.colCell % mapLayout.maxColCellEachRow == 8 || characterPosition.current.colCell % mapLayout.maxColCellEachRow == 1 && mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+            if (characterPosition.current.colCell % mapLayout.maxColCellEachRow == 8 || characterPosition.current.colCell % mapLayout.maxColCellEachRow == 1 && !isDesktop) {
                 translation.current = { dx: `${cellWidth.current}px`, dy: `0px` };
                 translationObject.current = { dx: `0px`, dy: `0px` };
-            } else if (mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+            } else if (!isDesktop) {
                 translation.current = { dx: `0px`, dy: `0px` };
                 translationObject.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
             } else { // IF DESKTOP JUST DO NORMAL TRANSLATION
@@ -251,15 +254,15 @@ export default function Game() {
             nextCharacterImage = "char_run_left";
 
             // CHANGE LAYOUT TO LEFT IF THERE IS ANOTHER LEFT AND IF NOT AT THE VERY LEFT
-            if (((characterPosition.current.colCell - 1) % mapLayout.maxColCellEachRow) != 1 && ((characterPosition.current.colCell - 1) % mapLayout.maxColCellEachRow) < 8 && mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+            if (((characterPosition.current.colCell - 1) % mapLayout.maxColCellEachRow) != 1 && ((characterPosition.current.colCell - 1) % mapLayout.maxColCellEachRow) < 8 && !isDesktop) {
                 nextLayout = "Left";
             }
 
             // IF ON THE LEFTMOST OF THE MAP, TRANSLATE THE CHAR ONLY AND NOT THE OBJECT
-            if (characterPosition.current.colCell % mapLayout.maxColCellEachRow == 0 || characterPosition.current.colCell % mapLayout.maxColCellEachRow == 2 && mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+            if (characterPosition.current.colCell % mapLayout.maxColCellEachRow == 0 || characterPosition.current.colCell % mapLayout.maxColCellEachRow == 2 && !isDesktop) {
                 translation.current = { dx: `-${cellWidth.current}px`, dy: `0px` };
                 translationObject.current = { dx: `0px`, dy: `0px` };
-            } else if (mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+            } else if (!isDesktop) {
                 translation.current = { dx: `0px`, dy: `0px` };
                 translationObject.current = { dx: `${cellWidth.current}px`, dy: `0px` };
             } else { // IF DESKTOP JUST DO NORMAL TRANSLATION
@@ -362,6 +365,10 @@ export default function Game() {
 
         if (key === "Enter" && portfolioCoordinate.includes(characterCoordinate)) {
             clickPortfolio(mapLayout.portfolioCell[portfolioCoordinate.indexOf(characterCoordinate)]);
+            return true;
+        } else {
+            // BACK TO PARENT FUNCTION
+            return false;
         }
     }
 
@@ -391,7 +398,7 @@ export default function Game() {
                             }
 
                             // IF THE CURRENT COL IS THE LAST COL OF THE DISPLAYED MAP, THEN ADD ACTUAL COLL.
-                            if (j % mapLayout.maxColCellEachRowDisplayed == 0 && j != 0 && mapLayout.maxColCellEachRowDisplayed < mapLayout.maxColCellEachRow) {
+                            if (j % mapLayout.maxColCellEachRowDisplayed == 0 && j != 0 && !isDesktop) {
                                 actualCol = actualCol + (mapLayout.maxColCellEachRow - mapLayout.maxColCellEachRowDisplayed);
                             }
 
