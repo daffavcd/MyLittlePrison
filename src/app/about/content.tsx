@@ -1,11 +1,12 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ChevronRightIcon, ChevronLeftIcon, EnvelopeIcon } from '@heroicons/react/20/solid';
+import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/20/solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Player } from '@lottiefiles/react-lottie-player';
 import Link from 'next/link'
+import Particle from '../components/parts/particle';
 
 export default function Content() {
 
@@ -34,6 +35,26 @@ export default function Content() {
         };
     }, []);
 
+    const [scrolledAbout, setScrolledAbout] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 200) {
+                setScrolledAbout(true);
+            } else {
+                setScrolledAbout(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+
+
     useEffect(() => {
         const changeSlide = setInterval(() => {
             const isLastSlide = currentCertificate === slides.current.length - 1;
@@ -42,9 +63,6 @@ export default function Content() {
         }, 4000);
         return () => clearInterval(changeSlide);
     }, [currentCertificate]);
-
-
-
 
     const prevSlide = () => {
         const isFirstSlide = currentCertificate === 0;
@@ -61,7 +79,7 @@ export default function Content() {
     return (
         <>
             <div className="col-span-12">
-                <div className="flex flex-col h-screen" style={{ marginTop: "-95px" }}>
+                <div className={`flex flex-col h-screen ${scrolledAbout ? 'blur-sm' : 'blur-none'}`} id='main-content' style={{ marginTop: "-95px" }}>
                     <Image
                         alt="Background Image"
                         src="/images/luffy1.jpg"
@@ -73,12 +91,19 @@ export default function Content() {
                             objectFit: 'cover',
                         }}
                     />
-                    <div className="dark-overlay"></div>
+                    <div className='dark-overlay'></div>
+                    <a href="#first-content">
+                        <div className='absolute left-[50%] -translate-x-[50%] bottom-10 text-2xl rounded-lg rotate-45 p-2 bg-blood-90 text-white cursor-pointer z-20 shadow-lg'>
+                            <div className='absolute -m-2 w-full h-full rounded-lg border-2 border-white animate-ping-mlp-2' />
+                            <ChevronRightIcon className="h-9 w-9 rotate-45" aria-hidden="true" />
+                        </div>
+                    </a>
+                    {/* <Particle /> */}
                     <div className='flex items-center pl-6 pr-6 md:pl-24 md:pr-24 text-3xl sm:text-4xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
                         <p className='shadow'>Yes, as some of you may already be aware, the theme of this mini portfolio website i took it from Netflix. </p >
                     </div>
                 </div>
-                <div className='grid grid-cols-12'>
+                <div className='grid grid-cols-12' id='first-content'>
                     <div className='col-span-12  pt-32 pb-32 pl-6 pr-6 lg:pl-80 lg:pr-80 text-white text-xl sm:text-2xl text-center'>
                         {`"I'm well aware that this project still very far from the excepted main concept that so called "Prison". I really need to make a time to create the whole assets prison stuff that have in mind." - @daffavcd`}
                     </div>
