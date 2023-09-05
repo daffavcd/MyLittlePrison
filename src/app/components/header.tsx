@@ -14,27 +14,29 @@ export default function Header() {
 
     return (
         <>
-            <div className="col-span-9 z-10">
-                <Image
-                    src="/images/logo.svg"
-                    width={250}
-                    height={50}
-                    alt="Picture of the author"
-                />
-            </div >
-            <div className="col-span-3 z-10 text-right">
-                <div className='rounded-xl inline-flex gap-2 p-1 bg-blood drop-shadow-2xl w-fit max-h-11'>
-                    {/* {isDesktop ? ( */}
-                    <QuestionMarkCircleIcon className="hidden sm:block h-9 w-9 animate-pulse text-black hover:text-white cursor-pointer " aria-hidden="true"
-                        onClick={() => setModalInfoOpen(true)}
+            <div className='col-span-12 grid grid-cols-12 z-10'>
+                <div className="col-span-9">
+                    <Image
+                        src="/images/logo.svg"
+                        width={250}
+                        height={50}
+                        alt="Picture of the author"
                     />
-                    {/* ) : null} */}
-                    <Link href={`/about`}>
-                        <UserCircleIcon className="h-9 w-9 text-black hover:text-white cursor-pointer" aria-hidden="true" />
-                    </Link>
-                </div>
-            </div >
-            <ModalInfo modalInfoOpen={modalInfoOpen} setModalInfoOpen={setModalInfoOpen} cancelButtonInfoRef={cancelButtonInfoRef} />
+                </div >
+                <div className="col-span-3 text-right">
+                    <div className='rounded-xl inline-flex gap-2 p-1 bg-blood drop-shadow-2xl w-fit max-h-11'>
+                        {/* {isDesktop ? ( */}
+                        <QuestionMarkCircleIcon className="hidden sm:block h-9 w-9 animate-pulse text-black hover:text-white cursor-pointer " aria-hidden="true"
+                            onClick={() => setModalInfoOpen(true)}
+                        />
+                        {/* ) : null} */}
+                        <Link href={`/about`}>
+                            <UserCircleIcon className="h-9 w-9 text-black hover:text-white cursor-pointer" aria-hidden="true" />
+                        </Link>
+                    </div>
+                </div >
+                <ModalInfo modalInfoOpen={modalInfoOpen} setModalInfoOpen={setModalInfoOpen} cancelButtonInfoRef={cancelButtonInfoRef} />
+            </div>
         </>
     )
 }

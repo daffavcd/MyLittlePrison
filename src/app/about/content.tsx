@@ -177,13 +177,13 @@ export default function Content() {
                     </div>
                     <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white'>
                         <span className='text-3xl sm:text-4xl font-semibold mb-4'>{`Full-Stack Developer`}</span>
-                        {`While lately I've been focusing on Front-End Development, I used to prefer being a Back-End Developer when i just started the journey of software development.`}
+                        {`While lately I've been focusing on Front-End Development, I used to prefer being a Back-End Developer on my starting days.`}
                     </div>
                 </div>
                 <div className='grid grid-cols-12 pt-0 pb-28 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
                     <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white'>
                         <span className='text-3xl sm:text-4xl font-semibold mb-4'>{`7 Years of Study`}</span>
-                        {`Recently, I just graduated as a Bachelor of Applied Science in Informatics Engineering major. I've studied a broad range of computer disciplines since I was in vocational high school.`}
+                        {`Graduated as a BASc in Informatics Engineering major. I've studied a broad range of computer disciplines since I was 15 years old.`}
                     </div>
                     <div className='col-span-12 sm:col-span-6 flex justify-center order-first sm:order-last overflow-hidden'>
                         <Player
@@ -240,13 +240,13 @@ export default function Content() {
                     </div>
                     <div className='col-span-2 flex justify-end items-center gap-4'>
                         <Link href="https://mail.google.com/mail/?fs=1&to=daffavcd@gmail.com&tf=cm" target="_blank" rel="noopener noreferrer">
-                            <FontAwesomeIcon className='h-10 w-h-10 text-blood hover:text-white cursor-pointer' icon={faGoogle} />
+                            <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faGoogle} />
                         </Link>
                         <Link href="https://twitter.com/messages/compose?recipient_id=813202528816930816" target="_blank" rel="noopener noreferrer">
-                            <FontAwesomeIcon className='h-10 w-h-10 text-blood hover:text-white cursor-pointer' icon={faTwitter} />
+                            <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faTwitter} />
                         </Link>
                         <Link href="https://github.com/daffavcd" target="_blank" rel="noopener noreferrer">
-                            <FontAwesomeIcon className='h-10 w-h-10 text-blood hover:text-white cursor-pointer' icon={faGithub} />
+                            <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faGithub} />
                         </Link>
                     </div>
                 </div>

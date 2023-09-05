@@ -378,7 +378,7 @@ export default function Game() {
 
 
     return (
-        <div className="col-span-12 sm:pl-24 sm:pr-24" id="game-map">
+        <div className="col-span-12 sm:pl-24 sm:pr-24 -mt-12" id="game-map">
             <div className="relative h-96"
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}

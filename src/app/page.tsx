@@ -24,8 +24,8 @@ export default function Home() {
         <main className="grid grid-cols-12 h-screen pt-7 pr-10 pb-5 pl-10">
           <Header />
           <Game />
+          <Footer />
         </main>
-        <Footer />
       </div>
     </>
   )
