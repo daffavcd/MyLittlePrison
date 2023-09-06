@@ -183,7 +183,7 @@ export default function Content() {
                 <div className='grid grid-cols-12 pt-0 pb-28 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
                     <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white'>
                         <span className='text-3xl sm:text-4xl font-semibold mb-4'>{`7 Years of Study`}</span>
-                        {`Graduated as a BASc in Informatics Engineering major. I've studied a broad range of computer disciplines since I was 15 years old.`}
+                        {`Graduated as a BASc in Informatics Engineering major. I've studied a broad range of computer disciplines since I was 15 y/o.`}
                     </div>
                     <div className='col-span-12 sm:col-span-6 flex justify-center order-first sm:order-last overflow-hidden'>
                         <Player

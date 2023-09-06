@@ -51,57 +51,77 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                             <Dialog.Title as="h3" className="mb-5 text-2xl text-center font-semibold leading-6 pl-4 pr-4 text-white">
                                                 How to discover the projects?
                                             </Dialog.Title>
-                                            <div className='grid grid-cols-12 gap-0 p-4 h-full'>
+                                            <div className='grid grid-cols-12 gap-5 p-4 h-full'>
                                                 <div className="col-span-6 pl-6 pr-6 text-center">
                                                     <Image
                                                         src="/images/tutorials/1.svg"
                                                         alt="Tutorial 1"
                                                         title="Tutorial 1"
-                                                        className="inline"
+                                                        className="hidden lg:inline"
                                                         width={180}
                                                         height={120}
                                                     />
-                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal">
-                                                        <li>Use your arrow keyboard to navigate the character across the map.</li>
+                                                    <Image
+                                                        src="/images/tutorials/swipe-2.svg"
+                                                        alt="Tutorial 1"
+                                                        title="Tutorial 1"
+                                                        className="inline lg:hidden"
+                                                        width={180}
+                                                        height={120}
+                                                    />
+                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal tracking-tight">
+                                                        <li className='break-all sm:break-normal hidden lg:list-item'>Use your arrow keyboard to navigate the character across the map.</li>
+                                                        <li className='break-all sm:break-normal list-item lg:hidden'>Swipe inside the box to move the character.</li>
                                                     </ol>
                                                 </div>
                                                 <div className="col-span-6 pl-6 pr-6 text-center">
                                                     <Image
                                                         src="/images/tutorials/2.svg"
-                                                        alt="Tutorial 1"
-                                                        title="Tutorial 1"
+                                                        alt="Tutorial 2"
+                                                        title="Tutorial 2"
                                                         className="inline"
                                                         width={180}
                                                         height={120}
                                                     />
-                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal " start={2}>
-                                                        <li>Locate the Light Blup to discover the projects by using the arrow keys.</li>
+                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal tracking-tight" start={2}>
+                                                        <li className='break-all sm:break-normal hidden lg:list-item'>Find the Light Blup to discover the projects by using the arrow keys.</li>
+                                                        <li className='break-all sm:break-normal list-item lg:hidden'>Find the Light Blup that spread over the map.</li>
                                                     </ol>
                                                 </div>
                                                 <div className="col-span-6 pl-6 pr-6 text-center mt-2">
                                                     <Image
                                                         src="/images/tutorials/3.svg"
-                                                        alt="Tutorial 1"
-                                                        title="Tutorial 1"
+                                                        alt="Tutorial 3"
+                                                        title="Tutorial 3"
                                                         className="inline"
                                                         width={180}
                                                         height={120}
                                                     />
-                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal" start={3}>
-                                                        <li>Position the character precisely over where the Light Blup is located.</li>
+                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal tracking-tight" start={3}>
+                                                        <li className='break-all sm:break-normal hidden lg:list-item'>Position the character precisely over where the Light Blup is located.</li>
+                                                        <li className='break-all sm:break-normal list-item lg:hidden'>Position the character around the Light Blup.</li>
                                                     </ol>
                                                 </div>
                                                 <div className="col-span-6 pl-6 pr-6 text-center mt-2">
                                                     <Image
                                                         src="/images/tutorials/4.svg"
-                                                        alt="Tutorial 1"
-                                                        title="Tutorial 1"
-                                                        className="inline"
+                                                        alt="Tutorial 4"
+                                                        title="Tutorial 4"
+                                                        className="hidden lg:inline"
                                                         width={180}
                                                         height={120}
                                                     />
-                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal" start={4}>
-                                                        <li>Show the projects by pressing Enter or left-clicking with your mouse.</li>
+                                                    <Image
+                                                        src="/images/tutorials/4-tap.svg"
+                                                        alt="Tutorial 4"
+                                                        title="Tutorial 4"
+                                                        className="inline lg:hidden"
+                                                        width={180}
+                                                        height={120}
+                                                    />
+                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal tracking-tight" start={4}>
+                                                        <li className='break-all sm:break-normal hidden lg:list-item'>Show the projects by pressing Enter or left-clicking with your mouse.</li>
+                                                        <li className='break-all sm:break-normal list-item lg:hidden'>Press the Light Blup to show the projects.</li>
                                                     </ol>
                                                 </div>
                                             </div>
