@@ -62,7 +62,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         height={120}
                                                     />
                                                     <Image
-                                                        src="/images/tutorials/swipe-2.svg"
+                                                        src="/images/tutorials/swipe-3.svg"
                                                         alt="Tutorial 1"
                                                         title="Tutorial 1"
                                                         className="inline lg:hidden"
@@ -84,7 +84,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         height={120}
                                                     />
                                                     <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal tracking-tight" start={2}>
-                                                        <li className='break-all sm:break-normal hidden lg:list-item'>Find the Light Blup to discover the projects by using the arrow keys.</li>
+                                                        <li className='break-all sm:break-normal hidden lg:list-item'>Find the Light Blups to discover the projects by using the arrow keys.</li>
                                                         <li className='break-all sm:break-normal list-item lg:hidden'>Find the Light Blups all over the map.</li>
                                                     </ol>
                                                 </div>
@@ -130,7 +130,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                     </div>
                                 </div>
                                 <div className='absolute top-3 right-3 text-2xl rounded-full p-2 bg-black/20 text-blood hover:text-white cursor-pointer' tabIndex={1} onClick={() => setModalInfoOpen(false)}>
-                                    <XMarkIcon className="h-8 w-8" aria-hidden="true" />
+                                    <XMarkIcon className="h-7 w-7 sm:h-8 sm:w-8" aria-hidden="true" />
                                 </div>
                             </Dialog.Panel>
                         </Transition.Child>
