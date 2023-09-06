@@ -34,7 +34,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                 </Transition.Child>
 
                 <div className="fixed inset-0 z-50 overflow-y-auto">
-                    <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center">
+                    <div className="flex min-h-full justify-center p-4 text-center items-center">
                         <Transition.Child
                             as={Fragment}
                             enter="ease-out duration-300"
@@ -44,7 +44,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                            <Dialog.Panel className="relative h-1/4 transform overflow-hidden rounded-lg bg-slate-800 text-left shadow-xl transition-all -my-1 sm:my-8 sm:w-full sm:max-w-4xl">
+                            <Dialog.Panel className="relative h-1/4 transform overflow-hidden rounded-lg bg-slate-800 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
                                 <div className="bg-slate-800 px-1 sm:px-6 pb-6 pt-5 sm:p-8 sm:pb-8">
                                     <div className="sm:grid sm:items-start">
                                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
