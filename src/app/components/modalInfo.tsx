@@ -45,14 +45,14 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
                             <Dialog.Panel className="relative h-1/4 transform overflow-hidden rounded-lg bg-slate-800 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
-                                <div className="bg-slate-800 px-6 pb-6 pt-5 sm:p-8 sm:pb-8">
+                                <div className="bg-slate-800 px-1 sm:px-6 pb-6 pt-5 sm:p-8 sm:pb-8">
                                     <div className="sm:grid sm:items-start">
                                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
                                             <Dialog.Title as="h3" className="mb-5 text-2xl text-center font-semibold leading-6 pl-4 pr-4 text-white">
                                                 How to discover the projects?
                                             </Dialog.Title>
-                                            <div className='grid grid-cols-12 gap-5 p-4 h-full'>
-                                                <div className="col-span-6 pl-6 pr-6 text-center">
+                                            <div className='grid grid-cols-12 p-4 h-full'>
+                                                <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center">
                                                     <Image
                                                         src="/images/tutorials/1.svg"
                                                         alt="Tutorial 1"
@@ -74,7 +74,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         <li className='break-all sm:break-normal list-item lg:hidden'>Swipe inside the box to move the character.</li>
                                                     </ol>
                                                 </div>
-                                                <div className="col-span-6 pl-6 pr-6 text-center">
+                                                <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center">
                                                     <Image
                                                         src="/images/tutorials/2.svg"
                                                         alt="Tutorial 2"
@@ -88,7 +88,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         <li className='break-all sm:break-normal list-item lg:hidden'>Find the Light Blup that spread over the map.</li>
                                                     </ol>
                                                 </div>
-                                                <div className="col-span-6 pl-6 pr-6 text-center mt-2">
+                                                <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center mt-2">
                                                     <Image
                                                         src="/images/tutorials/3.svg"
                                                         alt="Tutorial 3"
@@ -102,7 +102,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         <li className='break-all sm:break-normal list-item lg:hidden'>Position the character around the Light Blup.</li>
                                                     </ol>
                                                 </div>
-                                                <div className="col-span-6 pl-6 pr-6 text-center mt-2">
+                                                <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center mt-2">
                                                     <Image
                                                         src="/images/tutorials/4.svg"
                                                         alt="Tutorial 4"
