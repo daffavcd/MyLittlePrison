@@ -85,7 +85,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                     />
                                                     <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal tracking-tight" start={2}>
                                                         <li className='break-all sm:break-normal hidden lg:list-item'>Find the Light Blup to discover the projects by using the arrow keys.</li>
-                                                        <li className='break-all sm:break-normal list-item lg:hidden'>Find the Light Blup that spread over the map.</li>
+                                                        <li className='break-all sm:break-normal list-item lg:hidden'>Find the Light Blups all over the map.</li>
                                                     </ol>
                                                 </div>
                                                 <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center mt-2">
@@ -99,7 +99,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                     />
                                                     <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal tracking-tight" start={3}>
                                                         <li className='break-all sm:break-normal hidden lg:list-item'>Position the character precisely over where the Light Blup is located.</li>
-                                                        <li className='break-all sm:break-normal list-item lg:hidden'>Position the character around the Light Blup.</li>
+                                                        <li className='break-all sm:break-normal list-item lg:hidden'>Move the character around the Light Blup.</li>
                                                     </ol>
                                                 </div>
                                                 <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center mt-2">
