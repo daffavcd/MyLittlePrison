@@ -217,4 +217,163 @@ export const portfolios: Portfolio[] = [
             'webpack',
         ]
     },
+    {
+        colCell: 57,
+        title: "My Missing Cat: Your Pet's Journey Home",
+        desc: "🐾🐶 My Missing Cat, the online platform dedicated to reuniting missing pets with their owners. Our platform is designed to make it easier for pet owners to find their lost furry friends by creating a community where you can report missing pets and help others find theirs. My Missing Cat is a user-friendly application created with Flutter, offering a seamless experience for both pet owners and those willing to lend a helping hand in the search for missing pets.",
+        repoLink: 'https://github.com/daffavcd/kucingkuHilang',
+        year: '2022',
+        features: [
+            "Built with Flutter, accesible for different devices and platforms.",
+            'Create a community of pet lovers to participate in locating missing pets.',
+            'Upload information about missing pet, including a photo, description, and last seen location.',
+        ],
+        imagesPath: [
+            'kh_1',
+            'kh_2',
+            'kh_3',
+            'kh_4',
+            'kh_5',
+            'kh_6',
+        ],
+        techImagesPath: [
+            'flutter',
+            'firebase',
+        ]
+    },
+    {
+        colCell: 47,
+        title: "Letter Archiver: Your Timeless Document Archiver",
+        desc: "📂🔍 Digital storer for archiving and preserving all your important documents. Powered by Laravel, our platform ensures that your cherished letters, documents, and memories are not just stored but safeguarded for the ages.",
+        repoLink: 'https://github.com/daffavcd/letterArchive',
+        year: '2022',
+        features: [
+            'Easily upload documents of various formats with a few simple clicks.',
+            'Quickly find and retrieve your archived documents whenever you need them.',
+            "Securely archive and organize your important documents, letters, and files.",
+        ],
+        imagesPath: [
+            'la_1',
+            'la_2',
+            'la_3',
+        ],
+        techImagesPath: [
+            'laravel',
+        ]
+    },
+    {
+        colCell: 68,
+        title: "Movie Catalog: Explore the World of Cinema",
+        desc: "🎬⭐ Powered by Flutter and harnessing the extensive Themoviedb API, CineWave provides you with an extensive catalog of current hit movies, complete with detailed synopses and more.",
+        repoLink: 'https://github.com/daffavcd/APIThemoviedb',
+        year: '2021',
+        features: [
+            'Explore a vast catalog of current popular movies from around the world.',
+            "Stay informed with the latest movie releases and updates thanks to Themoviedb API.",
+            'Read user reviews and ratings to make informed decisions about which movies to watch.',
+        ],
+        imagesPath: [
+            'movie_1',
+            'movie_2',
+        ],
+        techImagesPath: [
+            'flutter',
+        ]
+    },
+    {
+        colCell: 13,
+        title: "Bookshelf App: Your Personal Library",
+        desc: "🎬⭐ This project is a testament to my journey in front-end development, created as part of my certification on Dicoding. With the power of local storage and the finesse of pure CSS and JavaScript.",
+        repoLink: 'https://github.com/daffavcd/bookshelf-apps',
+        year: '2022',
+        features: [
+            'Create and manage your own digital bookshelf, complete with book covers and titles.',
+            "Store your book data locally, ensuring your collection remains accessible even offline.",
+        ],
+        imagesPath: [
+            'ba_1',
+            'ba_2',
+            'ba_3',
+            'ba_4',
+        ],
+        techImagesPath: [
+            'javascript',
+            'css',
+        ]
+    },
+    {
+        colCell: 36,
+        title: "MR Shop: Your One-Stop E-commerce Destination",
+        desc: "🏷️💬 B2C e-commerce platform where shopping meets simplicity. Created with the robust Laravel framework, MR Shop offers an features such as leave comments, provide ratings, and explore various categories.",
+        repoLink: 'https://github.com/daffavcd/mrshop',
+        year: '2021',
+        features: [
+            'Easily navigate through product categories to narrow down your search.',
+            "Access detailed product reviews from other shoppers to make informed decisions.",
+            'Share your thoughts and experiences by leaving comments and ratings on products.',
+        ],
+        imagesPath: [
+            'shop_1',
+            'shop_2',
+            'shop_3',
+            'shop_4',
+            'shop_5',
+            'shop_6',
+            'shop_7',
+            'shop_8',
+            'shop_9',
+            'shop_10',
+        ],
+        techImagesPath: [
+            'laravel',
+            'mysql',
+            'php',
+        ]
+    },
+    {
+        colCell: 24,
+        title: "News Faker: Explore Curated Dummy News",
+        desc: "📰💬 Dive into the curated dummy news with News Faker, a unique news website created with Laravel. Experience the fun of exploring fictional news stories, leave comments, and show your appreciation by liking your favorite articles.",
+        repoLink: 'https://github.com/daffavcd/news-faker',
+        year: '2020',
+        features: [
+            'News stories generated by Laravel Faker.',
+            "Engage with the content by leaving comments and liking your preferred news articles.",
+            'Explore different categories of dummy news stories for a variety of entertaining content.',
+        ],
+        imagesPath: [
+            'news_1',
+            'news_2',
+            'news_3',
+            'news_4',
+            'news_5',
+            'news_6',
+            'news_7',
+            'news_8',
+        ],
+        techImagesPath: [
+            'laravel',
+            'mysql',
+            'php',
+        ]
+    },
+    {
+        colCell: 62,
+        title: "CryptoWatcher: Your Daily Crypto Insights",
+        desc: "💰📈 Cryptocurrency market watcher app designed to provide you with a quick overview of the most popular cryptocurrency assets.",
+        repoLink: 'https://github.com/daffavcd/cry-watcher',
+        year: '2022',
+        features: [
+            'Real-time updates on the prices of the most popular cryptocurrency assets.',
+            "Easily compare current cryptocurrency prices to their values from the previous day.",
+            "Using coinapi.io as the API provider.",
+        ],
+        imagesPath: [
+            'cry_1',
+        ],
+        techImagesPath: [
+            'javascript',
+            'css',
+        ]
+    },
 ];

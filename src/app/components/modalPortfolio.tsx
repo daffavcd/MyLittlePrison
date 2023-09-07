@@ -63,7 +63,7 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                     </ul>
                                                 </div>
                                                 <p className="text-lg mt-2 text-left font-semibold text-white">
-                                                    Tech Used :
+                                                    Technologies :
                                                 </p>
                                                 <div className='mt-2 pl-7 pr-7 flex justify-start items-start gap-2 flex-wrap'>
                                                     {portfolio.techImagesPath.map((tech: string) => (
