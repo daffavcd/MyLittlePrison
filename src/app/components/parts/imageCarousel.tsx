@@ -40,18 +40,21 @@ export default function ImageCarousel({ images }: { images: any }) {
         <div className="grid grid-cols-12 mt-5 h-full">
             <div className="flex items-center justify-center col-span-12 h-full">
                 <div className='max-w-[1400px] h-[300px] w-full m-auto py-16 px-4 relative group shadow-2xl'>
-                    <Image
-                        src={`/images/portfolios/${slides.current[currentIndex]}.png`}
-                        className='rounded transition duration-500 ease-in-out'
-                        alt={slides.current[currentIndex].toUpperCase()}
-                        title={slides.current[currentIndex].toUpperCase()}
-                        fill={true}
-                        style={{
-                            objectFit: 'cover',
-                            height: '100%',
-                            width: '100%',
-                        }}
-                    />
+                    {slides.current.map((slide: string, slideIndex: number) => (
+                        <Image
+                            key={slideIndex}
+                            src={`/images/portfolios/${slide}.png`}
+                            className={`rounded ${slideIndex === currentIndex ? 'opacity-100 transition-opacity duration-500 ease-in' : 'opacity-0 invisible'}`}
+                            alt={slide.toUpperCase()}
+                            title={slide.toUpperCase()}
+                            fill={true}
+                            style={{
+                                objectFit: 'cover',
+                                height: '100%',
+                                width: '100%',
+                            }}
+                        />
+                    ))}
                     {/* Left Arrow */}
                     <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-red-800 cursor-pointer'>
                         <ChevronLeftIcon className="h-8 w-8" aria-hidden="true" onClick={prevSlide} />
