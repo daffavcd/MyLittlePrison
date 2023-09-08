@@ -220,7 +220,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 57,
         title: "My Missing Cat: Your Pet's Journey Home",
-        desc: "🐾🐶 My Missing Cat, the online platform dedicated to reuniting missing pets with their owners. Our platform is designed to make it easier for pet owners to find their lost furry friends by creating a community where you can report missing pets and help others find theirs. My Missing Cat is a user-friendly application created with Flutter, offering a seamless experience for both pet owners and those willing to lend a helping hand in the search for missing pets.",
+        desc: "🐾🐶 My Missing Cat, the online platform dedicated to reuniting missing pets with their owners. Our platform is designed to make it easier for pet owners to find their lost furry friends by creating a community where you can report missing pets and help others find theirs. My Missing Cat is a user-friendly application created with Flutter, offering a seamless experience for both pet owners and those willing to lend a helping hand in the search for missing pets",
         repoLink: 'https://github.com/daffavcd/kucingkuHilang',
         year: '2022',
         features: [
@@ -244,7 +244,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 47,
         title: "Letter Archiver: Your Timeless Document Archiver",
-        desc: "📂🔍 Digital storer for archiving and preserving all your important documents. Powered by Laravel, our platform ensures that your cherished letters, documents, and memories are not just stored but safeguarded for the ages.",
+        desc: "📂🔍 Digital storer for archiving and preserving all your important documents. Powered by Laravel, our platform ensures that your cherished letters, documents, and memories are not just stored but safeguarded for the ages",
         repoLink: 'https://github.com/daffavcd/letterArchive',
         year: '2022',
         features: [
@@ -264,7 +264,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 68,
         title: "Movie Catalog: Explore the World of Cinema",
-        desc: "🎬⭐ Powered by Flutter and harnessing the extensive Themoviedb API, CineWave provides you with an extensive catalog of current hit movies, complete with detailed synopses and more.",
+        desc: "🎬⭐ Powered by Flutter and harnessing the extensive Themoviedb API, CineWave provides you with an extensive catalog of current hit movies, complete with detailed synopses and more",
         repoLink: 'https://github.com/daffavcd/APIThemoviedb',
         year: '2021',
         features: [
@@ -283,7 +283,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 13,
         title: "Bookshelf App: Your Personal Library",
-        desc: "🎬⭐ This project is a testament to my journey in front-end development, created as part of my certification on Dicoding. With the power of local storage and the finesse of pure CSS and JavaScript.",
+        desc: "🎬⭐ This project is a testament to my journey in front-end development, created as part of my certification on Dicoding. With the power of local storage and the finesse of pure CSS and JavaScript",
         repoLink: 'https://github.com/daffavcd/bookshelf-apps',
         year: '2022',
         features: [
@@ -304,7 +304,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 36,
         title: "MR Shop: Your One-Stop E-commerce Destination",
-        desc: "🏷️💬 B2C e-commerce platform where shopping meets simplicity. Created with the robust Laravel framework, MR Shop offers an features such as leave comments, provide ratings, and explore various categories.",
+        desc: "🏷️💬 B2C e-commerce platform where shopping meets simplicity. Created with the robust Laravel framework, MR Shop offers an features such as leave comments, provide ratings, and explore various categories",
         repoLink: 'https://github.com/daffavcd/mrshop',
         year: '2021',
         features: [
@@ -333,7 +333,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 24,
         title: "News Faker: Explore Curated Dummy News",
-        desc: "📰💬 Dive into the curated dummy news with News Faker, a unique news website created with Laravel. Experience the fun of exploring fictional news stories, leave comments, and show your appreciation by liking your favorite articles.",
+        desc: "📰💬 Dive into the curated dummy news with News Faker, a unique news website created with Laravel. Experience the fun of exploring fictional news stories, leave comments, and show your appreciation by liking your favorite articles",
         repoLink: 'https://github.com/daffavcd/news-faker',
         year: '2020',
         features: [
@@ -360,7 +360,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 62,
         title: "CryptoWatcher: Your Daily Crypto Insights",
-        desc: "💰📈 Cryptocurrency market watcher app designed to provide you with a quick overview of the most popular cryptocurrency assets.",
+        desc: "💰📈 Cryptocurrency market watcher app designed to provide you with a quick overview of the most popular cryptocurrency assets",
         repoLink: 'https://github.com/daffavcd/cry-watcher',
         year: '2022',
         features: [
