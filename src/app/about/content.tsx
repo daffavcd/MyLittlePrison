@@ -14,9 +14,11 @@ export default function Content() {
 
     const slides = useRef([
         'merdeka',
-        'fundamental',
-        'tsa',
         'expert',
+        // 'iot',
+        'fundamental',
+        // 'psk',
+        'flutter',
     ],);
 
     const [currentCertificate, setCurrentCertificate] = useState(0);
@@ -99,13 +101,13 @@ export default function Content() {
                         </div>
                     </a>
                     {/* <Particle /> */}
-                    <div className='flex items-center pl-6 pr-6 md:pl-24 md:pr-24 text-3xl sm:text-4xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
-                        <p className='shadow'>Yes, as some of you may already be aware, the theme of this mini portfolio website i took it from Netflix. </p >
+                    <div className='flex items-center pl-6 pr-6 md:pl-36 md:pr-36 text-3xl sm:text-4xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
+                        <p className='shadow'>Yes, as some of you may already be aware, the theme of this mini portfolio website was inspired by Netflix. </p >
                     </div>
                 </div>
                 <div className='grid grid-cols-12' id='first-content'>
-                    <div className='col-span-12  pt-32 pb-32 pl-6 pr-6 lg:pl-80 lg:pr-80 text-white text-xl sm:text-2xl text-center'>
-                        {`"I'm well aware that this project still very far from the excepted main concept that so called "Prison". I really need to make a time to create the whole assets prison stuff that have in mind." - @daffavcd`}
+                    <div className='col-span-12  pt-32 pb-32 pl-6 pr-6 lg:pl-80 lg:pr-80 text-white text-lg sm:text-xl text-center'>
+                        {`"I'm well aware that this project still very far from the excepted main concept that so called "Prison". I really need to make time to create the whole assets prison stuff, and taking a consideration because it would likely be a heavy website if i put all those images that i have in mind rendered." - @daffavcd`}
                     </div>
                 </div>
                 <div className='grid grid-cols-12'>
@@ -116,13 +118,12 @@ export default function Content() {
                 <div className='grid grid-cols-12 pt-8 pb-28 pl-6 pr-6 gap-4 text-center relative'>
                     {isDesktop ? (
                         <div className='col-span-4 flex justify-end items-end'>
-                            <div className='relative' id='left-certificate'
-                                draggable="false">
+                            <div className='relative' id='left-certificate'>
                                 <Image
-                                    src={currentCertificate === 0 ? `/images/certificates/${slides.current[slides.current.length - 1]}.jpg` : `/images/certificates/${slides.current[currentCertificate - 1]}.jpg`}
+                                    src={currentCertificate === 0 ? `/images/certificates/${slides.current[slides.current.length - 1]}.png` : `/images/certificates/${slides.current[currentCertificate - 1]}.png`}
                                     className='z-0'
-                                    width={472}
-                                    height={335}
+                                    width={423}
+                                    height={300}
                                     alt="Picture of the certificate"
                                     style={{ objectFit: 'cover' }}
                                 />
@@ -133,10 +134,10 @@ export default function Content() {
                     <div className={isDesktop ? 'col-span-4 flex justify-center items-end' : 'col-span-12 flex justify-center items-end'}>
                         <div className='relative shadow-inner' id='center-certificate'>
                             <Image
-                                src={`/images/certificates/${slides.current[currentCertificate]}.jpg`}
+                                src={`/images/certificates/${slides.current[currentCertificate]}.png`}
                                 className='z-10'
-                                width={472}
-                                height={335}
+                                width={423}
+                                height={300}
                                 alt="Picture of the certificate"
                                 style={{ objectFit: 'cover' }}
                             />
@@ -146,10 +147,10 @@ export default function Content() {
                         <div className='col-span-4 flex justify-start items-end'>
                             <div className='relative' id='right-certificate'>
                                 <Image
-                                    src={currentCertificate === slides.current.length - 1 ? `/images/certificates/${slides.current[0]}.jpg` : `/images/certificates/${slides.current[currentCertificate + 1]}.jpg`}
+                                    src={currentCertificate === slides.current.length - 1 ? `/images/certificates/${slides.current[0]}.png` : `/images/certificates/${slides.current[currentCertificate + 1]}.png`}
                                     className='z-0'
-                                    width={472}
-                                    height={335}
+                                    width={423}
+                                    height={300}
                                     alt="Picture of the certificate"
                                     style={{ objectFit: 'cover' }}
                                 />
@@ -165,31 +166,31 @@ export default function Content() {
                         <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
                     </div>
                 </div>
-                <div className='grid grid-cols-12 pt-0 pb-0 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
+                <div className='grid grid-cols-12 pt-12 pb-0 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
                     <div className='col-span-12 sm:col-span-6 flex justify-center overflow-hidden'>
                         <Player
                             autoplay
                             loop
-                            src="/images/lottie/work-red.json"
+                            src="/images/lottie/world.json"
                             style={{ height: '400px', width: '400px' }}
                         >
                         </Player>
                     </div>
                     <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white'>
-                        <span className='text-3xl sm:text-4xl font-semibold mb-4'>{`Full-Stack Developer`}</span>
+                        <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`Full-Stack Developer`}</span>
                         {`While lately I've been focusing on Front-End Development, I used to prefer being a Back-End Developer on my starting days.`}
                     </div>
                 </div>
-                <div className='grid grid-cols-12 pt-0 pb-28 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
+                <div className='grid grid-cols-12 pt-0 pb-40 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
                     <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white'>
-                        <span className='text-3xl sm:text-4xl font-semibold mb-4'>{`7 Years of Study`}</span>
+                        <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`7 Years of Study`}</span>
                         {`Graduated as a BASc in Informatics Engineering major. I've studied a broad range of computer disciplines since I was 15 y/o.`}
                     </div>
                     <div className='col-span-12 sm:col-span-6 flex justify-center order-first sm:order-last overflow-hidden'>
                         <Player
                             autoplay
                             loop
-                            src="/images/lottie/red-education.json"
+                            src="/images/lottie/study-3.json"
                             style={{ height: '400px', width: '400px' }}
                         >
                         </Player>
