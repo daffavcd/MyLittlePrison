@@ -115,7 +115,7 @@ export default function Content() {
                         {`Some of My Certifications`}
                     </div>
                 </div>
-                <div className='grid grid-cols-12 pt-8 pb-28 pl-6 pr-6 gap-4 text-center relative'>
+                <div className='grid grid-cols-12 pt-8 pb-0 pl-6 pr-6 gap-4 text-center relative'>
                     {isDesktop ? (
                         <div className='col-span-4 flex justify-end items-end'>
                             <div className='relative' id='left-certificate'>
@@ -166,7 +166,7 @@ export default function Content() {
                         <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
                     </div>
                 </div>
-                <div className='grid grid-cols-12 pt-12 pb-0 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
+                <div className='grid grid-cols-12 pt-40 pb-0 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
                     <div className='col-span-12 sm:col-span-6 flex justify-center overflow-hidden'>
                         <Player
                             autoplay
