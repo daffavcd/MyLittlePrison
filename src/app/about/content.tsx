@@ -256,7 +256,7 @@ export default function Content() {
                         I created this project out of my boredom when I had nothing to do, while I was trying to find a job after my graduation. I trully appreciate it if you have come this far. Just sent me any dms, I would really love to hear it from you.
                     </div>
                     <div className='col-span-12 text-center sm:col-span-6 sm:text-right text-lg'>
-                        {`© 2023`}<br />{`thePromisedDesire`}
+                        {`© 2023`}<br />{`thePromisedDesires`}
                     </div>
                 </div>
             </div >
