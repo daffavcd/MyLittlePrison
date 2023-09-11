@@ -422,72 +422,8 @@ export default function Game() {
                                             <>
                                                 <Image
                                                     alt="Character"
-                                                    className={`z-30 ${characterImage == 'char_idle' ? 'visible' : 'invisible'}`}
-                                                    src={`/images/sprites/char_idle.gif`}
-                                                    fill={true}
-                                                    priority={true}
-                                                    sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
-                                                    style={{
-                                                        objectFit: 'cover',
-                                                        height: '100%',
-                                                        width: '100%',
-                                                        position: 'absolute',
-                                                        transition: 'transform 0.3s ease-in-out',
-                                                        transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
-                                                    }}
-                                                />
-                                                <Image
-                                                    alt="Character"
-                                                    className={`z-30 ${characterImage == 'char_run_up' ? 'visible' : 'invisible'}`}
-                                                    src={`/images/sprites/char_run_up.gif`}
-                                                    fill={true}
-                                                    priority={true}
-                                                    sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
-                                                    style={{
-                                                        objectFit: 'cover',
-                                                        height: '100%',
-                                                        width: '100%',
-                                                        position: 'absolute',
-                                                        transition: 'transform 0.3s ease-in-out',
-                                                        transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
-                                                    }}
-                                                />
-                                                <Image
-                                                    alt="Character"
-                                                    className={`z-30 ${characterImage == 'char_run_right' ? 'visible' : 'invisible'}`}
-                                                    src={`/images/sprites/char_run_right.gif`}
-                                                    fill={true}
-                                                    priority={true}
-                                                    sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
-                                                    style={{
-                                                        objectFit: 'cover',
-                                                        height: '100%',
-                                                        width: '100%',
-                                                        position: 'absolute',
-                                                        transition: 'transform 0.3s ease-in-out',
-                                                        transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
-                                                    }}
-                                                />
-                                                <Image
-                                                    alt="Character"
-                                                    className={`z-30 ${characterImage == 'char_run_down' ? 'visible' : 'invisible'}`}
-                                                    src={`/images/sprites/char_run_down.gif`}
-                                                    fill={true}
-                                                    priority={true}
-                                                    sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
-                                                    style={{
-                                                        objectFit: 'cover',
-                                                        height: '100%',
-                                                        width: '100%',
-                                                        position: 'absolute',
-                                                        transition: 'transform 0.3s ease-in-out',
-                                                        transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
-                                                    }}
-                                                />
-                                                <Image
-                                                    alt="Character"
-                                                    className={`z-30 ${characterImage == 'char_run_left' ? 'visible' : 'invisible'}`}
-                                                    src={`/images/sprites/char_run_left.gif`}
+                                                    className='z-30'
+                                                    src={`/images/sprites/${characterImage}.gif`}
                                                     fill={true}
                                                     priority={true}
                                                     sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
