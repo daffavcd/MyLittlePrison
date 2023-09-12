@@ -94,13 +94,13 @@ export default function Content() {
                         }}
                     />
                     <div className='dark-overlay'></div>
+                    {/* <Particle /> */}
                     <a href="#first-content">
                         <div className='absolute left-[50%] -translate-x-[50%] bottom-10 text-2xl rounded-lg rotate-45 p-2 bg-blood-90 text-white cursor-pointer z-20 shadow-lg'>
                             <div className='absolute -m-2 w-full h-full rounded-lg border-2 border-white animate-ping-mlp-2' />
                             <ChevronRightIcon className="h-9 w-9 rotate-45" aria-hidden="true" />
                         </div>
                     </a>
-                    {/* <Particle /> */}
                     <div className='flex items-center pl-6 pr-6 md:pl-36 md:pr-36 text-3xl sm:text-4xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
                         <p className='shadow'>Yes, as some of you may already be aware, the theme of this mini portfolio website was inspired by Netflix. </p >
                     </div>

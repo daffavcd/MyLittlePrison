@@ -22,7 +22,6 @@ export default function Particle() {
             init={particlesInit}
             loaded={particlesLoaded}
             options={{
-                preset: "fire",
                 fpsLimit: 120,
                 fullScreen: false,
                 interactivity: {
