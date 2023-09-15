@@ -6,6 +6,10 @@ import ImageCarousel from './parts/imageCarousel';
 import Link from 'next/link'
 
 export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, cancelButtonRef }: { portfolio: any, modalOpen: boolean, setModalOpen: any, cancelButtonRef: any }) {
+
+    const theDescs = portfolio.desc.split("<break>");
+    let descIteration = 0;
+
     return (
 
         <Transition.Root show={modalOpen} as={Fragment}>
@@ -40,18 +44,24 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                             <Dialog.Title as="h3" className="text-xl sm:text-2xl text-center font-semibold leading-8 pl-4 pr-4 text-white">
                                                 {portfolio.title}
                                             </Dialog.Title>
-                                            <div className="mt-2">
+                                            <div className="mt-2 text-base text-left sm:text-justify text-white break-words">
                                                 <ImageCarousel images={portfolio.imagesPath} />
-                                                <p className="text-base text-justify mt-3 text-white indent-8 break-all sm:break-normal">
-                                                    {portfolio.desc}&nbsp;
-                                                    {portfolio.repoLink == "Private" ? (
-                                                        <span className='text-red-600 text-sm italic inline hover:text-white cursor-pointer'>[Private - {portfolio.year}]</span>
-                                                    ) : (
-                                                        <Link href={portfolio.repoLink} className='text-red-600 text-sm italic inline hover:text-white' tabIndex={2} target="_blank" rel="noopener noreferrer">[{portfolio.repoLink} - {portfolio.year}]</Link>
-                                                    )}
-
-                                                    .
-                                                </p>
+                                                {theDescs.map((desc: string, key: number) => (
+                                                    <p className={`mt-3 ${0 === descIteration ? 'sm:indent-8' : ''}`} id={`desc-${descIteration++}`} key={key}>
+                                                        {desc}
+                                                        {theDescs.length === descIteration && (
+                                                            portfolio.repoLink === "Private" ? (
+                                                                <span className='text-red-600 text-sm italic break-all inline hover:text-white cursor-pointer'>
+                                                                    &nbsp;[Private - {portfolio.year}].
+                                                                </span>
+                                                            ) : (
+                                                                <a href={portfolio.repoLink} className='text-red-600 break-all text-sm italic inline hover:text-white' tabIndex={2} target="_blank" rel="noopener noreferrer">
+                                                                    &nbsp;[{portfolio.repoLink} - {portfolio.year}].
+                                                                </a>
+                                                            )
+                                                        )}
+                                                    </p>
+                                                ))}
                                                 <p className="text-lg mt-2 text-left font-semibold text-white">
                                                     Key Features :
                                                 </p>

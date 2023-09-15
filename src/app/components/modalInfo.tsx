@@ -51,7 +51,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                             <Dialog.Title as="h3" className="mb-5 text-2xl text-center font-semibold leading-6 pl-4 pr-4 text-white">
                                                 How to discover the projects?
                                             </Dialog.Title>
-                                            <div className='grid grid-cols-12 p-4 h-full'>
+                                            <div className='grid grid-cols-12 p-3 h-full'>
                                                 <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center">
                                                     <Image
                                                         src="/images/tutorials/1.svg"
@@ -69,9 +69,9 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         width={180}
                                                         height={120}
                                                     />
-                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal tracking-tight">
-                                                        <li className='break-all sm:break-normal hidden lg:list-item'>Use your arrow keyboard to navigate the character across the map.</li>
-                                                        <li className='break-all sm:break-normal list-item lg:hidden'>Swipe inside the box to move the character.</li>
+                                                    <ol className="text-lg mt-2 text-left font-medium text-white list-decimal tracking-tight">
+                                                        <li className='break-normal hidden lg:list-item'>Use your arrow keyboard to navigate the character across the map.</li>
+                                                        <li className='break-normal list-item lg:hidden'>Try to swipe inside the box to move.</li>
                                                     </ol>
                                                 </div>
                                                 <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center">
@@ -83,9 +83,9 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         width={180}
                                                         height={120}
                                                     />
-                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal tracking-tight" start={2}>
-                                                        <li className='break-all sm:break-normal hidden lg:list-item'>Find the Light Blups to discover the projects by using the arrow keys.</li>
-                                                        <li className='break-all sm:break-normal list-item lg:hidden'>Find the Light Blups all over the map.</li>
+                                                    <ol className="text-lg mt-2 text-left font-medium text-white list-decimal tracking-tight" start={2}>
+                                                        <li className='break-normal hidden lg:list-item'>Find the Light Bulbs to discover the projects by using the arrow keys.</li>
+                                                        <li className='break-normal list-item lg:hidden'>Find the Light Bulbs all over the map.</li>
                                                     </ol>
                                                 </div>
                                                 <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center mt-2">
@@ -97,9 +97,9 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         width={180}
                                                         height={120}
                                                     />
-                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal tracking-tight" start={3}>
-                                                        <li className='break-all sm:break-normal hidden lg:list-item'>Position the character precisely over where the Light Blup is located.</li>
-                                                        <li className='break-all sm:break-normal list-item lg:hidden'>Move the character around the Light Blup.</li>
+                                                    <ol className="text-lg mt-2 text-left font-medium text-white list-decimal tracking-tight" start={3}>
+                                                        <li className='break-normal hidden lg:list-item'>Position the character precisely over where the Light Bulb is located.</li>
+                                                        <li className='break-normal list-item lg:hidden'>Position the character near the Bulb.</li>
                                                     </ol>
                                                 </div>
                                                 <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center mt-2">
@@ -119,9 +119,9 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         width={180}
                                                         height={120}
                                                     />
-                                                    <ol className="text-lg mt-2 text-justify font-medium text-white list-decimal tracking-tight" start={4}>
-                                                        <li className='break-all sm:break-normal hidden lg:list-item'>Show the projects by pressing Enter or left-clicking with your mouse.</li>
-                                                        <li className='break-all sm:break-normal list-item lg:hidden'>Press the Light Blup to show the projects.</li>
+                                                    <ol className="text-lg mt-2 text-left font-medium text-white list-decimal tracking-tight" start={4}>
+                                                        <li className='break-normal hidden lg:list-item'>Show the projects by pressing Enter or left-clicking with your mouse.</li>
+                                                        <li className='break-normal list-item lg:hidden'>Press the Light Bulb to show the projects.</li>
                                                     </ol>
                                                 </div>
                                             </div>

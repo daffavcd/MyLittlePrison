@@ -178,6 +178,7 @@ export default function Game() {
         // ABORTING MOVEMENT IF THE CHARACTER STILL ON ANIMATION
         if (isCharacterMoving) return;
 
+
         if (isPortfolioAround(event.key)) {
             return;
         } else {
@@ -277,11 +278,12 @@ export default function Game() {
         // CHANGE THE STATE HERE TO RE RENDER THE DISPLAYED MAP
         setCharacterImage(nextCharacterImage);
         setIsCharacterMoving(true);
+
         setTimeout(() => {
             // CHANGE THE STATE TO NOT MOVING
             setCharacterImage("char_idle");
-            setIsCharacterMoving(false);
             moveRefCharacter(heading);
+            setIsCharacterMoving(false);
             handleTouchEnd();
             if (nextLayout != "None") {
                 changeMapLayout(nextLayout);

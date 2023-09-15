@@ -39,7 +39,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 37,
         title: "Chatting Converse: Real-Time Chat Web App with Pusher Integration and MySQL",
-        desc: '⚡️💬 An immersive real-time chat web application designed to bring people closer through seamless communication. This project leverages the power of Pusher for real-time subscription updates and integrates jQuery for dynamic interactions such as incoming message notifications. The conversations are not only live but also persistent, due to the integration of MySQL for storing and retrieving chat data',
+        desc: '⚡️💬 An immersive real-time chat web application designed to bring people closer through seamless communication. This project leverages the power of Pusher for real-time subscription updates and integrates jQuery for dynamic interactions such as incoming message notifications.<break> The conversations are not only live but also persistent, due to the integration of MySQL for storing and retrieving chat data',
         repoLink: 'https://github.com/daffavcd/chatting-converse',
         year: '2021',
         features: [
@@ -66,7 +66,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 30,
         title: "Ticketing API Bot: Enhancing Ticketing Management with Web Service and Telegram Bot Integration",
-        desc: '🌐🔐 Ticketing API Bot project is a solution designed to streamline and optimize ticketing management for Nakula Sadewa through the synergistic integration of a web service and a Telegram bot. By employing technologies such as a RESTful API server, Telegram bot capabilities, and the secure Sanctum token-based authentication, this project epitomizes efficiency and modernity in digital operations',
+        desc: '🌐🔐 Ticketing API Bot project is a solution designed to streamline and optimize ticketing management for Nakula Sadewa through the synergistic integration of a web service and a Telegram bot.<break> By employing technologies such as a RESTful API server, Telegram bot capabilities, and the secure Sanctum token-based authentication, this project epitomizes efficiency and modernity in digital operations',
         repoLink: 'https://github.com/chicken-porridge/ticketing-api-bot',
         year: '2022',
         features: [
@@ -90,7 +90,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 43,
         title: "MNE-1001 - CSR Monitoring and Evaluation Web App with SPA Architecture",
-        desc: "🌐📊 SR-APP is a project by PT Olahkarsa Inovasi Indonesia that aimed at revolutionizing CSR program management through the development of a cutting-edge web application. One of their products, MNE-1001, was a project that geared towards establishing a solution that effectively manages and monitors CSR programs in a streamlined and integrated manner. The web app built on the Single Page Application (SPA) architecture and seamlessly integrates Laravel and ReactJS using InertiaJS. While primarily focused on front-end development, I am also sometimes adjusting to the needs of the back-end team to ensure the project's success",
+        desc: "🌐📊 SR-APP is a project by PT Olahkarsa Inovasi Indonesia that aimed at revolutionizing CSR program management through the development of a cutting-edge web application. One of their products, MNE-1001, was a project that geared towards establishing a solution that effectively manages and monitors CSR programs in a streamlined and integrated manner.<break> The web app built on the Single Page Application (SPA) architecture and seamlessly integrates Laravel and ReactJS using InertiaJS. While primarily focused on front-end development, I am also sometimes adjusting to the needs of the back-end team to ensure the project's success",
         repoLink: 'Private',
         year: '2022',
         features: [
@@ -125,7 +125,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 40,
         title: "J-Golf: Elevating Golf Experience Through Mobile-Centric Web Application",
-        desc: "⛳️🏌️‍♂️ J-Golf—an innovative project developed under PT Javadwipa Duta Mandiri. J-Golf is a revolutionary mobile-centric web application that redefines the golfing experience. Designed with a focus on mobile usage, J-Golf brings forth a comprehensive solution for golf enthusiasts. The application's core functionalities encompass managing scoring rankings during golf rounds with friends, offering golf course packages for lessons and caddie appointments, creating and participating in events, and providing leaderboards and golf statistics for both personal and community analysis",
+        desc: "⛳️🏌️‍♂️ J-Golf—an innovative project developed under PT Javadwipa Duta Mandiri. J-Golf is a revolutionary mobile-centric web application that redefines the golfing experience. Designed with a focus on mobile usage, J-Golf brings forth a comprehensive solution for golf enthusiasts.<break> The application's core functionalities encompass managing scoring rankings during golf rounds with friends, offering golf course packages for lessons and caddie appointments, creating and participating in events, and providing leaderboards and golf statistics for both personal and community analysis",
         repoLink: 'Private',
         year: '2021',
         features: [
@@ -159,7 +159,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 54,
         title: "BLB-Gadang: Streamlining Inventory Management with Web Application",
-        desc: "📦📄 BLB-Gadang—an innovative project undertaken for Bengkel Las & Bubut Gadang Jalan Raya Gadang 54, Sukun, Malang. BLB-Gadang is a transformative web application designed to transition manual bookkeeping processes into a seamless digital solution. This project aims to enhance inventory management, simplify the tracking of incoming and outgoing goods, automate transaction calculations, and eliminate the need for handwritten records. By embracing technology, BLB-Gadang empowers the client with efficient data management and streamlined workflows",
+        desc: "📦📄 BLB-Gadang—an innovative project undertaken for Bengkel Las & Bubut Gadang Jalan Raya Gadang 54, Sukun, Malang. BLB-Gadang is a transformative web application designed to transition manual bookkeeping processes into a seamless digital solution.<break> This project aims to enhance inventory management, simplify the tracking of incoming and outgoing goods, automate transaction calculations, and eliminate the need for handwritten records. By embracing technology, BLB-Gadang empowers the client with efficient data management and streamlined workflows",
         repoLink: 'Private',
         year: '2021',
         features: [
@@ -187,7 +187,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 32,
         title: "Kamar Pasien: Medical Emergency Reservations Using Google Maps API Integration",
-        desc: "🚑🗺️ Kamar Pasien was my milestone project during the Dicoding SIB Kampus Merdeka Program. This project aim to be a panic button, providing users with a seamless and efficient way to make medical reservations during emergencies. Kamar Pasien possess Google Maps API JavaScript to display nearby medical facilities, enabling users to access the routes and location using Google Maps to the intended facilty. Kamar Pasien stands out by offering a mobile web application experience with Progressive Web App",
+        desc: "🚑🗺️ Kamar Pasien was my milestone project during the Dicoding SIB Kampus Merdeka Program. This project aim to be a panic button, providing users with a seamless and efficient way to make medical reservations during emergencies.<break> Kamar Pasien possess Google Maps API JavaScript to display nearby medical facilities, enabling users to access the routes and location using Google Maps to the intended facilty. Kamar Pasien stands out by offering a mobile web application experience with Progressive Web App",
         repoLink: 'Private',
         year: '2022',
         features: [
@@ -220,7 +220,7 @@ export const portfolios: Portfolio[] = [
     {
         colCell: 57,
         title: "My Missing Cat: Your Pet's Journey Home",
-        desc: "🐾🐶 My Missing Cat, the online platform dedicated to reuniting missing pets with their owners. Our platform is designed to make it easier for pet owners to find their lost furry friends by creating a community where you can report missing pets and help others find theirs. My Missing Cat is a user-friendly application created with Flutter, offering a seamless experience for both pet owners and those willing to lend a helping hand in the search for missing pets",
+        desc: "🐾🐶 My Missing Cat, the online platform dedicated to reuniting missing pets with their owners. Our platform is designed to make it easier for pet owners to find their lost furry friends by creating a community where you can report missing pets and help others find theirs.<break> My Missing Cat is a user-friendly application created with Flutter, offering a seamless experience for both pet owners and those willing to lend a helping hand in the search for missing pets",
         repoLink: 'https://github.com/daffavcd/kucingkuHilang',
         year: '2022',
         features: [
