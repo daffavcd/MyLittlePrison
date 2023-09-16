@@ -1,10 +1,10 @@
 "use client";
-import { useState, useEffect, useRef, Fragment } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import ModalPortfolio from './modalPortfolio';
-import { InformationCircleIcon } from '@heroicons/react/24/outline'
 import { LightBulbIcon } from '@heroicons/react/24/solid'
 import { portfolios } from '../data/portfolios';
+import localforage from 'localforage';
 
 export default function Game() {
 
@@ -33,6 +33,8 @@ export default function Game() {
         imagesPath: [],
         techImagesPath: []
     });
+
+    const [visitedPortofolio, setVisitedPortofolio] = useState<number[]>([]);
 
     // mapLayout.rowCenter and mapLayout.colCenter is the center cell of the displayed map
     // characterPosition.rowCell and characterPosition.colCell is the current cell of the character
@@ -147,6 +149,31 @@ export default function Game() {
         return () => {
             mediaQuery.removeEventListener('change', handleMediaQueryChange);
         };
+    }, []);
+
+    // INITIALIZE LOCAL STORAGE (IF NOT PUTTING IT ON USE EFFECT THERE WILL BE PROBLEM WITH NEXT SSR
+    useEffect(() => {
+        localforage.config({
+            driver: localforage.INDEXEDDB,
+            name: 'myLittlePrison',
+            storeName: 'the-promised-desire',
+        });
+    }, []);
+
+    // GET INDEXDB
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const oldValue = await localforage.getItem("visitedPortofolio");
+                if (Array.isArray(oldValue)) {
+                    setVisitedPortofolio(oldValue);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        loadData();
     }, []);
 
     // CHANGE MAP LAYOUT BASED ON WINDOW RESOLUTION
@@ -356,7 +383,15 @@ export default function Game() {
         return isColliding;
     }
 
-    const clickPortfolio = (currentPortfolio: object) => {
+    const clickPortfolio = (currentPortfolio: object, actualCol: number) => {
+        // SAVES TO INDEXDB
+        let bulbCoordinate = actualCol;
+        // WHETER PRESSING OR ENTERING
+        if (actualCol == -1) {
+            bulbCoordinate = characterPosition.colCell;
+        }
+        setIndexDB(bulbCoordinate);
+
         setPortfolio(prevState => ({
             ...prevState,
             ...currentPortfolio
@@ -370,7 +405,7 @@ export default function Game() {
         const portfolioCoordinate = mapLayout.portfolioCell.map((x) => x.colCell);
 
         if (key === "Enter" && portfolioCoordinate.includes(characterCoordinate)) {
-            clickPortfolio(mapLayout.portfolioCell[portfolioCoordinate.indexOf(characterCoordinate)]);
+            clickPortfolio(mapLayout.portfolioCell[portfolioCoordinate.indexOf(characterCoordinate)], -1);
             return true;
         } else {
             // BACK TO PARENT FUNCTION
@@ -378,98 +413,131 @@ export default function Game() {
         }
     }
 
+    const setIndexDB = async (characterCoordinate: number) => {
+        let updatedVisitedPortofolio: number[];;
+        try {
+            const oldValue = await localforage.getItem("visitedPortofolio");
+
+            if (Array.isArray(oldValue)) {
+                // Check if characterCoordinate is not already in the array
+                if (!oldValue.includes(characterCoordinate)) {
+                    updatedVisitedPortofolio = [...oldValue, characterCoordinate];
+                } else {
+                    updatedVisitedPortofolio = oldValue;
+                }
+            } else {
+                // initialize updatedVisitedPortofolio with characterCoordinate
+                updatedVisitedPortofolio = [characterCoordinate];
+            }
+            setVisitedPortofolio(updatedVisitedPortofolio)
+
+            await localforage.setItem("visitedPortofolio", updatedVisitedPortofolio);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const totalProjects = portfolios.length;
 
     return (
-        <div className="col-span-12 sm:pl-24 sm:pr-24 -mt-12" id="game-map">
-            <div className="relative h-96"
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-            >
-                <div className="dark-overlay-game rounded"></div>
-                <div id="cell-row" className={`grid grid-cols-3 sm:grid-cols-9 gap-0 p-4 h-full overflow-hidden`}>
-                    {
-                        [...Array(mapLayout.maxColCellDisplayed)].map((x, j) => {
-                            // These rules created to make it dynamic when displaying/maping the game map (The key is the displayed COL CENTER).
-                            // (if you want to change the map dimension, just change the variable ref declared at the very above *use odds number*).
-                            // The rules to get the current iteration of row and col is:
-                            // GET CURRENT COL RULES= (current iteration + current displayed coll center) - (total coll for a row + floor of total coll for a row / 2).
-                            // Get curret row = (current iteration(j) + center coll of displayed map) - total distance to the first column of the displayed map from center coll of displayed map.
-                            const currentCol = (j + mapLayout.colCenter) - (mapLayout.maxColCellEachRow + Math.floor(mapLayout.maxColCellEachRowDisplayed / 2))
+        <>
+            <div className="col-span-12 sm:pl-24 sm:pr-24 -mt-16 sm:-mt-12 h-fit">
+                <div className='flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl w-full sm:w-fit max-h-11 rounded-xl'>
+                    <span className="font-extrabold">{`${visitedPortofolio.length}`}</span>&nbsp;{`/`}&nbsp;<span className="font-extrabold">{`${totalProjects}`}</span>&nbsp;{`Projects Found`}
+                </div>
+            </div>
+            <div className="col-span-12 sm:pl-24 sm:pr-24 -mt-32 sm:-mt-16" id="game-map">
 
-                            if (actualCol == 0) {
-                                actualCol = currentCol;
-                            } else {
-                                actualCol = actualCol + 1;
-                            }
+                <div className="relative h-96"
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                >
+                    <div className="dark-overlay-game rounded"></div>
+                    <div id="cell-row" className={`grid grid-cols-3 sm:grid-cols-9 gap-0 p-4 h-full overflow-hidden`}>
+                        {
+                            [...Array(mapLayout.maxColCellDisplayed)].map((x, j) => {
+                                // These rules created to make it dynamic when displaying/maping the game map (The key is the displayed COL CENTER).
+                                // (if you want to change the map dimension, just change the variable ref declared at the very above *use odds number*).
+                                // The rules to get the current iteration of row and col is:
+                                // GET CURRENT COL RULES= (current iteration + current displayed coll center) - (total coll for a row + floor of total coll for a row / 2).
+                                // Get curret row = (current iteration(j) + center coll of displayed map) - total distance to the first column of the displayed map from center coll of displayed map.
+                                const currentCol = (j + mapLayout.colCenter) - (mapLayout.maxColCellEachRow + Math.floor(mapLayout.maxColCellEachRowDisplayed / 2))
 
-                            // IF THE CURRENT COL IS THE LAST COL OF THE DISPLAYED MAP, THEN ADD ACTUAL COLL.
-                            if (j % mapLayout.maxColCellEachRowDisplayed == 0 && j != 0 && !isDesktop) {
-                                actualCol = actualCol + (mapLayout.maxColCellEachRow - mapLayout.maxColCellEachRowDisplayed);
-                            }
+                                if (actualCol == 0) {
+                                    actualCol = currentCol;
+                                } else {
+                                    actualCol = actualCol + 1;
+                                }
 
-                            const currentRow = Math.ceil(actualCol / mapLayout.maxColCellEachRow);
+                                // IF THE CURRENT COL IS THE LAST COL OF THE DISPLAYED MAP, THEN ADD ACTUAL COLL.
+                                if (j % mapLayout.maxColCellEachRowDisplayed == 0 && j != 0 && !isDesktop) {
+                                    actualCol = actualCol + (mapLayout.maxColCellEachRow - mapLayout.maxColCellEachRowDisplayed);
+                                }
+
+                                const currentRow = Math.ceil(actualCol / mapLayout.maxColCellEachRow);
 
 
-                            return (
-                                <div key={j}
-                                    id={`cell-row-${currentRow}-col-${actualCol}`}
-                                    className={`character-container flex items-center justify-center col-span-1 text-center border border-indigo-600 relative`}
-                                >
+                                return (
+                                    <div key={j}
+                                        id={`cell-row-${currentRow}-col-${actualCol}`}
+                                        className={`character-container flex items-center justify-center col-span-1 text-center border border-indigo-600 relative`}
+                                    >
 
-                                    {/* CONDITION IF ROW & COLL CELL MATCH, TO SHOW CHARACTER  */}
-                                    {
-                                        (currentRow == characterPosition.rowCell && actualCol == characterPosition.colCell) ? (
-                                            // <Character />
-                                            <>
-                                                <Image
-                                                    alt="Character"
-                                                    className='z-30'
-                                                    src={`/images/sprites/${characterImage}.gif`}
-                                                    fill={true}
-                                                    priority={true}
-                                                    sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
+                                        {/* CONDITION IF ROW & COLL CELL MATCH, TO SHOW CHARACTER  */}
+                                        {
+                                            (currentRow == characterPosition.rowCell && actualCol == characterPosition.colCell) ? (
+                                                // <Character />
+                                                <>
+                                                    <Image
+                                                        alt="Character"
+                                                        className='z-30'
+                                                        src={`/images/sprites/${characterImage}.gif`}
+                                                        fill={true}
+                                                        priority={true}
+                                                        sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
+                                                        style={{
+                                                            objectFit: 'cover',
+                                                            height: '100%',
+                                                            width: '100%',
+                                                            position: 'absolute',
+                                                            transition: 'transform 0.3s ease-in-out',
+                                                            transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
+                                                        }}
+                                                    />
+                                                </>
+
+                                            ) : null
+                                        }
+                                        {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO OBJECT */}
+                                        {mapLayout.portfolioCell.map((portfolio, k) => (
+                                            actualCol === portfolio.colCell ? (
+                                                <LightBulbIcon
+                                                    key={k}
+                                                    className={`${isIdle ? 'animate-bounce-mlp' : ''} ${visitedPortofolio.includes(actualCol) ? 'text-red-900' : 'text-blood'} shadow cursor-pointer hover:text-red-900`} aria-hidden="true" onClick={() => clickPortfolio(portfolio, portfolio.colCell)}
                                                     style={{
                                                         objectFit: 'cover',
-                                                        height: '100%',
-                                                        width: '100%',
+                                                        width: '45%',
+                                                        height: '45%',
                                                         position: 'absolute',
-                                                        transition: 'transform 0.3s ease-in-out',
-                                                        transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
+                                                        transition: 'transform 0.2s ease-in-out',
+                                                        transform: isCharacterMoving ? `translate(${translationObject.current.dx}, ${translationObject.current.dy})` : 'none',
                                                     }}
                                                 />
-                                            </>
-
-                                        ) : null
-                                    }
-                                    {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO OBJECT */}
-                                    {mapLayout.portfolioCell.map((portfolio, k) => (
-                                        actualCol === portfolio.colCell ? (
-                                            <LightBulbIcon
-                                                key={k}
-                                                className={`${isIdle ? 'animate-bounce-mlp' : ''} text-blood shadow cursor-pointer hover:text-white`} aria-hidden="true" onClick={() => clickPortfolio(portfolio)}
-                                                style={{
-                                                    objectFit: 'cover',
-                                                    width: '45%',
-                                                    height: '45%',
-                                                    position: 'absolute',
-                                                    transition: 'transform 0.2s ease-in-out',
-                                                    transform: isCharacterMoving ? `translate(${translationObject.current.dx}, ${translationObject.current.dy})` : 'none',
-                                                }}
-                                            />
-                                        ) : null
-                                    ))}
-                                </div>
-                            )
-                        })}
-                </div>
-                {/* {!isDesktop ? (
+                                            ) : null
+                                        ))}
+                                    </div>
+                                )
+                            })}
+                    </div>
+                    {/* {!isDesktop ? (
                     <div className='flex items-center text-lg font-medium p-4 text-white text-center sm:invisible relative z-10 h-full'>
                         {`To explore my projects, please utilize a desktop (width of 640 pixels or more) and provide a keyboard. I'm trying to make it as a game-like experience.`}
                     </div>
                 ) : null} */}
-            </div>
-            <ModalPortfolio portfolio={portfolio} modalOpen={modalOpen} setModalOpen={setModalOpen} cancelButtonRef={cancelButtonRef} />
-        </div >
+                </div>
+                <ModalPortfolio portfolio={portfolio} modalOpen={modalOpen} setModalOpen={setModalOpen} cancelButtonRef={cancelButtonRef} />
+            </div >
+        </>
     )
 }
