@@ -481,7 +481,7 @@ export default function Game() {
                                 return (
                                     <div key={j}
                                         id={`cell-row-${currentRow}-col-${actualCol}`}
-                                        className={`character-container flex items-center justify-center col-span-1 text-center border border-indigo-600 relative`}
+                                        className={`character-container flex items-center justify-center col-span-1 text-center border border-blood-darken rounded-sm relative`}
                                     >
 
                                         {/* CONDITION IF ROW & COLL CELL MATCH, TO SHOW CHARACTER  */}
