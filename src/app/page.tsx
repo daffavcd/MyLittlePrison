@@ -11,7 +11,7 @@ export default function Home() {
         <Image
           className="bg-repeat"
           alt="Background Image"
-          src="/images/blur.jpg"
+          src="/images/blur3.jpg"
           quality={100}
           fill
           priority

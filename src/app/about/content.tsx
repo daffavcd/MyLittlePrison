@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Player } from '@lottiefiles/react-lottie-player';
 import Link from 'next/link'
-import Particle from '../components/parts/particle';
+// import Particle from '../components/parts/particle';
 
 export default function Content() {
 

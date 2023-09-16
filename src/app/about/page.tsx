@@ -10,7 +10,6 @@ export default function About() {
       <main className='bg-black'>
         <Header />
         <Content />
-        {/* <Footer /> */}
       </main>
     </>
   )

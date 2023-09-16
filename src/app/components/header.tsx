@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { QuestionMarkCircleIcon, UserCircleIcon } from '@heroicons/react/24/outline'
 import ModalInfo from './modalInfo';
 

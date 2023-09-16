@@ -1,8 +1,7 @@
 "use client";
 import Image from 'next/image'
 import { useState, useEffect, useRef } from 'react';
-import { ChevronRightIcon, ChevronLeftIcon, StopIcon, MinusIcon } from '@heroicons/react/20/solid';
-import { StopIcon as StopOutline } from '@heroicons/react/24/outline';
+import { ChevronRightIcon, ChevronLeftIcon, StopIcon } from '@heroicons/react/20/solid';
 
 export default function ImageCarousel({ images }: { images: any }) {
     const slides = useRef(images);
@@ -70,7 +69,7 @@ export default function ImageCarousel({ images }: { images: any }) {
                                 onClick={() => goToSlide(slideIndex)}
                                 className='text-2xl cursor-pointer'
                             >
-                                {slideIndex === currentIndex ? <StopIcon className="h-5 w-5 text-red-800" aria-hidden="true" /> : <StopIcon className="h-5 w-5 text-black/20" aria-hidden="true" />}
+                                {slideIndex === currentIndex ? <StopIcon className="h-5 w-5 text-red-700/80" aria-hidden="true" /> : <StopIcon className="h-5 w-5 text-black/20" aria-hidden="true" />}
                             </div>
                         ))}
                     </div>
