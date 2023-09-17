@@ -507,7 +507,7 @@ export default function Game() {
                                                     />
                                                     {characterPosition.rowCell > 1 && (
                                                         <div className={`${isIdle ? 'visible' : 'invisible'} absolute translate-y-[-50%] -top-4 z-30`}>
-                                                            <ChevronDoubleUpIcon className="h-14 w-h-14 text-pink-600 shadow-2xl animate-pulse" aria-hidden="true"
+                                                            <ChevronDoubleUpIcon className="h-14 w-h-14 text-orange-600 shadow-2xl animate-pulse" aria-hidden="true"
                                                                 style={{
                                                                     transition: 'transform 0.3s ease-in-out',
                                                                     transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
@@ -517,7 +517,7 @@ export default function Game() {
                                                     )}
                                                     {(characterPosition.colCell < mapLayout.maxColCell && characterPosition.colCell % mapLayout.maxColCellEachRow !== 0) && (
                                                         <div className={`${isIdle ? 'visible' : 'invisible'} absolute translate-x-[50%] -right-4 z-30`}>
-                                                            <ChevronDoubleRightIcon className="h-14 w-h-14 text-pink-600 shadow-2xl animate-pulse" aria-hidden="true"
+                                                            <ChevronDoubleRightIcon className="h-14 w-h-14 text-orange-600 shadow-2xl animate-pulse" aria-hidden="true"
                                                                 style={{
                                                                     transition: 'transform 0.3s ease-in-out',
                                                                     transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
@@ -527,7 +527,7 @@ export default function Game() {
                                                     )}
                                                     {characterPosition.rowCell < mapLayout.maxRowCell && (
                                                         <div className={`${isIdle ? 'visible' : 'invisible'} absolute translate-y-[50%] -bottom-4 z-30`}>
-                                                            <ChevronDoubleDownIcon className="h-14 w-h-14 text-pink-600 shadow-2xl animate-pulse" aria-hidden="true"
+                                                            <ChevronDoubleDownIcon className="h-14 w-h-14 text-orange-600 shadow-2xl animate-pulse" aria-hidden="true"
                                                                 style={{
                                                                     transition: 'transform 0.3s ease-in-out',
                                                                     transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
@@ -537,7 +537,7 @@ export default function Game() {
                                                     )}
                                                     {(characterPosition.colCell > 1 && characterPosition.colCell % mapLayout.maxColCellEachRow !== 1) && (
                                                         <div className={`${isIdle ? 'visible' : 'invisible'} absolute translate-x-[-50%] -left-4 z-30`}>
-                                                            <ChevronDoubleLeftIcon className="h-14 w-h-14 text-pink-600 shadow-2xl animate-pulse" aria-hidden="true"
+                                                            <ChevronDoubleLeftIcon className="h-14 w-h-14 text-orange-600 shadow-2xl animate-pulse" aria-hidden="true"
                                                                 style={{
                                                                     transition: 'transform 0.3s ease-in-out',
                                                                     transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
