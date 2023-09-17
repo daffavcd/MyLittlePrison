@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-screen relative">
         <Image
           className="bg-repeat"
           alt="Background Image"
@@ -17,6 +17,7 @@ export default function Home() {
           priority
           sizes="100vw"
           style={{
+            position: 'absolute',
             objectFit: 'cover',
           }}
         />

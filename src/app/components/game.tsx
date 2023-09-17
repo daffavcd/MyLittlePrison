@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import ModalPortfolio from './modalPortfolio';
-import { LightBulbIcon } from '@heroicons/react/24/solid'
+import { LightBulbIcon, ChevronDoubleUpIcon, ChevronDoubleRightIcon, ChevronDoubleDownIcon, ChevronDoubleLeftIcon } from '@heroicons/react/24/solid'
 import { portfolios } from '../data/portfolios';
 import localforage from 'localforage';
 
@@ -505,6 +505,38 @@ export default function Game() {
                                                             transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
                                                         }}
                                                     />
+                                                    <div className={`${isIdle ? 'visible' : 'invisible'} absolute translate-y-[-50%] -top-4 z-30`}>
+                                                        <ChevronDoubleUpIcon className="h-14 w-h-14 text-pink-600 shadow-2xl animate-pulse" aria-hidden="true"
+                                                            style={{
+                                                                transition: 'transform 0.3s ease-in-out',
+                                                                transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div className={`${isIdle ? 'visible' : 'invisible'} absolute translate-x-[50%] -right-4 z-30`}>
+                                                        <ChevronDoubleRightIcon className="h-14 w-h-14 text-pink-600 shadow-2xl animate-pulse" aria-hidden="true"
+                                                            style={{
+                                                                transition: 'transform 0.3s ease-in-out',
+                                                                transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div className={`${isIdle ? 'visible' : 'invisible'} absolute translate-y-[50%] -bottom-4 z-30`}>
+                                                        <ChevronDoubleDownIcon className="h-14 w-h-14 text-pink-600 shadow-2xl animate-pulse" aria-hidden="true"
+                                                            style={{
+                                                                transition: 'transform 0.3s ease-in-out',
+                                                                transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div className={`${isIdle ? 'visible' : 'invisible'} absolute translate-x-[-50%] -left-4 z-30`}>
+                                                        <ChevronDoubleLeftIcon className="h-14 w-h-14 text-pink-600 shadow-2xl animate-pulse" aria-hidden="true"
+                                                            style={{
+                                                                transition: 'transform 0.3s ease-in-out',
+                                                                transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
+                                                            }}
+                                                        />
+                                                    </div>
                                                 </>
 
                                             ) : null
@@ -512,18 +544,24 @@ export default function Game() {
                                         {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO OBJECT */}
                                         {mapLayout.portfolioCell.map((portfolio, k) => (
                                             actualCol === portfolio.colCell ? (
-                                                <LightBulbIcon
-                                                    key={k}
-                                                    className={`${isIdle ? 'animate-bounce-mlp' : ''} ${visitedPortofolio.includes(actualCol) ? 'text-red-900' : 'text-blood'} shadow cursor-pointer hover:text-red-900`} aria-hidden="true" onClick={() => clickPortfolio(portfolio, portfolio.colCell)}
+                                                <div key={k}
+                                                    className='flex items-center justify-center'
                                                     style={{
-                                                        objectFit: 'cover',
-                                                        width: '45%',
-                                                        height: '45%',
                                                         position: 'absolute',
-                                                        transition: 'transform 0.2s ease-in-out',
+                                                        transition: 'transform 0.3s ease-in-out',
                                                         transform: isCharacterMoving ? `translate(${translationObject.current.dx}, ${translationObject.current.dy})` : 'none',
+
                                                     }}
-                                                />
+                                                >
+                                                    <LightBulbIcon
+                                                        className={`${isIdle && !visitedPortofolio.includes(actualCol) ? 'animate-bounce' : ''} ${visitedPortofolio.includes(actualCol) ? 'text-red-900' : 'text-blood'} shadow cursor-pointer hover:text-red-900`} aria-hidden="true" onClick={() => clickPortfolio(portfolio, portfolio.colCell)}
+                                                        style={{
+                                                            objectFit: 'cover',
+                                                            width: '45%',
+                                                            height: '45%',
+                                                        }}
+                                                    />
+                                                </div>
                                             ) : null
                                         ))}
                                     </div>

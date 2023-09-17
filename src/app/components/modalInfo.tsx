@@ -60,6 +60,10 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="hidden lg:inline"
                                                         width={180}
                                                         height={120}
+                                                        style={{
+                                                            width: "180px",
+                                                            height: "120px",
+                                                        }}
                                                     />
                                                     <Image
                                                         src="/images/tutorials/swipe-3.svg"
@@ -68,6 +72,10 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="inline lg:hidden"
                                                         width={180}
                                                         height={120}
+                                                        style={{
+                                                            width: "180px",
+                                                            height: "120px",
+                                                        }}
                                                     />
                                                     <ol className="text-lg mt-2 text-left font-medium text-white list-decimal tracking-tight">
                                                         <li className='break-normal hidden lg:list-item'>Use your arrow keyboard to navigate the character across the map.</li>
@@ -82,6 +90,10 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="inline"
                                                         width={180}
                                                         height={120}
+                                                        style={{
+                                                            width: "180px",
+                                                            height: "120px",
+                                                        }}
                                                     />
                                                     <ol className="text-lg mt-2 text-left font-medium text-white list-decimal tracking-tight" start={2}>
                                                         <li className='break-normal hidden lg:list-item'>Find the Light Bulbs to discover the projects by using the arrow keys.</li>
@@ -96,6 +108,10 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="inline"
                                                         width={180}
                                                         height={120}
+                                                        style={{
+                                                            width: "180px",
+                                                            height: "120px",
+                                                        }}
                                                     />
                                                     <ol className="text-lg mt-2 text-left font-medium text-white list-decimal tracking-tight" start={3}>
                                                         <li className='break-normal hidden lg:list-item'>Position the character precisely over where the Light Bulb is located.</li>
@@ -110,6 +126,10 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="hidden lg:inline"
                                                         width={180}
                                                         height={120}
+                                                        style={{
+                                                            width: "180px",
+                                                            height: "120px",
+                                                        }}
                                                     />
                                                     <Image
                                                         src="/images/tutorials/4-tap.svg"
@@ -118,6 +138,10 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="inline lg:hidden"
                                                         width={180}
                                                         height={120}
+                                                        style={{
+                                                            width: "180px",
+                                                            height: "120px",
+                                                        }}
                                                     />
                                                     <ol className="text-lg mt-2 text-left font-medium text-white list-decimal tracking-tight" start={4}>
                                                         <li className='break-normal hidden lg:list-item'>Show the projects by pressing Enter or left-clicking with your mouse.</li>
