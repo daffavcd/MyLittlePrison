@@ -138,16 +138,66 @@ body {
   }
 }
 
-.animate-pulse-arrow {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.animate-pulse-arrow-up {
+  animation: pulse-up 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
-  @keyframes pulse {
+  @keyframes pulse-up {
     0%,
     100% {
+      transform: translateY(-5%);
       opacity: 0.5;
     }
     50% {
+      transform: translateY(0);
       opacity: 1;
     }
   }
 }
+
+ .animate-pulse-arrow-right {
+  animation: pulse-right 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes pulse-right {
+    0%,
+    100% {
+      transform: translateX(5%);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+.animate-pulse-arrow-down {
+  animation: pulse-down 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes pulse-down {
+    0%,
+    100% {
+      transform: translateY(5%);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+.animate-pulse-arrow-left {
+  animation: pulse-left 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes pulse-left {
+    0%,
+    100% {
+      transform: translateX(-5%);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+} 
