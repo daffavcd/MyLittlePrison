@@ -452,7 +452,7 @@ export default function Game() {
         let isThereAnyPortfolios = false;
 
         if (direction == "Up") {
-            startColFind = (characterPosition.rowCell * mapLayout.maxColCellEachRow) - 1;
+            startColFind = (characterPosition.rowCell - 1) * mapLayout.maxColCellEachRow;
 
             filteredPortfolios = portfolios.filter(portfolio => portfolio.colCell < startColFind).map(filteredPortfolio => {
                 return filteredPortfolio.colCell;

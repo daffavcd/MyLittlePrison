@@ -142,30 +142,44 @@ body {
   animation: pulse-up 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
   @keyframes pulse-up {
-    0%,
-    100% {
-      transform: translateY(-5%);
-      opacity: 0.5;
+    0% {
+      transform: translateY(0);
+      opacity: 0;
     }
-    50% {
+    33.33% {
       transform: translateY(0);
       opacity: 1;
+    }
+    66.67% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-20%);
+      opacity: 0.5;
     }
   }
 }
 
- .animate-pulse-arrow-right {
+.animate-pulse-arrow-right {
   animation: pulse-right 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
   @keyframes pulse-right {
-    0%,
-    100% {
-      transform: translateX(5%);
-      opacity: 0.5;
+    0% {
+      transform: translateX(0);
+      opacity: 0;
     }
-    50% {
+    33.33% {
       transform: translateX(0);
       opacity: 1;
+    }
+    66.67% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(20%);
+      opacity: 0.5;
     }
   }
 }
@@ -174,14 +188,21 @@ body {
   animation: pulse-down 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
   @keyframes pulse-down {
-    0%,
-    100% {
-      transform: translateY(5%);
-      opacity: 0.5;
+    0% {
+      transform: translateY(0);
+      opacity: 0;
     }
-    50% {
+    33.33% {
       transform: translateY(0);
       opacity: 1;
+    }
+    66.67% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(20%);
+      opacity: 0.5;
     }
   }
 }
@@ -190,14 +211,21 @@ body {
   animation: pulse-left 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 
   @keyframes pulse-left {
-    0%,
-    100% {
-      transform: translateX(-5%);
-      opacity: 0.5;
+    0% {
+      transform: translateX(0);
+      opacity: 0;
     }
-    50% {
+    33.33% {
       transform: translateX(0);
       opacity: 1;
     }
+    66.67% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-20%);
+      opacity: 0.5;
+    }
   }
-} 
+}
