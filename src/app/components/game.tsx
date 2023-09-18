@@ -12,7 +12,7 @@ export default function Game() {
 
     const [isDesktop, setIsDesktop] = useState(true);
 
-    const IDLE_TIME = 5000; // 5 milliseconds
+    const IDLE_TIME = 4000;
     const [isIdle, setIsIdle] = useState(false);
 
     const startX = useRef<number | null>(null);
@@ -116,7 +116,7 @@ export default function Game() {
         return () => {
             clearTimeout(timeoutId); // Cleanup the timer on unmount
         };
-    }); // Empty dependency array means this effect runs once on mount
+    });
 
     // LISTENING TO KEYBOARD EVENT
     useEffect(() => {
@@ -194,10 +194,18 @@ export default function Game() {
     }, [isDesktop]);
 
     const moveDisplayCharacter = (event: KeyboardEvent) => {
+        const key = event.key;
         // RESET IDLE IF THE USER NOT AFK
-        setIsIdle(false);
+        if (
+            key === "ArrowUp" ||
+            key === "ArrowRight" ||
+            key === "ArrowDown" ||
+            key === "ArrowLeft"
+        ) {
+            setIsIdle(false);
+        }
         // ABORTING MOVEMENT IF THE MODAL IS OPEN
-        if (modalOpen && event.key === "Enter" || event.key === "Esc") {
+        if (modalOpen && key === "Enter" || key === "Esc") {
             setModalOpen(false);
         }
 
@@ -206,12 +214,11 @@ export default function Game() {
         if (isCharacterMoving) return;
 
 
-        if (isPortfolioAround(event.key)) {
+        if (isPortfolioAround(key)) {
             return;
         } else {
             // IF ENTER WASN'T PRESSED AND PRESS ANOTHER KEY
             // CHECK IF CHARACTER STILL INSIDE THE MAP
-            const key = event.key;
             if (key === "ArrowUp" && characterPosition.rowCell > 1) {
                 moveAnimation("Up");
             } else if (key === "ArrowRight" && characterPosition.colCell < mapLayout.maxColCell && characterPosition.colCell % mapLayout.maxColCellEachRow !== 0) {
@@ -439,6 +446,57 @@ export default function Game() {
 
     const totalProjects = portfolios.length;
 
+    const isThereAnyUnvisited = (direction: string) => {
+        let startColFind = -1;
+        let filteredPortfolios: number[] = [];
+        let isThereAnyPortfolios = false;
+
+        if (direction == "Up") {
+            startColFind = (characterPosition.rowCell * mapLayout.maxColCellEachRow) - 1;
+
+            filteredPortfolios = portfolios.filter(portfolio => portfolio.colCell < startColFind).map(filteredPortfolio => {
+                return filteredPortfolio.colCell;
+            })
+
+            if (filteredPortfolios.some(filteredPortfolio => !visitedPortofolio.includes(filteredPortfolio))) {
+                isThereAnyPortfolios = true;
+            }
+
+        } else if (direction == "Right") {
+            startColFind = characterPosition.rowCell * mapLayout.maxColCellEachRow;
+
+            filteredPortfolios = portfolios.filter(portfolio => (portfolio.colCell > characterPosition.colCell && portfolio.colCell <= startColFind)).map(filteredPortfolio => {
+                return filteredPortfolio.colCell;
+            })
+
+            if (filteredPortfolios.some(filteredPortfolio => !visitedPortofolio.includes(filteredPortfolio))) {
+                isThereAnyPortfolios = true;
+            }
+        } else if (direction == "Down") {
+            startColFind = (characterPosition.rowCell * mapLayout.maxColCellEachRow) + 1;
+
+            filteredPortfolios = portfolios.filter(portfolio => portfolio.colCell > startColFind).map(filteredPortfolio => {
+                return filteredPortfolio.colCell;
+            })
+
+            if (filteredPortfolios.some(filteredPortfolio => !visitedPortofolio.includes(filteredPortfolio))) {
+                isThereAnyPortfolios = true;
+            }
+        } else if (direction == "Left") {
+            startColFind = (characterPosition.rowCell * mapLayout.maxColCellEachRow) - (mapLayout.maxColCellEachRow - 1);
+
+            filteredPortfolios = portfolios.filter(portfolio => (portfolio.colCell < characterPosition.colCell && portfolio.colCell >= startColFind)).map(filteredPortfolio => {
+                return filteredPortfolio.colCell;
+            })
+
+            if (filteredPortfolios.some(filteredPortfolio => !visitedPortofolio.includes(filteredPortfolio))) {
+                isThereAnyPortfolios = true;
+            }
+        }
+
+        return isThereAnyPortfolios;
+    }
+
     return (
         <>
             <div className="col-span-12 sm:pl-24 sm:pr-24 -mt-16 sm:-mt-12 h-fit">
@@ -505,46 +563,70 @@ export default function Game() {
                                                             transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
                                                         }}
                                                     />
-                                                    {characterPosition.rowCell > 1 && (
-                                                        <div className={`${isIdle ? 'visible' : 'invisible'} absolute translate-y-[-50%] -top-4 z-30`}>
-                                                            <ChevronDoubleUpIcon className="h-14 w-h-14 text-orange-600 shadow-2xl animate-pulse" aria-hidden="true"
-                                                                style={{
-                                                                    transition: 'transform 0.3s ease-in-out',
-                                                                    transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
-                                                                }}
-                                                            />
-                                                        </div>
-                                                    )}
-                                                    {(characterPosition.colCell < mapLayout.maxColCell && characterPosition.colCell % mapLayout.maxColCellEachRow !== 0) && (
-                                                        <div className={`${isIdle ? 'visible' : 'invisible'} absolute translate-x-[50%] -right-4 z-30`}>
-                                                            <ChevronDoubleRightIcon className="h-14 w-h-14 text-orange-600 shadow-2xl animate-pulse" aria-hidden="true"
-                                                                style={{
-                                                                    transition: 'transform 0.3s ease-in-out',
-                                                                    transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
-                                                                }}
-                                                            />
-                                                        </div>
-                                                    )}
-                                                    {characterPosition.rowCell < mapLayout.maxRowCell && (
-                                                        <div className={`${isIdle ? 'visible' : 'invisible'} absolute translate-y-[50%] -bottom-4 z-30`}>
-                                                            <ChevronDoubleDownIcon className="h-14 w-h-14 text-orange-600 shadow-2xl animate-pulse" aria-hidden="true"
-                                                                style={{
-                                                                    transition: 'transform 0.3s ease-in-out',
-                                                                    transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
-                                                                }}
-                                                            />
-                                                        </div>
-                                                    )}
-                                                    {(characterPosition.colCell > 1 && characterPosition.colCell % mapLayout.maxColCellEachRow !== 1) && (
-                                                        <div className={`${isIdle ? 'visible' : 'invisible'} absolute translate-x-[-50%] -left-4 z-30`}>
-                                                            <ChevronDoubleLeftIcon className="h-14 w-h-14 text-orange-600 shadow-2xl animate-pulse" aria-hidden="true"
-                                                                style={{
-                                                                    transition: 'transform 0.3s ease-in-out',
-                                                                    transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
-                                                                }}
-                                                            />
-                                                        </div>
-                                                    )}
+                                                    {/* If the character not at the very top show it */}
+                                                    {/* if the it's in desktop and from character coll cell downwards there is an unvisited portfolio show it */}
+                                                    <div className={`
+                                                            ${isIdle
+                                                            && characterPosition.rowCell > 1
+                                                            && isThereAnyUnvisited("Up")
+                                                            ? 'visible'
+                                                            : 'invisible'
+                                                        }
+                                                            absolute translate-y-[-50%] -top-4 z-30`}>
+                                                        <ChevronDoubleUpIcon className="h-14 w-h-14 text-orange-600 shadow-2xl animate-pulse-arrow" aria-hidden="true"
+                                                            style={{
+                                                                transition: 'transform 0.3s ease-in-out',
+                                                                transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div className={`
+                                                            ${isIdle
+                                                            && characterPosition.colCell < mapLayout.maxColCell
+                                                            && characterPosition.colCell % mapLayout.maxColCellEachRow !== 0
+                                                            && isThereAnyUnvisited("Right")
+                                                            ? 'visible'
+                                                            : 'invisible'
+                                                        }
+                                                            absolute translate-x-[50%] -right-4 z-30`}>
+                                                        <ChevronDoubleRightIcon className="h-14 w-h-14 text-orange-600 shadow-2xl animate-pulse-arrow" aria-hidden="true"
+                                                            style={{
+                                                                transition: 'transform 0.3s ease-in-out',
+                                                                transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div className={`
+                                                            ${isIdle
+                                                            && characterPosition.rowCell < mapLayout.maxRowCell
+                                                            && isThereAnyUnvisited("Down")
+                                                            ? 'visible'
+                                                            : 'invisible'
+                                                        }
+                                                            absolute translate-y-[50%] -bottom-4 z-30`}>
+                                                        <ChevronDoubleDownIcon className="h-14 w-h-14 text-orange-600 shadow-2xl animate-pulse-arrow" aria-hidden="true"
+                                                            style={{
+                                                                transition: 'transform 0.3s ease-in-out',
+                                                                transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div className={`
+                                                            ${isIdle
+                                                            && characterPosition.colCell > 1
+                                                            && characterPosition.colCell % mapLayout.maxColCellEachRow !== 1
+                                                            && isThereAnyUnvisited("Left")
+                                                            ? 'visible'
+                                                            : 'invisible'
+                                                        }
+                                                            absolute translate-x-[-50%] -left-4 z-30`}>
+                                                        <ChevronDoubleLeftIcon className="h-14 w-h-14 text-orange-600 shadow-2xl animate-pulse-arrow" aria-hidden="true"
+                                                            style={{
+                                                                transition: 'transform 0.3s ease-in-out',
+                                                                transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
+                                                            }}
+                                                        />
+                                                    </div>
                                                 </>
 
                                             ) : null
@@ -562,7 +644,7 @@ export default function Game() {
                                                     }}
                                                 >
                                                     <LightBulbIcon
-                                                        className={`${isIdle && !visitedPortofolio.includes(actualCol) ? 'animate-bounce' : ''} ${visitedPortofolio.includes(actualCol) ? 'text-red-900' : 'text-blood'} shadow cursor-pointer hover:text-red-900`} aria-hidden="true" onClick={() => clickPortfolio(portfolio, portfolio.colCell)}
+                                                        className={`${isIdle && !visitedPortofolio.includes(actualCol) ? 'animate-bounce-mlp' : ''} ${visitedPortofolio.includes(actualCol) ? 'text-red-900' : 'text-blood'} shadow cursor-pointer hover:text-red-900`} aria-hidden="true" onClick={() => clickPortfolio(portfolio, portfolio.colCell)}
                                                         style={{
                                                             objectFit: 'cover',
                                                             width: '45%',
