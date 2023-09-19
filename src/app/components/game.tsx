@@ -5,6 +5,7 @@ import ModalPortfolio from './modalPortfolio';
 import { LightBulbIcon, ChevronDoubleUpIcon, ChevronDoubleRightIcon, ChevronDoubleDownIcon, ChevronDoubleLeftIcon } from '@heroicons/react/24/solid'
 import { portfolios } from '../data/portfolios';
 import localforage from 'localforage';
+import Link from 'next/link'
 
 export default function Game() {
 
@@ -519,13 +520,24 @@ export default function Game() {
 
     return (
         <>
-            <div className="col-span-12 sm:pl-24 sm:pr-24 -mt-16 sm:-mt-12 h-fit">
-                <div className='flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl w-full sm:w-fit max-h-11 rounded-xl'>
-                    <span className="font-extrabold">{`${visitedPortofolio.length}`}</span>&nbsp;{`/`}&nbsp;<span className="font-extrabold">{`${totalProjects}`}</span>&nbsp;{`Projects Found`}
+            <div className="col-span-12 grid grid-cols-12 gap-5 pb-10 sm:pb-0 sm:pl-24 sm:pr-24 -mt-16 sm:-mt-12 h-fit z-20">
+                <div className='col-span-12 sm:col-span-6'>
+                    <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl w-full sm:w-fit max-h-11 rounded-xl'>
+                        <span className="font-extrabold">{`${visitedPortofolio.length}`}</span>&nbsp;{`/`}&nbsp;<span className="font-extrabold">{`${totalProjects}`}</span>&nbsp;{`Projects Found`}
+                    </div>
                 </div>
+                {visitedPortofolio.length == totalProjects && (
+                    <div className='col-span-12 sm:col-span-6 sm:text-right order-first sm:order-last'>
+                        <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl w-full sm:w-fit max-h-11 rounded-xl'>
+                            {`You're W!`}&nbsp;
+                            <Link href="https://drive.google.com/file/d/1qEnJ9I_DuydJPjxS92_SL-wSEDY33tno/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                                <span className="font-extrabold animate-pulse hover:text-white">{`My Résumé`}</span>
+                            </Link>
+                        </div>
+                    </div>
+                )}
             </div>
             <div className="col-span-12 sm:pl-24 sm:pr-24 -mt-32 sm:-mt-16" id="game-map">
-
                 <div className="relative h-96"
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
@@ -664,7 +676,7 @@ export default function Game() {
                                                     }}
                                                 >
                                                     <LightBulbIcon
-                                                        className={`${isIdle && !visitedPortofolio.includes(actualCol) ? 'animate-bounce-mlp' : ''} ${visitedPortofolio.includes(actualCol) ? 'text-red-900' : 'text-blood'} shadow cursor-pointer hover:text-red-900`} aria-hidden="true" onClick={() => clickPortfolio(portfolio, portfolio.colCell)}
+                                                        className={`${isIdle && !visitedPortofolio.includes(actualCol) ? 'animate-bounce-mlp' : ''} ${visitedPortofolio.includes(actualCol) ? 'text-red-900' : 'text-blood'} shadow cursor-pointer hover:text-red-900 z-40`} aria-hidden="true" onClick={() => clickPortfolio(portfolio, portfolio.colCell)}
                                                         style={{
                                                             objectFit: 'cover',
                                                             width: '45%',
