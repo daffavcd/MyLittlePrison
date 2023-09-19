@@ -195,12 +195,17 @@ export default function Game() {
 
     const moveDisplayCharacter = (event: KeyboardEvent) => {
         const key = event.key;
+
         // RESET IDLE IF THE USER NOT AFK
         if (
             key === "ArrowUp" ||
             key === "ArrowRight" ||
             key === "ArrowDown" ||
-            key === "ArrowLeft"
+            key === "ArrowLeft" ||
+            key === "w" || key === "W" ||
+            key === "d" || key === "D" ||
+            key === "s" || key === "S" ||
+            key === "a" || key === "A"
         ) {
             setIsIdle(false);
         }
@@ -219,13 +224,27 @@ export default function Game() {
         } else {
             // IF ENTER WASN'T PRESSED AND PRESS ANOTHER KEY
             // CHECK IF CHARACTER STILL INSIDE THE MAP
-            if (key === "ArrowUp" && characterPosition.rowCell > 1) {
+            if (
+                key === "ArrowUp" || key === "w" || key === "W"
+                && characterPosition.rowCell > 1
+            ) {
                 moveAnimation("Up");
-            } else if (key === "ArrowRight" && characterPosition.colCell < mapLayout.maxColCell && characterPosition.colCell % mapLayout.maxColCellEachRow !== 0) {
+            } else if (
+                key === "ArrowRight" || key === "d" || key === "D"
+                && characterPosition.colCell < mapLayout.maxColCell
+                && characterPosition.colCell % mapLayout.maxColCellEachRow !== 0
+            ) {
                 moveAnimation("Right");
-            } else if (key === "ArrowDown" && characterPosition.rowCell < mapLayout.maxRowCell) {
+            } else if (
+                key === "ArrowDown" || key === "s" || key === "S"
+                && characterPosition.rowCell < mapLayout.maxRowCell
+            ) {
                 moveAnimation("Down");
-            } else if (key === "ArrowLeft" && characterPosition.colCell > 1 && characterPosition.colCell % mapLayout.maxColCellEachRow !== 1) {
+            } else if (
+                key === "ArrowLeft" || key === "a" || key === "A"
+                && characterPosition.colCell > 1
+                && characterPosition.colCell % mapLayout.maxColCellEachRow !== 1
+            ) {
                 moveAnimation("Left");
             }
         }
