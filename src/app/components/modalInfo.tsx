@@ -20,7 +20,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
 
     return (
         <Transition.Root show={modalInfoOpen} as={Fragment}>
-            <Dialog as="div" className="relative z-50" initialFocus={cancelButtonInfoRef} onClose={setModalInfoOpen}>
+            <Dialog as="div" className="relative" style={{ zIndex: "70" }} initialFocus={cancelButtonInfoRef} onClose={setModalInfoOpen}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"

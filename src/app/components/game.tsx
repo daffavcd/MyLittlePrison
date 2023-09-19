@@ -10,6 +10,7 @@ import Link from 'next/link'
 export default function Game() {
 
     let actualCol = 0;
+    const totalProjects = portfolios.length;
 
     const [isDesktop, setIsDesktop] = useState(true);
 
@@ -214,6 +215,9 @@ export default function Game() {
         if (modalOpen && key === "Enter" || key === "Esc") {
             setModalOpen(false);
         }
+
+        // IF THE END ABORT
+        if (visitedPortofolio.length == totalProjects) return;
 
         if (modalOpen) return;
         // ABORTING MOVEMENT IF THE CHARACTER STILL ON ANIMATION
@@ -465,7 +469,7 @@ export default function Game() {
         }
     }
 
-    const totalProjects = portfolios.length;
+
 
     const isThereAnyUnvisited = (direction: string) => {
         let startColFind = -1;
@@ -518,6 +522,15 @@ export default function Game() {
         return isThereAnyPortfolios;
     }
 
+    const restartGame = async () => {
+        try {
+            await localforage.removeItem("visitedPortofolio");
+            setVisitedPortofolio([]);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
         <>
             <div className="col-span-12 grid grid-cols-12 gap-5 pb-10 sm:pb-0 sm:pl-24 sm:pr-24 -mt-16 sm:-mt-12 h-fit z-20">
@@ -526,16 +539,6 @@ export default function Game() {
                         <span className="font-extrabold">{`${visitedPortofolio.length}`}</span>&nbsp;{`/`}&nbsp;<span className="font-extrabold">{`${totalProjects}`}</span>&nbsp;{`Projects Found`}
                     </div>
                 </div>
-                {visitedPortofolio.length == totalProjects && (
-                    <div className='col-span-12 sm:col-span-6 sm:text-right order-first sm:order-last'>
-                        <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl w-full sm:w-fit max-h-11 rounded-xl'>
-                            {`Here's`}&nbsp;
-                            <Link href="https://drive.google.com/file/d/1qEnJ9I_DuydJPjxS92_SL-wSEDY33tno/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                                <span className="font-extrabold animate-pulse hover:text-white">{`My Résumé`}</span>
-                            </Link>
-                        </div>
-                    </div>
-                )}
             </div>
             <div className="col-span-12 sm:pl-24 sm:pr-24 -mt-32 sm:-mt-16" id="game-map">
                 <div className="relative h-96 shadow shadow-black rounded"
@@ -544,9 +547,27 @@ export default function Game() {
                     onTouchEnd={handleTouchEnd}
                 >
                     <div className="dark-overlay-game rounded"></div>
-                    {/* <div className="dark-overlay-win rounded">
-                        Tes
-                    </div> */}
+                    {visitedPortofolio.length == totalProjects && (
+                        <div className="dark-overlay-win rounded">
+                            <div className="grid grid-cols-12 p-4 h-full gap-6 overflow-auto">
+                                <div className="col-span-12 flex justify-center items-end text-center">
+                                    <span className="font-semibold text-4xl text-blood shadow shadow-black">{`You've Found All of Them!`}</span>
+                                </div>
+                                <div className='col-span-6 flex justify-end items-center sm:items-start'>
+                                    <Link href={`/about`}>
+                                        <div className='inline-flex justify-center items-center text-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl max-h-11 rounded-xl cursor-pointer text-blood hover:text-white'>
+                                            <span className="font-semibold text-xl" >{`About Me`}</span>
+                                        </div>
+                                    </Link>
+                                </div>
+                                <div className='col-span-6 flex justify-start items-center sm:items-start'>
+                                    <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl max-h-11 rounded-xl cursor-pointer text-blood hover:text-white' onClick={() => restartGame()}>
+                                        <span className="font-semibold text-xl" >{`Restart`}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                     <div id="cell-row" className={`grid grid-cols-3 sm:grid-cols-9 gap-0 p-4 h-full overflow-hidden`}>
                         {
                             [...Array(mapLayout.maxColCellDisplayed)].map((x, j) => {

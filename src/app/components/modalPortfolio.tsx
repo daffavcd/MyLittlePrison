@@ -13,7 +13,7 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
     return (
 
         <Transition.Root show={modalOpen} as={Fragment}>
-            <Dialog as="div" className="relative z-50" initialFocus={cancelButtonRef} onClose={setModalOpen}>
+            <Dialog as="div" className="relative" style={{ zIndex: "70" }} initialFocus={cancelButtonRef} onClose={setModalOpen}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
