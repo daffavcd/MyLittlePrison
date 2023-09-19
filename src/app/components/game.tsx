@@ -475,7 +475,7 @@ export default function Game() {
         if (direction == "Up") {
             startColFind = (characterPosition.rowCell - 1) * mapLayout.maxColCellEachRow;
 
-            filteredPortfolios = portfolios.filter(portfolio => portfolio.colCell < startColFind).map(filteredPortfolio => {
+            filteredPortfolios = portfolios.filter(portfolio => (portfolio.colCell <= startColFind)).map(filteredPortfolio => {
                 return filteredPortfolio.colCell;
             })
 
@@ -496,7 +496,7 @@ export default function Game() {
         } else if (direction == "Down") {
             startColFind = (characterPosition.rowCell * mapLayout.maxColCellEachRow) + 1;
 
-            filteredPortfolios = portfolios.filter(portfolio => portfolio.colCell > startColFind).map(filteredPortfolio => {
+            filteredPortfolios = portfolios.filter(portfolio => (portfolio.colCell >= startColFind)).map(filteredPortfolio => {
                 return filteredPortfolio.colCell;
             })
 
@@ -529,7 +529,7 @@ export default function Game() {
                 {visitedPortofolio.length == totalProjects && (
                     <div className='col-span-12 sm:col-span-6 sm:text-right order-first sm:order-last'>
                         <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl w-full sm:w-fit max-h-11 rounded-xl'>
-                            {`You're W!`}&nbsp;
+                            {`Here's`}&nbsp;
                             <Link href="https://drive.google.com/file/d/1qEnJ9I_DuydJPjxS92_SL-wSEDY33tno/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                                 <span className="font-extrabold animate-pulse hover:text-white">{`My Résumé`}</span>
                             </Link>
@@ -538,12 +538,15 @@ export default function Game() {
                 )}
             </div>
             <div className="col-span-12 sm:pl-24 sm:pr-24 -mt-32 sm:-mt-16" id="game-map">
-                <div className="relative h-96"
+                <div className="relative h-96 shadow shadow-black rounded"
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
                 >
                     <div className="dark-overlay-game rounded"></div>
+                    {/* <div className="dark-overlay-win rounded">
+                        Tes
+                    </div> */}
                     <div id="cell-row" className={`grid grid-cols-3 sm:grid-cols-9 gap-0 p-4 h-full overflow-hidden`}>
                         {
                             [...Array(mapLayout.maxColCellDisplayed)].map((x, j) => {
@@ -581,7 +584,7 @@ export default function Game() {
                                                 <>
                                                     <Image
                                                         alt="Character"
-                                                        className='z-30'
+                                                        className='z-50'
                                                         src={`/images/sprites/${characterImage}.gif`}
                                                         fill={true}
                                                         priority={true}
@@ -690,11 +693,6 @@ export default function Game() {
                                 )
                             })}
                     </div>
-                    {/* {!isDesktop ? (
-                    <div className='flex items-center text-lg font-medium p-4 text-white text-center sm:invisible relative z-10 h-full'>
-                        {`To explore my projects, please utilize a desktop (width of 640 pixels or more) and provide a keyboard. I'm trying to make it as a game-like experience.`}
-                    </div>
-                ) : null} */}
                 </div>
                 <ModalPortfolio portfolio={portfolio} modalOpen={modalOpen} setModalOpen={setModalOpen} cancelButtonRef={cancelButtonRef} />
             </div >
