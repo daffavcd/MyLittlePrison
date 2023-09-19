@@ -224,28 +224,29 @@ export default function Game() {
         } else {
             // IF ENTER WASN'T PRESSED AND PRESS ANOTHER KEY
             // CHECK IF CHARACTER STILL INSIDE THE MAP
-            if (
-                key === "ArrowUp" || key === "w" || key === "W"
-                && characterPosition.rowCell > 1
-            ) {
-                moveAnimation("Up");
-            } else if (
-                key === "ArrowRight" || key === "d" || key === "D"
-                && characterPosition.colCell < mapLayout.maxColCell
-                && characterPosition.colCell % mapLayout.maxColCellEachRow !== 0
-            ) {
-                moveAnimation("Right");
-            } else if (
-                key === "ArrowDown" || key === "s" || key === "S"
-                && characterPosition.rowCell < mapLayout.maxRowCell
-            ) {
-                moveAnimation("Down");
-            } else if (
-                key === "ArrowLeft" || key === "a" || key === "A"
-                && characterPosition.colCell > 1
-                && characterPosition.colCell % mapLayout.maxColCellEachRow !== 1
-            ) {
-                moveAnimation("Left");
+            if (key === "ArrowUp" || key === "w" || key === "W") {
+
+                if (characterPosition.rowCell > 1) {
+                    moveAnimation("Up");
+                }
+            } else if (key === "ArrowRight" || key === "d" || key === "D") {
+
+                if (
+                    characterPosition.colCell < mapLayout.maxColCell
+                    && characterPosition.colCell % mapLayout.maxColCellEachRow !== 0
+                ) {
+                    moveAnimation("Right");
+                }
+            } else if (key === "ArrowDown" || key === "s" || key === "S") {
+
+                if (characterPosition.rowCell < mapLayout.maxRowCell) {
+                    moveAnimation("Down");
+                }
+            } else if (key === "ArrowLeft" || key === "a" || key === "A") {
+
+                if (characterPosition.colCell > 1 && characterPosition.colCell % mapLayout.maxColCellEachRow !== 1) {
+                    moveAnimation("Left");
+                }
             }
         }
     }
