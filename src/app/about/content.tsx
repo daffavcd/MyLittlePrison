@@ -84,7 +84,7 @@ export default function Content() {
                 <div className={`flex flex-col h-screen ${scrolledAbout ? 'blur-sm' : 'blur-none'}`} id='main-content' style={{ marginTop: "-95px" }}>
                     <Image
                         alt="Background Image"
-                        src="/images/luffy1.jpg"
+                        src="/images/ruffy.jpg"
                         quality={100}
                         fill
                         priority
