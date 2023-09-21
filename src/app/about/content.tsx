@@ -158,11 +158,11 @@ export default function Content() {
                             </div>
                         </div>
                     ) : null}
-                    <div className='absolute top-[40%] -translate-x-0 translate-y-[-40%] left-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg' onClick={prevSlide}>
+                    <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] left-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg' onClick={prevSlide}>
                         <ChevronLeftIcon className="h-11 w-11" aria-hidden="true" />
                     </div>
                     {/* Right Arrow */}
-                    <div className='absolute top-[40%] -translate-x-0 translate-y-[-40%] right-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg' onClick={nextSlide}>
+                    <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] right-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg' onClick={nextSlide}>
                         <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
                     </div>
                 </div>
