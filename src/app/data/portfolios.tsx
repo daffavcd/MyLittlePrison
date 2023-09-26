@@ -376,4 +376,27 @@ export const portfolios: Portfolio[] = [
             'css',
         ]
     },
+    {
+        colCell: 8,
+        title: "Control Greediness: Keeping tracks your money expenses.",
+        desc: "💰📈 Control Greediness is a user-friendly finance application designed to help you manage your expenses efficiently. Built with Flutter, this app offers a streamlined way to track your financial transactions and gain insights through an interactive line chart visualization",
+        repoLink: 'https://github.com/daffavcd/ControlGreediness',
+        year: '2023',
+        features: [
+            "Utilize the built-in line chart to visualize the expenditure trends over time.",
+            'Record expenses to maintain a clear overview of the financial habits using SQLite.',
+            "Developed using Flutter, ensuring a responsive user experience across various devices.",
+        ],
+        imagesPath: [
+            'cg_1',
+            'cg_2',
+            'cg_3',
+            'cg_4',
+            'cg_5',
+            'cg_6',
+        ],
+        techImagesPath: [
+            'flutter',
+        ]
+    },
 ];
