@@ -7,6 +7,12 @@ import { portfolios } from '../data/portfolios';
 import localforage from 'localforage';
 import Link from 'next/link'
 
+import characterIdle from '../../../public/images/sprites/char_idle.gif'
+import characterUp from '../../../public/images/sprites/char_run_up.gif'
+import characterRight from '../../../public/images/sprites/char_run_right.gif'
+import characterDown from '../../../public/images/sprites/char_run_down.gif'
+import characterLeft from '../../../public/images/sprites/char_run_left.gif'
+
 export default function Game() {
 
     let actualCol = 0;
@@ -24,7 +30,7 @@ export default function Game() {
     const cancelButtonRef = useRef(null)
 
     const [isCharacterMoving, setIsCharacterMoving] = useState(false);
-    const [characterImage, setCharacterImage] = useState('char_idle');
+    const [characterImage, setCharacterImage] = useState(characterIdle);
 
     const [portfolio, setPortfolio] = useState({
         colCell: 0,
@@ -257,7 +263,7 @@ export default function Game() {
     }
 
     const moveAnimation = (heading: string) => {
-        let nextCharacterImage = "char_idle";
+        let nextCharacterImage = characterIdle;
         let nextLayout = "None";
 
         // ABORT ANIMATION IF THE CHARACTER IS COLLIDING WITH AN OBJECT
@@ -265,7 +271,7 @@ export default function Game() {
 
         // CHANGE THE STATE TO MOVING
         if (heading == "Up") {
-            nextCharacterImage = "char_run_up";
+            nextCharacterImage = characterUp;
             // MOVE UP DISPLAYED MAP ONCE ? IF THERE IS ANOTHER TOP AND IF NOT AT THE VERY TOP
             if (characterPosition.rowCell - 1 > 1 && characterPosition.rowCell - 1 < mapLayout.rowCenter) {
                 nextLayout = "Up";
@@ -281,7 +287,7 @@ export default function Game() {
             }
 
         } else if (heading == "Right") {
-            nextCharacterImage = "char_run_right";
+            nextCharacterImage = characterRight;
 
             if (((characterPosition.colCell + 1) % mapLayout.maxColCellEachRow) != 0 && ((characterPosition.colCell + 1) % mapLayout.maxColCellEachRow) > 2 && !isDesktop) {
                 nextLayout = "Right";
@@ -300,7 +306,7 @@ export default function Game() {
             }
 
         } else if (heading == "Down") {
-            nextCharacterImage = "char_run_down";
+            nextCharacterImage = characterDown;
             // MOVE DOWN DISPLAYED MAP ONCE IF THERE IS ANOTHER BOTTOM AND IF NOT AT THE VERY BOTTOM
             if (characterPosition.rowCell + 1 < mapLayout.maxRowCell && characterPosition.rowCell + 1 > mapLayout.rowCenter) {
                 nextLayout = "Down";
@@ -315,7 +321,7 @@ export default function Game() {
                 translationObject.current = { dx: `0px`, dy: `-${cellHeight.current}px` };
             }
         } else if (heading == "Left") {
-            nextCharacterImage = "char_run_left";
+            nextCharacterImage = characterLeft;
 
             // CHANGE LAYOUT TO LEFT IF THERE IS ANOTHER LEFT AND IF NOT AT THE VERY LEFT
             if (((characterPosition.colCell - 1) % mapLayout.maxColCellEachRow) != 1 && ((characterPosition.colCell - 1) % mapLayout.maxColCellEachRow) < 8 && !isDesktop) {
@@ -340,7 +346,7 @@ export default function Game() {
 
         setTimeout(() => {
             // CHANGE THE STATE TO NOT MOVING
-            setCharacterImage("char_idle");
+            setCharacterImage(characterIdle);
             moveRefCharacter(heading);
             setIsCharacterMoving(false);
             handleTouchEnd();
@@ -606,7 +612,7 @@ export default function Game() {
                                                     <Image
                                                         alt="Character"
                                                         className='z-50'
-                                                        src={`/images/sprites/${characterImage}.gif`}
+                                                        src={characterImage}
                                                         fill={true}
                                                         priority={true}
                                                         sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
