@@ -7,6 +7,7 @@ import { portfolios } from '../data/portfolios';
 import localforage from 'localforage';
 import Link from 'next/link'
 
+import characterJump from '../../../public/images/sprites/char_jump.gif'
 import characterIdle from '../../../public/images/sprites/char_idle.gif'
 import characterUp from '../../../public/images/sprites/char_run_up.gif'
 import characterRight from '../../../public/images/sprites/char_run_right.gif'
@@ -17,6 +18,7 @@ export default function Game() {
 
     let actualCol = 0;
     const totalProjects = portfolios.length;
+
 
     const [isDesktop, setIsDesktop] = useState(true);
 
@@ -66,6 +68,8 @@ export default function Game() {
     let translationObject = useRef({ dx: "", dy: "" });
     let cellHeight = useRef(90);
     let cellWidth = useRef(90);
+
+    const portfolioCoordinate = mapLayout.portfolioCell.map((x) => x.colCell);
 
     // ====================================START OF FUNCTION ====================================
 
@@ -440,7 +444,6 @@ export default function Game() {
     const isPortfolioAround = (event: string) => {
         const key = event;
         const characterCoordinate = characterPosition.colCell;
-        const portfolioCoordinate = mapLayout.portfolioCell.map((x) => x.colCell);
 
         if (key === "Enter" && portfolioCoordinate.includes(characterCoordinate)) {
             clickPortfolio(mapLayout.portfolioCell[portfolioCoordinate.indexOf(characterCoordinate)], -1);
@@ -611,10 +614,12 @@ export default function Game() {
                                                 <>
                                                     <Image
                                                         alt="Character"
-                                                        className='z-50'
-                                                        src={characterImage}
+                                                        className={`z-50 ${portfolioCoordinate.includes(characterPosition.colCell) ? 'cursor-pointer' : 'cursor-default'}`}
+                                                        src={(portfolioCoordinate.includes(characterPosition.colCell) && isIdle) ? characterJump : characterImage}
+                                                        onClick={() => portfolioCoordinate.includes(characterPosition.colCell) ? clickPortfolio(mapLayout.portfolioCell[portfolioCoordinate.indexOf(characterPosition.colCell)], -1) : null}
                                                         fill={true}
                                                         priority={true}
+                                                        loading='eager'
                                                         sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
                                                         style={{
                                                             objectFit: 'cover',
