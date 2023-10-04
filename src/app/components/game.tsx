@@ -615,11 +615,10 @@ export default function Game() {
                                                     <Image
                                                         alt="Character"
                                                         className={`z-50 ${portfolioCoordinate.includes(characterPosition.colCell) ? 'cursor-pointer' : 'cursor-default'}`}
-                                                        src={(portfolioCoordinate.includes(characterPosition.colCell) && isIdle) ? characterJump : characterImage}
+                                                        src={(portfolioCoordinate.includes(characterPosition.colCell) && isIdle && !visitedPortofolio.includes(actualCol)) ? characterJump : characterImage}
                                                         onClick={() => portfolioCoordinate.includes(characterPosition.colCell) ? clickPortfolio(mapLayout.portfolioCell[portfolioCoordinate.indexOf(characterPosition.colCell)], -1) : null}
                                                         fill={true}
                                                         priority={true}
-                                                        loading='eager'
                                                         sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
                                                         style={{
                                                             objectFit: 'cover',
