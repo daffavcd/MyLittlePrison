@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import Image from 'next/image';
 import { Dialog, Transition } from '@headlessui/react'
 import { DocumentIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { ChevronDoubleDownIcon } from '@heroicons/react/24/solid'
 import ImageCarousel from './parts/imageCarousel';
 import Link from 'next/link'
 
@@ -24,9 +25,13 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                     leaveTo="opacity-0"
                 >
                     <div className="fixed inset-0 transition-opacity" style={{ background: "#00000087" }} />
+
                 </Transition.Child>
 
-                <div className="fixed inset-0 z-50 overflow-y-auto">
+                <div className="fixed inset-0 z-50 overflow-y-auto no-scrollbar">
+                    <div className={`absolute top-[50%] right-[5%] z-50 hidden xl:block animate-pulse-arrow-down`}>
+                        <ChevronDoubleDownIcon className="arrow-slide-down-red-mlp shadow-2xl" aria-hidden="true" />
+                    </div>
                     <div className="flex min-h-full justify-center p-4 text-center items-center">
                         <Transition.Child
                             as={Fragment}
@@ -37,13 +42,20 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                            <Dialog.Panel className="relative h-1/4 transform overflow-hidden rounded-lg bg-slate-800 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
-                                <div className="bg-slate-800 px-6 pb-6 pt-5 sm:p-8 sm:pb-8">
+                            <Dialog.Panel className="relative h-1/4 transform overflow-hidden rounded-lg border-modal-mlp bg-modal-mlp text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
+                                <div className="grid-cols-12 absolute h-full w-full pl-12 pr-12 hidden lg:grid">
+                                    <div className='col-span-3 border-modal-mlp-2' />
+                                    <div className='col-span-3 border-modal-mlp-2' />
+                                    <div className='col-span-3 border-modal-mlp-2' />
+                                    <div className='col-span-3 border-modal-mlp-2' />
+                                </div>
+                                <div className="bg-modal-mlp px-6 pb-6 pt-5 sm:pb-8">
                                     <div className="sm:flex sm:items-start">
                                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
                                             <Dialog.Title as="h3" className="text-xl sm:text-2xl text-center font-semibold leading-8 pl-4 pr-4 text-white">
                                                 {portfolio.title}
                                             </Dialog.Title>
+                                            <div className='border-modal-mlp-2 -mx-6 my-3' />
                                             <div className="mt-2 text-base text-left sm:text-justify text-white break-words">
                                                 <ImageCarousel images={portfolio.imagesPath} />
                                                 {theDescs.map((desc: string, key: number) => (
@@ -62,7 +74,8 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                         )}
                                                     </p>
                                                 ))}
-                                                <p className="text-lg mt-2 text-left font-semibold text-white">
+                                                <div className='border-modal-mlp-2 -mx-6 my-3' />
+                                                <p className="text-lg text-left font-semibold text-white">
                                                     Key Features :
                                                 </p>
                                                 <div className='grid mt-2 gap-0 grid-cols-1 pl-7 pr-7 text-white'>
@@ -72,7 +85,8 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                         ))}
                                                     </ul>
                                                 </div>
-                                                <p className="text-lg mt-2 text-left font-semibold text-white">
+                                                <div className='border-modal-mlp-2 -mx-6 my-3' />
+                                                <p className="text-lg text-left font-semibold text-white">
                                                     Technologies :
                                                 </p>
                                                 <div className='mt-2 pl-7 pr-7 flex justify-start items-start gap-2 flex-wrap'>
@@ -91,6 +105,7 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                         />
                                                     ))}
                                                 </div>
+                                                <div className='border-modal-mlp-2 -mx-6 my-3' />
                                             </div>
                                         </div>
                                     </div>

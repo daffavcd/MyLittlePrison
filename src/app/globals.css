@@ -118,6 +118,24 @@ body {
   }
 }
 
+.bg-modal-mlp {
+  background-color: rgb(41 1 1 / 70%);
+}
+
+.border-modal-mlp {
+  border: rgb(255 0 0 / 35%) 1px solid;
+}
+
+.border-modal-mlp-2 {
+  border: rgb(255 0 0 / 10%) 1px solid;
+}
+
+.arrow-slide-down-red-mlp {
+  color: rgb(228 0 0);
+  width: 66px;
+  height: 66px;
+}
+
 .animate-bounce-mlp {
   animation: bounce 1s infinite;
 

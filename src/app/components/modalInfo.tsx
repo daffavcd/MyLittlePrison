@@ -44,13 +44,18 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                            <Dialog.Panel className="relative h-1/4 transform overflow-hidden rounded-lg bg-slate-800 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
-                                <div className="bg-slate-800 px-1 sm:px-6 pb-6 pt-5 sm:p-8 sm:pb-8">
+                            <Dialog.Panel className="relative h-1/4 transform overflow-hidden rounded-lg border-modal-mlp bg-modal-mlp text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-4xl">
+                                <div className="grid-cols-12 absolute h-full w-full pl-12 pr-12 hidden lg:grid">
+                                    <div className='col-span-6 border-modal-mlp-2' />
+                                    <div className='col-span-6 border-modal-mlp-2' />
+                                </div>
+                                <div className="bg-modal-mlp px-1 sm:px-6 pb-6 pt-5 sm:p-8 sm:pb-8">
                                     <div className="sm:grid sm:items-start">
                                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
                                             <Dialog.Title as="h3" className="mb-5 text-2xl text-center font-semibold leading-6 pl-4 pr-4 text-white">
                                                 How to discover the projects?
                                             </Dialog.Title>
+                                            <div className='border-modal-mlp-2 -mx-6 my-3' />
                                             <div className='grid grid-cols-12 p-3 h-full'>
                                                 <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center">
                                                     <Image
@@ -100,6 +105,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         <li className='break-normal list-item lg:hidden'>Find the Light Bulbs all over the map.</li>
                                                     </ol>
                                                 </div>
+
                                                 <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center mt-2">
                                                     <Image
                                                         src="/images/tutorials/3.svg"
@@ -149,7 +155,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                     </ol>
                                                 </div>
                                             </div>
-
+                                            <div className='border-modal-mlp-2 -mx-6 my-3' />
                                         </div>
                                     </div>
                                 </div>
