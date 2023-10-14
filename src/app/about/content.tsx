@@ -5,10 +5,20 @@ import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/20/solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import { Player } from '@lottiefiles/react-lottie-player';
-import Link from 'next/link'
+import Link from 'next/link';
 // import Particle from '../components/parts/particle';
 
 export default function Content() {
+
+    const now = new Date();
+    const formatter = new Intl.DateTimeFormat('en-US', {
+        weekday: 'long',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'Asia/Jakarta'
+    });
+    const formattedTime = formatter.format(now).replace(' ', ', ');
 
     const [isDesktop, setIsDesktop] = useState(true);
 
@@ -102,7 +112,7 @@ export default function Content() {
                         </div>
                     </a>
                     <div className='flex items-center pl-6 pr-6 md:pl-36 md:pr-36 text-3xl sm:text-4xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
-                        <p className='shadow'>Yes, as some of you may already be aware, the theme of this mini portfolio website was inspired by Netflix. </p >
+                        <p className='shadow select-none'>I try to create the portfolio showcase in a game-like experience, hope you enjoy it. </p >
                     </div>
                 </div>
                 <div className='grid grid-cols-12' id='first-content'>
@@ -111,7 +121,7 @@ export default function Content() {
                     </div>
                 </div>
                 <div className='grid grid-cols-12'>
-                    <div className='col-span-12  pt-14 pb-14 pl-6 pr-6 text-white font-bold text-3xl sm:text-4xl text-center'>
+                    <div className='col-span-12  pt-14 pb-14 pl-6 pr-6 text-white font-bold text-3xl sm:text-4xl text-center select-none'>
                         {`Some of My Certifications`}
                     </div>
                 </div>
@@ -176,13 +186,13 @@ export default function Content() {
                         >
                         </Player>
                     </div>
-                    <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white'>
+                    <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'>
                         <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`Full-Stack Developer`}</span>
                         {`While lately I've been focusing on Front-End Development, I used to prefer being a Back-End Developer on my starting days.`}
                     </div>
                 </div>
                 <div className='grid grid-cols-12 pt-0 pb-40 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
-                    <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white'>
+                    <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'>
                         <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`7 Years of Study`}</span>
                         {`Graduated as a BASc in Informatics Engineering major. I've studied a broad range of computer disciplines since I was 15 y/o.`}
                     </div>
@@ -204,7 +214,7 @@ export default function Content() {
                     position: 'relative', // Ensure proper stacking of children
                 }}>
                     <div className="dark-overlay"></div>
-                    <div className='col-span-12 text-white font-bold text-3xl sm:text-4xl text-center pt-5 pb-5 z-10'>
+                    <div className='col-span-12 text-white font-bold text-3xl sm:text-4xl text-center pt-5 pb-5 z-10 select-none'>
                         {`Technologies Used`}
                     </div>
                     <div className='col-span-12 flex justify-center items-center gap-20 pt-5 pb-5 z-10'>
@@ -251,11 +261,15 @@ export default function Content() {
                         </Link>
                     </div>
                 </div>
-                <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
+                <div className='grid grid-cols-12 gap-4 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
                     <div className='col-span-6 hidden sm:block text-left text-base'>
                         I created this project out of my boredom when I had nothing to do, while I was trying to find a job after my graduation. I trully appreciate it if you have come this far. Just sent me any dms, I would really love to hear it from you.
                     </div>
-                    <div className='col-span-12 text-center sm:col-span-6 sm:text-right text-lg'>
+                    <div className='col-span-12 mb-3 sm:mb-0 text-center sm:col-span-3 sm:text-right text-lg'>
+                        {`GMT+7`}<br />
+                        {formattedTime}
+                    </div>
+                    <div className='col-span-12 mb-3 sm:mb-0 text-center sm:col-span-3 sm:text-right text-lg'>
                         {`© 2023`}<br />{`thePromisedDesires`}
                     </div>
                 </div>

@@ -94,6 +94,30 @@ body {
   -ms-user-select: none;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.animate-marquee-right-mlp {
+  animation: marquee-right 20s linear infinite;
+
+  @keyframes marquee-right {
+    0% {
+      transform: translateX(-100%); /* Start off the viewport on the left */
+    }
+    100% {
+      transform: translateX(0%); /* Return to the left of the viewport */
+    }
+  }
+}
+
 .animate-bounce-mlp {
   animation: bounce 1s infinite;
 
