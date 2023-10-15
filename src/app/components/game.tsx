@@ -425,19 +425,27 @@ export default function Game() {
         return isColliding;
     }
 
-    const clickPortfolio = (currentPortfolio: object, actualCol: number) => {
+    const clickPortfolio = (actualCol: number) => {
+        console.log(actualCol);
         // SAVES TO INDEXDB
         let bulbCoordinate = actualCol;
+        let getPortfolio = {};
         // WHETER PRESSING OR ENTERING
         if (actualCol == -1) {
             bulbCoordinate = characterPosition.colCell;
         }
         setIndexDB(bulbCoordinate);
 
+        mapLayout.portfolioCell.map((portfolio, k) => {
+            if (portfolio.colCell === bulbCoordinate) {
+                getPortfolio = portfolio;
+            }
+        });
         setPortfolio(prevState => ({
             ...prevState,
-            ...currentPortfolio
+            ...getPortfolio
         }));
+
         setModalOpen(true);
     }
 
@@ -446,7 +454,7 @@ export default function Game() {
         const characterCoordinate = characterPosition.colCell;
 
         if (key === "Enter" && portfolioCoordinate.includes(characterCoordinate)) {
-            clickPortfolio(mapLayout.portfolioCell[portfolioCoordinate.indexOf(characterCoordinate)], -1);
+            clickPortfolio(-1);
             return true;
         } else {
             // BACK TO PARENT FUNCTION
@@ -477,8 +485,6 @@ export default function Game() {
             console.log(err);
         }
     }
-
-
 
     const isThereAnyUnvisited = (direction: string) => {
         let startColFind = -1;
@@ -538,6 +544,18 @@ export default function Game() {
         } catch (err) {
             console.log(err);
         }
+    }
+
+    const isThereAPortfolio = (cellPosition: number) => {
+        let isThereAPortfolio = false;
+        for (const portfolio of mapLayout.portfolioCell) {
+            if (portfolio.colCell === cellPosition) {
+                isThereAPortfolio = true;
+                break;
+            }
+        }
+
+        return isThereAPortfolio;
     }
 
     return (
@@ -616,7 +634,7 @@ export default function Game() {
                                                         alt="Character"
                                                         className={`z-50 ${portfolioCoordinate.includes(characterPosition.colCell) ? 'cursor-pointer' : 'cursor-default'}`}
                                                         src={(portfolioCoordinate.includes(characterPosition.colCell) && isIdle && !visitedPortofolio.includes(actualCol)) ? characterJump : characterImage}
-                                                        onClick={() => portfolioCoordinate.includes(characterPosition.colCell) ? clickPortfolio(mapLayout.portfolioCell[portfolioCoordinate.indexOf(characterPosition.colCell)], -1) : null}
+                                                        onClick={() => portfolioCoordinate.includes(characterPosition.colCell) ? clickPortfolio(-1) : null}
                                                         fill={true}
                                                         priority={true}
                                                         sizes="(max-width: 150px) 100vw, (max-width: 300px) 50vw, 33vw"
@@ -629,6 +647,33 @@ export default function Game() {
                                                             transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
                                                         }}
                                                     />
+                                                    {isThereAPortfolio(actualCol) && (
+                                                        <div className='absolute grid grid-cols-12 p-4 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-xl z-50'>
+                                                            <div className="col-span-12">
+                                                                <Image
+                                                                    src={`/images/portfolios/${portfolios.find(singlePortfolio => singlePortfolio.colCell === characterPosition.colCell)?.imagesPath[0]}.png`}
+                                                                    className='rounded w-full h-full blur-sm'
+                                                                    title={portfolio.title}
+                                                                    alt={portfolio.title}
+                                                                    height={107}
+                                                                    width={230}
+                                                                    style={{
+                                                                        objectFit: 'cover',
+                                                                    }}
+                                                                />
+                                                                {/* <div className='absolute top-0 left-0 flex items-center text-base leading-normal font-medium p-4 text-white text-center z-10 h-full w-full'>
+                                                                <p className='shadow select-none truncate'>I try to create the portfolio showssssssssssssssssssssssssssssssssssssssssssssssssssssscase. </p >
+                                                            </div> */}
+                                                                <div className='dark-overlay'></div>
+                                                                <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+                                                                    <div className='flex items-center justify-center text-base leading-normal font-medium p-4 text-white text-center h-16 w-16 rounded-full bg-black hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'>
+                                                                        {`View`}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )}
+
                                                     {/* If the character not at the very top show it */}
                                                     {/* if the it's in desktop and from character coll cell downwards there is an unvisited portfolio show it */}
                                                     <div className={`
@@ -697,29 +742,29 @@ export default function Game() {
 
                                             ) : null
                                         }
-                                        {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO OBJECT */}
-                                        {mapLayout.portfolioCell.map((portfolio, k) => (
-                                            actualCol === portfolio.colCell ? (
-                                                <div key={k}
-                                                    className='flex items-center justify-center'
-                                                    style={{
-                                                        position: 'absolute',
-                                                        transition: 'transform 0.3s ease-in-out',
-                                                        transform: isCharacterMoving ? `translate(${translationObject.current.dx}, ${translationObject.current.dy})` : 'none',
 
+                                        {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO OBJECT */}
+                                        {isThereAPortfolio(actualCol) && (
+                                            <div
+                                                className='flex items-center justify-center'
+                                                id={`bulp-${actualCol}`}
+                                                style={{
+                                                    position: 'absolute',
+                                                    transition: 'transform 0.3s ease-in-out',
+                                                    transform: isCharacterMoving ? `translate(${translationObject.current.dx}, ${translationObject.current.dy})` : 'none',
+
+                                                }}
+                                            >
+                                                <LightBulbIcon
+                                                    className={`${isIdle && !visitedPortofolio.includes(actualCol) ? 'animate-bounce-mlp' : ''} ${visitedPortofolio.includes(actualCol) ? 'text-red-900' : 'text-blood'} shadow cursor-pointer hover:text-red-900 z-40`} aria-hidden="true" onClick={() => clickPortfolio(currentCol)}
+                                                    style={{
+                                                        objectFit: 'cover',
+                                                        width: '45%',
+                                                        height: '45%',
                                                     }}
-                                                >
-                                                    <LightBulbIcon
-                                                        className={`${isIdle && !visitedPortofolio.includes(actualCol) ? 'animate-bounce-mlp' : ''} ${visitedPortofolio.includes(actualCol) ? 'text-red-900' : 'text-blood'} shadow cursor-pointer hover:text-red-900 z-40`} aria-hidden="true" onClick={() => clickPortfolio(portfolio, portfolio.colCell)}
-                                                        style={{
-                                                            objectFit: 'cover',
-                                                            width: '45%',
-                                                            height: '45%',
-                                                        }}
-                                                    />
-                                                </div>
-                                            ) : null
-                                        ))}
+                                                />
+                                            </div>
+                                        )}
                                     </div>
                                 )
                             })}
