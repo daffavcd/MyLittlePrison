@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import ModalPortfolio from './modalPortfolio';
 import { LightBulbIcon, ChevronDoubleUpIcon, ChevronDoubleRightIcon, ChevronDoubleDownIcon, ChevronDoubleLeftIcon } from '@heroicons/react/24/solid'
@@ -13,6 +13,7 @@ import characterUp from '../../../public/images/sprites/char_run_up.gif'
 import characterRight from '../../../public/images/sprites/char_run_right.gif'
 import characterDown from '../../../public/images/sprites/char_run_down.gif'
 import characterLeft from '../../../public/images/sprites/char_run_left.gif'
+import { log } from 'console';
 
 export default function Game() {
 
@@ -24,6 +25,21 @@ export default function Game() {
 
     const IDLE_TIME = 2000;
     const [isIdle, setIsIdle] = useState(false);
+
+    const [portfolioThumbnail, setPortfolioThumbnail] = useState(
+        <div className={`fixed scale-0 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
+            id='thumbnail-portfolio'
+        >
+            <div className="col-span-12">
+                <div className='dark-overlay'></div>
+                <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+                    <div className='flex shadow-sm items-center justify-center text-base leading-normal font-semibold p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'>
+                        {`Show`}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 
     const startX = useRef<number | null>(null);
     const startY = useRef<number | null>(null);
@@ -425,7 +441,7 @@ export default function Game() {
         return isColliding;
     }
 
-    const clickPortfolio = (actualCol: number) => {
+    const clickPortfolio = useCallback((actualCol: number) => {
         console.log(actualCol);
         // SAVES TO INDEXDB
         let bulbCoordinate = actualCol;
@@ -447,7 +463,7 @@ export default function Game() {
         }));
 
         setModalOpen(true);
-    }
+    }, [characterPosition.colCell, mapLayout.portfolioCell]);
 
     const isPortfolioAround = (event: string) => {
         const key = event;
@@ -554,9 +570,66 @@ export default function Game() {
                 break;
             }
         }
-
         return isThereAPortfolio;
     }
+
+    useEffect(() => {
+        let isThereAPortfolio = false;
+        for (const portfolio of mapLayout.portfolioCell) {
+            if (portfolio.colCell === characterPosition.colCell) {
+                isThereAPortfolio = true;
+                break;
+            }
+        }
+
+        if (isThereAPortfolio) {
+            setPortfolioThumbnail(
+                <div className={`fixed translate-x-44 -translate-y-28 scale-100 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
+                    id='thumbnail-portfolio'
+                >
+                    <div className="col-span-12">
+                        <Image
+                            src={`/images/portfolios/${portfolios.find(singlePortfolio => singlePortfolio.colCell === characterPosition.colCell)?.imagesPath[0]}.png`}
+                            className='rounded w-full h-full blur-sm'
+                            title='{portfolio.title}'
+                            alt='{portfolio.title}'
+                            quality={25}
+                            height={107}
+                            width={230}
+                            style={{
+                                objectFit: 'cover',
+                            }}
+                        />
+                        <div className='dark-overlay'></div>
+                        <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+                            <div className='flex shadow-sm items-center justify-center text-base leading-normal font-semibold p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'
+                                onClick={() => clickPortfolio(characterPosition.colCell)}
+                            >
+                                {`Show`}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+            console.log('translated');
+        } else if (!isThereAPortfolio) {
+            setPortfolioThumbnail(
+                <div className={`fixed scale-0 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
+                    id='thumbnail-portfolio'
+                >
+                    <div className="col-span-12">
+                        <div className='dark-overlay'></div>
+                        <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+                            <div className='flex shadow-sm items-center justify-center text-base leading-normal font-semibold p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'>
+                                {`Show`}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+            console.log('remove translated');
+        }
+    }, [characterPosition, mapLayout.portfolioCell, clickPortfolio]);
 
     return (
         <>
@@ -647,33 +720,7 @@ export default function Game() {
                                                             transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
                                                         }}
                                                     />
-                                                    {isThereAPortfolio(actualCol) && (
-                                                        <div className='absolute grid grid-cols-12 p-4 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-xl z-50'>
-                                                            <div className="col-span-12">
-                                                                <Image
-                                                                    src={`/images/portfolios/${portfolios.find(singlePortfolio => singlePortfolio.colCell === characterPosition.colCell)?.imagesPath[0]}.png`}
-                                                                    className='rounded w-full h-full blur-sm'
-                                                                    title={portfolio.title}
-                                                                    alt={portfolio.title}
-                                                                    height={107}
-                                                                    width={230}
-                                                                    style={{
-                                                                        objectFit: 'cover',
-                                                                    }}
-                                                                />
-                                                                {/* <div className='absolute top-0 left-0 flex items-center text-base leading-normal font-medium p-4 text-white text-center z-10 h-full w-full'>
-                                                                <p className='shadow select-none truncate'>I try to create the portfolio showssssssssssssssssssssssssssssssssssssssssssssssssssssscase. </p >
-                                                            </div> */}
-                                                                <div className='dark-overlay'></div>
-                                                                <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                                                                    <div className='flex items-center justify-center text-base leading-normal font-medium p-4 text-white text-center h-16 w-16 rounded-full bg-black hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'>
-                                                                        {`View`}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    )}
-
+                                                    {portfolioThumbnail}
                                                     {/* If the character not at the very top show it */}
                                                     {/* if the it's in desktop and from character coll cell downwards there is an unvisited portfolio show it */}
                                                     <div className={`
