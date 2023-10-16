@@ -26,21 +26,6 @@ export default function Game() {
     const IDLE_TIME = 2000;
     const [isIdle, setIsIdle] = useState(false);
 
-    const [portfolioThumbnail, setPortfolioThumbnail] = useState(
-        <div className={`fixed scale-0 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
-            id='thumbnail-portfolio'
-        >
-            <div className="col-span-12">
-                <div className='dark-overlay'></div>
-                <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                    <div className='flex shadow-sm items-center justify-center text-base leading-normal font-semibold p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'>
-                        {`Show`}
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-
     const startX = useRef<number | null>(null);
     const startY = useRef<number | null>(null);
 
@@ -86,6 +71,21 @@ export default function Game() {
     let cellWidth = useRef(90);
 
     const portfolioCoordinate = mapLayout.portfolioCell.map((x) => x.colCell);
+
+    const [portfolioThumbnail, setPortfolioThumbnail] = useState(
+        <div className={`fixed scale-0 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
+            id='thumbnail-portfolio'
+        >
+            <div className="col-span-12">
+                <div className='dark-overlay'></div>
+                <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+                    <div className='flex shadow-sm items-center justify-center text-base leading-normal font-semibold p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'>
+                        {`Show`}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 
     // ====================================START OF FUNCTION ====================================
 
@@ -575,6 +575,11 @@ export default function Game() {
 
     useEffect(() => {
         let isThereAPortfolio = false;
+        let checkHSide = '-';
+        let checkVSide = '-';
+
+        const charachterColCurrentRowPos = Math.round((characterPosition.colCell % mapLayout.maxColCellEachRow));
+        const charachterRowCurrentPos = characterPosition.rowCell;
         for (const portfolio of mapLayout.portfolioCell) {
             if (portfolio.colCell === characterPosition.colCell) {
                 isThereAPortfolio = true;
@@ -582,9 +587,56 @@ export default function Game() {
             }
         }
 
+        // IN DESKTOP, CHECK VERTICAL SIDE WORKs AS THE HINT FOR WHERE TO SHOW THE THUMBNAIL
+        if (!isDesktop) {
+            if (charachterRowCurrentPos == mapLayout.maxRowCell) {
+                checkVSide = 'Bottom';
+            } else {
+                checkVSide = 'Top';
+            }
+        } else {
+            if (charachterRowCurrentPos == mapLayout.maxRowCell || charachterRowCurrentPos != 1) {
+                checkVSide = 'Bottom';
+            } else {
+                checkVSide = 'Top';
+            }
+        }
+
+
+        if (charachterColCurrentRowPos > Math.round(mapLayout.maxColCellEachRow / 2) || charachterColCurrentRowPos == 0) {
+            checkHSide = 'Right';
+        } else {
+            checkHSide = 'Left';
+        }
+        console.log(charachterColCurrentRowPos + '_' + characterPosition.colCell + '_' + mapLayout.maxColCellEachRow + '_' + Math.round(mapLayout.maxColCellEachRow / 2));
+
+
         if (isThereAPortfolio) {
             setPortfolioThumbnail(
-                <div className={`fixed translate-x-44 -translate-y-28 scale-100 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
+                <div className={`fixed scale-100 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50
+                ${charachterColCurrentRowPos == 0 && checkVSide == 'Top' && !isDesktop
+                        ? '-translate-x-20 translate-y-48' :
+                        charachterColCurrentRowPos == 1 && checkVSide == 'Top' && !isDesktop
+                            ? 'translate-x-20 translate-y-48' :
+                            charachterColCurrentRowPos > 0 && checkVSide == 'Top' && !isDesktop
+                                ? 'translate-y-48' :
+                                charachterColCurrentRowPos == 0 && checkVSide == 'Bottom' && !isDesktop
+                                    ? '-translate-x-20 -translate-y-48' :
+                                    charachterColCurrentRowPos == 1 && checkVSide == 'Bottom' && !isDesktop
+                                        ? 'translate-x-20 -translate-y-48' :
+                                        charachterColCurrentRowPos > 0 && checkVSide == 'Bottom' && !isDesktop
+                                            ? '-translate-y-48 6' :
+                                            checkHSide == 'Left' && checkVSide == 'Top' && isDesktop
+                                                ? 'translate-x-44 translate-y-28'
+                                                : checkHSide == 'Right' && checkVSide == 'Top' && isDesktop
+                                                    ? '-translate-x-44 translate-y-28'
+                                                    : checkHSide == 'Left' && checkVSide == 'Bottom' && isDesktop
+                                                        ? 'translate-x-44 -translate-y-28'
+                                                        : checkHSide == 'Right' && checkVSide == 'Bottom' && isDesktop
+                                                            ? '-translate-x-44 -translate-y-28'
+                                                            : 'translate-x-44 translate-y-28'
+                    }
+                `}
                     id='thumbnail-portfolio'
                 >
                     <div className="col-span-12">
@@ -598,6 +650,10 @@ export default function Game() {
                             width={230}
                             style={{
                                 objectFit: 'cover',
+                                height: '100%',
+                                width: '100%',
+                                maxWidth: '238px',
+                                maxHeight: '110px'
                             }}
                         />
                         <div className='dark-overlay'></div>
@@ -611,25 +667,9 @@ export default function Game() {
                     </div>
                 </div>
             );
-            console.log('translated');
-        } else if (!isThereAPortfolio) {
-            setPortfolioThumbnail(
-                <div className={`fixed scale-0 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
-                    id='thumbnail-portfolio'
-                >
-                    <div className="col-span-12">
-                        <div className='dark-overlay'></div>
-                        <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                            <div className='flex shadow-sm items-center justify-center text-base leading-normal font-semibold p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'>
-                                {`Show`}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-            console.log('remove translated');
         }
-    }, [characterPosition, mapLayout.portfolioCell, clickPortfolio]);
+
+    }, [characterPosition, mapLayout.portfolioCell, mapLayout.maxColCellEachRow, mapLayout.maxRowCell, clickPortfolio, isDesktop]);
 
     return (
         <>
@@ -697,7 +737,6 @@ export default function Game() {
                                         id={`cell-row-${currentRow}-col-${actualCol}`}
                                         className={`character-container flex items-center justify-center col-span-1 text-center border border-blood-darken rounded-sm relative`}
                                     >
-
                                         {/* CONDITION IF ROW & COLL CELL MATCH, TO SHOW CHARACTER  */}
                                         {
                                             (currentRow == characterPosition.rowCell && actualCol == characterPosition.colCell) ? (
@@ -720,7 +759,7 @@ export default function Game() {
                                                             transform: isCharacterMoving ? `translate(${translation.current.dx}, ${translation.current.dy})` : 'none',
                                                         }}
                                                     />
-                                                    {portfolioThumbnail}
+
                                                     {/* If the character not at the very top show it */}
                                                     {/* if the it's in desktop and from character coll cell downwards there is an unvisited portfolio show it */}
                                                     <div className={`
@@ -791,6 +830,23 @@ export default function Game() {
                                         }
 
                                         {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO OBJECT */}
+                                        {isThereAPortfolio(actualCol) &&
+                                            actualCol == characterPosition.colCell ?
+                                            portfolioThumbnail : (
+                                                <div className={`fixed scale-0 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
+                                                    id='thumbnail-portfolio'
+                                                >
+                                                    <div className="col-span-12">
+                                                        <div className='dark-overlay'></div>
+                                                        <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+                                                            <div className='flex shadow-sm items-center justify-center text-base leading-normal font-semibold p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'>
+                                                                {`Show`}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
                                         {isThereAPortfolio(actualCol) && (
                                             <div
                                                 className='flex items-center justify-center'
