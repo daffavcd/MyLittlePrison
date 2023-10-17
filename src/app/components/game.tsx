@@ -442,7 +442,6 @@ export default function Game() {
     }
 
     const clickPortfolio = useCallback((actualCol: number) => {
-        console.log(actualCol);
         // SAVES TO INDEXDB
         let bulbCoordinate = actualCol;
         let getPortfolio = {};
@@ -608,7 +607,7 @@ export default function Game() {
         } else {
             checkHSide = 'Left';
         }
-        console.log(charachterColCurrentRowPos + '_' + characterPosition.colCell + '_' + mapLayout.maxColCellEachRow + '_' + Math.round(mapLayout.maxColCellEachRow / 2));
+        // console.log(charachterColCurrentRowPos + '_' + characterPosition.colCell + '_' + mapLayout.maxColCellEachRow + '_' + Math.round(mapLayout.maxColCellEachRow / 2));
 
 
         if (isThereAPortfolio) {
@@ -651,6 +650,8 @@ export default function Game() {
                             quality={25}
                             height={107}
                             width={230}
+                            placeholder="blur"
+                            blurDataURL='/images/placeholder-image.png'
                             style={{
                                 objectFit: 'cover',
                                 height: '100%',

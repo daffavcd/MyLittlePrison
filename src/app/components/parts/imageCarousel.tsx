@@ -49,7 +49,7 @@ export default function ImageCarousel({ images }: { images: any }) {
                             fill={true}
                             quality={60}
                             placeholder="blur"
-                            blurDataURL='/images/placeholder.png'
+                            blurDataURL='/images/placeholder-image.png'
                             style={{
                                 objectFit: 'cover',
                                 height: '100%',

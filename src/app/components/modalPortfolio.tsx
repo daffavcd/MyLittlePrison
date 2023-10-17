@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import Image from 'next/image';
 import { Dialog, Transition } from '@headlessui/react'
-import { DocumentIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDoubleDownIcon } from '@heroicons/react/24/solid'
 import ImageCarousel from './parts/imageCarousel';
 import Link from 'next/link'
@@ -100,7 +100,7 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                             height={50}
                                                             width={50}
                                                             placeholder="blur"
-                                                            blurDataURL='/images/placeholder.png'
+                                                            blurDataURL='/images/placeholder-image.png'
                                                             style={{
                                                                 objectFit: 'cover',
                                                             }}

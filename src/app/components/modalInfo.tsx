@@ -1,7 +1,7 @@
 import { Fragment, useEffect } from 'react';
 import Image from 'next/image';
 import { Dialog, Transition } from '@headlessui/react'
-import { DocumentIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
 export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButtonInfoRef }: { modalInfoOpen: boolean, setModalInfoOpen: any, cancelButtonInfoRef: any }) {
 
@@ -65,6 +65,8 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="hidden lg:inline"
                                                         width={180}
                                                         height={120}
+                                                        placeholder="blur"
+                                                        blurDataURL='/images/placeholder-image.png'
                                                         style={{
                                                             width: "180px",
                                                             height: "120px",
@@ -77,6 +79,8 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="inline lg:hidden"
                                                         width={180}
                                                         height={120}
+                                                        placeholder="blur"
+                                                        blurDataURL='/images/placeholder-image.png'
                                                         style={{
                                                             width: "180px",
                                                             height: "120px",
@@ -95,6 +99,8 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="inline"
                                                         width={180}
                                                         height={120}
+                                                        placeholder="blur"
+                                                        blurDataURL='/images/placeholder-image.png'
                                                         style={{
                                                             width: "180px",
                                                             height: "120px",
@@ -114,6 +120,8 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="inline"
                                                         width={180}
                                                         height={120}
+                                                        placeholder="blur"
+                                                        blurDataURL='/images/placeholder-image.png'
                                                         style={{
                                                             width: "180px",
                                                             height: "120px",
@@ -132,6 +140,8 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="hidden lg:inline"
                                                         width={180}
                                                         height={120}
+                                                        placeholder="blur"
+                                                        blurDataURL='/images/placeholder-image.png'
                                                         style={{
                                                             width: "180px",
                                                             height: "120px",
@@ -144,6 +154,8 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="inline lg:hidden"
                                                         width={180}
                                                         height={120}
+                                                        placeholder="blur"
+                                                        blurDataURL='/images/placeholder-image.png'
                                                         style={{
                                                             width: "180px",
                                                             height: "120px",
