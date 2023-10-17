@@ -612,6 +612,9 @@ export default function Game() {
 
 
         if (isThereAPortfolio) {
+
+            const getPortfolio = portfolios.find(singlePortfolio => singlePortfolio.colCell === characterPosition.colCell);
+
             setPortfolioThumbnail(
                 <div className={`fixed scale-100 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50
                 ${charachterColCurrentRowPos == 0 && checkVSide == 'Top' && !isDesktop
@@ -641,10 +644,10 @@ export default function Game() {
                 >
                     <div className="col-span-12">
                         <Image
-                            src={`/images/portfolios/${portfolios.find(singlePortfolio => singlePortfolio.colCell === characterPosition.colCell)?.imagesPath[0]}.png`}
-                            className='rounded w-full h-full blur-sm'
-                            title='{portfolio.title}'
-                            alt='{portfolio.title}'
+                            src={`/images/portfolios/${getPortfolio?.imagesPath[0]}.png`}
+                            className={`rounded w-full h-full ${!visitedPortofolio.includes(characterPosition.colCell) ? 'blur-sm' : null}`}
+                            title={`Image of ${getPortfolio?.title}`}
+                            alt={`Image of ${getPortfolio?.title}`}
                             quality={25}
                             height={107}
                             width={230}
@@ -669,7 +672,7 @@ export default function Game() {
             );
         }
 
-    }, [characterPosition, mapLayout.portfolioCell, mapLayout.maxColCellEachRow, mapLayout.maxRowCell, clickPortfolio, isDesktop]);
+    }, [characterPosition, mapLayout.portfolioCell, mapLayout.maxColCellEachRow, mapLayout.maxRowCell, clickPortfolio, isDesktop, visitedPortofolio]);
 
     return (
         <>
@@ -691,17 +694,17 @@ export default function Game() {
                         <div className="dark-overlay-win rounded">
                             <div className="grid grid-cols-12 p-4 h-full gap-6 overflow-auto">
                                 <div className="col-span-12 flex justify-center items-end text-center">
-                                    <span className="font-semibold text-4xl text-blood shadow shadow-black">{`You've Found All of Them!`}</span>
+                                    <span className="font-semibold text-4xl text-blood shadow shadow-black select-none">{`You've Found All The Projects!`}</span>
                                 </div>
                                 <div className='col-span-6 flex justify-end items-center sm:items-start'>
                                     <Link href={`/about`}>
-                                        <div className='inline-flex justify-center items-center text-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl max-h-11 rounded-xl cursor-pointer text-blood hover:text-white'>
-                                            <span className="font-semibold text-xl" >{`About Me`}</span>
+                                        <div className='inline-flex justify-center items-center text-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl max-h-11 rounded-xl cursor-pointer text-blood hover:text-white hover:scale-125 transition-transform ease-in-out duration-150'>
+                                            <span className="font-semibold text-xl" >{`About`}</span>
                                         </div>
                                     </Link>
                                 </div>
                                 <div className='col-span-6 flex justify-start items-center sm:items-start'>
-                                    <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl max-h-11 rounded-xl cursor-pointer text-blood hover:text-white' onClick={() => restartGame()}>
+                                    <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl max-h-11 rounded-xl cursor-pointer text-blood hover:text-white hover:scale-125 transition-transform ease-in-out duration-150' onClick={() => restartGame()}>
                                         <span className="font-semibold text-xl" >{`Restart`}</span>
                                     </div>
                                 </div>
@@ -830,8 +833,9 @@ export default function Game() {
                                         }
 
                                         {/* CONDITION IF COLL CELL MATCH, TO SHOW PORTFOLIO OBJECT */}
-                                        {isThereAPortfolio(actualCol) &&
-                                            actualCol == characterPosition.colCell ?
+                                        {(isThereAPortfolio(actualCol)
+                                            && visitedPortofolio.length != totalProjects
+                                            && actualCol == characterPosition.colCell) ?
                                             portfolioThumbnail : (
                                                 <div className={`fixed scale-0 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
                                                     id='thumbnail-portfolio'
@@ -847,27 +851,28 @@ export default function Game() {
                                                 </div>
                                             )
                                         }
-                                        {isThereAPortfolio(actualCol) && (
-                                            <div
-                                                className='flex items-center justify-center'
-                                                id={`bulp-${actualCol}`}
-                                                style={{
-                                                    position: 'absolute',
-                                                    transition: 'transform 0.3s ease-in-out',
-                                                    transform: isCharacterMoving ? `translate(${translationObject.current.dx}, ${translationObject.current.dy})` : 'none',
-
-                                                }}
-                                            >
-                                                <LightBulbIcon
-                                                    className={`${isIdle && !visitedPortofolio.includes(actualCol) ? 'animate-bounce-mlp' : ''} ${visitedPortofolio.includes(actualCol) ? 'text-red-900' : 'text-blood'} shadow cursor-pointer hover:text-red-900 z-40`} aria-hidden="true" onClick={() => clickPortfolio(currentCol)}
+                                        {mapLayout.portfolioCell.map((portfolio, k) => (
+                                            actualCol === portfolio.colCell ? (
+                                                <div key={k}
+                                                    className='flex items-center justify-center'
                                                     style={{
-                                                        objectFit: 'cover',
-                                                        width: '45%',
-                                                        height: '45%',
+                                                        position: 'absolute',
+                                                        transition: 'transform 0.3s ease-in-out',
+                                                        transform: isCharacterMoving ? `translate(${translationObject.current.dx}, ${translationObject.current.dy})` : 'none',
+
                                                     }}
-                                                />
-                                            </div>
-                                        )}
+                                                >
+                                                    <LightBulbIcon
+                                                        className={`${isIdle && !visitedPortofolio.includes(actualCol) ? 'animate-bounce-mlp' : ''} ${visitedPortofolio.includes(actualCol) ? 'text-red-900' : 'text-blood'} shadow cursor-pointer hover:text-red-900 z-40`} aria-hidden="true" onClick={() => clickPortfolio(portfolio.colCell)}
+                                                        style={{
+                                                            objectFit: 'cover',
+                                                            width: '45%',
+                                                            height: '45%',
+                                                        }}
+                                                    />
+                                                </div>
+                                            ) : null
+                                        ))}
                                     </div>
                                 )
                             })}
