@@ -52,14 +52,14 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                 <div className="bg-modal-mlp px-6 pb-6 pt-5 sm:pb-8">
                                     <div className="sm:flex sm:items-start">
                                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
-                                            <Dialog.Title as="h3" className="text-xl sm:text-2xl text-center font-semibold leading-8 pl-4 pr-4 text-white">
+                                            <Dialog.Title as="h3" className="text-xl sm:text-2xl text-center font-semibold leading-8 pl-6 pr-6 text-white z-80 relative">
                                                 {portfolio.title}
                                             </Dialog.Title>
                                             <div className='border-modal-mlp-2 -mx-6 my-3' />
                                             <div className="mt-2 text-base text-left sm:text-justify text-white break-words">
                                                 <ImageCarousel images={portfolio.imagesPath} />
                                                 {theDescs.map((desc: string, key: number) => (
-                                                    <p className={`mt-3 ${0 === descIteration ? 'sm:indent-8' : ''}`} id={`desc-${descIteration++}`} key={key}>
+                                                    <p className={`mt-3 z-80 relative ${0 === descIteration ? 'sm:indent-8' : ''}`} id={`desc-${descIteration++}`} key={key}>
                                                         {desc}
                                                         {theDescs.length === descIteration && (
                                                             portfolio.repoLink === "Private" ? (
@@ -75,21 +75,21 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                     </p>
                                                 ))}
                                                 <div className='border-modal-mlp-2 -mx-6 my-3' />
-                                                <p className="text-lg text-left font-semibold text-white">
+                                                <p className="text-lg text-left font-semibold text-white z-80 relative">
                                                     Key Features :
                                                 </p>
                                                 <div className='grid mt-2 gap-0 grid-cols-1 pl-7 pr-7 text-white'>
                                                     <ul className="list-disc text-left">
                                                         {portfolio.features.map((feature: string) => (
-                                                            <li key={feature}>{feature}</li>
+                                                            <li className='z-80 relative' key={feature}>{feature}</li>
                                                         ))}
                                                     </ul>
                                                 </div>
                                                 <div className='border-modal-mlp-2 -mx-6 my-3' />
-                                                <p className="text-lg text-left font-semibold text-white">
+                                                <p className="text-lg text-left font-semibold text-white z-80 relative">
                                                     Technologies :
                                                 </p>
-                                                <div className='mt-2 pl-7 pr-7 flex justify-start items-start gap-2 flex-wrap'>
+                                                <div className='mt-2 pl-7 pr-7 flex justify-start items-start gap-2 flex-wrap z-80 relative'>
                                                     {portfolio.techImagesPath.map((tech: string) => (
                                                         <Image
                                                             src={`/images/langs/${tech}.svg`}
@@ -99,6 +99,8 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                             key={tech}
                                                             height={50}
                                                             width={50}
+                                                            placeholder="blur"
+                                                            blurDataURL='/images/placeholder.png'
                                                             style={{
                                                                 objectFit: 'cover',
                                                             }}
@@ -110,7 +112,7 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                         </div>
                                     </div>
                                 </div>
-                                <div className='absolute top-3 right-3 text-2xl rounded-full p-2 bg-black/20 text-blood hover:text-white cursor-pointer' tabIndex={1} onClick={() => setModalOpen(false)}>
+                                <div className='absolute top-3 right-3 text-2xl rounded-full p-2 bg-black/20 text-blood hover:text-white cursor-pointer z-80' tabIndex={1} onClick={() => setModalOpen(false)}>
                                     <XMarkIcon className="h-5 w-5 sm:h-8 sm:w-8" aria-hidden="true" />
                                 </div>
                             </Dialog.Panel>

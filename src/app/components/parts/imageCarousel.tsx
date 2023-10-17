@@ -38,7 +38,7 @@ export default function ImageCarousel({ images }: { images: any }) {
     return (
         <div className="grid grid-cols-12 mt-5 h-full">
             <div className="flex items-center justify-center col-span-12 h-full">
-                <div className='max-w-[1400px] h-[300px] w-full m-auto py-16 px-4 relative group shadow-2xl'>
+                <div className='max-w-[1400px] h-[300px] w-full m-auto py-16 px-4 relative group shadow-2xl select-none'>
                     {slides.current.map((slide: string, slideIndex: number) => (
                         <Image
                             key={slideIndex}
@@ -48,6 +48,8 @@ export default function ImageCarousel({ images }: { images: any }) {
                             title={slide.toUpperCase()}
                             fill={true}
                             quality={60}
+                            placeholder="blur"
+                            blurDataURL='/images/placeholder.png'
                             style={{
                                 objectFit: 'cover',
                                 height: '100%',

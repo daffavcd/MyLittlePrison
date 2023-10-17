@@ -52,12 +52,12 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                 <div className="bg-modal-mlp px-1 sm:px-6 pb-6 pt-5 sm:p-8 sm:pb-8">
                                     <div className="sm:grid sm:items-start">
                                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
-                                            <Dialog.Title as="h3" className="mb-5 text-2xl text-center font-semibold leading-6 pl-4 pr-4 text-white">
+                                            <Dialog.Title as="h3" className="mb-5 text-2xl text-center font-semibold leading-6 pl-6 pr-6 text-white z-80 relative">
                                                 How to discover the projects?
                                             </Dialog.Title>
                                             <div className='border-modal-mlp-2 -mx-6 my-3' />
                                             <div className='grid grid-cols-12 p-3 h-full'>
-                                                <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center">
+                                                <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center z-80 relative">
                                                     <Image
                                                         src="/images/tutorials/1.svg"
                                                         alt="Tutorial 1"
@@ -87,7 +87,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         <li className='break-normal list-item lg:hidden'>Try to swipe inside the box to move.</li>
                                                     </ol>
                                                 </div>
-                                                <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center">
+                                                <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center z-80 relative">
                                                     <Image
                                                         src="/images/tutorials/2.svg"
                                                         alt="Tutorial 2"
@@ -106,7 +106,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                     </ol>
                                                 </div>
 
-                                                <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center mt-2">
+                                                <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center mt-2 z-80 relative">
                                                     <Image
                                                         src="/images/tutorials/3.svg"
                                                         alt="Tutorial 3"
@@ -124,7 +124,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         <li className='break-normal list-item lg:hidden'>Position the character near the Bulb.</li>
                                                     </ol>
                                                 </div>
-                                                <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center mt-2">
+                                                <div className="col-span-6 pl-4 pr-4 sm:pl-6 sm:pr-6 text-center mt-2 z-80 relative">
                                                     <Image
                                                         src="/images/tutorials/4.svg"
                                                         alt="Tutorial 4"
@@ -159,7 +159,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                         </div>
                                     </div>
                                 </div>
-                                <div className='absolute top-3 right-3 text-2xl rounded-full p-2 bg-black/20 text-blood hover:text-white cursor-pointer' tabIndex={1} onClick={() => setModalInfoOpen(false)}>
+                                <div className='absolute top-3 right-3 text-2xl rounded-full p-2 bg-black/20 text-blood hover:text-white cursor-pointer z-80' tabIndex={1} onClick={() => setModalInfoOpen(false)}>
                                     <XMarkIcon className="h-7 w-7 sm:h-8 sm:w-8" aria-hidden="true" />
                                 </div>
                             </Dialog.Panel>

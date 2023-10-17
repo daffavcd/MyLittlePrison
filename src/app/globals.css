@@ -134,6 +134,10 @@ body {
   border: rgb(255 0 0 / 10%) 1px solid;
 }
 
+.z-80 {
+  z-index: 80;
+}
+
 .arrow-slide-down-red-mlp {
   color: rgb(228 0 0);
   width: 66px;
