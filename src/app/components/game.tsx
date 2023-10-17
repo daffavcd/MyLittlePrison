@@ -397,6 +397,8 @@ export default function Game() {
                     colCenter: mapLayout.colCenter - mapLayout.maxColCellEachRow,
                 }
             );
+            // MADE HOVERED THUMBNAIL NOT BUGGING ON CHANGING LAYOUT
+            setHoveredPortfolio(0);
         } else if (heading == "Down") {
             setMapLayout({
                 ...mapLayout,
@@ -404,6 +406,7 @@ export default function Game() {
                 colCenter: mapLayout.colCenter + mapLayout.maxColCellEachRow,
 
             })
+            setHoveredPortfolio(0);
         } else if (heading == "Right") {
             setMapLayout({
                 ...mapLayout,
