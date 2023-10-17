@@ -48,8 +48,8 @@ export default function ImageCarousel({ images }: { images: any }) {
                             title={slide.toUpperCase()}
                             fill={true}
                             quality={60}
+                            blurDataURL="/images/placeholder-image.png"
                             placeholder="blur"
-                            blurDataURL='/images/placeholder-image.png'
                             style={{
                                 objectFit: 'cover',
                                 height: '100%',

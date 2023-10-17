@@ -13,7 +13,6 @@ import characterUp from '../../../public/images/sprites/char_run_up.gif'
 import characterRight from '../../../public/images/sprites/char_run_right.gif'
 import characterDown from '../../../public/images/sprites/char_run_down.gif'
 import characterLeft from '../../../public/images/sprites/char_run_left.gif'
-import { log } from 'console';
 
 export default function Game() {
 
@@ -87,6 +86,18 @@ export default function Game() {
         </div>
     );
 
+    const [portfolioThumbnailOnHover, setPortfolioThumbnailOnHover] = useState(
+        <div className={`fixed scale-0 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
+            id='thumbnail-portfolio=hover'
+            style={{ zIndex: 70 }}
+        >
+            <div className="col-span-12">
+                <div className='dark-overlay'></div>
+            </div>
+        </div>
+    );
+
+    const [hoveredPortfolio, setHoveredPortfolio] = useState(0);
     // ====================================START OF FUNCTION ====================================
 
     const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
@@ -572,6 +583,7 @@ export default function Game() {
         return isThereAPortfolio;
     }
 
+    // WHEN CHARACTER ABOVE THE PORTFOLIO USE EFFECT
     useEffect(() => {
         let isThereAPortfolio = false;
         let checkHSide = '-';
@@ -607,8 +619,6 @@ export default function Game() {
         } else {
             checkHSide = 'Left';
         }
-        // console.log(charachterColCurrentRowPos + '_' + characterPosition.colCell + '_' + mapLayout.maxColCellEachRow + '_' + Math.round(mapLayout.maxColCellEachRow / 2));
-
 
         if (isThereAPortfolio) {
 
@@ -650,8 +660,8 @@ export default function Game() {
                             quality={25}
                             height={107}
                             width={230}
+                            blurDataURL="/images/placeholder-image.png"
                             placeholder="blur"
-                            blurDataURL='/images/placeholder-image.png'
                             style={{
                                 objectFit: 'cover',
                                 height: '100%',
@@ -674,6 +684,88 @@ export default function Game() {
         }
 
     }, [characterPosition, mapLayout.portfolioCell, mapLayout.maxColCellEachRow, mapLayout.maxRowCell, clickPortfolio, isDesktop, visitedPortofolio]);
+
+    // PORTFOLIO HOVER USE EFFECT
+    useEffect(() => {
+        // ABORT IF NOT HOVERED
+        if (hoveredPortfolio == 0) return;
+
+        let checkHSide = '-';
+        let checkVSide = '-';
+
+        const charachterColCurrentRowPos = Math.round((hoveredPortfolio % mapLayout.maxColCellEachRow));
+        const charachterRowCurrentPos = Math.ceil(hoveredPortfolio / mapLayout.maxColCellEachRow);
+
+        if (charachterRowCurrentPos > (mapLayout.rowCenter - 1)) {
+            checkVSide = 'Bottom';
+        } else {
+            checkVSide = 'Top';
+        }
+
+        if (charachterColCurrentRowPos > Math.round(mapLayout.maxColCellEachRow / 2) || charachterColCurrentRowPos == 0) {
+            checkHSide = 'Right';
+        } else {
+            checkHSide = 'Left';
+        }
+
+
+
+        const getPortfolio = portfolios.find(singlePortfolio => singlePortfolio.colCell === hoveredPortfolio);
+
+        setPortfolioThumbnailOnHover(
+            <div className={`fixed scale-100 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50
+                ${charachterColCurrentRowPos == 0 && checkVSide == 'Top' && !isDesktop
+                    ? '-translate-x-20 translate-y-48' :
+                    charachterColCurrentRowPos == 1 && checkVSide == 'Top' && !isDesktop
+                        ? 'translate-x-20 translate-y-48' :
+                        charachterColCurrentRowPos > 0 && checkVSide == 'Top' && !isDesktop
+                            ? 'translate-y-48' :
+                            charachterColCurrentRowPos == 0 && checkVSide == 'Bottom' && !isDesktop
+                                ? '-translate-x-20 -translate-y-48' :
+                                charachterColCurrentRowPos == 1 && checkVSide == 'Bottom' && !isDesktop
+                                    ? 'translate-x-20 -translate-y-48' :
+                                    charachterColCurrentRowPos > 0 && checkVSide == 'Bottom' && !isDesktop
+                                        ? '-translate-y-48 6' :
+                                        checkHSide == 'Left' && checkVSide == 'Top' && isDesktop
+                                            ? 'translate-x-44 translate-y-28'
+                                            : checkHSide == 'Right' && checkVSide == 'Top' && isDesktop
+                                                ? '-translate-x-44 translate-y-28'
+                                                : checkHSide == 'Left' && checkVSide == 'Bottom' && isDesktop
+                                                    ? 'translate-x-44 -translate-y-28'
+                                                    : checkHSide == 'Right' && checkVSide == 'Bottom' && isDesktop
+                                                        ? '-translate-x-44 -translate-y-28'
+                                                        : 'translate-x-44 translate-y-28'
+                }
+                `}
+                id='thumbnail-portfolio=hover'
+                style={{ zIndex: 70 }}
+            >
+                <div className="col-span-12">
+                    <Image
+                        src={`/images/portfolios/${getPortfolio?.imagesPath[0]}.png`}
+                        className={`rounded w-full h-full ${!visitedPortofolio.includes(hoveredPortfolio) ? 'blur-sm' : null}`}
+                        title={`Image of ${getPortfolio?.title}`}
+                        alt={`Image of ${getPortfolio?.title}`}
+                        quality={25}
+                        height={107}
+                        width={230}
+                        blurDataURL="/images/placeholder-image.png"
+                        placeholder="blur"
+                        style={{
+                            objectFit: 'cover',
+                            height: '100%',
+                            width: '100%',
+                            maxWidth: '238px',
+                            maxHeight: '110px'
+                        }}
+                    />
+                    <div className='dark-overlay'></div>
+                </div>
+            </div>
+        );
+
+    }, [hoveredPortfolio, mapLayout.portfolioCell, mapLayout.maxColCellEachRow, mapLayout.maxRowCell, mapLayout.rowCenter, isDesktop, visitedPortofolio]);
+
 
     return (
         <>
@@ -870,7 +962,23 @@ export default function Game() {
                                                             width: '45%',
                                                             height: '45%',
                                                         }}
+                                                        onMouseEnter={() => setHoveredPortfolio(portfolio.colCell)}
+                                                        onMouseLeave={() => setHoveredPortfolio(0)}
                                                     />
+                                                    {(hoveredPortfolio != 0
+                                                        && visitedPortofolio.length != totalProjects
+                                                        && actualCol == hoveredPortfolio) ?
+                                                        portfolioThumbnailOnHover : (
+                                                            <div className={`fixed scale-0 transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-64 h-36 rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
+                                                                id='thumbnail-portfolio=hover'
+                                                                style={{ zIndex: 70 }}
+                                                            >
+                                                                <div className="col-span-12">
+                                                                    <div className='dark-overlay'></div>
+                                                                </div>
+                                                            </div>
+                                                        )
+                                                    }
                                                 </div>
                                             ) : null
                                         ))}
