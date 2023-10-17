@@ -95,7 +95,7 @@ export default function Content() {
                     <Image
                         alt="Background Image"
                         src="/images/ruffy.jpg"
-                        quality={100}
+                        quality={75}
                         fill
                         priority
                         sizes="100vw"

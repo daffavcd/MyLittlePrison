@@ -47,6 +47,7 @@ export default function ImageCarousel({ images }: { images: any }) {
                             alt={slide.toUpperCase()}
                             title={slide.toUpperCase()}
                             fill={true}
+                            quality={60}
                             style={{
                                 objectFit: 'cover',
                                 height: '100%',
