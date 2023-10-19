@@ -663,7 +663,7 @@ export default function Game() {
                             quality={25}
                             height={107}
                             width={230}
-                            blurDataURL="/images/placeholder-image.png"
+                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
                             placeholder="blur"
                             style={{
                                 objectFit: 'cover',
@@ -752,7 +752,7 @@ export default function Game() {
                         quality={25}
                         height={107}
                         width={230}
-                        blurDataURL="/images/placeholder-image.png"
+                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
                         placeholder="blur"
                         style={{
                             objectFit: 'cover',

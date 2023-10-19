@@ -99,7 +99,7 @@ export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, can
                                                             key={tech}
                                                             height={50}
                                                             width={50}
-                                                            blurDataURL="/images/placeholder-image.png"
+                                                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
                                                             placeholder="blur"
                                                             style={{
                                                                 objectFit: 'cover',

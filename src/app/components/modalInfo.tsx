@@ -65,7 +65,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="hidden lg:inline"
                                                         width={180}
                                                         height={120}
-                                                        blurDataURL="/images/placeholder-image.png"
+                                                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
                                                         placeholder="blur"
                                                         style={{
                                                             width: "180px",
@@ -79,7 +79,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="inline lg:hidden"
                                                         width={180}
                                                         height={120}
-                                                        blurDataURL="/images/placeholder-image.png"
+                                                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
                                                         placeholder="blur"
                                                         style={{
                                                             width: "180px",
@@ -99,7 +99,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="inline"
                                                         width={180}
                                                         height={120}
-                                                        blurDataURL="/images/placeholder-image.png"
+                                                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
                                                         placeholder="blur"
                                                         style={{
                                                             width: "180px",
@@ -120,7 +120,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="inline"
                                                         width={180}
                                                         height={120}
-                                                        blurDataURL="/images/placeholder-image.png"
+                                                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
                                                         placeholder="blur"
                                                         style={{
                                                             width: "180px",
@@ -140,7 +140,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="hidden lg:inline"
                                                         width={180}
                                                         height={120}
-                                                        blurDataURL="/images/placeholder-image.png"
+                                                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
                                                         placeholder="blur"
                                                         style={{
                                                             width: "180px",
@@ -154,7 +154,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                         className="inline lg:hidden"
                                                         width={180}
                                                         height={120}
-                                                        blurDataURL="/images/placeholder-image.png"
+                                                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
                                                         placeholder="blur"
                                                         style={{
                                                             width: "180px",
