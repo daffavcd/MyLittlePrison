@@ -76,6 +76,22 @@ export default function Game() {
             id='thumbnail-portfolio'
         >
             <div className="col-span-12">
+                <Image
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
+                    title={`Blur`}
+                    alt={`Blur`}
+                    height={107}
+                    width={230}
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
+                    placeholder="blur"
+                    style={{
+                        objectFit: 'cover',
+                        height: '100%',
+                        width: '100%',
+                        maxWidth: '238px',
+                        maxHeight: '110px'
+                    }}
+                />
                 <div className='dark-overlay'></div>
                 <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                     <div className='flex shadow-sm items-center justify-center text-base leading-normal font-semibold p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'>
@@ -92,6 +108,22 @@ export default function Game() {
             style={{ zIndex: 70 }}
         >
             <div className="col-span-12">
+                <Image
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
+                    title={`Blur`}
+                    alt={`Blur`}
+                    height={107}
+                    width={230}
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
+                    placeholder="blur"
+                    style={{
+                        objectFit: 'cover',
+                        height: '100%',
+                        width: '100%',
+                        maxWidth: '238px',
+                        maxHeight: '110px'
+                    }}
+                />
                 <div className='dark-overlay'></div>
             </div>
         </div>
@@ -937,6 +969,22 @@ export default function Game() {
                                                     id='thumbnail-portfolio'
                                                 >
                                                     <div className="col-span-12">
+                                                        <Image
+                                                            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
+                                                            title={`Blur`}
+                                                            alt={`Blur`}
+                                                            height={107}
+                                                            width={230}
+                                                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
+                                                            placeholder="blur"
+                                                            style={{
+                                                                objectFit: 'cover',
+                                                                height: '100%',
+                                                                width: '100%',
+                                                                maxWidth: '238px',
+                                                                maxHeight: '110px'
+                                                            }}
+                                                        />
                                                         <div className='dark-overlay'></div>
                                                         <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                                                             <div className='flex shadow-sm items-center justify-center text-base leading-normal font-semibold p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'>
@@ -977,6 +1025,22 @@ export default function Game() {
                                                                 style={{ zIndex: 70 }}
                                                             >
                                                                 <div className="col-span-12">
+                                                                    <Image
+                                                                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
+                                                                        title={`Blur`}
+                                                                        alt={`Blur`}
+                                                                        height={107}
+                                                                        width={230}
+                                                                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
+                                                                        placeholder="blur"
+                                                                        style={{
+                                                                            objectFit: 'cover',
+                                                                            height: '100%',
+                                                                            width: '100%',
+                                                                            maxWidth: '238px',
+                                                                            maxHeight: '110px'
+                                                                        }}
+                                                                    />
                                                                     <div className='dark-overlay'></div>
                                                                 </div>
                                                             </div>
