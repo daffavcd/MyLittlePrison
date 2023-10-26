@@ -3,7 +3,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import ModalPortfolio from './modalPortfolio';
 import { LightBulbIcon, ChevronDoubleUpIcon, ChevronDoubleRightIcon, ChevronDoubleDownIcon, ChevronDoubleLeftIcon } from '@heroicons/react/24/solid'
-import { portfolios } from '../data/portfolios';
+import { portfolios } from '../../data/portfolios';
 import localforage from 'localforage';
 import Link from 'next/link'
 
@@ -801,6 +801,61 @@ export default function Game() {
 
     }, [hoveredPortfolio, mapLayout.portfolioCell, mapLayout.maxColCellEachRow, mapLayout.maxRowCell, mapLayout.rowCenter, isDesktop, visitedPortofolio]);
 
+    // GETTING TRAFFICS CODES
+    const postIdentity = useCallback(async (ipAddress: any, locationData: any) => {
+        let formData = new FormData();
+        formData.append('user_identity', ipAddress);
+        formData.append('used_device', isDesktop ? 'Desktop' : 'Mobile');
+        formData.append('visited_pages', 'Home');
+        formData.append('user_geolocation', JSON.stringify(locationData));
+
+        const createIdentity = await fetch('/traffics', {
+            method: 'POST',
+            body: formData
+        });
+
+        if (createIdentity.ok) {
+            await createIdentity.json();
+            return true;
+        } else {
+            console.error('Failed to create identity');
+            return false;
+        }
+    }, [isDesktop]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(`User IP address is ${data.ip}`);
+
+                    // FIND IP GEOLOCATION 
+                    const locationResponse = await fetch(`http://ip-api.com/json/${data.ip}`);
+                    if (locationResponse.ok) {
+                        const locationData = await locationResponse.json();
+                        console.log(`User Geolocation is ${locationData.country}`);
+
+                        // CREATE IDENTITYY
+                        const insertingIdentity = await postIdentity(data.ip, locationData)
+                        if (insertingIdentity) {
+                            console.log('Identity created!');
+                        }
+                    } else {
+                        console.error('Failed to fetch location information');
+                    }
+
+                } else {
+                    console.error('Failed to fetch IP address');
+                }
+            } catch (error) {
+                console.error('An error occurred:', error);
+            }
+        };
+
+        fetchData();
+    }, [postIdentity]);
 
     return (
         <>
