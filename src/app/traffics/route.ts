@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import { NextResponse } from 'next/server'
 
 const supabaseUrl = process.env.SUPABASE_URL || '';
 const supabaseKey = process.env.SUPABASE_SECRET_KEY || '';
@@ -13,27 +14,23 @@ export async function GET() {
 
         if (error) {
             console.error('Error fetching data:', error);
-            return new Response(JSON.stringify({
+            return NextResponse.json({
                 error: error,
                 status: 500
-            }), {
-                status: 500
-            });
+            })
         }
 
-        return Response.json({
+        return NextResponse.json({
             traffics,
             status: 200,
             description: 'Traffics fetched successfully'
         })
     } catch (error) {
         console.error('An error occurred:', error);
-        return new Response(JSON.stringify({
+        return NextResponse.json({
             error: error,
             status: 500
-        }), {
-            status: 500
-        });
+        })
     }
 };
 
@@ -65,14 +62,14 @@ export async function POST(request: Request) {
 
         if (errorCheck) {
             console.error('Error inserting data:', errorCheck);
-            return Response.json({
+            return NextResponse.json({
                 error: errorCheck,
                 status: 500
             })
         }
 
         if (trafficsCheck != null && trafficsCheck.length > 0) {
-            return Response.json({
+            return NextResponse.json({
                 trafficsCheck,
                 status: 200,
                 description: 'Identity already exists for today'
@@ -87,24 +84,22 @@ export async function POST(request: Request) {
 
         if (error) {
             console.error('Error inserting data:', error);
-            return Response.json({
+            return NextResponse.json({
                 error: error,
                 status: 500
             })
         }
 
-        return Response.json({
+        return NextResponse.json({
             data,
             status: 200,
             description: 'New Indentity inserted successfully'
         })
     } catch (error) {
         console.error('An error occurred:', error);
-        return new Response(JSON.stringify({
+        return NextResponse.json({
             error: error,
             status: 500
-        }), {
-            status: 500
-        });
+        })
     }
 }
