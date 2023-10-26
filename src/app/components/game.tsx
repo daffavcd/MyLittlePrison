@@ -803,9 +803,12 @@ export default function Game() {
 
     // GETTING TRAFFICS CODES
     const postIdentity = useCallback(async (ipAddress: any, locationData: any) => {
+        const currentMediaQuery = window.matchMedia('(max-width: 639px)');
+        const currentIsDesktop = !currentMediaQuery.matches;
+
         let formData = new FormData();
         formData.append('user_identity', ipAddress);
-        formData.append('used_device', isDesktop ? 'Desktop' : 'Mobile');
+        formData.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
         formData.append('visited_pages', 'Home');
         formData.append('user_geolocation', JSON.stringify(locationData));
 
@@ -821,7 +824,7 @@ export default function Game() {
             console.error('Failed to create identity');
             return false;
         }
-    }, [isDesktop]);
+    }, []);
 
     useEffect(() => {
         const fetchData = async () => {
