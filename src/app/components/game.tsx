@@ -826,28 +826,19 @@ export default function Game() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://api.ipify.org?format=json');
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log(`User IP address is ${data.ip}`);
+                // FIND IP GEOLOCATION 
+                const locationResponse = await fetch(`https://ipapi.co/json/`);
+                if (locationResponse.ok) {
+                    const locationData = await locationResponse.json();
+                    console.log(`User Geolocation is ${locationData.country_name}`);
 
-                    // FIND IP GEOLOCATION 
-                    const locationResponse = await fetch(`http://ip-api.com/json/${data.ip}`);
-                    if (locationResponse.ok) {
-                        const locationData = await locationResponse.json();
-                        console.log(`User Geolocation is ${locationData.country}`);
-
-                        // CREATE IDENTITYY
-                        const insertingIdentity = await postIdentity(data.ip, locationData)
-                        if (insertingIdentity) {
-                            console.log('Identity created!');
-                        }
-                    } else {
-                        console.error('Failed to fetch location information');
+                    // CREATE IDENTITYY
+                    const insertingIdentity = await postIdentity(locationData.ip, locationData)
+                    if (insertingIdentity) {
+                        console.log('Identity identified!');
                     }
-
                 } else {
-                    console.error('Failed to fetch IP address');
+                    console.error('Failed to fetch location information');
                 }
             } catch (error) {
                 console.error('An error occurred:', error);
