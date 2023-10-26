@@ -203,7 +203,7 @@ export default function Game() {
         if (centerCell != null || centerCell != undefined) {
             cellHeight.current = centerCell.offsetHeight;
             cellWidth.current = centerCell.offsetWidth;
-            console.log(`New cell dimension detected! ${cellHeight.current}px x ${cellWidth.current}px `);
+            // console.log(`New cell dimension detected! ${cellHeight.current}px x ${cellWidth.current}px `);
         }
     }, [mapLayout]);
 
@@ -420,7 +420,7 @@ export default function Game() {
     }
 
     const changeMapLayout = (heading: string) => {
-        console.log("Map Layout Changed!");
+        // console.log("Map Layout Changed!");
         if (heading == "Up") {
             setMapLayout(
                 {

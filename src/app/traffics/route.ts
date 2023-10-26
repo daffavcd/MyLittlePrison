@@ -13,10 +13,12 @@ export async function GET() {
 
         if (error) {
             console.error('Error fetching data:', error);
-            return Response.json({
+            return new Response(JSON.stringify({
                 error: error,
                 status: 500
-            })
+            }), {
+                status: 500
+            });
         }
 
         return Response.json({
@@ -26,10 +28,12 @@ export async function GET() {
         })
     } catch (error) {
         console.error('An error occurred:', error);
-        return Response.json({
+        return new Response(JSON.stringify({
             error: error,
             status: 500
-        })
+        }), {
+            status: 500
+        });
     }
 };
 
@@ -96,9 +100,11 @@ export async function POST(request: Request) {
         })
     } catch (error) {
         console.error('An error occurred:', error);
-        return Response.json({
+        return new Response(JSON.stringify({
             error: error,
             status: 500
-        })
+        }), {
+            status: 500
+        });
     }
 }
