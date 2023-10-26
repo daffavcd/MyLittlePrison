@@ -59,6 +59,7 @@ export async function POST(request: Request) {
             .select("*")
             .eq('user_identity', requestForm.user_identity)
             .eq('access_date', requestForm.access_date)
+            .eq('used_device', requestForm.used_device)
 
         if (errorCheck) {
             console.error('Error inserting data:', errorCheck);
