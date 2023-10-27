@@ -49,11 +49,6 @@ export async function POST(request: Request) {
 
         }
 
-        // PORTFOLIOS SESSION DURATION UPDATE
-        if (requestForm.session_duration !== null && requestForm.session_duration !== undefined) {
-            updateRequest = { ...updateRequest, session_duration: requestForm.session_duration }
-        }
-
         // PORTFOLIOS VISITED PAGE UPDATE
         if (requestForm.visited_pages !== null && requestForm.visited_pages !== undefined) {
             updateRequest = { ...updateRequest, visited_pages: requestForm.visited_pages }
@@ -77,6 +72,10 @@ export async function POST(request: Request) {
             }
 
             if (trafficsCheck != null && trafficsCheck.length > 0) {
+                // PORTFOLIOS SESSION DURATION UPDATE
+                if (requestForm.session_duration !== null && requestForm.session_duration !== undefined) {
+                    updateRequest = { ...updateRequest, session_duration: parseFloat(trafficsCheck[0].session_duration) + parseFloat(requestForm.session_duration.toString()) }
+                }
                 updateRequest = { ...updateRequest, total_character_movements: parseInt(trafficsCheck[0].total_character_movements) + parseInt(requestForm.total_character_movements.toString()) }
             }
         }

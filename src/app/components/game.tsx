@@ -20,6 +20,7 @@ export default function Game() {
     const totalProjects = portfolios.length;
 
     const currentStackingMovements = useRef(0);
+    const freshSession = useRef(new Date().toISOString());
 
     const [isDesktop, setIsDesktop] = useState(true);
 
@@ -875,16 +876,23 @@ export default function Game() {
 
     useEffect(() => {
         // TRACK TRAFFICS TO DATABASE (TOTAL MOVEMENTS) --------------------------
-        const updateMovements = async () => {
+
+        const updateMovementsAndSession = async () => {
             if (!isIdle) return;
             const currentMediaQuery = window.matchMedia('(max-width: 639px)');
             const currentIsDesktop = !currentMediaQuery.matches;
             const currentIPAddress = clientIpAddress.current;
 
+            const startSession = freshSession.current;
+            const endSession = new Date().toISOString();
+            const timeDifferenceInMilliseconds = Date.parse(endSession) - Date.parse(startSession);
+            const timeDifferenceInSeconds = timeDifferenceInMilliseconds / 1000;
+
             let formData_portfolio_opened = new FormData();
             formData_portfolio_opened.append('user_identity', currentIPAddress);
             formData_portfolio_opened.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
             formData_portfolio_opened.append('total_character_movements', currentStackingMovements.current.toString());
+            formData_portfolio_opened.append('session_duration', timeDifferenceInSeconds.toString());
             const movementsResponse = await fetch('/traffics-update', {
                 method: 'POST',
                 body: formData_portfolio_opened
@@ -892,11 +900,12 @@ export default function Game() {
 
             if (movementsResponse.ok) {
                 currentStackingMovements.current = 0;
+                freshSession.current = new Date().toISOString();
             } else {
                 console.error('Failed to post movements of character');
             }
         };
-        updateMovements();
+        updateMovementsAndSession();
 
     }, [isIdle]);
 
