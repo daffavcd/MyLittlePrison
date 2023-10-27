@@ -77,7 +77,7 @@ export async function POST(request: Request) {
             }
 
             if (trafficsCheck != null && trafficsCheck.length > 0) {
-                updateRequest = { ...updateRequest, total_character_movements: parseInt(trafficsCheck[0].total_character_movements) + 1 }
+                updateRequest = { ...updateRequest, total_character_movements: parseInt(trafficsCheck[0].total_character_movements) + parseInt(requestForm.total_character_movements.toString()) }
             }
         }
 

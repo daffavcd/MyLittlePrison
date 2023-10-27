@@ -19,6 +19,7 @@ export default function Game() {
     let actualCol = 0;
     const totalProjects = portfolios.length;
 
+    const currentStackingMovements = useRef(0);
 
     const [isDesktop, setIsDesktop] = useState(true);
 
@@ -463,23 +464,7 @@ export default function Game() {
         } else if (heading == "Left") {
             setCharacterPosition({ rowCell: characterPosition.rowCell, colCell: characterPosition.colCell - 1 });
         }
-
-        // TRACK TRAFFICS TO DATABASE (TOTAL MOVEMENTS) --------------------------
-        const updateMovements = async () => {
-            const currentMediaQuery = window.matchMedia('(max-width: 639px)');
-            const currentIsDesktop = !currentMediaQuery.matches;
-            const currentIPAddress = clientIpAddress.current;
-
-            let formData_portfolio_opened = new FormData();
-            formData_portfolio_opened.append('user_identity', currentIPAddress);
-            formData_portfolio_opened.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
-            formData_portfolio_opened.append('total_character_movements', '1');
-            fetch('/traffics-update', {
-                method: 'POST',
-                body: formData_portfolio_opened
-            });
-        };
-        updateMovements();
+        currentStackingMovements.current = currentStackingMovements.current + 1;
     }
 
     const isColliding = (heading: string) => {
@@ -573,17 +558,10 @@ export default function Game() {
                 formData_portfolio_opened.append('user_identity', currentIPAddress);
                 formData_portfolio_opened.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
                 formData_portfolio_opened.append('portfolios_opened', '1');
-                const createIdentity = await fetch('/traffics-update', {
+                fetch('/traffics-update', {
                     method: 'POST',
                     body: formData_portfolio_opened
                 });
-
-                if (createIdentity.ok) {
-                    return true;
-                } else {
-                    console.error('Failed to update traffic (Portfolio Opened)');
-                    return false;
-                }
             }
 
         } catch (err) {
@@ -894,6 +872,33 @@ export default function Game() {
 
         fetchData();
     }, [postIdentity]);
+
+    useEffect(() => {
+        // TRACK TRAFFICS TO DATABASE (TOTAL MOVEMENTS) --------------------------
+        const updateMovements = async () => {
+            if (!isIdle) return;
+            const currentMediaQuery = window.matchMedia('(max-width: 639px)');
+            const currentIsDesktop = !currentMediaQuery.matches;
+            const currentIPAddress = clientIpAddress.current;
+
+            let formData_portfolio_opened = new FormData();
+            formData_portfolio_opened.append('user_identity', currentIPAddress);
+            formData_portfolio_opened.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
+            formData_portfolio_opened.append('total_character_movements', currentStackingMovements.current.toString());
+            const movementsResponse = await fetch('/traffics-update', {
+                method: 'POST',
+                body: formData_portfolio_opened
+            });
+
+            if (movementsResponse.ok) {
+                currentStackingMovements.current = 0;
+            } else {
+                console.error('Failed to post movements of character');
+            }
+        };
+        updateMovements();
+
+    }, [isIdle]);
 
     return (
         <>
