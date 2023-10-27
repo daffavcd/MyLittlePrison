@@ -888,14 +888,14 @@ export default function Game() {
             const timeDifferenceInMilliseconds = Date.parse(endSession) - Date.parse(startSession);
             const timeDifferenceInSeconds = timeDifferenceInMilliseconds / 1000;
 
-            let formData_portfolio_opened = new FormData();
-            formData_portfolio_opened.append('user_identity', currentIPAddress);
-            formData_portfolio_opened.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
-            formData_portfolio_opened.append('total_character_movements', currentStackingMovements.current.toString());
-            formData_portfolio_opened.append('session_duration', timeDifferenceInSeconds.toString());
+            let formData_movements_session = new FormData();
+            formData_movements_session.append('user_identity', currentIPAddress);
+            formData_movements_session.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
+            formData_movements_session.append('total_character_movements', currentStackingMovements.current.toString());
+            formData_movements_session.append('session_duration', timeDifferenceInSeconds.toString());
             const movementsResponse = await fetch('/traffics-update', {
                 method: 'POST',
-                body: formData_portfolio_opened
+                body: formData_movements_session
             });
 
             if (movementsResponse.ok) {

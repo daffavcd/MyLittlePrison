@@ -77,6 +77,11 @@ export default function Content() {
     }, [currentCertificate]);
 
     // TRACK TRAFFICS TO DATABASE (PAGES OPENED) --------------------------
+    const [isIdle, setIsIdle] = useState(false);
+    const clientIpAddress = useRef('')
+    const freshSession = useRef(new Date().toISOString());
+    const IDLE_TIME = 4000;
+
     useEffect(() => {
         const fetchData = async () => {
             const currentMediaQuery = window.matchMedia('(max-width: 639px)');
@@ -96,6 +101,7 @@ export default function Content() {
                 });
 
                 if (createIdentity.ok) {
+                    clientIpAddress.current = locationData.ip;
                     return true;
                 } else {
                     console.error('Failed to create identity');
@@ -107,6 +113,41 @@ export default function Content() {
         };
         fetchData();
     }, []);
+
+    // TRACKING SESSION 5 SECONDS LOOPING -----------------------------------
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setIsIdle(!isIdle);
+        }, IDLE_TIME);
+
+        return () => {
+            clearTimeout(timeoutId); // Cleanup the timer on unmount
+        };
+    });
+
+    useEffect(() => {
+        const currentMediaQuery = window.matchMedia('(max-width: 639px)');
+        const currentIsDesktop = !currentMediaQuery.matches;
+        const currentIPAddress = clientIpAddress.current;
+
+        const startSession = freshSession.current;
+        const endSession = new Date().toISOString();
+        const timeDifferenceInMilliseconds = Date.parse(endSession) - Date.parse(startSession);
+        const timeDifferenceInSeconds = timeDifferenceInMilliseconds / 1000;
+
+        let formData_session = new FormData();
+        formData_session.append('user_identity', currentIPAddress);
+        formData_session.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
+        formData_session.append('total_character_movements', '0');
+        formData_session.append('session_duration', timeDifferenceInSeconds.toString());
+
+        fetch('/traffics-update', {
+            method: 'POST',
+            body: formData_session
+        });
+        freshSession.current = new Date().toISOString();
+    }, [isIdle]);
+
 
     const prevSlide = () => {
         const isFirstSlide = currentCertificate === 0;
