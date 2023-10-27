@@ -463,6 +463,23 @@ export default function Game() {
         } else if (heading == "Left") {
             setCharacterPosition({ rowCell: characterPosition.rowCell, colCell: characterPosition.colCell - 1 });
         }
+
+        // TRACK TRAFFICS TO DATABASE (TOTAL MOVEMENTS) --------------------------
+        const updateMovements = async () => {
+            const currentMediaQuery = window.matchMedia('(max-width: 639px)');
+            const currentIsDesktop = !currentMediaQuery.matches;
+            const currentIPAddress = clientIpAddress.current;
+
+            let formData_portfolio_opened = new FormData();
+            formData_portfolio_opened.append('user_identity', currentIPAddress);
+            formData_portfolio_opened.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
+            formData_portfolio_opened.append('total_character_movements', '1');
+            fetch('/traffics-update', {
+                method: 'POST',
+                body: formData_portfolio_opened
+            });
+        };
+        updateMovements();
     }
 
     const isColliding = (heading: string) => {
@@ -564,7 +581,7 @@ export default function Game() {
                 if (createIdentity.ok) {
                     return true;
                 } else {
-                    console.error('Failed to create identity');
+                    console.error('Failed to update traffic (Portfolio Opened)');
                     return false;
                 }
             }

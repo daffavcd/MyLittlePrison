@@ -61,7 +61,24 @@ export async function POST(request: Request) {
 
         // PORTFOLIOS CHARACTER MOVEMENTS UPDATE
         if (requestForm.total_character_movements !== null && requestForm.total_character_movements !== undefined) {
-            updateRequest = { ...updateRequest, total_character_movements: requestForm.total_character_movements }
+            let { data: trafficsCheck, error: errorCheck } = await supabase
+                .from('traffics')
+                .select("*")
+                .eq('user_identity', requestForm.user_identity)
+                .eq('access_date', requestForm.access_date)
+                .eq('used_device', requestForm.used_device)
+
+            if (errorCheck) {
+                console.error('Error getting current identity', errorCheck);
+                return NextResponse.json({
+                    error: errorCheck,
+                    status: 500
+                })
+            }
+
+            if (trafficsCheck != null && trafficsCheck.length > 0) {
+                updateRequest = { ...updateRequest, total_character_movements: parseInt(trafficsCheck[0].total_character_movements) + 1 }
+            }
         }
 
         const { data, error } = await supabase
