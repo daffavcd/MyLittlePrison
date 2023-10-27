@@ -76,6 +76,38 @@ export default function Content() {
         return () => clearInterval(changeSlide);
     }, [currentCertificate]);
 
+    // TRACK TRAFFICS TO DATABASE (PAGES OPENED) --------------------------
+    useEffect(() => {
+        const fetchData = async () => {
+            const currentMediaQuery = window.matchMedia('(max-width: 639px)');
+            const currentIsDesktop = !currentMediaQuery.matches;
+            let formData = new FormData();
+
+            const locationResponse = await fetch(`https://ipapi.co/json/`);
+            if (locationResponse.ok) {
+                const locationData = await locationResponse.json();
+                formData.append('user_identity', locationData.ip);
+                formData.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
+                formData.append('visited_pages', 'Home|About');
+
+                const createIdentity = await fetch('/traffics-update', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (createIdentity.ok) {
+                    return true;
+                } else {
+                    console.error('Failed to create identity');
+                    return false;
+                }
+            } else {
+                console.error('Failed to fetch location information');
+            }
+        };
+        fetchData();
+    }, []);
+
     const prevSlide = () => {
         const isFirstSlide = currentCertificate === 0;
         const newIndex = isFirstSlide ? slides.current.length - 1 : currentCertificate - 1;
