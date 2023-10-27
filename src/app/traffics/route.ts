@@ -44,11 +44,11 @@ export async function POST(request: Request) {
         const formData = await request.formData()
         const requestForm = {
             user_identity: formData.get('user_identity'),
-            portfolios_opened: formData.get('portfolios_opened'),
-            session_duration: formData.get('session_duration'),
+            portfolios_opened: 0,
+            session_duration: 0,
             used_device: formData.get('used_device'),
             visited_pages: formData.get('visited_pages'),
-            total_character_movements: formData.get('total_character_movements'),
+            total_character_movements: 0,
             user_geolocation: formData.get('user_geolocation'),
             access_date: `${year}-${month}-${day}`
         };
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
             .eq('used_device', requestForm.used_device)
 
         if (errorCheck) {
-            console.error('Error inserting data:', errorCheck);
+            console.error('Error getting current identity', errorCheck);
             return NextResponse.json({
                 error: errorCheck,
                 status: 500

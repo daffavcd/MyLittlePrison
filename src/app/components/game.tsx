@@ -30,6 +30,7 @@ export default function Game() {
 
     const [modalOpen, setModalOpen] = useState(false)
     const cancelButtonRef = useRef(null)
+    const clientIpAddress = useRef('')
 
     const [isCharacterMoving, setIsCharacterMoving] = useState(false);
     const [characterImage, setCharacterImage] = useState(characterIdle);
@@ -524,7 +525,8 @@ export default function Game() {
     }
 
     const setIndexDB = async (characterCoordinate: number) => {
-        let updatedVisitedPortofolio: number[];;
+        let updatedVisitedPortofolio: number[];
+        let shouldUpdateTraffic = true;
         try {
             const oldValue = await localforage.getItem("visitedPortofolio");
 
@@ -534,14 +536,39 @@ export default function Game() {
                     updatedVisitedPortofolio = [...oldValue, characterCoordinate];
                 } else {
                     updatedVisitedPortofolio = oldValue;
+                    shouldUpdateTraffic = false;
                 }
             } else {
-                // initialize updatedVisitedPortofolio with characterCoordinate
+                // initialize updatedVisitedPortofolio with characterCoordinate for the first time
                 updatedVisitedPortofolio = [characterCoordinate];
             }
-            setVisitedPortofolio(updatedVisitedPortofolio)
 
+            setVisitedPortofolio(updatedVisitedPortofolio)
             await localforage.setItem("visitedPortofolio", updatedVisitedPortofolio);
+
+            if (shouldUpdateTraffic) {
+                // TRACK TRAFFICS TO DATABASE (PORTFOLIO OPENED) --------------------------
+                const currentMediaQuery = window.matchMedia('(max-width: 639px)');
+                const currentIsDesktop = !currentMediaQuery.matches;
+                const currentIPAddress = clientIpAddress.current;
+
+                let formData_portfolio_opened = new FormData();
+                formData_portfolio_opened.append('user_identity', currentIPAddress);
+                formData_portfolio_opened.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
+                formData_portfolio_opened.append('portfolios_opened', '1');
+                const createIdentity = await fetch('/traffics-update', {
+                    method: 'POST',
+                    body: formData_portfolio_opened
+                });
+
+                if (createIdentity.ok) {
+                    return true;
+                } else {
+                    console.error('Failed to create identity');
+                    return false;
+                }
+            }
+
         } catch (err) {
             console.log(err);
         }
@@ -805,6 +832,7 @@ export default function Game() {
     const postIdentity = useCallback(async (ipAddress: any, locationData: any) => {
         const currentMediaQuery = window.matchMedia('(max-width: 639px)');
         const currentIsDesktop = !currentMediaQuery.matches;
+        clientIpAddress.current = ipAddress;
 
         let formData = new FormData();
         formData.append('user_identity', ipAddress);
@@ -818,7 +846,6 @@ export default function Game() {
         });
 
         if (createIdentity.ok) {
-            await createIdentity.json();
             return true;
         } else {
             console.error('Failed to create identity');
