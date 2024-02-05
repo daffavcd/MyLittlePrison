@@ -85,7 +85,9 @@ body {
 
 .-translate-y-double-full {
   --tw-translate-y: -200%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .portfolio-object-container {
@@ -141,6 +143,32 @@ body {
 
 .z-80 {
   z-index: 80;
+}
+
+.rhap_container {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.rhap_time {
+  color: inherit !important;
+}
+
+.rhap_progress-indicator {
+  background: #e50914 !important;
+  box-shadow: none !important;
+}
+
+.rhap_progress-filled {
+  background-color: #e50914 !important;
+}
+
+.rhap_main-controls-button {
+  color: #e50914 !important;
+}
+
+.rhap_download-progress {
+  background-color: #fff !important;
 }
 
 .arrow-slide-down-red-mlp {

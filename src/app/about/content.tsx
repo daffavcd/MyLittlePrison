@@ -343,7 +343,7 @@ export default function Content() {
                         {formattedTime}
                     </div>
                     <div className='col-span-12 mb-3 sm:mb-0 text-center sm:col-span-3 sm:text-right text-lg'>
-                        {`© 2023`}<br />{`thePromisedDesires`}
+                        {`© 2024`}<br />{`thePromisedDesires`}
                     </div>
                 </div>
             </div >
