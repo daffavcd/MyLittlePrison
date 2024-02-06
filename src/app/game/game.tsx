@@ -825,89 +825,89 @@ export default function Game() {
     }, [hoveredPortfolio, mapLayout.portfolioCell, mapLayout.maxColCellEachRow, mapLayout.maxRowCell, mapLayout.rowCenter, isDesktop, visitedPortofolio]);
 
     // GETTING TRAFFICS CODES
-    const postIdentity = useCallback(async (ipAddress: any, locationData: any) => {
-        const currentMediaQuery = window.matchMedia('(max-width: 639px)');
-        const currentIsDesktop = !currentMediaQuery.matches;
-        clientIpAddress.current = ipAddress;
+    // const postIdentity = useCallback(async (ipAddress: any, locationData: any) => {
+    //     const currentMediaQuery = window.matchMedia('(max-width: 639px)');
+    //     const currentIsDesktop = !currentMediaQuery.matches;
+    //     clientIpAddress.current = ipAddress;
 
-        let formData = new FormData();
-        formData.append('user_identity', ipAddress);
-        formData.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
-        formData.append('visited_pages', 'Home');
-        formData.append('user_geolocation', JSON.stringify(locationData));
+    //     let formData = new FormData();
+    //     formData.append('user_identity', ipAddress);
+    //     formData.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
+    //     formData.append('visited_pages', 'Home');
+    //     formData.append('user_geolocation', JSON.stringify(locationData));
 
-        const createIdentity = await fetch('/traffics', {
-            method: 'POST',
-            body: formData
-        });
+    //     const createIdentity = await fetch('/traffics', {
+    //         method: 'POST',
+    //         body: formData
+    //     });
 
-        if (createIdentity.ok) {
-            return true;
-        } else {
-            console.error('Failed to create identity');
-            return false;
-        }
-    }, []);
+    //     if (createIdentity.ok) {
+    //         return true;
+    //     } else {
+    //         console.error('Failed to create identity');
+    //         return false;
+    //     }
+    // }, []);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // FIND IP GEOLOCATION 
-                const locationResponse = await fetch(`https://ipapi.co/json/`);
-                if (locationResponse.ok) {
-                    const locationData = await locationResponse.json();
-                    console.log(`User Geolocation is ${locationData.country_name}`);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             // FIND IP GEOLOCATION 
+    //             const locationResponse = await fetch(`https://ipapi.co/json/`);
+    //             if (locationResponse.ok) {
+    //                 const locationData = await locationResponse.json();
+    //                 console.log(`User Geolocation is ${locationData.country_name}`);
 
-                    // CREATE IDENTITYY
-                    const insertingIdentity = await postIdentity(locationData.ip, locationData)
-                    if (insertingIdentity) {
-                        console.log('Identity identified!');
-                    }
-                } else {
-                    console.error('Failed to fetch location information');
-                }
-            } catch (error) {
-                console.error('An error occurred:', error);
-            }
-        };
+    //                 // CREATE IDENTITYY
+    //                 const insertingIdentity = await postIdentity(locationData.ip, locationData)
+    //                 if (insertingIdentity) {
+    //                     console.log('Identity identified!');
+    //                 }
+    //             } else {
+    //                 console.error('Failed to fetch location information');
+    //             }
+    //         } catch (error) {
+    //             console.error('An error occurred:', error);
+    //         }
+    //     };
 
-        fetchData();
-    }, [postIdentity]);
+    //     fetchData();
+    // }, [postIdentity]);
 
-    useEffect(() => {
-        // TRACK TRAFFICS TO DATABASE (TOTAL MOVEMENTS) --------------------------
+    // useEffect(() => {
+    //     // TRACK TRAFFICS TO DATABASE (TOTAL MOVEMENTS) --------------------------
 
-        const updateMovementsAndSession = async () => {
-            if (!isIdle) return;
-            const currentMediaQuery = window.matchMedia('(max-width: 639px)');
-            const currentIsDesktop = !currentMediaQuery.matches;
-            const currentIPAddress = clientIpAddress.current;
+    //     const updateMovementsAndSession = async () => {
+    //         if (!isIdle) return;
+    //         const currentMediaQuery = window.matchMedia('(max-width: 639px)');
+    //         const currentIsDesktop = !currentMediaQuery.matches;
+    //         const currentIPAddress = clientIpAddress.current;
 
-            const startSession = freshSession.current;
-            const endSession = new Date().toISOString();
-            const timeDifferenceInMilliseconds = Date.parse(endSession) - Date.parse(startSession);
-            const timeDifferenceInSeconds = timeDifferenceInMilliseconds / 1000;
+    //         const startSession = freshSession.current;
+    //         const endSession = new Date().toISOString();
+    //         const timeDifferenceInMilliseconds = Date.parse(endSession) - Date.parse(startSession);
+    //         const timeDifferenceInSeconds = timeDifferenceInMilliseconds / 1000;
 
-            let formData_movements_session = new FormData();
-            formData_movements_session.append('user_identity', currentIPAddress);
-            formData_movements_session.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
-            formData_movements_session.append('total_character_movements', currentStackingMovements.current.toString());
-            formData_movements_session.append('session_duration', timeDifferenceInSeconds.toString());
-            const movementsResponse = await fetch('/traffics-update', {
-                method: 'POST',
-                body: formData_movements_session
-            });
+    //         let formData_movements_session = new FormData();
+    //         formData_movements_session.append('user_identity', currentIPAddress);
+    //         formData_movements_session.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
+    //         formData_movements_session.append('total_character_movements', currentStackingMovements.current.toString());
+    //         formData_movements_session.append('session_duration', timeDifferenceInSeconds.toString());
+    //         const movementsResponse = await fetch('/traffics-update', {
+    //             method: 'POST',
+    //             body: formData_movements_session
+    //         });
 
-            if (movementsResponse.ok) {
-                currentStackingMovements.current = 0;
-                freshSession.current = new Date().toISOString();
-            } else {
-                console.error('Failed to post movements of character');
-            }
-        };
-        updateMovementsAndSession();
+    //         if (movementsResponse.ok) {
+    //             currentStackingMovements.current = 0;
+    //             freshSession.current = new Date().toISOString();
+    //         } else {
+    //             console.error('Failed to post movements of character');
+    //         }
+    //     };
+    //     updateMovementsAndSession();
 
-    }, [isIdle]);
+    // }, [isIdle]);
 
     return (
         <>

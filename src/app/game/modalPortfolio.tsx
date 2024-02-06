@@ -4,7 +4,6 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDoubleDownIcon } from '@heroicons/react/24/solid'
 import ImageCarousel from './parts/imageCarousel';
-import Link from 'next/link'
 
 export default function ModalPortfolio({ portfolio, modalOpen, setModalOpen, cancelButtonRef }: { portfolio: any, modalOpen: boolean, setModalOpen: any, cancelButtonRef: any }) {
 

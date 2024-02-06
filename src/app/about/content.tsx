@@ -77,76 +77,76 @@ export default function Content() {
     }, [currentCertificate]);
 
     // TRACK TRAFFICS TO DATABASE (PAGES OPENED) --------------------------
-    const [isIdle, setIsIdle] = useState(false);
-    const clientIpAddress = useRef('')
-    const freshSession = useRef(new Date().toISOString());
-    const IDLE_TIME = 4000;
+    // const [isIdle, setIsIdle] = useState(false);
+    // const clientIpAddress = useRef('')
+    // const freshSession = useRef(new Date().toISOString());
+    // const IDLE_TIME = 4000;
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const currentMediaQuery = window.matchMedia('(max-width: 639px)');
-            const currentIsDesktop = !currentMediaQuery.matches;
-            let formData = new FormData();
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const currentMediaQuery = window.matchMedia('(max-width: 639px)');
+    //         const currentIsDesktop = !currentMediaQuery.matches;
+    //         let formData = new FormData();
 
-            const locationResponse = await fetch(`https://ipapi.co/json/`);
-            if (locationResponse.ok) {
-                const locationData = await locationResponse.json();
-                formData.append('user_identity', locationData.ip);
-                formData.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
-                formData.append('visited_pages', 'Home|About');
+    //         const locationResponse = await fetch(`https://ipapi.co/json/`);
+    //         if (locationResponse.ok) {
+    //             const locationData = await locationResponse.json();
+    //             formData.append('user_identity', locationData.ip);
+    //             formData.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
+    //             formData.append('visited_pages', 'Home|About');
 
-                const createIdentity = await fetch('/traffics-update', {
-                    method: 'POST',
-                    body: formData
-                });
+    //             const createIdentity = await fetch('/traffics-update', {
+    //                 method: 'POST',
+    //                 body: formData
+    //             });
 
-                if (createIdentity.ok) {
-                    clientIpAddress.current = locationData.ip;
-                    return true;
-                } else {
-                    console.error('Failed to create identity');
-                    return false;
-                }
-            } else {
-                console.error('Failed to fetch location information');
-            }
-        };
-        fetchData();
-    }, []);
+    //             if (createIdentity.ok) {
+    //                 clientIpAddress.current = locationData.ip;
+    //                 return true;
+    //             } else {
+    //                 console.error('Failed to create identity');
+    //                 return false;
+    //             }
+    //         } else {
+    //             console.error('Failed to fetch location information');
+    //         }
+    //     };
+    //     fetchData();
+    // }, []);
 
-    // TRACKING SESSION 5 SECONDS LOOPING -----------------------------------
-    useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            setIsIdle(!isIdle);
-        }, IDLE_TIME);
+    // // TRACKING SESSION 5 SECONDS LOOPING -----------------------------------
+    // useEffect(() => {
+    //     const timeoutId = setTimeout(() => {
+    //         setIsIdle(!isIdle);
+    //     }, IDLE_TIME);
 
-        return () => {
-            clearTimeout(timeoutId); // Cleanup the timer on unmount
-        };
-    });
+    //     return () => {
+    //         clearTimeout(timeoutId); // Cleanup the timer on unmount
+    //     };
+    // });
 
-    useEffect(() => {
-        const currentMediaQuery = window.matchMedia('(max-width: 639px)');
-        const currentIsDesktop = !currentMediaQuery.matches;
-        const currentIPAddress = clientIpAddress.current;
+    // useEffect(() => {
+    //     const currentMediaQuery = window.matchMedia('(max-width: 639px)');
+    //     const currentIsDesktop = !currentMediaQuery.matches;
+    //     const currentIPAddress = clientIpAddress.current;
 
-        const startSession = freshSession.current;
-        const endSession = new Date().toISOString();
-        const timeDifferenceInMilliseconds = Date.parse(endSession) - Date.parse(startSession);
-        const timeDifferenceInSeconds = timeDifferenceInMilliseconds / 1000;
+    //     const startSession = freshSession.current;
+    //     const endSession = new Date().toISOString();
+    //     const timeDifferenceInMilliseconds = Date.parse(endSession) - Date.parse(startSession);
+    //     const timeDifferenceInSeconds = timeDifferenceInMilliseconds / 1000;
 
-        let formData_session = new FormData();
-        formData_session.append('user_identity', currentIPAddress);
-        formData_session.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
-        formData_session.append('total_character_movements', '0');
-        formData_session.append('session_duration', timeDifferenceInSeconds.toString());
+    //     let formData_session = new FormData();
+    //     formData_session.append('user_identity', currentIPAddress);
+    //     formData_session.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
+    //     formData_session.append('total_character_movements', '0');
+    //     formData_session.append('session_duration', timeDifferenceInSeconds.toString());
 
-        fetch('/traffics-update', {
-            method: 'POST',
-            body: formData_session
-        });
-        freshSession.current = new Date().toISOString();
-    }, [isIdle]);
+    //     fetch('/traffics-update', {
+    //         method: 'POST',
+    //         body: formData_session
+    //     });
+    //     freshSession.current = new Date().toISOString();
+    // }, [isIdle]);
 
 
     const prevSlide = () => {
@@ -191,92 +191,6 @@ export default function Content() {
                 <div className='grid grid-cols-12' id='first-content'>
                     <div className='col-span-12  pt-32 pb-32 pl-6 pr-6 lg:pl-80 lg:pr-80 text-white text-lg sm:text-xl text-center'>
                         {`"I'm well aware that this project still very far from the excepted main concept that so called "Prison". I really need to make time to create the whole assets prison stuff, and taking a consideration because it would likely be a heavy website if i put all those images that i have in mind rendered." - @daffavcd`}
-                    </div>
-                </div>
-                <div className='grid grid-cols-12'>
-                    <div className='col-span-12  pt-14 pb-14 pl-6 pr-6 text-white font-bold text-3xl sm:text-4xl text-center select-none'>
-                        {`Some of My Certifications`}
-                    </div>
-                </div>
-                <div className='grid grid-cols-12 pt-8 pb-0 pl-6 pr-6 gap-4 text-center relative'>
-                    {isDesktop ? (
-                        <div className='col-span-4 flex justify-end items-end'>
-                            <div className='relative' id='left-certificate'>
-                                <Image
-                                    src={currentCertificate === 0 ? `/images/certificates/${slides.current[slides.current.length - 1]}.png` : `/images/certificates/${slides.current[currentCertificate - 1]}.png`}
-                                    className='z-0'
-                                    width={423}
-                                    height={300}
-                                    alt="Picture of the certificate"
-                                    style={{ objectFit: 'cover' }}
-                                />
-                                <div className="dark-overlay"></div>
-                            </div>
-                        </div>
-                    ) : null}
-                    <div className={isDesktop ? 'col-span-4 flex justify-center items-end' : 'col-span-12 flex justify-center items-end'}>
-                        <div className='relative shadow-inner' id='center-certificate'>
-                            <Image
-                                src={`/images/certificates/${slides.current[currentCertificate]}.png`}
-                                className='z-10'
-                                width={423}
-                                height={300}
-                                alt="Picture of the certificate"
-                                style={{ objectFit: 'cover' }}
-                            />
-                        </div>
-                    </div>
-                    {isDesktop ? (
-                        <div className='col-span-4 flex justify-start items-end'>
-                            <div className='relative' id='right-certificate'>
-                                <Image
-                                    src={currentCertificate === slides.current.length - 1 ? `/images/certificates/${slides.current[0]}.png` : `/images/certificates/${slides.current[currentCertificate + 1]}.png`}
-                                    className='z-0'
-                                    width={423}
-                                    height={300}
-                                    alt="Picture of the certificate"
-                                    style={{ objectFit: 'cover' }}
-                                />
-                                <div className="dark-overlay"></div>
-                            </div>
-                        </div>
-                    ) : null}
-                    <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] left-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg' onClick={prevSlide}>
-                        <ChevronLeftIcon className="h-11 w-11" aria-hidden="true" />
-                    </div>
-                    {/* Right Arrow */}
-                    <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] right-5 text-2xl rounded-full p-2 bg-blood-90 text-white hover:text-black cursor-pointer z-20 shadow-lg' onClick={nextSlide}>
-                        <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
-                    </div>
-                </div>
-                <div className='grid grid-cols-12 pt-40 pb-0 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
-                    <div className='col-span-12 sm:col-span-6 flex justify-center overflow-hidden'>
-                        <Player
-                            autoplay
-                            loop
-                            src="/images/lottie/world.json"
-                            style={{ height: '400px', width: '400px' }}
-                        >
-                        </Player>
-                    </div>
-                    <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'>
-                        <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`Full-Stack Developer`}</span>
-                        {`While lately I've been focusing on Front-End Development, I used to prefer being a Back-End Developer on my starting days.`}
-                    </div>
-                </div>
-                <div className='grid grid-cols-12 pt-0 pb-40 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
-                    <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'>
-                        <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`7 Years of Study`}</span>
-                        {`Graduated as a BASc in Informatics Engineering major. I've studied a broad range of computer disciplines since I was 15 y/o.`}
-                    </div>
-                    <div className='col-span-12 sm:col-span-6 flex justify-center order-first sm:order-last overflow-hidden'>
-                        <Player
-                            autoplay
-                            loop
-                            src="/images/lottie/study-3.json"
-                            style={{ height: '400px', width: '400px' }}
-                        >
-                        </Player>
                     </div>
                 </div>
                 <div className='grid grid-cols-12 pt-32 pb-32 pl-6 pr-6' style={{

@@ -191,7 +191,7 @@ export default function Foryouhr() {
                     <div className='grid grid-cols-12 pt-32 pb-32 pl-6 pr-6 lg:pl-24 lg:pr-24' id='first-content'>
                         <div className='col-span-12 lg:col-span-7 text-white text-lg sm:text-2xl text-left'>
                             {`For those of you who are able to appreciate code, I'd like to recommend experiencing my works through a `}
-                            <Link href={`/`} className='hover:text-red-600 underline'
+                            <Link href={`/game`} className='hover:text-red-600 underline'
                                 onMouseEnter={() => setHoveredLinkGame(true)}
                                 onMouseLeave={() => setHoveredLinkGame(false)}>
                                 {`mini-game here.`}
@@ -348,7 +348,7 @@ export default function Foryouhr() {
                     </div>
                     <div className='grid grid-cols-12 gap-4 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
                         <div className='col-span-6 hidden sm:block text-left text-base'>
-                            <Link href={`/`} className='hover:text-red-600 underline'>
+                            <Link href={`/game`} className='hover:text-red-600 underline'>
                                 {`Try Game Mode`}
                             </Link>
                             <br />{`Experience my works through a mini-game.`}

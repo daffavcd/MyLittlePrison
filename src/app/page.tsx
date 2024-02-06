@@ -1,33 +1,10 @@
-import Game from './components/game'
-import Header from './components/header'
-import Footer from './components/footer'
-import Image from 'next/image'
+import Foryouhr from './foryouhr/page'
 
 export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col h-screen relative">
-        <Image
-          className="bg-repeat"
-          alt="Background Image"
-          src="/images/blur3.jpg"
-          quality={100}
-          fill
-          priority
-          sizes="100vw"
-          style={{
-            position: 'absolute',
-            objectFit: 'cover',
-          }}
-        />
-        <div className="dark-overlay"></div>
-        <main className="grid grid-cols-12 h-screen pt-7 pr-10 pb-5 pl-10">
-          <Header />
-          <Game />
-          <Footer />
-        </main>
-      </div>
+      <Foryouhr />
     </>
   )
 }
