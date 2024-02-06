@@ -24,11 +24,10 @@ export default function Foryouhr() {
     const [isDesktop, setIsDesktop] = useState(true);
 
     const slides = useRef([
+        'mangtas',
         'merdeka',
+        'analytic',
         'expert',
-        // 'iot',
-        'fundamental',
-        // 'psk',
         'flutter',
     ],);
 
@@ -169,7 +168,7 @@ export default function Foryouhr() {
             <main className='bg-black'>
                 <div className="col-span-12">
                     <div className={`flex flex-col h-screen ${scrolledAbout ? 'blur-sm' : 'blur-none'}`} id='main-content' style={{
-                        backgroundImage: `url('/images/blur2.jpg')`,
+                        backgroundImage: `url('/images/blur3.svg')`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
@@ -311,7 +310,7 @@ export default function Foryouhr() {
                         </div>
                     </div>
                     <div className='grid grid-cols-12 pt-32 pb-32 pl-24 pr-24' style={{
-                        backgroundImage: `url('/images/blur2.jpg')`,
+                        backgroundImage: `url('/images/blur4.jpg')`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',

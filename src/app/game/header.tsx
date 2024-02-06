@@ -27,20 +27,24 @@ export default function Header() {
             </div>
             <div className='col-span-12 grid grid-cols-12 z-10'>
                 <div className="col-span-9">
-                    <Image
-                        className='sm:hidden'
-                        src="/images/logo-mini.svg"
-                        width={78}
-                        height={44}
-                        alt="Picture of the author"
-                    />
-                    <Image
-                        className='hidden sm:block'
-                        src="/images/logo.svg"
-                        width={250}
-                        height={44}
-                        alt="Picture of the author"
-                    />
+                    <Link href={`/`} className='inline-block sm:hidden'>
+                        <Image
+                            className='inline-block sm:hidden'
+                            src="/images/logo-mini.svg"
+                            width={78}
+                            height={44}
+                            alt="Picture of the author"
+                        />
+                    </Link>
+                    <Link href={`/`} className='hidden sm:inline-block'>
+                        <Image
+                            className='hidden sm:inline-block'
+                            src="/images/logo.svg"
+                            width={250}
+                            height={44}
+                            alt="Picture of the author"
+                        />
+                    </Link>
                 </div >
                 <div className="col-span-3 text-right">
                     <div className='rounded-xl inline-flex gap-2 p-1 bg-blood drop-shadow-2xl w-fit max-h-11'>

@@ -26,21 +26,31 @@ export default function HeaderAbout() {
 
     return (
         <>
-            <div className={`pt-7 pr-10 pb-5 pl-10 sticky top-0 z-50 ${scrolled ? 'bg-black shadow' : ''}`} style={{ transition: "background-color 0.3s ease"}}>
+            <div className={`pt-7 pr-10 pb-5 pl-10 sticky top-0 z-50 ${scrolled ? 'bg-black shadow' : ''}`} style={{ transition: "background-color 0.3s ease" }}>
                 <div className='grid grid-cols-12'>
                     <div className="col-span-9 z-10">
-                        <Link href={`/`}>
+                        <Link href={`/`} className='inline-block sm:hidden'>
                             <Image
+                                className='inline-block sm:hidden'
+                                src="/images/logo-mini.svg"
+                                width={78}
+                                height={44}
+                                alt="Picture of the author"
+                            />
+                        </Link>
+                        <Link href={`/`} className='hidden sm:inline-block'>
+                            <Image
+                                className='hidden sm:inline-block'
                                 src="/images/logo.svg"
                                 width={250}
-                                height={50}
+                                height={44}
                                 alt="Picture of the author"
                             />
                         </Link>
                     </div >
                     <div className="col-span-3 z-10 text-right">
                         <div className='rounded-xl inline-flex gap-2 p-1 bg-blood drop-shadow-2xl w-fit max-h-11 '>
-                            <Link href={`/`}>
+                            <Link href={`/game`}>
                                 <ArrowUturnLeftIcon className="h-9 w-9 text-black hover:text-white cursor-pointer" aria-hidden="true" />
                             </Link>
                         </div>
