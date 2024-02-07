@@ -9,6 +9,9 @@ import Link from 'next/link';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { TypeAnimation } from 'react-type-animation';
+import mne1Blur from '../../../public/images/portfolios/mne_1_blur.png'
+import mne2Blur from '../../../public/images/portfolios/mne_2_blur.png'
+import mne3Blur from '../../../public/images/portfolios/mne_3_blur.png'
 
 export default function Foryouhr() {
 
@@ -232,6 +235,66 @@ export default function Foryouhr() {
                             </div>
                         </div>
                     </div>
+                    {/* PORTFOLIO SECTION */}
+                    <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-32 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
+                        <div className='col-span-12 lg:col-span-7'>
+                            <div className="relative flex justify-center items-center w-full min-h-[690px] lg:min-h-[230px]" >
+                                <Image
+                                    src={mne1Blur}
+                                    className='z-20 absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    quality={100}
+                                    placeholder="blur"
+                                    alt="MNE"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'rotate(67deg) translate(-5px, 106px);',
+                                        maxWidth: '550px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(67deg) translate(-5px, 106px) scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(67deg) translate(-5px, 106px) scale(1)'}
+                                />
+                                <Image
+                                    src={mne2Blur}
+                                    className='z-10 absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    quality={100}
+                                    placeholder="blur"
+                                    alt="MNE"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'rotate(328deg) translate(48px, 80px);',
+                                        maxWidth: '550px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(328deg) translate(48px, 80px) scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(328deg) translate(48px, 80px) scale(1)'}
+                                />
+                                <Image
+                                    src={mne3Blur}
+                                    className='z-0 absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    quality={100}
+                                    placeholder="blur"
+                                    alt="MNE"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'translate(0px, -150px);',
+                                        maxWidth: '550px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'translate(0px, -150px) scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'translate(0px, -150px) scale(1)'}
+                                />
+                            </div>
+                        </div>
+                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'>
+                            <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
+                                {`SR-APP`}
+                            </div>
+                            <div className='col-span-12 text-white font-medium text-lg flex justify-start items-start sm:px-5'>
+                                <ul className="list-disc text-left">
+                                    <li>{`I developed SR-APP, the 1st Corporate Social Responsibility microservices app in Indonesia as the main front end developer.`}</li>
+                                    <li>{`Implemented using React and Laravel in a Single Page Application, the app manages to monitor every CSR progress effectively.`}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                     <div className='grid grid-cols-12'>
                         <div className='col-span-12  pt-14 pb-14 pl-6 pr-6 text-white font-bold text-3xl sm:text-4xl text-center select-none'>
                             {`Some of My Certifications`}
@@ -280,11 +343,11 @@ export default function Foryouhr() {
                                 </div>
                             </div>
                         ) : null}
-                        <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] left-5 text-2xl rounded-full p-2 hover:scale-105 bg-blood-90 hover:text-white cursor-pointer z-20 shadow-md' onClick={prevSlide}>
+                        <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] left-5 text-2xl rounded-full p-2 hover:scale-105 bg-blood-90 text-black hover:text-white cursor-pointer z-20 shadow-md' onClick={prevSlide}>
                             <ChevronLeftIcon className="h-11 w-11 hover:scale-105" aria-hidden="true" />
                         </div>
                         {/* Right Arrow */}
-                        <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] right-5 text-2xl rounded-full p-2 hover:scale-105 bg-blood-90 hover:text-white cursor-pointer z-20 shadow-md' onClick={nextSlide}>
+                        <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] right-5 text-2xl rounded-full p-2 hover:scale-105 bg-blood-90 text-black hover:text-white cursor-pointer z-20 shadow-md' onClick={nextSlide}>
                             <ChevronRightIcon className="h-11 w-11 hover:scale-105" aria-hidden="true" />
                         </div>
                     </div>
@@ -355,7 +418,7 @@ export default function Foryouhr() {
                         </div>
                     </div>
                     <div className='grid grid-cols-12 gap-4 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
-                        <div className='col-span-6 hidden sm:block text-left text-base'>
+                        <div className='col-span-6 text-center sm:text-left text-base'>
                             <Link href={`/game`} className='hover:text-red-600 underline'>
                                 {`Try Game Mode`}
                             </Link>
