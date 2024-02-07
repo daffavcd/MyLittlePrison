@@ -9,9 +9,15 @@ import Link from 'next/link';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { TypeAnimation } from 'react-type-animation';
+
 import mne1Blur from '../../../public/images/portfolios/mne_1_blur.png'
 import mne2Blur from '../../../public/images/portfolios/mne_2_blur.png'
 import mne3Blur from '../../../public/images/portfolios/mne_3_blur.png'
+
+import jgolf1Blur from '../../../public/images/portfolios/jgolf_1_blur.png'
+import jgolf2Blur from '../../../public/images/portfolios/jgolf_2_blur.png'
+import jgolf3Blur from '../../../public/images/portfolios/jgolf_3_blur.png'
+import jgolf4Blur from '../../../public/images/portfolios/jgolf_4_blur.png'
 
 export default function Foryouhr() {
 
@@ -186,9 +192,9 @@ export default function Foryouhr() {
                                     500,
                                     `You lookin' for a dance partner?`,
                                     700,
-                                    `Whether it's a genre of system, an app, or a website, i would really love that,`,
+                                    `Whether it's in a genre of system, an app, or a website, i would really love that,`,
                                     800,
-                                    `Oh, you don't know how move your feet?`,
+                                    `Oh, but you don't know how to move your feet?`,
                                     700,
                                     `No worries, I shall lead the dance for you.`,
                                     1000,
@@ -236,7 +242,7 @@ export default function Foryouhr() {
                         </div>
                     </div>
                     {/* PORTFOLIO SECTION */}
-                    <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-32 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
+                    <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-72 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
                         <div className='col-span-12 lg:col-span-7'>
                             <div className="relative flex justify-center items-center w-full min-h-[690px] lg:min-h-[230px]" >
                                 <Image
@@ -295,6 +301,80 @@ export default function Foryouhr() {
                             </div>
                         </div>
                     </div>
+                    <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-72 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
+                        <div className='col-span-12 lg:col-span-7'>
+                            <div className="relative flex justify-center items-center w-full min-h-[1070px] lg:min-h-[345px]" >
+                                <Image
+                                    src={jgolf1Blur}
+                                    className='z-30 absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    quality={100}
+                                    placeholder="blur"
+                                    alt="MNE"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'rotate(315deg) translate(-172px, 179px);',
+                                        maxWidth: '415px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(315deg) translate(-172px, 179px) scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(315deg) translate(-172px, 179px) scale(1)'}
+                                />
+                                <Image
+                                    src={jgolf3Blur}
+                                    className='z-20 absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    quality={100}
+                                    placeholder="blur"
+                                    alt="MNE"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'rotate(0deg) translate(-227px, 118px );',
+                                        maxWidth: '415px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(0deg) translate(-227px, 118px) scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(0deg) translate(-227px, 118px) scale(1)'}
+                                />
+                                <Image
+                                    src={jgolf4Blur}
+                                    className='z-10 absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    quality={100}
+                                    placeholder="blur"
+                                    alt="MNE"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'rotate(349deg) translate(121px, 150px) ;',
+                                        maxWidth: '415px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(349deg) translate(121px, 150px)  scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(349deg) translate(121px, 150px)  scale(1)'}
+                                />
+                                <Image
+                                    src={jgolf2Blur}
+                                    className='z-0 absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    quality={100}
+                                    placeholder="blur"
+                                    alt="MNE"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'rotate(12deg) translate(-32px, -24px );',
+                                        maxWidth: '415px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(12deg) translate(-32px, -24px ) scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(12deg) translate(-32px, -24px ) scale(1)'}
+                                />
+                            </div>
+                        </div>
+                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'>
+                            <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
+                                {`J-GOLF`}
+                            </div>
+                            <div className='col-span-12 text-white font-medium text-lg flex justify-start items-start sm:px-5'>
+                                <ul className="list-disc text-left">
+                                    <li>{`I designed and developed a Mobile focus golf web application called J-Golf as the 1st Indonesian Golf Management app using Laravel.`}</li>
+                                    <li>{`J-Golf primarily manages subscription packages for courses training, golf event creation, scoring, and rankings.`}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {/* END OF PORTFOLIO SECTION */}
                     <div className='grid grid-cols-12'>
                         <div className='col-span-12  pt-14 pb-14 pl-6 pr-6 text-white font-bold text-3xl sm:text-4xl text-center select-none'>
                             {`Some of My Certifications`}
