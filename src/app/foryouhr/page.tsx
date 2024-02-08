@@ -547,7 +547,7 @@ export default function Foryouhr() {
                             {`Does that mean I'm limited to the listed area?`}
                         </div>
                         <div className='col-span-12 text-white text-xl sm:text-2xl flex justify-center items-center select-none gap-20 pt-5 pb-5 z-10'>
-                            {`Defenitely not,`}<br /> {`My Curiosity, Imagination, and Adaptability are always smirking.`}
+                            {`Defenitely not;`}<br /> {`The Curiosity, Imagination, and Adaptability are always dancing.`}
                         </div>
                     </div>
                     <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
