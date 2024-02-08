@@ -9,15 +9,19 @@ import Link from 'next/link';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { TypeAnimation } from 'react-type-animation';
+import { LightBulbIcon } from '@heroicons/react/24/solid'
+
 
 import mne1Blur from '../../../public/images/portfolios/mne_1_blur.png'
 import mne2Blur from '../../../public/images/portfolios/mne_2_blur.png'
 import mne3Blur from '../../../public/images/portfolios/mne_3_blur.png'
-
 import jgolf1Blur from '../../../public/images/portfolios/jgolf_1_blur.png'
 import jgolf2Blur from '../../../public/images/portfolios/jgolf_2_blur.png'
 import jgolf3Blur from '../../../public/images/portfolios/jgolf_3_blur.png'
 import jgolf4Blur from '../../../public/images/portfolios/jgolf_4_blur.png'
+import resto1Blur from '../../../public/images/portfolios/resto_1_blur.png'
+import resto2Blur from '../../../public/images/portfolios/resto_2_blur.png'
+import resto3Blur from '../../../public/images/portfolios/resto_3_blur.png'
 
 export default function Foryouhr() {
 
@@ -205,8 +209,8 @@ export default function Foryouhr() {
                             />
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 pt-32 pb-32 pl-6 pr-6 lg:pl-24 lg:pr-24' id='first-content'>
-                        <div className='col-span-12 lg:col-span-7 text-white text-lg sm:text-2xl text-left'>
+                    <div className='grid grid-cols-12 py-28 lg:py-52 pl-6 pr-6 lg:pl-24 lg:pr-24' id='first-content'>
+                        <div className='col-span-12 lg:col-span-7 text-white text-xl sm:text-2xl text-left'>
                             {`For those of you who are able to appreciate code, I'd like to recommend experiencing my works through a `}
                             <Link href={`/game`} className='hover:text-red-600 underline'
                                 onMouseEnter={() => setHoveredLinkGame(true)}
@@ -242,7 +246,7 @@ export default function Foryouhr() {
                         </div>
                     </div>
                     {/* PORTFOLIO SECTION */}
-                    <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-72 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
+                    <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-0 lg:pb-72 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
                         <div className='col-span-12 lg:col-span-7'>
                             <div className="relative flex justify-center items-center w-full min-h-[690px] lg:min-h-[230px]" >
                                 <Image
@@ -293,7 +297,7 @@ export default function Foryouhr() {
                             <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
                                 {`SR-APP`}
                             </div>
-                            <div className='col-span-12 text-white font-medium text-lg flex justify-start items-start sm:px-5'>
+                            <div className='col-span-12 text-white font-medium text-lg md:text-xl flex justify-start items-start sm:px-5'>
                                 <ul className="list-disc text-left">
                                     <li>{`I developed SR-APP, the 1st Corporate Social Responsibility microservices app in Indonesia as the main front end developer.`}</li>
                                     <li>{`Implemented using React and Laravel in a Single Page Application, the app manages to monitor every CSR progress effectively.`}</li>
@@ -301,12 +305,12 @@ export default function Foryouhr() {
                             </div>
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-72 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
+                    <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-24 lg:pb-72 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
                         <div className='col-span-12 lg:col-span-7'>
-                            <div className="relative flex justify-center items-center w-full min-h-[1070px] lg:min-h-[345px]" >
+                            <div className="relative flex justify-center items-center w-full min-h-[835px] lg:min-h-[345px]" >
                                 <Image
                                     src={jgolf1Blur}
-                                    className='z-30 absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    className='z-30  absolute hover:z-50 transition-transform ease-in-out duration-300'
                                     quality={100}
                                     placeholder="blur"
                                     alt="MNE"
@@ -366,12 +370,82 @@ export default function Foryouhr() {
                             <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
                                 {`J-GOLF`}
                             </div>
-                            <div className='col-span-12 text-white font-medium text-lg flex justify-start items-start sm:px-5'>
+                            <div className='col-span-12 text-white font-medium text-lg md:text-xl flex justify-start items-start sm:px-5'>
                                 <ul className="list-disc text-left">
                                     <li>{`I designed and developed a Mobile focus golf web application called J-Golf as the 1st Indonesian Golf Management app using Laravel.`}</li>
                                     <li>{`J-Golf primarily manages subscription packages for courses training, golf event creation, scoring, and rankings.`}</li>
                                 </ul>
                             </div>
+                        </div>
+                    </div>
+                    <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-24 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
+                        <div className='col-span-12 lg:col-span-7'>
+                            <div className="relative flex justify-center items-center w-full min-h-[565px] lg:min-h-[580px]" >
+                                <Image
+                                    src={resto2Blur}
+                                    className='z-30 absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    quality={100}
+                                    placeholder="blur"
+                                    alt="MNE"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'rotate(41deg) translate(40px, -57px);',
+                                        maxWidth: '550px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(41deg) translate(40px, -57px) scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(41deg) translate(40px, -57px) scale(1)'}
+                                />
+                                <Image
+                                    src={resto3Blur}
+                                    className='z-20  absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    quality={100}
+                                    placeholder="blur"
+                                    alt="MNE"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'rotate(349deg) translate(-115px, 77px);',
+                                        maxWidth: '550px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(349deg) translate(-115px, 77px) scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(349deg) translate(-115px, 77px) scale(1)'}
+                                />
+                                <Image
+                                    src={resto1Blur}
+                                    className='z-10  absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    quality={100}
+                                    placeholder="blur"
+                                    alt="MNE"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'rotate(0deg) translate(-164px, -89px);',
+                                        maxWidth: '550px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(0deg) translate(-164px, -89px)   scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(0deg) translate(-164px, -89px)  scale(1)'}
+                                />
+                            </div>
+                        </div>
+                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'>
+                            <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
+                                {`MY DESIRED UTOPIAS`}
+                            </div>
+                            <div className='col-span-12 text-white font-medium text-lg md:text-xl flex justify-start items-start sm:px-5'>
+                                <ul className="list-disc text-left">
+                                    <li>{`My Desired Utopias is the culmination of my Dicoding "Becoming a Web Front- End Developer Expert" certification journey.`}</li>
+                                    <li>{`Featuring a Progressive Web App (PWA) that fetches restaurant data from the Dicoding server using Hapi, Webpack, and vanilla CSS/JS.`}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='grid grid-cols-12 pt-0 lg:pt-0 pb-16 lg:pb-40 pl-6 pr-6 lg:pl-24 lg:pr-24'>
+                        <div className='col-span-12 flex justify-center items-center'>
+                            <Link href={`/game`}>
+                                <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl max-h-16 sm:max-h-12 rounded-xl cursor-pointer text-blood hover:text-white hover:scale-110 transition-transform ease-in-out duration-150'>
+                                    <div className='absolute -m-2 w-full h-full rounded-lg border-2 border-btn-mlp animate-ping-mlp-3' />
+                                    <span className="font-bold text-lg lg:text-xl text-center" >{`Explore more in a Game Mode `}<sup>13</sup></span>
+                                </div>
+                            </Link>
+
                         </div>
                     </div>
                     {/* END OF PORTFOLIO SECTION */}
@@ -461,7 +535,7 @@ export default function Foryouhr() {
                             </Player>
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 pt-32 pb-32 pl-24 pr-24' style={{
+                    <div className='grid grid-cols-12 pt-32 pb-32 px-20 sm:pl-24 sm:pr-24' style={{
                         backgroundImage: `url('/images/blur4.jpg')`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
@@ -473,7 +547,7 @@ export default function Foryouhr() {
                             {`Does that mean I'm limited to the listed area?`}
                         </div>
                         <div className='col-span-12 text-white text-xl sm:text-2xl flex justify-center items-center select-none gap-20 pt-5 pb-5 z-10'>
-                            {`Defenitely not,`}<br /> {`The Curiosity, Imagination, and Adaptability are still breathing.`}
+                            {`Defenitely not,`}<br /> {`My Curiosity, Imagination, and Adaptability are always burning.`}
                         </div>
                     </div>
                     <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
@@ -498,7 +572,7 @@ export default function Foryouhr() {
                         </div>
                     </div>
                     <div className='grid grid-cols-12 gap-4 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
-                        <div className='col-span-6 text-center sm:text-left text-base'>
+                        <div className='col-span-12 sm:col-span-6 text-center sm:text-left text-base'>
                             <Link href={`/game`} className='hover:text-red-600 underline'>
                                 {`Try Game Mode`}
                             </Link>

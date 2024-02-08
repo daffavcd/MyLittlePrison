@@ -137,6 +137,10 @@ body {
   border: rgb(255 0 0 / 35%) 1px solid;
 }
 
+.border-btn-mlp {
+  border: rgb(255 0 0 / 95%) 1px solid;
+}
+
 .border-modal-mlp-2 {
   border: rgb(255 0 0 / 10%) 1px solid;
 }
@@ -224,6 +228,18 @@ body {
     75%,
     100% {
       transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+}
+
+.animate-ping-mlp-3 {
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes ping {
+    75%,
+    100% {
+      transform: scale(1.4);
       opacity: 0;
     }
   }
