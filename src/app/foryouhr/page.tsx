@@ -169,7 +169,7 @@ export default function Foryouhr() {
 
     return (
         <>
-            <main className='bg-black'>
+            <main className='bg-black overflow-x-hidden'>
                 <div className="col-span-12">
                     <div className={`flex flex-col h-screen ${scrolledAbout ? 'blur-sm' : 'blur-none'}`} id='main-content' style={{
                         backgroundImage: `url('/images/blur3.svg')`,
@@ -196,11 +196,11 @@ export default function Foryouhr() {
                                     500,
                                     `You lookin' for a dance partner?`,
                                     700,
-                                    `Whether it's in a genre of system, an app, or a website, i would really love that,`,
+                                    `Be it in a genre of system, an app, or a website, i'm down for it,`,
                                     800,
                                     `Oh, but you don't know how to move your feet?`,
                                     700,
-                                    `No worries, I shall lead the dance for you.`,
+                                    `No worries, I will lead the dance for you.`,
                                     1000,
                                 ]}
                                 speed={75}
@@ -297,7 +297,7 @@ export default function Foryouhr() {
                             <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
                                 {`SR-APP`}
                             </div>
-                            <div className='col-span-12 text-white font-medium text-lg md:text-xl flex justify-start items-start sm:px-5'>
+                            <div className='col-span-12 text-white font-medium text-xl flex justify-start items-start sm:px-5'>
                                 <ul className="list-disc text-left">
                                     <li>{`I developed SR-APP, the 1st Corporate Social Responsibility microservices app in Indonesia as the main front end developer.`}</li>
                                     <li>{`Implemented using React and Laravel in a Single Page Application, the app manages to monitor every CSR progress effectively.`}</li>
@@ -370,7 +370,7 @@ export default function Foryouhr() {
                             <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
                                 {`J-GOLF`}
                             </div>
-                            <div className='col-span-12 text-white font-medium text-lg md:text-xl flex justify-start items-start sm:px-5'>
+                            <div className='col-span-12 text-white font-medium text-xl flex justify-start items-start sm:px-5'>
                                 <ul className="list-disc text-left">
                                     <li>{`I designed and developed a Mobile focus golf web application called J-Golf as the 1st Indonesian Golf Management app using Laravel.`}</li>
                                     <li>{`J-Golf primarily manages subscription packages for courses training, golf event creation, scoring, and rankings.`}</li>
@@ -429,7 +429,7 @@ export default function Foryouhr() {
                             <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
                                 {`MY DESIRED UTOPIAS`}
                             </div>
-                            <div className='col-span-12 text-white font-medium text-lg md:text-xl flex justify-start items-start sm:px-5'>
+                            <div className='col-span-12 text-white font-medium text-xl flex justify-start items-start sm:px-5'>
                                 <ul className="list-disc text-left">
                                     <li>{`My Desired Utopias is the culmination of my Dicoding "Becoming a Web Front- End Developer Expert" certification journey.`}</li>
                                     <li>{`Featuring a Progressive Web App (PWA) that fetches restaurant data from the Dicoding server using Hapi, Webpack, and vanilla CSS/JS.`}</li>
@@ -442,7 +442,7 @@ export default function Foryouhr() {
                             <Link href={`/game`}>
                                 <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl max-h-16 sm:max-h-12 rounded-xl cursor-pointer text-blood hover:text-white hover:scale-110 transition-transform ease-in-out duration-150'>
                                     <div className='absolute -m-2 w-full h-full rounded-lg border-2 border-btn-mlp animate-ping-mlp-3' />
-                                    <span className="font-bold text-lg lg:text-xl text-center" >{`Explore more in a Game Mode `}<sup>13</sup></span>
+                                    <span className="font-bold text-xl text-center" >{`Explore more in a Game Mode `}<sup>13</sup></span>
                                 </div>
                             </Link>
 
@@ -547,7 +547,7 @@ export default function Foryouhr() {
                             {`Does that mean I'm limited to the listed area?`}
                         </div>
                         <div className='col-span-12 text-white text-xl sm:text-2xl flex justify-center items-center select-none gap-20 pt-5 pb-5 z-10'>
-                            {`Defenitely not,`}<br /> {`My Curiosity, Imagination, and Adaptability are always burning.`}
+                            {`Defenitely not,`}<br /> {`My Curiosity, Imagination, and Adaptability are always smirking.`}
                         </div>
                     </div>
                     <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
