@@ -442,7 +442,7 @@ export default function Foryouhr() {
                             <Link href={`/game`}>
                                 <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl max-h-16 sm:max-h-12 rounded-xl cursor-pointer text-blood hover:text-white hover:scale-110 transition-transform ease-in-out duration-150'>
                                     <div className='absolute -m-2 w-full h-full rounded-lg border-2 border-btn-mlp animate-ping-mlp-3' />
-                                    <span className="font-bold text-xl text-center" >{`Explore more in a Game Mode `}<sup>13</sup></span>
+                                    <span className="font-bold text-xl text-center" >{`Explore more in Game Mode `}<sup>13</sup></span>
                                 </div>
                             </Link>
 
