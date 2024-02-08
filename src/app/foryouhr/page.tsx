@@ -196,11 +196,11 @@ export default function Foryouhr() {
                                     500,
                                     `You lookin' for a dance partner?`,
                                     700,
-                                    `Be it in a genre of system, an app, or a website, i'd be down for it,`,
+                                    `Be it in a genre of system, an app, or a website, I'd be down for it;`,
                                     800,
-                                    `Oh, but you don't know how to move your feet?`,
+                                    `Oh, and if you don't know how to move your feet?`,
                                     700,
-                                    `No worries, I will lead the dance for you.`,
+                                    `Don't worry, I will lead the dance for you.`,
                                     1000,
                                 ]}
                                 speed={75}
@@ -442,7 +442,7 @@ export default function Foryouhr() {
                             <Link href={`/game`}>
                                 <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl max-h-16 sm:max-h-12 rounded-xl cursor-pointer text-blood hover:text-white hover:scale-110 transition-transform ease-in-out duration-150'>
                                     <div className='absolute -m-2 w-full h-full rounded-lg border-2 border-btn-mlp animate-ping-mlp-3' />
-                                    <span className="font-bold text-xl text-center" >{`Explore more in Game Mode `}<sup>13</sup></span>
+                                    <span className="font-bold text-xl text-center" >{`Explore more in Game Mode `}<sup>12</sup></span>
                                 </div>
                             </Link>
 
@@ -547,7 +547,7 @@ export default function Foryouhr() {
                             {`Does that mean I'm limited to the listed area?`}
                         </div>
                         <div className='col-span-12 text-white text-xl sm:text-2xl flex justify-center items-center select-none gap-20 pt-5 pb-5 z-10'>
-                            {`Defenitely not;`}<br /> {`The Curiosity, Imagination, and Adaptability are always dancing.`}
+                            {`Of course not;`}<br /> {`My Curiosity, Imagination, and Adaptability are always dancing along.`}
                         </div>
                     </div>
                     <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
