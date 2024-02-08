@@ -196,7 +196,7 @@ export default function Foryouhr() {
                                     500,
                                     `You lookin' for a dance partner?`,
                                     700,
-                                    `Be it in a genre of system, an app, or a website, i'm down for it,`,
+                                    `Be it in a genre of system, an app, or a website, i'd be down for it,`,
                                     800,
                                     `Oh, but you don't know how to move your feet?`,
                                     700,
