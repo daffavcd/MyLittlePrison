@@ -252,16 +252,8 @@ export default function Foryouhr() {
                                 />
                             </div>
                         </div>
-                        <motion.div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            viewport={{ once: true, amount: 0.1 }}
-                            whileInView={{
-                                opacity: 1, scale: 1, transition: {
-                                    duration: 0.8,
-                                    delay: 0.5,
-                                    ease: [0, 0.71, 0.2, 1.01]
-                                }
-                            }}
+                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'
+
 
                         >
                             <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
@@ -273,7 +265,7 @@ export default function Foryouhr() {
                                     <li>{`Implemented using React and Laravel in a Single Page Application, the app manages to monitor every CSR progress effectively.`}</li>
                                 </ul>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
                     <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-24 lg:pb-72 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
                         <div className='col-span-12 lg:col-span-7'>
@@ -336,16 +328,8 @@ export default function Foryouhr() {
                                 />
                             </div>
                         </div>
-                        <motion.div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            viewport={{ once: true, amount: 0.1 }}
-                            whileInView={{
-                                opacity: 1, scale: 1, transition: {
-                                    duration: 0.8,
-                                    delay: 0.5,
-                                    ease: [0, 0.71, 0.2, 1.01]
-                                }
-                            }}>
+                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'
+                        >
                             <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
                                 {`J-GOLF`}
                             </div>
@@ -355,7 +339,7 @@ export default function Foryouhr() {
                                     <li>{`J-Golf primarily manages subscription packages for courses training, golf event creation, scoring, and rankings.`}</li>
                                 </ul>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
                     <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-24 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
                         <div className='col-span-12 lg:col-span-7'>
@@ -404,16 +388,8 @@ export default function Foryouhr() {
                                 />
                             </div>
                         </div>
-                        <motion.div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            viewport={{ once: true, amount: 0.1 }}
-                            whileInView={{
-                                opacity: 1, scale: 1, transition: {
-                                    duration: 0.8,
-                                    delay: 0.5,
-                                    ease: [0, 0.71, 0.2, 1.01]
-                                }
-                            }}>
+                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'
+                        >
                             <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
                                 {`MY DESIRED UTOPIAS`}
                             </div>
@@ -423,7 +399,7 @@ export default function Foryouhr() {
                                     <li>{`Featuring a Progressive Web App (PWA) that fetches restaurant data from the Dicoding server using Hapi, Webpack, and vanilla CSS/JS.`}</li>
                                 </ul>
                             </div>
-                        </motion.div>
+                        </div>
                     </div>
                     <div className='grid grid-cols-12 pt-0 lg:pt-0 pb-16 lg:pb-40 pl-6 pr-6 lg:pl-24 lg:pr-24'>
                         <div className='col-span-12 flex justify-center items-center'>
@@ -503,36 +479,20 @@ export default function Foryouhr() {
                             >
                             </Player>
                         </div>
-                        <motion.div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            viewport={{ once: true, amount: 0.1 }}
-                            whileInView={{
-                                opacity: 1, scale: 1, transition: {
-                                    duration: 0.8,
-                                    delay: 0.5,
-                                    ease: [0, 0.71, 0.2, 1.01]
-                                }
-                            }}
+                        <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'
+
                         >
                             <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`Full-Stack Developer`}</span>
                             {`While lately I've been focusing on Front-End Development, I used to prefer being a Back-End Developer on my starting days.`}
-                        </motion.div>
+                        </div>
                     </div>
                     <div className='grid grid-cols-12 pt-0 pb-40 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
-                        <motion.div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            viewport={{ once: true, amount: 0.1 }}
-                            whileInView={{
-                                opacity: 1, scale: 1, transition: {
-                                    duration: 0.8,
-                                    delay: 0.5,
-                                    ease: [0, 0.71, 0.2, 1.01]
-                                }
-                            }}
+                        <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'
+
                         >
                             <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`7 Years of Study`}</span>
                             {`Graduated as a BASc in Informatics Engineering major. I've studied a broad range of computer disciplines since I was 15 y/o.`}
-                        </motion.div>
+                        </div>
                         <div className='col-span-12 sm:col-span-6 flex justify-center order-first sm:order-last overflow-hidden'>
                             <Player
                                 autoplay
