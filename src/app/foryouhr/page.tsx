@@ -9,7 +9,7 @@ import Link from 'next/link';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { TypeAnimation } from 'react-type-animation';
-import { LightBulbIcon } from '@heroicons/react/24/solid'
+import { motion, Variants } from "framer-motion";
 
 
 import mne1Blur from '../../../public/images/portfolios/mne_1_blur.png'
@@ -80,79 +80,6 @@ export default function Foryouhr() {
         return () => clearInterval(changeSlide);
     }, [currentCertificate]);
 
-    // TRACK TRAFFICS TO DATABASE (PAGES OPENED) --------------------------
-    // const [isIdle, setIsIdle] = useState(false);
-    // const clientIpAddress = useRef('')
-    // const freshSession = useRef(new Date().toISOString());
-    // const IDLE_TIME = 4000;
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const currentMediaQuery = window.matchMedia('(max-width: 639px)');
-    //         const currentIsDesktop = !currentMediaQuery.matches;
-    //         let formData = new FormData();
-
-    //         const locationResponse = await fetch(`https://ipapi.co/json/`);
-    //         if (locationResponse.ok) {
-    //             const locationData = await locationResponse.json();
-    //             formData.append('user_identity', locationData.ip);
-    //             formData.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
-    //             formData.append('visited_pages', 'Home|About');
-
-    //             const createIdentity = await fetch('/traffics-update', {
-    //                 method: 'POST',
-    //                 body: formData
-    //             });
-
-    //             if (createIdentity.ok) {
-    //                 clientIpAddress.current = locationData.ip;
-    //                 return true;
-    //             } else {
-    //                 console.error('Failed to create identity');
-    //                 return false;
-    //             }
-    //         } else {
-    //             console.error('Failed to fetch location information');
-    //         }
-    //     };
-    //     fetchData();
-    // }, []);
-
-    // TRACKING SESSION 5 SECONDS LOOPING -----------------------------------
-    // useEffect(() => {
-    //     const timeoutId = setTimeout(() => {
-    //         setIsIdle(!isIdle);
-    //     }, IDLE_TIME);
-
-    //     return () => {
-    //         clearTimeout(timeoutId); // Cleanup the timer on unmount
-    //     };
-    // });
-
-    // useEffect(() => {
-    //     const currentMediaQuery = window.matchMedia('(max-width: 639px)');
-    //     const currentIsDesktop = !currentMediaQuery.matches;
-    //     const currentIPAddress = clientIpAddress.current;
-
-    //     const startSession = freshSession.current;
-    //     const endSession = new Date().toISOString();
-    //     const timeDifferenceInMilliseconds = Date.parse(endSession) - Date.parse(startSession);
-    //     const timeDifferenceInSeconds = timeDifferenceInMilliseconds / 1000;
-
-    //     let formData_session = new FormData();
-    //     formData_session.append('user_identity', currentIPAddress);
-    //     formData_session.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
-    //     formData_session.append('total_character_movements', '0');
-    //     formData_session.append('session_duration', timeDifferenceInSeconds.toString());
-
-    //     fetch('/traffics-update', {
-    //         method: 'POST',
-    //         body: formData_session
-    //     });
-    //     freshSession.current = new Date().toISOString();
-    // }, [isIdle]);
-
-
     const prevSlide = () => {
         const isFirstSlide = currentCertificate === 0;
         const newIndex = isFirstSlide ? slides.current.length - 1 : currentCertificate - 1;
@@ -166,6 +93,34 @@ export default function Foryouhr() {
     };
 
     const [hoveredLinkGame, setHoveredLinkGame] = useState(false);
+
+    const textLeftVariants: Variants = {
+        offscreen: {
+            x: -1000
+        },
+        onscreen: {
+            x: 0,
+            transition: {
+                type: "spring",
+                bounce: 0.4,
+                duration: 0.8
+            }
+        }
+    };
+
+    const textRightVariants: Variants = {
+        offscreen: {
+            x: 1000
+        },
+        onscreen: {
+            x: 0,
+            transition: {
+                type: "spring",
+                bounce: 0.4,
+                duration: 0.8
+            }
+        }
+    };
 
     return (
         <>
@@ -197,27 +152,31 @@ export default function Foryouhr() {
                                     `You lookin' for a dance partner?`,
                                     700,
                                     `Be it in a genre of system, an app, or a website, I'd be down for it;`,
-                                    800,
+                                    1000,
                                     `Oh, and if you don't know how to move your feet?`,
                                     700,
                                     `Don't worry, I will lead the dance for you.`,
                                     1000,
                                 ]}
-                                speed={75}
+                                speed={85}
                                 className='shadow select-none'
                                 repeat={Infinity}
                             />
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 py-28 lg:py-52 pl-6 pr-6 lg:pl-24 lg:pr-24' id='first-content'>
-                        <div className='col-span-12 lg:col-span-7 text-white text-xl sm:text-2xl text-left'>
+                    <motion.div className='grid grid-cols-12 py-28 lg:py-52 pl-6 pr-6 lg:pl-24 lg:pr-24'
+                        initial="offscreen"
+                        whileInView="onscreen"
+                        viewport={{ once: true, amount: 0.5 }}
+                        id='first-content'>
+                        <motion.div className='col-span-12 lg:col-span-7 text-white text-xl sm:text-2xl text-left' variants={textLeftVariants}>
                             {`For those of you who are able to appreciate code, I'd like to recommend experiencing my works through a `}
                             <Link href={`/game`} className='hover:text-red-600 underline'
                                 onMouseEnter={() => setHoveredLinkGame(true)}
                                 onMouseLeave={() => setHoveredLinkGame(false)}>
                                 {`mini-game here.`}
                             </Link>
-                        </div>
+                        </motion.div>
                         <div className='hidden lg:col-span-5 justify-center items-center sm:flex px-28'>
                             <div className={`absolute scale-0 ${hoveredLinkGame && 'scale-100'} transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-auto h-auto rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
                                 id='thumbnail-portfolio=hover'
@@ -244,7 +203,7 @@ export default function Foryouhr() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                     {/* PORTFOLIO SECTION */}
                     <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-0 lg:pb-72 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
                         <div className='col-span-12 lg:col-span-7'>
@@ -293,7 +252,18 @@ export default function Foryouhr() {
                                 />
                             </div>
                         </div>
-                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'>
+                        <motion.div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            viewport={{ once: true, amount: 0.1 }}
+                            whileInView={{
+                                opacity: 1, scale: 1, transition: {
+                                    duration: 0.8,
+                                    delay: 0.5,
+                                    ease: [0, 0.71, 0.2, 1.01]
+                                }
+                            }}
+
+                        >
                             <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
                                 {`SR-APP`}
                             </div>
@@ -303,7 +273,7 @@ export default function Foryouhr() {
                                     <li>{`Implemented using React and Laravel in a Single Page Application, the app manages to monitor every CSR progress effectively.`}</li>
                                 </ul>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                     <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-24 lg:pb-72 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
                         <div className='col-span-12 lg:col-span-7'>
@@ -366,7 +336,16 @@ export default function Foryouhr() {
                                 />
                             </div>
                         </div>
-                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'>
+                        <motion.div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            viewport={{ once: true, amount: 0.1 }}
+                            whileInView={{
+                                opacity: 1, scale: 1, transition: {
+                                    duration: 0.8,
+                                    delay: 0.5,
+                                    ease: [0, 0.71, 0.2, 1.01]
+                                }
+                            }}>
                             <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
                                 {`J-GOLF`}
                             </div>
@@ -376,7 +355,7 @@ export default function Foryouhr() {
                                     <li>{`J-Golf primarily manages subscription packages for courses training, golf event creation, scoring, and rankings.`}</li>
                                 </ul>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                     <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-24 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
                         <div className='col-span-12 lg:col-span-7'>
@@ -425,7 +404,16 @@ export default function Foryouhr() {
                                 />
                             </div>
                         </div>
-                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'>
+                        <motion.div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            viewport={{ once: true, amount: 0.1 }}
+                            whileInView={{
+                                opacity: 1, scale: 1, transition: {
+                                    duration: 0.8,
+                                    delay: 0.5,
+                                    ease: [0, 0.71, 0.2, 1.01]
+                                }
+                            }}>
                             <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
                                 {`MY DESIRED UTOPIAS`}
                             </div>
@@ -435,7 +423,7 @@ export default function Foryouhr() {
                                     <li>{`Featuring a Progressive Web App (PWA) that fetches restaurant data from the Dicoding server using Hapi, Webpack, and vanilla CSS/JS.`}</li>
                                 </ul>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                     <div className='grid grid-cols-12 pt-0 lg:pt-0 pb-16 lg:pb-40 pl-6 pr-6 lg:pl-24 lg:pr-24'>
                         <div className='col-span-12 flex justify-center items-center'>
@@ -515,16 +503,36 @@ export default function Foryouhr() {
                             >
                             </Player>
                         </div>
-                        <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'>
+                        <motion.div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            viewport={{ once: true, amount: 0.1 }}
+                            whileInView={{
+                                opacity: 1, scale: 1, transition: {
+                                    duration: 0.8,
+                                    delay: 0.5,
+                                    ease: [0, 0.71, 0.2, 1.01]
+                                }
+                            }}
+                        >
                             <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`Full-Stack Developer`}</span>
                             {`While lately I've been focusing on Front-End Development, I used to prefer being a Back-End Developer on my starting days.`}
-                        </div>
+                        </motion.div>
                     </div>
                     <div className='grid grid-cols-12 pt-0 pb-40 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
-                        <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'>
+                        <motion.div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            viewport={{ once: true, amount: 0.1 }}
+                            whileInView={{
+                                opacity: 1, scale: 1, transition: {
+                                    duration: 0.8,
+                                    delay: 0.5,
+                                    ease: [0, 0.71, 0.2, 1.01]
+                                }
+                            }}
+                        >
                             <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`7 Years of Study`}</span>
                             {`Graduated as a BASc in Informatics Engineering major. I've studied a broad range of computer disciplines since I was 15 y/o.`}
-                        </div>
+                        </motion.div>
                         <div className='col-span-12 sm:col-span-6 flex justify-center order-first sm:order-last overflow-hidden'>
                             <Player
                                 autoplay
@@ -541,14 +549,36 @@ export default function Foryouhr() {
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
                         position: 'relative', // Ensure proper stacking of children
-                    }}>
+                    }}
+
+                    >
                         <div className="dark-overlay"></div>
-                        <div className='col-span-12 text-white font-bold text-2xl sm:text-4xl text-left pt-5 pb-5 z-10 select-none'>
+                        <motion.div className='col-span-12 text-white font-bold text-2xl sm:text-4xl text-left pt-5 pb-5 z-10 select-none'
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            viewport={{ once: true, amount: 0.1 }}
+                            whileInView={{
+                                opacity: 1, scale: 1, transition: {
+                                    duration: 0.8,
+                                    delay: 0.5,
+                                    ease: [0, 0.71, 0.2, 1.01]
+                                }
+                            }}
+                        >
                             {`Does that mean I'm limited to the listed area?`}
-                        </div>
-                        <div className='col-span-12 text-white text-xl sm:text-2xl flex justify-center items-center select-none gap-20 pt-5 pb-5 z-10'>
-                            {`Of course not;`}<br /> {`My Curiosity, Imagination, and Adaptability are always dancing along.`}
-                        </div>
+                        </motion.div>
+                        <motion.div className='col-span-12 text-white text-xl sm:text-2xl flex justify-center items-center select-none gap-20 pt-5 pb-5 z-10'
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            viewport={{ once: true, amount: 0.1 }}
+                            whileInView={{
+                                opacity: 1, scale: 1, transition: {
+                                    duration: 0.8,
+                                    delay: 0.5,
+                                    ease: [0, 0.71, 0.2, 1.01]
+                                }
+                            }}
+                        >
+                            {`Of course not;`}<br /> {`My Curiosity, Imagination, and Adaptability are shamelessly always dancing along.`}
+                        </motion.div>
                     </div>
                     <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
                         <div className='col-span-10 text-left'>
