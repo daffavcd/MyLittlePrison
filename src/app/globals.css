@@ -80,6 +80,10 @@ body {
   opacity: 0.55;
 }
 
+.bg-header-poster{
+  background-color: #141521;
+}
+
 .bg-blood {
   background-color: #e50914;
 }
