@@ -142,8 +142,22 @@ export default function Foryouhr() {
                                 <ChevronRightIcon className="h-9 w-9 rotate-45" aria-hidden="true" />
                             </div>
                         </a>
+                        {/* <div className="absolute left-[50%] -translate-x-[50%] top-7 grid grid-cols-12 gap-4 bg-black px-4 py-2 rounded-full leading-normal font-medium  text-white text-center shadow-black">
+                            <div className='flex col-span-4 py-2 px-4 justify-center items-center rounded-full bg-blood relative'>
+                                <div className='dark-overlay'></div>
+                                <p className='z-10'>Projects</p>
+                            </div>
+                            <div className='flex col-span-4 py-2 px-4 justify-center items-center rounded-full bg-blood relative'>
+                                <div className='dark-overlay'></div>
+                                <p className='z-10'>About</p>
+                            </div>
+                            <div className='flex col-span-4 py-2 px-4 justify-center items-center rounded-full bg-blood relative'>
+                                <div className='dark-overlay'></div>
+                                <p className='z-10'>Contact</p>
+                            </div>
+                        </div> */}
                         <div className='flex items-center pl-6 pr-6 md:pl-36 md:pr-36 text-4xl sm:text-6xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
-                            <TypeAnimation
+                            {/* <TypeAnimation
                                 sequence={[
                                     `Hello, how's it going?`,
                                     500,
@@ -161,7 +175,7 @@ export default function Foryouhr() {
                                 speed={85}
                                 className='shadow select-none'
                                 repeat={Infinity}
-                            />
+                            /> */}
                         </div>
                     </div>
                     <motion.div className='grid grid-cols-12 py-28 lg:py-52 pl-6 pr-6 lg:pl-24 lg:pr-24'
@@ -413,12 +427,198 @@ export default function Foryouhr() {
                         </div>
                     </div>
                     {/* END OF PORTFOLIO SECTION */}
+                    <div className='grid grid-cols-12 overflow-hidden'>
+                        <div className='col-span-12 grid grid-cols-12 gap-4 pt-14 pb-14 pl-6 pr-6 text-left select-none'
+                            style={{ minHeight: '830px' }}
+                        >
+                            <div className="col-span-3 grid grid-cols-1 p-6 bg-poster-active">
+                                <div className="col-span-1 flex justify-center items-center">
+                                    <Image
+                                        src={`/images/icons/next-js-black.svg`}
+                                        title="Next.Js"
+                                        alt="Next.Js"
+                                        height={165}
+                                        width={165}
+                                        style={{
+                                            objectFit: 'cover',
+                                        }}
+                                    />
+                                </div>
+                                <div className="col-span-1 flex justify-start items-end text-black font-bold text-2xl pb-2">
+                                    {`Childhood`}
+                                </div>
+                                <div className="col-span-1 flex justify-start items-start text-black font-medium text-lg">
+                                    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed. `}
+                                </div>
+                            </div>
+                            <div className="col-span-3 grid grid-cols-1 p-6 bg-poster">
+                                <div className="col-span-1 flex justify-center items-center">
+                                    <Image
+                                        src={`/images/icons/next-js-black.svg`}
+                                        title="Next.Js"
+                                        alt="Next.Js"
+                                        height={165}
+                                        width={165}
+                                        style={{
+                                            objectFit: 'cover',
+                                        }}
+                                    />
+                                </div>
+                                <div className="col-span-1 flex justify-start items-end text-black font-bold text-2xl pb-2">
+                                    {`Childhood`}
+                                </div>
+                                <div className="col-span-1 flex justify-start items-start text-black font-medium text-lg">
+                                    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed. `}
+                                </div>
+                            </div>
+                            <div className="col-span-3 grid grid-cols-1 p-6 bg-poster">
+                                <div className="col-span-1 flex justify-center items-center">
+                                    <Image
+                                        src={`/images/icons/next-js-black.svg`}
+                                        title="Next.Js"
+                                        alt="Next.Js"
+                                        height={165}
+                                        width={165}
+                                        style={{
+                                            objectFit: 'cover',
+                                        }}
+                                    />
+                                </div>
+                                <div className="col-span-1 flex justify-start items-end text-black font-bold text-2xl pb-2">
+                                    {`Childhood`}
+                                </div>
+                                <div className="col-span-1 flex justify-start items-start text-black font-medium text-lg">
+                                    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed. `}
+                                </div>
+                            </div>
+                            <div className="col-span-3 grid grid-cols-1 p-6 bg-poster">
+                                <div className="col-span-1 flex justify-center items-center">
+                                    <Image
+                                        src={`/images/icons/next-js-black.svg`}
+                                        title="Next.Js"
+                                        alt="Next.Js"
+                                        height={165}
+                                        width={165}
+                                        style={{
+                                            objectFit: 'cover',
+                                        }}
+                                    />
+                                </div>
+                                <div className="col-span-1 flex justify-start items-end text-black font-bold text-2xl pb-2">
+                                    {`Childhood`}
+                                </div>
+                                <div className="col-span-1 flex justify-start items-start text-black font-medium text-lg">
+                                    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed. `}
+                                </div>
+                            </div>
+                            <div className="col-span-3 grid grid-cols-1 p-6 bg-poster">
+                                <div className="col-span-1 flex justify-center items-center">
+                                    <Image
+                                        src={`/images/icons/next-js-black.svg`}
+                                        title="Next.Js"
+                                        alt="Next.Js"
+                                        height={165}
+                                        width={165}
+                                        style={{
+                                            objectFit: 'cover',
+                                        }}
+                                    />
+                                </div>
+                                <div className="col-span-1 flex justify-start items-end text-black font-bold text-2xl pb-2">
+                                    {`Childhood`}
+                                </div>
+                                <div className="col-span-1 flex justify-start items-start text-black font-medium text-lg">
+                                    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed. `}
+                                </div>
+                            </div>
+                            <div className="col-span-3 grid grid-cols-1 p-6 bg-poster">
+                                <div className="col-span-1 flex justify-center items-center">
+                                    <Image
+                                        src={`/images/icons/next-js-black.svg`}
+                                        title="Next.Js"
+                                        alt="Next.Js"
+                                        height={165}
+                                        width={165}
+                                        style={{
+                                            objectFit: 'cover',
+                                        }}
+                                    />
+                                </div>
+                                <div className="col-span-1 flex justify-start items-end text-black font-bold text-2xl pb-2">
+                                    {`Childhood`}
+                                </div>
+                                <div className="col-span-1 flex justify-start items-start text-black font-medium text-lg">
+                                    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed. `}
+                                </div>
+                            </div>
+                            <div className="col-span-3 grid grid-cols-1 p-6 bg-poster">
+                                <div className="col-span-1 flex justify-center items-center">
+                                    <Image
+                                        src={`/images/icons/next-js-black.svg`}
+                                        title="Next.Js"
+                                        alt="Next.Js"
+                                        height={165}
+                                        width={165}
+                                        style={{
+                                            objectFit: 'cover',
+                                        }}
+                                    />
+                                </div>
+                                <div className="col-span-1 flex justify-start items-end text-black font-bold text-2xl pb-2">
+                                    {`Childhood`}
+                                </div>
+                                <div className="col-span-1 flex justify-start items-start text-black font-medium text-lg">
+                                    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed. `}
+                                </div>
+                            </div>
+                            <div className="col-span-3 grid grid-cols-1 p-6 bg-poster">
+                                <div className="col-span-1 flex justify-center items-center">
+                                    <Image
+                                        src={`/images/icons/next-js-black.svg`}
+                                        title="Next.Js"
+                                        alt="Next.Js"
+                                        height={165}
+                                        width={165}
+                                        style={{
+                                            objectFit: 'cover',
+                                        }}
+                                    />
+                                </div>
+                                <div className="col-span-1 flex justify-start items-end text-black font-bold text-2xl pb-2">
+                                    {`Childhood`}
+                                </div>
+                                <div className="col-span-1 flex justify-start items-start text-black font-medium text-lg">
+                                    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed. `}
+                                </div>
+                            </div>
+                            <div className="col-span-3 grid grid-cols-1 p-6 bg-poster">
+                                <div className="col-span-1 flex justify-center items-center">
+                                    <Image
+                                        src={`/images/icons/next-js-black.svg`}
+                                        title="Next.Js"
+                                        alt="Next.Js"
+                                        height={165}
+                                        width={165}
+                                        style={{
+                                            objectFit: 'cover',
+                                        }}
+                                    />
+                                </div>
+                                <div className="col-span-1 flex justify-start items-end text-black font-bold text-2xl pb-2">
+                                    {`Childhood`}
+                                </div>
+                                <div className="col-span-1 flex justify-start items-start text-black font-medium text-lg">
+                                    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed. `}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div className='grid grid-cols-12'>
                         <div className='col-span-12  pt-14 pb-14 pl-6 pr-6 text-white font-bold text-3xl sm:text-4xl text-center select-none'>
                             {`Some of My Certifications`}
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 pt-8 pb-0 pl-6 pr-6 gap-4 text-center relative'>
+                    <div className='grid grid-cols-12 pt-8 pb-8 pl-6 pr-6 gap-4 text-center relative'>
                         {isDesktop ? (
                             <div className='col-span-4 flex justify-end items-end'>
                                 <div className='relative' id='left-certificate'>
@@ -587,7 +787,7 @@ export default function Foryouhr() {
                         </div>
                     </div>
                 </div >
-            </main>
+            </main >
         </>
     )
 }

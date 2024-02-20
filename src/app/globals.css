@@ -71,6 +71,15 @@ body {
   color: #c3000a;
 }
 
+.bg-poster-active {
+  background-color: #a00000;
+}
+
+.bg-poster {
+  background-color: #a00000;
+  opacity: 0.55;
+}
+
 .bg-blood {
   background-color: #e50914;
 }
