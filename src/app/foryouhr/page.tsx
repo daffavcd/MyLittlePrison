@@ -23,6 +23,7 @@ import resto1Blur from '../../../public/images/portfolios/resto_1_blur.png'
 import resto2Blur from '../../../public/images/portfolios/resto_2_blur.png'
 import resto3Blur from '../../../public/images/portfolios/resto_3_blur.png'
 
+
 export default function Foryouhr() {
 
     const [isDesktop, setIsDesktop] = useState(true);
@@ -123,6 +124,53 @@ export default function Foryouhr() {
     };
 
     let posterIteration = 0;
+
+    const [currentActivePoster, setCurrentActivePoster] = useState(16);
+
+    const availablePosters = [
+        9, 10, 11,
+        15, 16, 17,
+        21, 22, 23
+    ];
+
+    const translationValueForOneMove = { x: 332, y: 476 };
+
+    const [translationPosterContainer, setTranslationPosterContainer] = useState({
+        translateX: 0,
+        translateY: 0
+    });
+
+    const movePosterContainer = (headingPoster: number) => {
+        console.log(`hallo: ${headingPoster}`);
+        let translationX = translationPosterContainer.translateX;
+        let translationY = translationPosterContainer.translateY;
+
+        // heading poster + 1 = current poster
+        if (headingPoster + 1 == currentActivePoster) {
+            translationX = translationX + translationValueForOneMove.x;
+            // heading poster - 1 = current poster
+        } else if (headingPoster - 1 == currentActivePoster) {
+            translationX = translationX + -translationValueForOneMove.x;
+
+        }
+
+        console.log(`headingPoster: ${headingPoster}, currentActivePoster: ${currentActivePoster}, translationX: ${translationX}, translationY: ${translationY}`);
+        setTranslationPosterContainer({
+            ...translationPosterContainer,
+            translateX: translationX,
+            translateY: translationY
+        })
+
+        setCurrentActivePoster(headingPoster);
+
+
+        // heading poster < current poster && 
+
+        // heading poster
+
+        // if (currentPoster === headingPoster)
+
+    }
 
     return (
         <>
@@ -440,21 +488,23 @@ export default function Foryouhr() {
                                 {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed. `}
                             </div>
                         </div>
-                        <div className='relative flex' style={{
-                            transform: 'rotate(13deg)'
+                        <div className='relative flex transition-transform ease-in-out duration-300' style={{
+                            transform: `rotate(13deg) translate(${translationPosterContainer.translateX}px, ${translationPosterContainer.translateY}px)`,
                         }}>
-                            <div className='grid grid-cols-12 gap-4 pt-14 pb-14 pl-6 pr-6 text-left select-none'
+                            <div className='grid grid-cols-12 gap-5 pt-14 pb-14 pl-6 pr-6 text-left select-none'
                                 style={{ minHeight: '830px', width: '2000px' }}
                             >
 
                                 {
-                                    [...Array(18)].map((j) => {
+                                    [...Array(30)].map((j) => {
                                         posterIteration++;
+                                        let currentIteration = posterIteration;
                                         return (
-                                            <div key={j}
+                                            <div key={posterIteration}
                                                 id={`poster-${posterIteration}`}
-                                                className={`col-span-2 grid grid-cols-1 cursor-pointer p-6 ${posterIteration == 10 ? 'bg-poster-active' : 'bg-poster hover:bg-red-600'}`}
-                                                style={{ minHeight: '500px', minWidth: '315px' }}
+                                                className={`col-span-2 p-6 grid grid-cols-1 ${availablePosters.includes(currentIteration) && currentIteration != currentActivePoster ? 'cursor-pointer' : ''} ${posterIteration == currentActivePoster ? 'bg-poster-active' : availablePosters.includes(currentIteration) ? 'bg-poster' : 'bg-poster-unhovered'}`}
+                                                style={{ minHeight: '500px', width: '308px' }}
+                                                onClick={availablePosters.includes(currentIteration) && currentIteration != currentActivePoster ? () => movePosterContainer(currentIteration) : undefined}
                                             >
                                                 <div className="col-span-1 flex justify-center items-center">
                                                     <Image
