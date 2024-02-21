@@ -216,8 +216,8 @@ export default function Foryouhr() {
                                 <p className='z-10'>Contact</p>
                             </div>
                         </div> */}
-                        <div className='flex items-center pl-6 pr-6 md:pl-36 md:pr-36 text-4xl sm:text-6xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
-                            {/* <TypeAnimation
+                        <div className='flex items-center pl-6 pr-6 md:pl-36 md:pr-36 text-4xl sm:text-6xl leading-normal font-normal p-4 text-white text-center z-10 h-full'>
+                            <TypeAnimation
                                 sequence={[
                                     `Hello, how's it going?`,
                                     500,
@@ -227,15 +227,15 @@ export default function Foryouhr() {
                                     700,
                                     `Be it in a genre of system, an app, or a website, I'd be down for it;`,
                                     1000,
-                                    `Oh, and if you don't know how to move your feet?`,
-                                    700,
-                                    `Don't worry, I will lead the dance for you.`,
+                                    `Well, in case you don't know how to move your hips, don't be worried about it,`,
+                                    1000,
+                                    `I will lead the dance for you.`,
                                     1000,
                                 ]}
                                 speed={85}
                                 className='shadow select-none'
                                 repeat={Infinity}
-                            /> */}
+                            />
                         </div>
                     </div>
                     <motion.div className='grid grid-cols-12 py-28 lg:py-52 pl-6 pr-6 lg:pl-24 lg:pr-24'
@@ -243,7 +243,7 @@ export default function Foryouhr() {
                         whileInView="onscreen"
                         viewport={{ once: true, amount: 0.5 }}
                         id='first-content'>
-                        <motion.div className='col-span-12 lg:col-span-7 text-white text-xl sm:text-2xl text-left' variants={textLeftVariants}>
+                        <motion.div className='col-span-12 lg:col-span-7 text-white font-normal text-xl sm:text-2xl text-left' variants={textLeftVariants}>
                             {`For those of you who are able to appreciate code, I'd like to recommend experiencing my works through a `}
                             <Link href={`/game`} className='hover:text-red-600 underline'
                                 onMouseEnter={() => setHoveredLinkGame(true)}
@@ -330,10 +330,10 @@ export default function Foryouhr() {
 
 
                         >
-                            <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
+                            <div className='col-span-12 text-white font-semibold text-2xl flex justify-start items-end sm:px-5'>
                                 {`SR-APP`}
                             </div>
-                            <div className='col-span-12 text-white font-medium text-xl flex justify-start items-start sm:px-5'>
+                            <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5'>
                                 <ul className="list-disc text-left">
                                     <li>{`I developed SR-APP, the 1st Corporate Social Responsibility microservices app in Indonesia as the main front end developer.`}</li>
                                     <li>{`Implemented using React and Laravel in a Single Page Application, the app manages to monitor every CSR progress effectively.`}</li>
@@ -404,10 +404,10 @@ export default function Foryouhr() {
                         </div>
                         <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'
                         >
-                            <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
+                            <div className='col-span-12 text-white font-semibold text-2xl flex justify-start items-end sm:px-5'>
                                 {`J-GOLF`}
                             </div>
-                            <div className='col-span-12 text-white font-medium text-xl flex justify-start items-start sm:px-5'>
+                            <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5'>
                                 <ul className="list-disc text-left">
                                     <li>{`I designed and developed a Mobile focus golf web application called J-Golf as the 1st Indonesian Golf Management app using Laravel.`}</li>
                                     <li>{`J-Golf primarily manages subscription packages for courses training, golf event creation, scoring, and rankings.`}</li>
@@ -464,10 +464,10 @@ export default function Foryouhr() {
                         </div>
                         <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'
                         >
-                            <div className='col-span-12 text-white font-bold text-2xl flex justify-start items-end sm:px-5'>
+                            <div className='col-span-12 text-white font-semibold text-2xl flex justify-start items-end sm:px-5'>
                                 {`MY DESIRED UTOPIAS`}
                             </div>
-                            <div className='col-span-12 text-white font-medium text-xl flex justify-start items-start sm:px-5'>
+                            <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5'>
                                 <ul className="list-disc text-left">
                                     <li>{`My Desired Utopias is the culmination of my Dicoding "Becoming a Web Front- End Developer Expert" certification journey.`}</li>
                                     <li>{`Featuring a Progressive Web App (PWA) that fetches restaurant data from the Dicoding server using Hapi, Webpack, and vanilla CSS/JS.`}</li>
@@ -480,7 +480,7 @@ export default function Foryouhr() {
                             <Link href={`/game`}>
                                 <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl max-h-16 sm:max-h-12 rounded-xl cursor-pointer text-blood hover:text-white hover:scale-110 transition-transform ease-in-out duration-150'>
                                     <div className='absolute -m-2 w-full h-full rounded-lg border-2 border-btn-mlp animate-ping-mlp-3' />
-                                    <span className="font-bold text-xl text-center" >{`Explore more in Game Mode `}<sup>12</sup></span>
+                                    <span className="font-semibold text-xl text-center" >{`Explore more in Game Mode `}<sup>12</sup></span>
                                 </div>
                             </Link>
 
@@ -547,7 +547,7 @@ export default function Foryouhr() {
                         </div>
                     </div>
                     <div className='grid grid-cols-12'>
-                        <div className='col-span-12 pt-28 pb-14 pl-6 pr-6 text-white font-bold text-3xl sm:text-4xl text-center select-none'>
+                        <div className='col-span-12 pt-28 pb-14 pl-6 pr-6 text-white font-semibold text-3xl sm:text-4xl text-center select-none'>
                             {`Some of My Certifications`}
                         </div>
                     </div>
@@ -612,15 +612,15 @@ export default function Foryouhr() {
                             >
                             </Player>
                         </div>
-                        <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'
+                        <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-normal text-left text-white select-none'
 
                         >
-                            <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`Full-Stack Developer`}</span>
+                            <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`Full-Stack Engineer`}</span>
                             {`While lately I've been focusing on Front-End Development, I used to prefer being a Back-End Developer on my starting days.`}
                         </div>
                     </div>
                     <div className='grid grid-cols-12 pt-0 pb-40 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
-                        <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-medium text-left text-white select-none'
+                        <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-normal text-left text-white select-none'
 
                         >
                             <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`7 Years of Study`}</span>
@@ -646,7 +646,7 @@ export default function Foryouhr() {
 
                     >
                         <div className="dark-overlay"></div>
-                        <motion.div className='col-span-12 text-white font-bold text-2xl sm:text-4xl text-left pt-5 pb-5 z-10 select-none'
+                        <motion.div className='col-span-12 text-white font-medium text-2xl sm:text-4xl text-left pt-5 pb-5 z-10 select-none'
                             initial={{ opacity: 0, scale: 0.5 }}
                             viewport={{ once: true, amount: 0.1 }}
                             whileInView={{
@@ -659,7 +659,7 @@ export default function Foryouhr() {
                         >
                             {`Does that mean I'm limited to the listed area?`}
                         </motion.div>
-                        <motion.div className='col-span-12 text-white text-xl sm:text-2xl flex justify-center items-center select-none gap-20 pt-5 pb-5 z-10'
+                        <motion.div className='col-span-12 text-white text-xl font-normal sm:text-2xl flex justify-center items-center select-none gap-20 pt-5 pb-5 z-10'
                             initial={{ opacity: 0, scale: 0.5 }}
                             viewport={{ once: true, amount: 0.1 }}
                             whileInView={{

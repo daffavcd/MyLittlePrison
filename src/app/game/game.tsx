@@ -913,8 +913,8 @@ export default function Game() {
         <>
             <div className="col-span-12 grid grid-cols-12 gap-5 pb-10 sm:pb-0 sm:pl-24 sm:pr-24 -mt-16 sm:-mt-12 h-fit z-20">
                 <div className='col-span-12 sm:col-span-6'>
-                    <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl w-full sm:w-fit max-h-11 rounded-xl select-none'>
-                        <span className="font-extrabold">{`${visitedPortofolio.length}`}</span>&nbsp;{`/`}&nbsp;<span className="font-extrabold">{`${totalProjects}`}</span>&nbsp;{`Projects Found`}
+                    <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-normal drop-shadow-xl w-full sm:w-fit max-h-11 rounded-xl select-none'>
+                        <span className="font-bold">{`${visitedPortofolio.length}`}</span>&nbsp;{`/`}&nbsp;<span className="font-bold">{`${totalProjects}`}</span>&nbsp;{`Projects Found`}
                     </div>
                 </div>
             </div>

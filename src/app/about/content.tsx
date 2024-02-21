@@ -184,7 +184,7 @@ export default function Content() {
                             <ChevronRightIcon className="h-9 w-9 rotate-45" aria-hidden="true" />
                         </div>
                     </a>
-                    <div className='flex items-center pl-6 pr-6 md:pl-36 md:pr-36 text-3xl sm:text-4xl leading-normal font-medium p-4 text-white text-center z-10 h-full'>
+                    <div className='flex items-center pl-6 pr-6 md:pl-36 md:pr-36 text-3xl sm:text-4xl leading-normal font-normal p-4 text-white text-center z-10 h-full'>
                         <p className='shadow select-none'>I try to create the portfolio showcase in a game-like experience, hope you enjoy it. </p >
                     </div>
                 </div>
@@ -201,7 +201,7 @@ export default function Content() {
                     position: 'relative', // Ensure proper stacking of children
                 }}>
                     <div className="dark-overlay"></div>
-                    <div className='col-span-12 text-white font-bold text-3xl sm:text-4xl text-center pt-5 pb-5 z-10 select-none'>
+                    <div className='col-span-12 text-white font-semibold text-3xl sm:text-4xl text-center pt-5 pb-5 z-10 select-none'>
                         {`Technologies Used`}
                     </div>
                     <div className='col-span-12 flex justify-center items-center gap-20 pt-5 pb-5 z-10'>

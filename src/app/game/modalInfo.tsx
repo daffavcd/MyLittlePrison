@@ -86,7 +86,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                             height: "120px",
                                                         }}
                                                     />
-                                                    <ol className="text-lg mt-2 text-left font-medium text-white list-decimal tracking-tight">
+                                                    <ol className="text-lg mt-2 text-left font-normal text-white list-decimal tracking-tight">
                                                         <li className='break-normal hidden lg:list-item'>Use your arrow keyboard to navigate the character across the map.</li>
                                                         <li className='break-normal list-item lg:hidden'>Try to swipe inside the box to move.</li>
                                                     </ol>
@@ -106,7 +106,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                             height: "120px",
                                                         }}
                                                     />
-                                                    <ol className="text-lg mt-2 text-left font-medium text-white list-decimal tracking-tight" start={2}>
+                                                    <ol className="text-lg mt-2 text-left font-normal text-white list-decimal tracking-tight" start={2}>
                                                         <li className='break-normal hidden lg:list-item'>Find the Light Bulbs to discover the projects by using the arrow keys.</li>
                                                         <li className='break-normal list-item lg:hidden'>Find the Light Bulbs all over the map.</li>
                                                     </ol>
@@ -127,7 +127,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                             height: "120px",
                                                         }}
                                                     />
-                                                    <ol className="text-lg mt-2 text-left font-medium text-white list-decimal tracking-tight" start={3}>
+                                                    <ol className="text-lg mt-2 text-left font-normal text-white list-decimal tracking-tight" start={3}>
                                                         <li className='break-normal hidden lg:list-item'>Position the character precisely over where the Light Bulb is located.</li>
                                                         <li className='break-normal list-item lg:hidden'>Position the character near the Bulb.</li>
                                                     </ol>
@@ -161,7 +161,7 @@ export default function ModalInfo({ modalInfoOpen, setModalInfoOpen, cancelButto
                                                             height: "120px",
                                                         }}
                                                     />
-                                                    <ol className="text-lg mt-2 text-left font-medium text-white list-decimal tracking-tight" start={4}>
+                                                    <ol className="text-lg mt-2 text-left font-normal text-white list-decimal tracking-tight" start={4}>
                                                         <li className='break-normal hidden lg:list-item'>Show the projects by pressing Enter or left-clicking with your mouse.</li>
                                                         <li className='break-normal list-item lg:hidden'>Press the Light Bulb to show the projects.</li>
                                                     </ol>
