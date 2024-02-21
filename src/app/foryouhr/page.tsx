@@ -216,7 +216,7 @@ export default function Foryouhr() {
                                 <p className='z-10'>Contact</p>
                             </div>
                         </div> */}
-                        <div className='flex items-center pl-6 pr-6 md:pl-36 md:pr-36 text-4xl sm:text-6xl leading-normal font-normal p-4 text-white text-center z-10 h-full'>
+                        <div className='flex items-center pl-6 pr-6 md:pl-36 md:pr-36 text-4xl sm:text-5xl leading-normal font-normal p-4 text-white text-center z-10 h-full' style={{ lineHeight: 1.3 }}>
                             <TypeAnimation
                                 sequence={[
                                     `Hello, how's it going?`,
@@ -227,7 +227,7 @@ export default function Foryouhr() {
                                     700,
                                     `Be it in a genre of system, an app, or a website, I'd be down for it;`,
                                     1000,
-                                    `Well, in case you don't know how to move your hips, don't be worried about it,`,
+                                    `Well, in case you don't know how to move your feet, don't be worried about it,`,
                                     1000,
                                     `I will lead the dance for you.`,
                                     1000,
@@ -475,12 +475,12 @@ export default function Foryouhr() {
                             </div>
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 pt-0 lg:pt-0 pb-16 lg:pb-40 pl-6 pr-6 lg:pl-24 lg:pr-24 shadow-poster-high'>
+                    <div className='grid grid-cols-12 pt-0 lg:pt-0 pb-32 pl-6 pr-6 lg:pl-24 lg:pr-24 shadow-poster-high'>
                         <div className='col-span-12 flex justify-center items-center'>
                             <Link href={`/game`}>
-                                <div className='inline-flex justify-center items-center p-4 bg-red-700/25 text-blood text-lg font-medium drop-shadow-xl max-h-16 sm:max-h-12 rounded-xl cursor-pointer text-blood hover:text-white hover:scale-110 transition-transform ease-in-out duration-150'>
-                                    <div className='absolute -m-2 w-full h-full rounded-lg border-2 border-btn-mlp animate-ping-mlp-3' />
-                                    <span className="font-semibold text-xl text-center" >{`Explore more in Game Mode `}<sup>12</sup></span>
+                                <div className='inline-flex justify-center items-center p-4 bg-btn-explore text-white text-lg drop-shadow-xl max-h-16 sm:max-h-12 rounded-xl cursor-pointer text-bloo hover:scale-110 transition-transform ease-in-out duration-150'>
+                                    <div className='absolute -m-2 w-full h-full rounded-md border-2 border-btn-explore animate-ping-mlp-3' />
+                                    <span className="font-medium text-xl text-center" >{`Explore more in Game Mode `}<sup>12</sup></span>
                                 </div>
                             </Link>
 
@@ -494,7 +494,7 @@ export default function Foryouhr() {
                         <div className='absolute top-[30%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 right-0 bg-header-poster p-3 z-20 max-w-lg mh shadow-black' onClick={nextPoster}>
                             <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
                         </div>
-                        <div className='absolute left-[20%] -translate-x-[20%] bottom-0 bg-header-poster p-9 z-20 max-w-lg select-none shadow-black'
+                        <div className='absolute lg:left-[20%] lg:-translate-x-[20%] bottom-0 bg-header-poster p-9 z-20 max-w-lg select-none shadow-black'
                             style={{ minHeight: '270px' }}
                         >
                             <div className="col-span-1 flex justify-start items-end text-white font-bold text-2xl pb-2">
@@ -547,7 +547,7 @@ export default function Foryouhr() {
                         </div>
                     </div>
                     <div className='grid grid-cols-12'>
-                        <div className='col-span-12 pt-28 pb-14 pl-6 pr-6 text-white font-semibold text-3xl sm:text-4xl text-center select-none'>
+                        <div className='col-span-12 pt-32 pb-14 pl-6 pr-6 text-white font-semibold text-3xl sm:text-4xl text-center select-none'>
                             {`Some of My Certifications`}
                         </div>
                     </div>
@@ -594,15 +594,14 @@ export default function Foryouhr() {
                                 </div>
                             </div>
                         ) : null}
-                        <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] left-5 text-2xl rounded-full p-2 hover:scale-105 bg-blood-90 text-black hover:text-white cursor-pointer z-20 shadow-md' onClick={prevSlide}>
-                            <ChevronLeftIcon className="h-11 w-11 hover:scale-105" aria-hidden="true" />
+                        <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 left-0 bg-btn-certificates p-3 z-20 max-w-lg mh shadow-black' onClick={prevSlide}>
+                            <ChevronLeftIcon className="h-11 w-11" aria-hidden="true" />
                         </div>
-                        {/* Right Arrow */}
-                        <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] right-5 text-2xl rounded-full p-2 hover:scale-105 bg-blood-90 text-black hover:text-white cursor-pointer z-20 shadow-md' onClick={nextSlide}>
-                            <ChevronRightIcon className="h-11 w-11 hover:scale-105" aria-hidden="true" />
+                        <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 right-0 bg-btn-certificates p-3 z-20 max-w-lg mh shadow-black' onClick={nextSlide}>
+                            <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 pt-40 pb-0 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
+                    <div className='grid grid-cols-12 pt-20 pb-0 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
                         <div className='col-span-12 sm:col-span-6 flex justify-center overflow-hidden'>
                             <Player
                                 autoplay
@@ -613,13 +612,12 @@ export default function Foryouhr() {
                             </Player>
                         </div>
                         <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-normal text-left text-white select-none'
-
                         >
                             <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`Full-Stack Engineer`}</span>
                             {`While lately I've been focusing on Front-End Development, I used to prefer being a Back-End Developer on my starting days.`}
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 pt-0 pb-40 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
+                    <div className='grid grid-cols-12 pt-0 pb-32 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
                         <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-normal text-left text-white select-none'
 
                         >

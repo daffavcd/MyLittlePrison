@@ -80,6 +80,18 @@ body {
   opacity: 0.55;
 }
 
+.bg-btn-explore {
+  background-color: #1f343f;
+}
+
+.bg-btn-certificates {
+  background-color: #25364D;
+}
+
+.border-btn-explore {
+  border: rgb(31 52 63 / 95%) 2px solid;
+}
+
 .text-poster {
   color: white;
 }

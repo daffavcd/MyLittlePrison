@@ -23,7 +23,7 @@ export default function Header() {
     return (
         <>
             <div className={`fixed inset-0 flex justify-center items-center scale-150 bg-black w-full h-full text-white transition-transform ease-in-out duration-1000 ${isLoadingAnimated ? '-translate-y-double-full rounded-b-full' : null}`} style={{ zIndex: 101 }}>
-                <p className={`font-medium text-4xl select-none transition-opacity ease-in-out ${isLoadingAnimated ? 'opacity-50' : null}`}>Hi.</p>
+                <p className={`font-normal text-4xl select-none transition-opacity ease-in-out ${isLoadingAnimated ? 'opacity-50' : null}`}>Hi.</p>
             </div>
             <div className='col-span-12 grid grid-cols-12 z-10'>
                 <div className="col-span-9">
