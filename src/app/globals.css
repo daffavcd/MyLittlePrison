@@ -80,6 +80,14 @@ body {
   opacity: 0.55;
 }
 
+.text-poster {
+  color: white;
+}
+
+.text-poster:hover {
+  color: #a00000;
+}
+
 .bg-poster-unhovered {
   background-color: #a00000;
   opacity: 0.55;

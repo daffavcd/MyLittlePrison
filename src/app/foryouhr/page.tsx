@@ -123,6 +123,8 @@ export default function Foryouhr() {
         }
     };
 
+    // POSTER FUNCTIONALITIES
+
     let posterIteration = 0;
 
     const [currentActivePoster, setCurrentActivePoster] = useState(16);
@@ -133,6 +135,8 @@ export default function Foryouhr() {
         21, 22, 23
     ];
 
+    const posterOrder = [9, 15, 21, 10, 16, 22, 11, 17, 23];
+
     const translationValueForOneMove = { x: 332, y: 476 };
 
     const [translationPosterContainer, setTranslationPosterContainer] = useState({
@@ -141,20 +145,22 @@ export default function Foryouhr() {
     });
 
     const movePosterContainer = (headingPoster: number) => {
-        console.log(`hallo: ${headingPoster}`);
         let translationX = translationPosterContainer.translateX;
         let translationY = translationPosterContainer.translateY;
 
-        // heading poster + 1 = current poster
-        if (headingPoster + 1 == currentActivePoster) {
-            translationX = translationX + translationValueForOneMove.x;
-            // heading poster - 1 = current poster
-        } else if (headingPoster - 1 == currentActivePoster) {
-            translationX = translationX + -translationValueForOneMove.x;
+        const postersPerRow = 6;
+        const currentRow = Math.ceil(currentActivePoster / postersPerRow);
+        const currentColumn = currentActivePoster % postersPerRow || postersPerRow;
+        const headingRow = Math.ceil(headingPoster / postersPerRow);
+        const headingColumn = headingPoster % postersPerRow || postersPerRow;
 
-        }
+        const rowDifference = headingRow - currentRow;
+        const columnDifference = headingColumn - currentColumn;
 
-        console.log(`headingPoster: ${headingPoster}, currentActivePoster: ${currentActivePoster}, translationX: ${translationX}, translationY: ${translationY}`);
+        translationX = translationX - (columnDifference * translationValueForOneMove.x);
+        translationY = translationY - (rowDifference * translationValueForOneMove.y);
+
+        // console.log(`headingPoster: ${headingPoster}, currentActivePoster: ${currentActivePoster}, translationX: ${translationX}, translationY: ${translationY}`);
         setTranslationPosterContainer({
             ...translationPosterContainer,
             translateX: translationX,
@@ -162,15 +168,19 @@ export default function Foryouhr() {
         })
 
         setCurrentActivePoster(headingPoster);
-
-
-        // heading poster < current poster && 
-
-        // heading poster
-
-        // if (currentPoster === headingPoster)
-
     }
+
+    const nextPoster = () => {
+        const currentIndex = posterOrder.indexOf(currentActivePoster);
+        const nextIndex = (currentIndex + 1) % posterOrder.length;
+        movePosterContainer(posterOrder[nextIndex]);
+    };
+
+    const prevPoster = () => {
+        const currentIndex = posterOrder.indexOf(currentActivePoster);
+        const nextIndex = (currentIndex - 1 + posterOrder.length) % posterOrder.length;
+        movePosterContainer(posterOrder[nextIndex]);
+    };
 
     return (
         <>
@@ -478,7 +488,13 @@ export default function Foryouhr() {
                     </div>
                     {/* END OF PORTFOLIO SECTION */}
                     <div className='relative flex justify-center items-center overflow-hidden' style={{ height: '540px' }}>
-                        <div className='absolute left-[20%] -translate-x-[20%] bottom-0 bg-header-poster p-9 z-20 max-w-lg mh shadow-black'
+                        <div className='absolute top-[30%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 left-0 bg-header-poster p-3 z-20 max-w-lg mh shadow-black' onClick={prevPoster}>
+                            <ChevronLeftIcon className="h-11 w-11" aria-hidden="true" />
+                        </div>
+                        <div className='absolute top-[30%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 right-0 bg-header-poster p-3 z-20 max-w-lg mh shadow-black' onClick={nextPoster}>
+                            <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
+                        </div>
+                        <div className='absolute left-[20%] -translate-x-[20%] bottom-0 bg-header-poster p-9 z-20 max-w-lg select-none shadow-black'
                             style={{ minHeight: '270px' }}
                         >
                             <div className="col-span-1 flex justify-start items-end text-white font-bold text-2xl pb-2">
