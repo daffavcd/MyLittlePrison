@@ -510,7 +510,7 @@ export default function Foryouhr() {
                             </div>
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 pt-0 lg:pt-0 pb-32 pl-6 pr-6 lg:pl-24 lg:pr-24 shadow-poster-high'>
+                    <div className='grid grid-cols-12 pt-0 lg:pt-0 pb-32 pl-6 pr-6 lg:pl-24 lg:pr-24 poster-shadow relative z-10'>
                         <div className='col-span-12 flex justify-center items-center'>
                             <Link href={`/game`}>
                                 <div className='inline-flex justify-center items-center p-4 bg-btn-explore text-white text-lg drop-shadow-xl max-h-16 sm:max-h-12 rounded-xl cursor-pointer text-bloo hover:scale-110 transition-transform ease-in-out duration-150'>
