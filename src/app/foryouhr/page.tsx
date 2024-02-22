@@ -149,7 +149,7 @@ export default function Foryouhr() {
         const { className, style, onClick } = props;
         return (
             <div
-                className={`absolute top-[35%] -mr-2 lg:mr-6 right-0 scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 bg-btn-certificates p-3 z-20 max-w-lg shadow-black`}
+                className={`absolute top-[35%] -mr-2 lg:-mr-6 right-0 scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 bg-btn-certificates p-3 z-20 max-w-lg shadow-black`}
                 style={{ ...style }}
                 onClick={onClick}
             >
