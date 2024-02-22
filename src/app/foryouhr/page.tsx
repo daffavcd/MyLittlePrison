@@ -606,7 +606,7 @@ export default function Foryouhr() {
                             <Player
                                 autoplay
                                 loop
-                                src="/images/lottie/world.json"
+                                src="/images/lottie/world-rednew.json"
                                 style={{ height: '400px', width: '400px' }}
                             >
                             </Player>
@@ -628,7 +628,7 @@ export default function Foryouhr() {
                             <Player
                                 autoplay
                                 loop
-                                src="/images/lottie/study-3.json"
+                                src="/images/lottie/study-rednew.json"
                                 style={{ height: '400px', width: '400px' }}
                             >
                             </Player>
