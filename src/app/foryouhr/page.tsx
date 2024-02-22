@@ -10,7 +10,7 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { TypeAnimation } from 'react-type-animation';
 import { motion, Variants } from "framer-motion";
-
+import Slider from "react-slick";
 
 import mne1Blur from '../../../public/images/portfolios/mne_1_blur.png'
 import mne2Blur from '../../../public/images/portfolios/mne_2_blur.png'
@@ -23,20 +23,18 @@ import resto1Blur from '../../../public/images/portfolios/resto_1_blur.png'
 import resto2Blur from '../../../public/images/portfolios/resto_2_blur.png'
 import resto3Blur from '../../../public/images/portfolios/resto_3_blur.png'
 
+import mangtas from '../../../public/images/certificates/mangtas.png'
+import merdeka from '../../../public/images/certificates/merdeka.png'
+import analytic from '../../../public/images/certificates/analytic.png'
+import expert from '../../../public/images/certificates/expert.png'
+import flutter from '../../../public/images/certificates/flutter.png'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 export default function Foryouhr() {
 
     const [isDesktop, setIsDesktop] = useState(true);
-
-    const slides = useRef([
-        'mangtas',
-        'merdeka',
-        'analytic',
-        'expert',
-        'flutter',
-    ],);
-
-    const [currentCertificate, setCurrentCertificate] = useState(0);
 
     // GET WINDOW RESOLUTION
     useEffect(() => {
@@ -71,47 +69,11 @@ export default function Foryouhr() {
     }, []);
 
 
-
-    useEffect(() => {
-        const changeSlide = setInterval(() => {
-            const isLastSlide = currentCertificate === slides.current.length - 1;
-            const newIndex = isLastSlide ? 0 : currentCertificate + 1;
-            setCurrentCertificate(newIndex);
-        }, 4000);
-        return () => clearInterval(changeSlide);
-    }, [currentCertificate]);
-
-    const prevSlide = () => {
-        const isFirstSlide = currentCertificate === 0;
-        const newIndex = isFirstSlide ? slides.current.length - 1 : currentCertificate - 1;
-        setCurrentCertificate(newIndex);
-    };
-
-    const nextSlide = () => {
-        const isLastSlide = currentCertificate === slides.current.length - 1;
-        const newIndex = isLastSlide ? 0 : currentCertificate + 1;
-        setCurrentCertificate(newIndex);
-    };
-
     const [hoveredLinkGame, setHoveredLinkGame] = useState(false);
 
     const textLeftVariants: Variants = {
         offscreen: {
             x: -1000
-        },
-        onscreen: {
-            x: 0,
-            transition: {
-                type: "spring",
-                bounce: 0.4,
-                duration: 0.8
-            }
-        }
-    };
-
-    const textRightVariants: Variants = {
-        offscreen: {
-            x: 1000
         },
         onscreen: {
             x: 0,
@@ -180,6 +142,59 @@ export default function Foryouhr() {
         const currentIndex = posterOrder.indexOf(currentActivePoster);
         const nextIndex = (currentIndex - 1 + posterOrder.length) % posterOrder.length;
         movePosterContainer(posterOrder[nextIndex]);
+    };
+
+    // CAROUSEL FUNCTIONALLITY
+    const NextArrowCarousel = (props: any) => {
+        const { className, style, onClick } = props;
+        return (
+            <div
+                className={`absolute top-[35%] -mr-2 lg:mr-6 right-0 scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 bg-btn-certificates p-3 z-20 max-w-lg shadow-black`}
+                style={{ ...style }}
+                onClick={onClick}
+            >
+                <ChevronRightIcon className="h-8 w-8 lg:h-11 lg:w-11" aria-hidden="true" />
+            </div>
+        );
+    }
+
+    const LeftArrowCarousel = (props: any) => {
+        const { className, style, onClick } = props;
+        return (
+
+            <div
+                className={`absolute top-[35%] -ml-2 lg:-ml-6 left-0 scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 bg-btn-certificates p-3 z-20 max-w-lg shadow-black`}
+                style={{ ...style }}
+                onClick={onClick}
+            >
+                <ChevronLeftIcon className="h-8 w-8 lg:h-11 lg:w-11" aria-hidden="true" />
+            </div>
+        );
+    }
+
+    const carouselSettings = {
+        className: "center",
+        centerMode: true,
+        dots: false,
+        speed: 500,
+        focusOnSelect: true,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        nextArrow: <NextArrowCarousel />,
+        prevArrow: <LeftArrowCarousel />,
+        responsive: [
+
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    centerMode: false,
+                }
+            },
+        ]
     };
 
     return (
@@ -489,10 +504,10 @@ export default function Foryouhr() {
                     {/* END OF PORTFOLIO SECTION */}
                     <div className='relative flex justify-center items-center overflow-hidden' style={{ height: '540px' }}>
                         <div className='absolute top-[30%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 left-0 bg-header-poster p-3 z-20 max-w-lg mh shadow-black' onClick={prevPoster}>
-                            <ChevronLeftIcon className="h-11 w-11" aria-hidden="true" />
+                            <ChevronLeftIcon className="h-8 w-8 lg:h-11 lg:w-11" aria-hidden="true" />
                         </div>
                         <div className='absolute top-[30%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 right-0 bg-header-poster p-3 z-20 max-w-lg mh shadow-black' onClick={nextPoster}>
-                            <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
+                            <ChevronRightIcon className="h-8 w-8 lg:h-11 lg:w-11" aria-hidden="true" />
                         </div>
                         <div className='absolute lg:left-[20%] lg:-translate-x-[20%] bottom-0 bg-header-poster p-9 z-20 max-w-lg select-none shadow-black'
                             style={{ minHeight: '270px' }}
@@ -551,55 +566,66 @@ export default function Foryouhr() {
                             {`Some of My Certifications`}
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 pt-8 pb-8 pl-6 pr-6 gap-4 text-center relative'>
-                        {isDesktop ? (
-                            <div className='col-span-4 flex justify-end items-end'>
-                                <div className='relative' id='left-certificate'>
-                                    <Image
-                                        src={currentCertificate === 0 ? `/images/certificates/${slides.current[slides.current.length - 1]}.png` : `/images/certificates/${slides.current[currentCertificate - 1]}.png`}
-                                        className='z-0 select-none'
-                                        width={423}
-                                        height={300}
-                                        alt="Picture of the certificate"
-                                        style={{ objectFit: 'cover' }}
-                                    />
-                                    <div className="dark-overlay"></div>
-                                </div>
-                            </div>
-                        ) : null}
-                        <div className={isDesktop ? 'col-span-4 flex justify-center items-end' : 'col-span-12 flex justify-center items-end'}>
-                            <div className='relative shadow-inner' id='center-certificate'>
+                    <div className='pt-10 pb-8 pl-2 pr-2 lg:pl-6 lg:pr-6'>
+                        <Slider {...carouselSettings}>
+                            <div>
                                 <Image
-                                    src={`/images/certificates/${slides.current[currentCertificate]}.png`}
-                                    className='z-10 scale-110 select-none'
+                                    src={mangtas}
+                                    className='z-10  select-none'
                                     width={423}
                                     height={300}
+                                    placeholder="blur"
                                     alt="Picture of the certificate"
                                     style={{ objectFit: 'cover' }}
                                 />
                             </div>
-                        </div>
-                        {isDesktop ? (
-                            <div className='col-span-4 flex justify-start items-end'>
-                                <div className='relative' id='right-certificate'>
-                                    <Image
-                                        src={currentCertificate === slides.current.length - 1 ? `/images/certificates/${slides.current[0]}.png` : `/images/certificates/${slides.current[currentCertificate + 1]}.png`}
-                                        className='z-0 select-none'
-                                        width={423}
-                                        height={300}
-                                        alt="Picture of the certificate"
-                                        style={{ objectFit: 'cover' }}
-                                    />
-                                    <div className="dark-overlay"></div>
-                                </div>
+                            <div>
+                                <Image
+                                    src={merdeka}
+                                    className='z-10  select-none'
+                                    width={423}
+                                    height={300}
+                                    placeholder="blur"
+                                    alt="Picture of the certificate"
+                                    style={{ objectFit: 'cover' }}
+                                />
                             </div>
-                        ) : null}
-                        <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 left-0 bg-btn-certificates p-3 z-20 max-w-lg mh shadow-black' onClick={prevSlide}>
-                            <ChevronLeftIcon className="h-11 w-11" aria-hidden="true" />
-                        </div>
-                        <div className='absolute top-[55%] -translate-x-0 translate-y-[-55%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 right-0 bg-btn-certificates p-3 z-20 max-w-lg mh shadow-black' onClick={nextSlide}>
-                            <ChevronRightIcon className="h-11 w-11" aria-hidden="true" />
-                        </div>
+                            <div>
+                                <Image
+                                    src={analytic}
+                                    className='z-10  select-none'
+                                    width={423}
+                                    height={300}
+                                    placeholder="blur"
+                                    alt="Picture of the certificate"
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div>
+                                <Image
+                                    src={expert}
+                                    className='z-10  select-none'
+                                    width={423}
+                                    height={300}
+                                    placeholder="blur"
+                                    alt="Picture of the certificate"
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div>
+                                <Image
+                                    src={flutter}
+                                    className='z-10  select-none'
+                                    width={423}
+                                    height={300}
+                                    placeholder="blur"
+                                    alt="Picture of the certificate"
+                                    style={{ objectFit: 'cover' }}
+                                />
+
+                            </div>
+                        </Slider>
+
                     </div>
                     <div className='grid grid-cols-12 pt-20 pb-0 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
                         <div className='col-span-12 sm:col-span-6 flex justify-center overflow-hidden'>
