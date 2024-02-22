@@ -40,8 +40,23 @@ export default function Foryouhr() {
     useEffect(() => {
         const mediaQuery = window.matchMedia('(max-width: 1279px)');
         setIsDesktop(!mediaQuery.matches);
+        // IF IN MOBILE VIEW MOVE THE CONTAINER A BIT TO THE CENTER
+        if (mediaQuery.matches) {
+            setTranslationPosterContainer({
+                translateX: -100,
+                translateY: -130
+            });
+        }
+
         const handleMediaQueryChange = (e: MediaQueryListEvent) => {
             setIsDesktop(!e.matches);
+
+            if (e.matches) {
+                setTranslationPosterContainer({
+                    translateX: -100,
+                    translateY: -130
+                });
+            }
         };
 
         mediaQuery.addEventListener('change', handleMediaQueryChange);
@@ -99,7 +114,7 @@ export default function Foryouhr() {
 
     const posterOrder = [9, 15, 21, 10, 16, 22, 11, 17, 23];
 
-    const translationValueForOneMove = { x: 332, y: 476 };
+    const translationValueForOneMove = { x: 332, y: 526 };
 
     const [translationPosterContainer, setTranslationPosterContainer] = useState({
         translateX: 0,
@@ -107,6 +122,14 @@ export default function Foryouhr() {
     });
 
     const movePosterContainer = (headingPoster: number) => {
+        let translationXValue = translationValueForOneMove.x;
+        let translationYValue = translationValueForOneMove.y;
+        // CHANGE VALUE IF IN MOBILE VIEW
+        if (!isDesktop) {
+            translationXValue = 177;
+            translationYValue = 288;
+        }
+
         let translationX = translationPosterContainer.translateX;
         let translationY = translationPosterContainer.translateY;
 
@@ -119,8 +142,8 @@ export default function Foryouhr() {
         const rowDifference = headingRow - currentRow;
         const columnDifference = headingColumn - currentColumn;
 
-        translationX = translationX - (columnDifference * translationValueForOneMove.x);
-        translationY = translationY - (rowDifference * translationValueForOneMove.y);
+        translationX = translationX - (columnDifference * translationXValue);
+        translationY = translationY - (rowDifference * translationYValue);
 
         // console.log(`headingPoster: ${headingPoster}, currentActivePoster: ${currentActivePoster}, translationX: ${translationX}, translationY: ${translationY}`);
         setTranslationPosterContainer({
@@ -196,6 +219,17 @@ export default function Foryouhr() {
             },
         ]
     };
+
+    const substractWords = (text: string) => {
+        let maxCharacter = 136;
+        if (!isDesktop) maxCharacter = 58;
+
+        if (text.length <= maxCharacter) {
+            return text;
+        } else {
+            return text.substring(0, maxCharacter) + "...";
+        }
+    }
 
     return (
         <>
@@ -300,7 +334,6 @@ export default function Foryouhr() {
                                 <Image
                                     src={mne1Blur}
                                     className='z-20 absolute hover:z-50 transition-transform ease-in-out duration-300'
-                                    quality={100}
                                     placeholder="blur"
                                     alt="MNE"
                                     style={{
@@ -314,7 +347,6 @@ export default function Foryouhr() {
                                 <Image
                                     src={mne2Blur}
                                     className='z-10 absolute hover:z-50 transition-transform ease-in-out duration-300'
-                                    quality={100}
                                     placeholder="blur"
                                     alt="MNE"
                                     style={{
@@ -328,7 +360,6 @@ export default function Foryouhr() {
                                 <Image
                                     src={mne3Blur}
                                     className='z-0 absolute hover:z-50 transition-transform ease-in-out duration-300'
-                                    quality={100}
                                     placeholder="blur"
                                     alt="MNE"
                                     style={{
@@ -341,17 +372,14 @@ export default function Foryouhr() {
                                 />
                             </div>
                         </div>
-                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'
-
-
-                        >
+                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'>
                             <div className='col-span-12 text-white font-semibold text-2xl flex justify-start items-end sm:px-5'>
                                 {`SR-APP`}
                             </div>
                             <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5'>
                                 <ul className="list-disc text-left">
-                                    <li>{`I developed SR-APP, the 1st Corporate Social Responsibility microservices app in Indonesia as the main front end developer.`}</li>
-                                    <li>{`Implemented using React and Laravel in a Single Page Application, the app manages to monitor every CSR progress effectively.`}</li>
+                                    <li className='mt-2'>{`I developed SR-APP, the 1st Corporate Social Responsibility microservices app in Indonesia as the main front end developer.`}</li>
+                                    <li className='mt-2'>{`Implemented using React and Laravel in a Single Page Application, the app manages to monitor every CSR progress effectively.`}</li>
                                 </ul>
                             </div>
                         </div>
@@ -362,7 +390,6 @@ export default function Foryouhr() {
                                 <Image
                                     src={jgolf1Blur}
                                     className='z-30  absolute hover:z-50 transition-transform ease-in-out duration-300'
-                                    quality={100}
                                     placeholder="blur"
                                     alt="MNE"
                                     style={{
@@ -376,7 +403,6 @@ export default function Foryouhr() {
                                 <Image
                                     src={jgolf3Blur}
                                     className='z-20 absolute hover:z-50 transition-transform ease-in-out duration-300'
-                                    quality={100}
                                     placeholder="blur"
                                     alt="MNE"
                                     style={{
@@ -390,7 +416,6 @@ export default function Foryouhr() {
                                 <Image
                                     src={jgolf4Blur}
                                     className='z-10 absolute hover:z-50 transition-transform ease-in-out duration-300'
-                                    quality={100}
                                     placeholder="blur"
                                     alt="MNE"
                                     style={{
@@ -404,7 +429,6 @@ export default function Foryouhr() {
                                 <Image
                                     src={jgolf2Blur}
                                     className='z-0 absolute hover:z-50 transition-transform ease-in-out duration-300'
-                                    quality={100}
                                     placeholder="blur"
                                     alt="MNE"
                                     style={{
@@ -424,8 +448,8 @@ export default function Foryouhr() {
                             </div>
                             <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5'>
                                 <ul className="list-disc text-left">
-                                    <li>{`I designed and developed a Mobile focus golf web application called J-Golf as the 1st Indonesian Golf Management app using Laravel.`}</li>
-                                    <li>{`J-Golf primarily manages subscription packages for courses training, golf event creation, scoring, and rankings.`}</li>
+                                    <li className='mt-2'>{`I designed and developed a Mobile focus golf web application as the 1st Indonesian Golf Management app using Laravel.`}</li>
+                                    <li className='mt-2'>{`J-Golf primarily manages subscription packages for courses training, golf event creation, scoring, and rankings.`}</li>
                                 </ul>
                             </div>
                         </div>
@@ -436,7 +460,6 @@ export default function Foryouhr() {
                                 <Image
                                     src={resto2Blur}
                                     className='z-30 absolute hover:z-50 transition-transform ease-in-out duration-300'
-                                    quality={100}
                                     placeholder="blur"
                                     alt="MNE"
                                     style={{
@@ -450,7 +473,6 @@ export default function Foryouhr() {
                                 <Image
                                     src={resto3Blur}
                                     className='z-20  absolute hover:z-50 transition-transform ease-in-out duration-300'
-                                    quality={100}
                                     placeholder="blur"
                                     alt="MNE"
                                     style={{
@@ -464,7 +486,6 @@ export default function Foryouhr() {
                                 <Image
                                     src={resto1Blur}
                                     className='z-10  absolute hover:z-50 transition-transform ease-in-out duration-300'
-                                    quality={100}
                                     placeholder="blur"
                                     alt="MNE"
                                     style={{
@@ -477,15 +498,14 @@ export default function Foryouhr() {
                                 />
                             </div>
                         </div>
-                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'
-                        >
+                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'>
                             <div className='col-span-12 text-white font-semibold text-2xl flex justify-start items-end sm:px-5'>
                                 {`MY DESIRED UTOPIAS`}
                             </div>
                             <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5'>
                                 <ul className="list-disc text-left">
-                                    <li>{`My Desired Utopias is the culmination of my Dicoding "Becoming a Web Front- End Developer Expert" certification journey.`}</li>
-                                    <li>{`Featuring a Progressive Web App (PWA) that fetches restaurant data from the Dicoding server using Hapi, Webpack, and vanilla CSS/JS.`}</li>
+                                    <li className='mt-2'>{`My Desired Utopias is the culmination of my Dicoding "Becoming a Web Front- End Developer Expert" certification journey.`}</li>
+                                    <li className='mt-2'>{`Featuring a Progressive Web App (PWA) that fetches Dicoding API's using Hapi, Webpack, and vanilla CSS/JS.`}</li>
                                 </ul>
                             </div>
                         </div>
@@ -502,16 +522,14 @@ export default function Foryouhr() {
                         </div>
                     </div>
                     {/* END OF PORTFOLIO SECTION */}
-                    <div className='relative flex justify-center items-center overflow-hidden' style={{ height: '540px' }}>
+                    <div className='relative h-[720px] lg:h-[540px] flex justify-center items-center overflow-hidden' >
                         <div className='absolute top-[30%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 left-0 bg-header-poster p-3 z-20 max-w-lg mh shadow-black' onClick={prevPoster}>
                             <ChevronLeftIcon className="h-8 w-8 lg:h-11 lg:w-11" aria-hidden="true" />
                         </div>
                         <div className='absolute top-[30%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 right-0 bg-header-poster p-3 z-20 max-w-lg mh shadow-black' onClick={nextPoster}>
                             <ChevronRightIcon className="h-8 w-8 lg:h-11 lg:w-11" aria-hidden="true" />
                         </div>
-                        <div className='absolute lg:left-[20%] lg:-translate-x-[20%] bottom-0 bg-header-poster p-9 z-20 max-w-lg select-none shadow-black'
-                            style={{ minHeight: '270px' }}
-                        >
+                        <div className='absolute lg:left-[20%] lg:-translate-x-[20%] min-h-[270px] bottom-0 bg-header-poster p-9 z-20 max-w-lg select-none shadow-black'>
                             <div className="col-span-1 flex justify-start items-end text-white font-bold text-2xl pb-2">
                                 {`Childhood`}
                             </div>
@@ -522,9 +540,8 @@ export default function Foryouhr() {
                         <div className='relative flex transition-transform ease-in-out duration-300' style={{
                             transform: `rotate(13deg) translate(${translationPosterContainer.translateX}px, ${translationPosterContainer.translateY}px)`,
                         }}>
-                            <div className='grid grid-cols-12 gap-5 pt-14 pb-14 pl-6 pr-6 text-left select-none'
-                                style={{ minHeight: '830px', width: '2000px' }}
-                            >
+                            {/* FIXED WIDTH FOR POSTER CAROUSEL */}
+                            <div className='min-h-[830px] w-[1000px] lg:w-[2000px] grid grid-cols-12 gap-5 pt-14 pb-14 pl-6 pr-6 text-left select-none'>
 
                                 {
                                     [...Array(30)].map((j) => {
@@ -533,8 +550,7 @@ export default function Foryouhr() {
                                         return (
                                             <div key={posterIteration}
                                                 id={`poster-${posterIteration}`}
-                                                className={`col-span-2 p-6 grid grid-cols-1 ${availablePosters.includes(currentIteration) && currentIteration != currentActivePoster ? 'cursor-pointer' : ''} ${posterIteration == currentActivePoster ? 'bg-poster-active' : availablePosters.includes(currentIteration) ? 'bg-poster' : 'bg-poster-unhovered'}`}
-                                                style={{ minHeight: '500px', width: '308px' }}
+                                                className={`min-h-[265px] lg:min-h-[500px] w-[144px] lg:w-[308px] col-span-2 p-4 lg:p-6 grid grid-cols-1 ${availablePosters.includes(currentIteration) && currentIteration != currentActivePoster ? 'cursor-pointer' : ''} ${posterIteration == currentActivePoster ? 'bg-poster-active' : availablePosters.includes(currentIteration) ? 'bg-poster' : 'bg-poster-unhovered'}`}
                                                 onClick={availablePosters.includes(currentIteration) && currentIteration != currentActivePoster ? () => movePosterContainer(currentIteration) : undefined}
                                             >
                                                 <div className="col-span-1 flex justify-center items-center">
@@ -542,6 +558,7 @@ export default function Foryouhr() {
                                                         src={`/images/icons/next-js-black.svg`}
                                                         title="Next.Js"
                                                         alt="Next.Js"
+                                                        className='w-[80px] lg:w-[165px]'
                                                         height={165}
                                                         width={165}
                                                         style={{
@@ -549,11 +566,11 @@ export default function Foryouhr() {
                                                         }}
                                                     />
                                                 </div>
-                                                <div className="col-span-1 flex justify-start items-end text-black font-bold text-2xl pb-2">
+                                                <div className="col-span-1 flex justify-start items-end text-black font-bold text-lg lg:text-2xl pb-1 lg:pb-2">
                                                     {`Childhood`}
                                                 </div>
-                                                <div className="col-span-1 flex justify-start items-start text-black font-medium text-lg">
-                                                    {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed. `}
+                                                <div className="col-span-1 flex justify-start items-start text-black font-medium text-sm lg:text-lg">
+                                                    {`${substractWords('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')}`}
                                                 </div>
                                             </div>
                                         )
@@ -562,7 +579,7 @@ export default function Foryouhr() {
                         </div>
                     </div>
                     <div className='grid grid-cols-12'>
-                        <div className='col-span-12 pt-32 pb-14 pl-6 pr-6 text-white font-semibold text-3xl sm:text-4xl text-center select-none'>
+                        <div className='col-span-12 pt-32 pb-10 pl-6 pr-6 text-white font-semibold text-3xl sm:text-4xl text-center select-none'>
                             {`Some of My Certifications`}
                         </div>
                     </div>
