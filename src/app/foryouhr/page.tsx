@@ -222,7 +222,7 @@ export default function Foryouhr() {
 
     const substractWords = (text: string) => {
         let maxCharacter = 136;
-        if (!isDesktop) maxCharacter = 58;
+        if (!isDesktop) maxCharacter = 52;
 
         if (text.length <= maxCharacter) {
             return text;
@@ -570,7 +570,7 @@ export default function Foryouhr() {
                                                     {`Childhood`}
                                                 </div>
                                                 <div className="col-span-1 flex justify-start items-start text-black font-medium text-sm lg:text-lg">
-                                                    {`${substractWords('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')}`}
+                                                    {`${substractWords('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed.')}`}
                                                 </div>
                                             </div>
                                         )
