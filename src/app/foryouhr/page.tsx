@@ -11,6 +11,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import { TypeAnimation } from 'react-type-animation';
 import { motion, Variants } from "framer-motion";
 import Slider from "react-slick";
+import { poster } from '../../data/posters';
 
 import mne1Blur from '../../../public/images/portfolios/mne_1_blur.png'
 import mne2Blur from '../../../public/images/portfolios/mne_2_blur.png'
@@ -121,6 +122,8 @@ export default function Foryouhr() {
         translateY: 0
     });
 
+    const [activePoster, setActivePoster] = useState(16);
+
     const movePosterContainer = (headingPoster: number) => {
         let translationXValue = translationValueForOneMove.x;
         let translationYValue = translationValueForOneMove.y;
@@ -151,6 +154,8 @@ export default function Foryouhr() {
             translateX: translationX,
             translateY: translationY
         })
+
+        setActivePoster(headingPoster);
 
         setCurrentActivePoster(headingPoster);
     }
@@ -221,7 +226,7 @@ export default function Foryouhr() {
     };
 
     const substractWords = (text: string) => {
-        let maxCharacter = 136;
+        let maxCharacter = 126;
         if (!isDesktop) maxCharacter = 52;
 
         if (text.length <= maxCharacter) {
@@ -522,40 +527,40 @@ export default function Foryouhr() {
                         </div>
                     </div>
                     {/* END OF PORTFOLIO SECTION */}
-                    <div className='relative h-[720px] lg:h-[540px] flex justify-center items-center overflow-hidden' >
-                        <div className='absolute top-[30%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 left-0 bg-header-poster p-3 z-20 max-w-lg mh shadow-black' onClick={prevPoster}>
+                    <div className='relative h-[720px] lg:h-[670px] flex justify-center items-center overflow-hidden' >
+                        <div className='absolute top-[40%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 left-0 bg-header-poster p-3 z-30 max-w-lg mh shadow-black' onClick={prevPoster}>
                             <ChevronLeftIcon className="h-8 w-8 lg:h-11 lg:w-11" aria-hidden="true" />
                         </div>
-                        <div className='absolute top-[30%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 right-0 bg-header-poster p-3 z-20 max-w-lg mh shadow-black' onClick={nextPoster}>
+                        <div className='absolute top-[40%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 right-0 bg-header-poster p-3 z-30 max-w-lg mh shadow-black' onClick={nextPoster}>
                             <ChevronRightIcon className="h-8 w-8 lg:h-11 lg:w-11" aria-hidden="true" />
                         </div>
                         <div className='absolute lg:left-[20%] lg:-translate-x-[20%] min-h-[270px] bottom-0 bg-header-poster p-9 z-20 max-w-lg select-none shadow-black'>
                             <div className="col-span-1 flex justify-start items-end text-white font-bold text-2xl pb-2">
-                                {`Childhood`}
+                                {`${poster[currentActivePoster - 1].title}`}
                             </div>
                             <div className="col-span-1 flex justify-start items-start text-white font-medium text-lg">
-                                {`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed. `}
+                                {`${poster[currentActivePoster - 1].desc}`}
                             </div>
                         </div>
-                        <div className='relative flex transition-transform ease-in-out duration-300' style={{
+                        <div className='relative flex transition-transform ease-in-out duration-700' style={{
                             transform: `rotate(13deg) translate(${translationPosterContainer.translateX}px, ${translationPosterContainer.translateY}px)`,
                         }}>
                             {/* FIXED WIDTH FOR POSTER CAROUSEL */}
                             <div className='min-h-[830px] w-[1000px] lg:w-[2000px] grid grid-cols-12 gap-5 pt-14 pb-14 pl-6 pr-6 text-left select-none'>
 
                                 {
-                                    [...Array(30)].map((j) => {
+                                    poster.map((poster, key) => {
                                         posterIteration++;
                                         let currentIteration = posterIteration;
                                         return (
-                                            <div key={posterIteration}
+                                            <div key={key}
                                                 id={`poster-${posterIteration}`}
                                                 className={`min-h-[265px] lg:min-h-[500px] w-[144px] lg:w-[308px] col-span-2 p-4 lg:p-6 grid grid-cols-1 ${availablePosters.includes(currentIteration) && currentIteration != currentActivePoster ? 'cursor-pointer' : ''} ${posterIteration == currentActivePoster ? 'bg-poster-active' : availablePosters.includes(currentIteration) ? 'bg-poster' : 'bg-poster-unhovered'}`}
                                                 onClick={availablePosters.includes(currentIteration) && currentIteration != currentActivePoster ? () => movePosterContainer(currentIteration) : undefined}
                                             >
                                                 <div className="col-span-1 flex justify-center items-center">
                                                     <Image
-                                                        src={`/images/icons/next-js-black.svg`}
+                                                        src={`/images/icons/${poster.iconImage}.svg`}
                                                         title="Next.Js"
                                                         alt="Next.Js"
                                                         className='w-[80px] lg:w-[165px]'
@@ -567,10 +572,10 @@ export default function Foryouhr() {
                                                     />
                                                 </div>
                                                 <div className="col-span-1 flex justify-start items-end text-black font-bold text-lg lg:text-2xl pb-1 lg:pb-2">
-                                                    {`Childhood`}
+                                                    {`${poster.title}`}
                                                 </div>
                                                 <div className="col-span-1 flex justify-start items-start text-black font-medium text-sm lg:text-lg">
-                                                    {`${substractWords('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque maximus consequat enim, sodales consectetur ex consequat sed.')}`}
+                                                    {`${substractWords(`${poster.desc}`)}`}
                                                 </div>
                                             </div>
                                         )

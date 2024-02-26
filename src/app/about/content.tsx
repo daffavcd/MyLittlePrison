@@ -202,7 +202,7 @@ export default function Content() {
                 }}>
                     <div className="dark-overlay"></div>
                     <div className='col-span-12 text-white font-semibold text-3xl sm:text-4xl text-center pt-5 pb-5 z-10 select-none'>
-                        {`Technologies Used`}
+                        {`Code Environment`}
                     </div>
                     <div className='col-span-12 flex justify-center items-center gap-20 pt-5 pb-5 z-10'>
                         <Image
