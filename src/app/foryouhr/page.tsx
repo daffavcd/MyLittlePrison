@@ -287,33 +287,16 @@ export default function Foryouhr() {
                     }}>
 
                         <div className='dark-overlay'></div>
-                        {/* <Particle /> */}
                         <a href="#first-content">
                             <div className='absolute left-[50%] -translate-x-[50%] bottom-10 text-2xl rounded-lg rotate-45 p-2 bg-blood-90 text-white cursor-pointer z-20 shadow-lg'>
                                 <div className='absolute -m-2 w-full h-full rounded-lg border-2 border-white animate-ping-mlp-2' />
                                 <ChevronRightIcon className="h-9 w-9 rotate-45" aria-hidden="true" />
                             </div>
                         </a>
-                        {/* <div className="absolute left-[50%] -translate-x-[50%] top-7 grid grid-cols-12 gap-4 bg-black px-4 py-2 rounded-full leading-normal font-medium  text-white text-center shadow-black">
-                            <div className='flex col-span-4 py-2 px-4 justify-center items-center rounded-full bg-blood relative'>
-                                <div className='dark-overlay'></div>
-                                <p className='z-10'>Projects</p>
-                            </div>
-                            <div className='flex col-span-4 py-2 px-4 justify-center items-center rounded-full bg-blood relative'>
-                                <div className='dark-overlay'></div>
-                                <p className='z-10'>About</p>
-                            </div>
-                            <div className='flex col-span-4 py-2 px-4 justify-center items-center rounded-full bg-blood relative'>
-                                <div className='dark-overlay'></div>
-                                <p className='z-10'>Contact</p>
-                            </div>
-                        </div> */}
                         <div className='flex items-center pl-6 pr-6 md:pl-36 md:pr-36 text-4xl sm:text-5xl leading-normal font-normal p-4 text-white text-center z-10 h-full' style={{ lineHeight: 1.3 }}>
                             <TypeAnimation
                                 sequence={[
                                     `Hello, how's it going?`,
-                                    500,
-                                    `The Promised Desire's here,`,
                                     500,
                                     `You lookin' for a dance partner?`,
                                     700,
@@ -597,13 +580,13 @@ export default function Foryouhr() {
                                                 onClick={availablePosters.includes(currentIteration) && currentIteration != currentActivePoster ? () => movePosterContainer(currentIteration) : undefined}
                                             >
                                                 <div className="col-span-1 flex justify-center items-center">
-                                                    <FontAwesomeIcon icon={['fas', poster.iconImage]} className='w-[80px] h-[80px] lg:w-[165px] lg:h-[165px] text-black' height={165} width={165} />
+                                                    <FontAwesomeIcon icon={['fas', poster.iconImage]} className='w-[80px] h-[80px] lg:w-[155px] lg:h-[155px] text-black' height={155} width={155} />
                                                 </div>
                                                 <div className="col-span-1 flex justify-start items-end text-black font-bold text-lg lg:text-2xl pb-1 lg:pb-2">
                                                     {`${poster.title}`}
                                                 </div>
                                                 <div className="col-span-1 flex justify-start items-start text-black font-medium text-sm lg:text-lg">
-                                                    <p className='line-clamp-4 lg:line-clamp-5'>{`${substractWords(`${poster.desc}`)}`}</p>
+                                                    <p className='line-clamp-4'>{`${substractWords(`${poster.desc}`)}`}</p>
                                                 </div>
                                             </div>
                                         )

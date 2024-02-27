@@ -98,11 +98,12 @@ export const poster: Poster[] = [
         desc: 'I speak well at these languages: PHP, Java, Python, Flutter, SQL (MySQL), JavaScript, Typescript, and HTML/CSS. For the others, just give me a bit of time and I will be decent at it.',
         iconImage: 'laptop-code',
     },
+
     {
         colCell: 16,
-        title: "Business",
-        desc: 'At the age of 20, I managed to sell my 1st professional services on my own. I design and developed an inventory project for a company in the field of welding and lathing.',
-        iconImage: 'comments-dollar',
+        title: "Seashore",
+        desc: `I started my first internship job at the age of 16, beginning my one-year journey as a Back-End Developer during which I've contributed to various functional operations for the company.`,
+        iconImage: 'ship',
     },
     {
         colCell: 17,
@@ -137,9 +138,9 @@ export const poster: Poster[] = [
     },
     {
         colCell: 22,
-        title: "Seashore",
-        desc: `I started my first internship job at the age of 16, beginning my one-year journey as a Back-End Developer during which I've contributed to various functional operations for the company.`,
-        iconImage: 'ship',
+        title: "Business",
+        desc: 'At the age of 20, I managed to sell my 1st professional services on my own. I design and developed an inventory project for a company in the field of welding and lathing.',
+        iconImage: 'comments-dollar',
     },
     {
         colCell: 23,
