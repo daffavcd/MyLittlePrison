@@ -64,7 +64,7 @@ export const poster: Poster[] = [
     },
     {
         colCell: 10,
-        title: "Performance",
+        title: "Hours",
         desc: `Between January 2021 and November 2022, I contributed to over 320+ commits and 920K+ lines of code professionally via Git codebase while studying as a college student.`,
         iconImage: 'chart-line',
     },
@@ -89,7 +89,7 @@ export const poster: Poster[] = [
     {
         colCell: 14,
         title: "Thoughts?",
-        desc: `In my opinion, every small intention in your heart does count, doesn't matter if it left unspoken or unfulfilled.`,
+        desc: `In my opinion, every small intention out from your heart does count, doesn't matter if it left unspoken or unfulfilled.`,
         iconImage: 'lightbulb',
     },
     {
@@ -143,7 +143,7 @@ export const poster: Poster[] = [
     },
     {
         colCell: 23,
-        title: "Qualification",
+        title: "Vouched",
         desc: `I completed a Kampus Merdeka Full Stack Developer program (A) held by the Ministry of Education under Dicoding, with 400 chosen out of 6,419 college students from all over Indonesia.`,
         iconImage: 'award',
     },

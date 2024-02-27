@@ -597,13 +597,13 @@ export default function Foryouhr() {
                                                 onClick={availablePosters.includes(currentIteration) && currentIteration != currentActivePoster ? () => movePosterContainer(currentIteration) : undefined}
                                             >
                                                 <div className="col-span-1 flex justify-center items-center">
-                                                    <FontAwesomeIcon icon={['fas', poster.iconImage]} className='w-[80px] h-[80px] lg:w-[165px] lg:h-[165px]' height={165} width={165} />
+                                                    <FontAwesomeIcon icon={['fas', poster.iconImage]} className='w-[80px] h-[80px] lg:w-[165px] lg:h-[165px] text-black' height={165} width={165} />
                                                 </div>
                                                 <div className="col-span-1 flex justify-start items-end text-black font-bold text-lg lg:text-2xl pb-1 lg:pb-2">
                                                     {`${poster.title}`}
                                                 </div>
                                                 <div className="col-span-1 flex justify-start items-start text-black font-medium text-sm lg:text-lg">
-                                                    {`${substractWords(`${poster.desc}`)}`}
+                                                    <p className='line-clamp-4 lg:line-clamp-5'>{`${substractWords(`${poster.desc}`)}`}</p>
                                                 </div>
                                             </div>
                                         )
