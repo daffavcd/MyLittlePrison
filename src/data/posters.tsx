@@ -120,7 +120,7 @@ export const poster: Poster[] = [
     {
         colCell: 19,
         title: "Wrath",
-        desc: `I actually hate myself for showing all of this, I'am just trying to sell myself here. Sorry if you happen to read this haha~.`,
+        desc: `I actually hate myself for showing all of this, I'am just trying to sell myself. Haha~ sorry if you happen to read this one.`,
         iconImage: 'face-angry',
     },
     {
