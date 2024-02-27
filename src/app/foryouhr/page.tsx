@@ -2,8 +2,47 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/20/solid';
+
+import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faFileInvoiceDollar,
+    faGraduationCap,
+    faPuzzlePiece,
+    faCameraRetro,
+    faCertificate,
+    faChildReaching,
+    faLaptopCode,
+    faShip,
+    faMicrochip,
+    faChartLine,
+    faCommentsDollar,
+    faAward,
+    faHandSpock,
+    faFaceAngry,
+    faCode,
+    faLightbulb,
+} from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
+library.add(
+    faFileInvoiceDollar,
+    faGraduationCap,
+    faPuzzlePiece,
+    faCameraRetro,
+    faCertificate,
+    faChildReaching,
+    faLaptopCode,
+    faShip,
+    faMicrochip,
+    faChartLine,
+    faCommentsDollar,
+    faAward,
+    faHandSpock,
+    faFaceAngry,
+    faCode,
+    faLightbulb,
+)
+
 import { Player } from '@lottiefiles/react-lottie-player';
 import Link from 'next/link';
 import AudioPlayer from 'react-h5-audio-player';
@@ -31,7 +70,6 @@ import expert from '../../../public/images/certificates/expert.png'
 import flutter from '../../../public/images/certificates/flutter.png'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 
 export default function Foryouhr() {
 
@@ -226,7 +264,7 @@ export default function Foryouhr() {
     };
 
     const substractWords = (text: string) => {
-        let maxCharacter = 126;
+        let maxCharacter = 116;
         if (!isDesktop) maxCharacter = 52;
 
         if (text.length <= maxCharacter) {
@@ -528,13 +566,13 @@ export default function Foryouhr() {
                     </div>
                     {/* END OF PORTFOLIO SECTION */}
                     <div className='relative h-[720px] lg:h-[670px] flex justify-center items-center overflow-hidden' >
-                        <div className='absolute top-[40%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 left-0 bg-header-poster p-3 z-30 max-w-lg mh shadow-black' onClick={prevPoster}>
+                        <div className='absolute top-[40%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 left-0 bg-header-poster p-3 z-40 max-w-lg mh shadow-black' onClick={prevPoster}>
                             <ChevronLeftIcon className="h-8 w-8 lg:h-11 lg:w-11" aria-hidden="true" />
                         </div>
-                        <div className='absolute top-[40%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 right-0 bg-header-poster p-3 z-30 max-w-lg mh shadow-black' onClick={nextPoster}>
+                        <div className='absolute top-[40%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 right-0 bg-header-poster p-3 z-40 max-w-lg mh shadow-black' onClick={nextPoster}>
                             <ChevronRightIcon className="h-8 w-8 lg:h-11 lg:w-11" aria-hidden="true" />
                         </div>
-                        <div className='absolute lg:left-[20%] lg:-translate-x-[20%] min-h-[270px] bottom-0 bg-header-poster p-9 z-20 max-w-lg select-none shadow-black'>
+                        <div className='absolute max-h-[336px] lg:max-h-none lg:left-[20%] lg:-translate-x-[20%] min-h-[270px] bottom-0 bg-header-poster p-9 z-20 max-w-lg select-none shadow-black'>
                             <div className="col-span-1 flex justify-start items-end text-white font-bold text-2xl pb-2">
                                 {`${poster[currentActivePoster - 1].title}`}
                             </div>
@@ -559,17 +597,7 @@ export default function Foryouhr() {
                                                 onClick={availablePosters.includes(currentIteration) && currentIteration != currentActivePoster ? () => movePosterContainer(currentIteration) : undefined}
                                             >
                                                 <div className="col-span-1 flex justify-center items-center">
-                                                    <Image
-                                                        src={`/images/icons/${poster.iconImage}.svg`}
-                                                        title="Next.Js"
-                                                        alt="Next.Js"
-                                                        className='w-[80px] lg:w-[165px]'
-                                                        height={165}
-                                                        width={165}
-                                                        style={{
-                                                            objectFit: 'cover',
-                                                        }}
-                                                    />
+                                                    <FontAwesomeIcon icon={['fas', poster.iconImage]} className='w-[80px] h-[80px] lg:w-[165px] lg:h-[165px]' height={165} width={165} />
                                                 </div>
                                                 <div className="col-span-1 flex justify-start items-end text-black font-bold text-lg lg:text-2xl pb-1 lg:pb-2">
                                                     {`${poster.title}`}
