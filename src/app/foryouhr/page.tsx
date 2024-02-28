@@ -278,14 +278,18 @@ export default function Foryouhr() {
         <>
             <main className='bg-black overflow-x-hidden'>
                 <div className="col-span-12">
-                    <div className={`flex flex-col h-screen ${scrolledAbout ? 'blur-sm' : 'blur-none'}`} id='main-content' style={{
-                        backgroundImage: `url('/images/blur-3.svg')`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat',
-                        position: 'relative', // Ensure proper stacking of children
-                    }}>
-
+                    <div className={`flex flex-col relative h-screen ${scrolledAbout ? 'blur-sm' : 'blur-none'}`} id='main-content'>
+                        <Image
+                            src="/images/blur-home-2-compress.jpg"
+                            title={`Background Landing`}
+                            alt={`Background Landing`}
+                            objectFit='cover'
+                            objectPosition='center'
+                            layout='fill'
+                            className='z-0'
+                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
+                            placeholder="blur"
+                        />
                         <div className='dark-overlay'></div>
                         <a href="#first-content">
                             <div className='absolute left-[50%] -translate-x-[50%] bottom-10 text-2xl rounded-lg rotate-45 p-2 bg-blood-90 text-white cursor-pointer z-20 shadow-lg'>
@@ -293,46 +297,48 @@ export default function Foryouhr() {
                                 <ChevronRightIcon className="h-9 w-9 rotate-45" aria-hidden="true" />
                             </div>
                         </a>
-                        <div className='absolute left-7 top-[50%]' style={{ transform: "rotate(270deg)" }}>
-                            <p className='text-lg font-semibold shadow' style={{ color: "#BA9C99" }}>IDN | GMT+7</p>
+                        <div className='absolute left-7 top-[50%] hidden md:block' style={{ transform: "rotate(270deg)" }}>
+                            <p className='text-sm lg:text-lg font-semibold shadow select-none' style={{ color: "#BA9C99" }}>IDN | GMT+7</p>
                         </div>
-                        <div className='absolute flex justify-cemter items-center gap-8 left-[50%] -translate-x-[50%] top-16'>
-                            <a href="#first-projects">
-                                <p className='text-lg hover:scale-110 hover:text-red-900 font-medium shadow text-white select-none'>PROJECTS</p>
+                        <div className='absolute flex justify-cemter items-center gap-1 md:gap-8 left-[50%] -translate-x-[50%] top-16'>
+                            <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium shadow text-white' href="#first-projects">
+                                <p className='text-base md:text-lg select-none'>PROJECTS</p>
                             </a>
-                            <a href="#poster-content">
-                                <p className='text-lg hover:scale-110 hover:text-red-900 font-medium shadow text-white select-none'>ABOUT</p>
+                            <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium shadow text-white' href="#poster-content">
+                                <p className='text-base md:text-lg select-none'>ABOUT</p>
                             </a>
                         </div>
-                        {/* <div className='grid grid-cols-12 items-center pl-6 pr-6 md:pl-36 md:pr-36 text-4xl sm:text-5xl leading-normal font-normal p-4 text-white text-center z-10 h-full' style={{ lineHeight: 1.3 }}>
+                        <div className='absolute grid grid-cols-12 gap-1 lg:gap-2 left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%] text-4xl md:text-5xl lg:text-8xl font-semibold lg:font-medium shadow select-none text-white'>
                             <div className='col-span-12 flex items-end justify-center'>
-                                <p className='text-8xl font-medium shadow select-none'>MULTI-</p>
+                                <p className='shadow'>ULTRA-</p>
                             </div>
-                            <div className='col-span-12 flex items-center justify-start'>
-                                <p className='text-8xl font-medium shadow select-none'>DISCIPLINARY</p>
+                            <div className='col-span-12 flex items-center justify-center'>
+                                <p className='shadow'>COLORLESS</p>
                             </div>
-                            <div className='col-span-12 flex items-start justify-center'>
-                                <p className='text-8xl font-medium shadow select-none'>DEV</p>
+                            <div className='col-span-12 md:col-span-6 flex items-start justify-center md:justify-end'>
+                                <p className='shadow'>DEV</p>
                             </div>
-                        </div> */}
+                            <div className='col-span-6 hidden md:flex items-center justify-start text-xs lg:text-xl'>
+                                <TypeAnimation
+                                    sequence={[
+                                        `Hello, how's it going?`,
+                                        500,
+                                        `You lookin' for a dance partner?`,
+                                        700,
+                                        `Be it in a genre of system, an app, or a website, I'd be down for it;`,
+                                        1000,
+                                        `Well, don't worry about it if you don't understand,`,
+                                        1000,
+                                        `I will lead the dance for you.`,
+                                        1000,
+                                    ]}
+                                    speed={85}
+                                    className='shadow select-none'
+                                    repeat={Infinity}
+                                />
+                            </div>
+                        </div>
                     </div>
-                    {/* <TypeAnimation
-                                sequence={[
-                                    `Hello, how's it going?`,
-                                    500,
-                                    `You lookin' for a dance partner?`,
-                                    700,
-                                    `Be it in a genre of system, an app, or a website, I'd be down for it;`,
-                                    1000,
-                                    `Well, in case you don't know how to move your feet, don't be worried about it,`,
-                                    1000,
-                                    `I will lead the dance for you.`,
-                                    1000,
-                                ]}
-                                speed={85}
-                                className='shadow select-none'
-                                repeat={Infinity}
-                            /> */}
                     <motion.div className='grid grid-cols-12 py-28 lg:py-52 pl-6 pr-6 lg:pl-24 lg:pr-24'
                         initial="offscreen"
                         whileInView="onscreen"
