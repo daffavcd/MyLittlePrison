@@ -65,7 +65,7 @@ export const poster: Poster[] = [
     {
         colCell: 10,
         title: "Hours",
-        desc: `Between January 2021 and November 2022, I contributed to over 320+ commits and 920K+ lines of code professionally via Git codebase while studying as a college student.`,
+        desc: `Between January 2021 and November 2022, I contributed to over 335+ commits and 1.191K+ lines of code professionally via Git codebase while studying as a college student.`,
         iconImage: 'chart-line',
     },
     {
