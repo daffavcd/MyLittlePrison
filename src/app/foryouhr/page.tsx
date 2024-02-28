@@ -279,7 +279,7 @@ export default function Foryouhr() {
             <main className='bg-black overflow-x-hidden'>
                 <div className="col-span-12">
                     <div className={`flex flex-col h-screen ${scrolledAbout ? 'blur-sm' : 'blur-none'}`} id='main-content' style={{
-                        backgroundImage: `url('/images/blur3.svg')`,
+                        backgroundImage: `url('/images/blur-3.svg')`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
@@ -293,8 +293,30 @@ export default function Foryouhr() {
                                 <ChevronRightIcon className="h-9 w-9 rotate-45" aria-hidden="true" />
                             </div>
                         </a>
-                        <div className='flex items-center pl-6 pr-6 md:pl-36 md:pr-36 text-4xl sm:text-5xl leading-normal font-normal p-4 text-white text-center z-10 h-full' style={{ lineHeight: 1.3 }}>
-                            <TypeAnimation
+                        <div className='absolute left-7 top-[50%]' style={{ transform: "rotate(270deg)" }}>
+                            <p className='text-lg font-semibold shadow' style={{ color: "#BA9C99" }}>IDN | GMT+7</p>
+                        </div>
+                        <div className='absolute flex justify-cemter items-center gap-8 left-[50%] -translate-x-[50%] top-16'>
+                            <a href="#first-projects">
+                                <p className='text-lg hover:scale-110 hover:text-red-900 font-medium shadow text-white select-none'>PROJECTS</p>
+                            </a>
+                            <a href="#poster-content">
+                                <p className='text-lg hover:scale-110 hover:text-red-900 font-medium shadow text-white select-none'>ABOUT</p>
+                            </a>
+                        </div>
+                        {/* <div className='grid grid-cols-12 items-center pl-6 pr-6 md:pl-36 md:pr-36 text-4xl sm:text-5xl leading-normal font-normal p-4 text-white text-center z-10 h-full' style={{ lineHeight: 1.3 }}>
+                            <div className='col-span-12 flex items-end justify-center'>
+                                <p className='text-8xl font-medium shadow select-none'>MULTI-</p>
+                            </div>
+                            <div className='col-span-12 flex items-center justify-start'>
+                                <p className='text-8xl font-medium shadow select-none'>DISCIPLINARY</p>
+                            </div>
+                            <div className='col-span-12 flex items-start justify-center'>
+                                <p className='text-8xl font-medium shadow select-none'>DEV</p>
+                            </div>
+                        </div> */}
+                    </div>
+                    {/* <TypeAnimation
                                 sequence={[
                                     `Hello, how's it going?`,
                                     500,
@@ -310,9 +332,7 @@ export default function Foryouhr() {
                                 speed={85}
                                 className='shadow select-none'
                                 repeat={Infinity}
-                            />
-                        </div>
-                    </div>
+                            /> */}
                     <motion.div className='grid grid-cols-12 py-28 lg:py-52 pl-6 pr-6 lg:pl-24 lg:pr-24'
                         initial="offscreen"
                         whileInView="onscreen"
@@ -385,6 +405,7 @@ export default function Foryouhr() {
                                 />
                                 <Image
                                     src={mne3Blur}
+                                    id='first-projects'
                                     className='z-0 absolute hover:z-50 transition-transform ease-in-out duration-300'
                                     placeholder="blur"
                                     alt="MNE"
@@ -548,7 +569,7 @@ export default function Foryouhr() {
                         </div>
                     </div>
                     {/* END OF PORTFOLIO SECTION */}
-                    <div className='relative h-[720px] lg:h-[670px] flex justify-center items-center overflow-hidden' >
+                    <div className='relative h-[720px] lg:h-[670px] flex justify-center items-center overflow-hidden' id="poster-content">
                         <div className='absolute top-[40%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 left-0 bg-header-poster p-3 z-40 max-w-lg mh shadow-black' onClick={prevPoster}>
                             <ChevronLeftIcon className="h-8 w-8 lg:h-11 lg:w-11" aria-hidden="true" />
                         </div>
