@@ -318,10 +318,10 @@ export default function Foryouhr() {
                         </div>
                         <div className='absolute flex justify-cemter items-center gap-1 md:gap-8 left-[50%] -translate-x-[50%] top-16'>
                             <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium shadow text-white' href="#first-projects">
-                                <p className='text-base md:text-lg select-none'>PROJECTS <sup>15</sup></p>
+                                <p className='text-lg md:text-lg select-none'>PROJECTS <sup className='hidden sm:inline'>15</sup></p>
                             </a>
                             <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium shadow text-white' href="#poster-content">
-                                <p className='text-base md:text-lg select-none'>ABOUT</p>
+                                <p className='text-lg md:text-lg select-none'>ABOUT</p>
                             </a>
                         </div>
                         <div className='absolute grid grid-cols-12 transition-all ease-in-out duration-300 gap-1 lg:gap-2 left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%] text-5xl md:text-6xl xl:text-8xl font-semibold lg:font-medium shadow select-none text-white'>
