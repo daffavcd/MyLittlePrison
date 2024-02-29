@@ -1,10 +1,9 @@
 "use client";
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/20/solid';
+import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
-import { Player } from '@lottiefiles/react-lottie-player';
+import { faLinkedin, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 import Link from 'next/link';
 // import Particle from '../components/parts/particle';
 
@@ -21,17 +20,6 @@ export default function Content() {
     const formattedTime = formatter.format(now).replace(' ', ', ');
 
     const [isDesktop, setIsDesktop] = useState(true);
-
-    const slides = useRef([
-        'merdeka',
-        'expert',
-        // 'iot',
-        'fundamental',
-        // 'psk',
-        'flutter',
-    ],);
-
-    const [currentCertificate, setCurrentCertificate] = useState(0);
 
     // GET WINDOW RESOLUTION
     useEffect(() => {
@@ -64,102 +52,6 @@ export default function Content() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-
-
-
-    useEffect(() => {
-        const changeSlide = setInterval(() => {
-            const isLastSlide = currentCertificate === slides.current.length - 1;
-            const newIndex = isLastSlide ? 0 : currentCertificate + 1;
-            setCurrentCertificate(newIndex);
-        }, 4000);
-        return () => clearInterval(changeSlide);
-    }, [currentCertificate]);
-
-    // TRACK TRAFFICS TO DATABASE (PAGES OPENED) --------------------------
-    // const [isIdle, setIsIdle] = useState(false);
-    // const clientIpAddress = useRef('')
-    // const freshSession = useRef(new Date().toISOString());
-    // const IDLE_TIME = 4000;
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const currentMediaQuery = window.matchMedia('(max-width: 639px)');
-    //         const currentIsDesktop = !currentMediaQuery.matches;
-    //         let formData = new FormData();
-
-    //         const locationResponse = await fetch(`https://ipapi.co/json/`);
-    //         if (locationResponse.ok) {
-    //             const locationData = await locationResponse.json();
-    //             formData.append('user_identity', locationData.ip);
-    //             formData.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
-    //             formData.append('visited_pages', 'Home|About');
-
-    //             const createIdentity = await fetch('/traffics-update', {
-    //                 method: 'POST',
-    //                 body: formData
-    //             });
-
-    //             if (createIdentity.ok) {
-    //                 clientIpAddress.current = locationData.ip;
-    //                 return true;
-    //             } else {
-    //                 console.error('Failed to create identity');
-    //                 return false;
-    //             }
-    //         } else {
-    //             console.error('Failed to fetch location information');
-    //         }
-    //     };
-    //     fetchData();
-    // }, []);
-
-    // // TRACKING SESSION 5 SECONDS LOOPING -----------------------------------
-    // useEffect(() => {
-    //     const timeoutId = setTimeout(() => {
-    //         setIsIdle(!isIdle);
-    //     }, IDLE_TIME);
-
-    //     return () => {
-    //         clearTimeout(timeoutId); // Cleanup the timer on unmount
-    //     };
-    // });
-
-    // useEffect(() => {
-    //     const currentMediaQuery = window.matchMedia('(max-width: 639px)');
-    //     const currentIsDesktop = !currentMediaQuery.matches;
-    //     const currentIPAddress = clientIpAddress.current;
-
-    //     const startSession = freshSession.current;
-    //     const endSession = new Date().toISOString();
-    //     const timeDifferenceInMilliseconds = Date.parse(endSession) - Date.parse(startSession);
-    //     const timeDifferenceInSeconds = timeDifferenceInMilliseconds / 1000;
-
-    //     let formData_session = new FormData();
-    //     formData_session.append('user_identity', currentIPAddress);
-    //     formData_session.append('used_device', currentIsDesktop ? 'Desktop' : 'Mobile');
-    //     formData_session.append('total_character_movements', '0');
-    //     formData_session.append('session_duration', timeDifferenceInSeconds.toString());
-
-    //     fetch('/traffics-update', {
-    //         method: 'POST',
-    //         body: formData_session
-    //     });
-    //     freshSession.current = new Date().toISOString();
-    // }, [isIdle]);
-
-
-    const prevSlide = () => {
-        const isFirstSlide = currentCertificate === 0;
-        const newIndex = isFirstSlide ? slides.current.length - 1 : currentCertificate - 1;
-        setCurrentCertificate(newIndex);
-    };
-
-    const nextSlide = () => {
-        const isLastSlide = currentCertificate === slides.current.length - 1;
-        const newIndex = isLastSlide ? 0 : currentCertificate + 1;
-        setCurrentCertificate(newIndex);
-    };
 
     return (
         <>
@@ -237,11 +129,11 @@ export default function Content() {
                         />
                     </div>
                     <div className='col-span-2 flex justify-end items-center gap-4'>
-                        <Link href="https://mail.google.com/mail/?fs=1&to=daffavcd@gmail.com&tf=cm" target="_blank" rel="noopener noreferrer">
+                        <Link href="mailto:daffavcd@gmail.com" target="_blank" rel="noopener noreferrer">
                             <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faGoogle} />
                         </Link>
-                        <Link href="https://twitter.com/messages/compose?recipient_id=813202528816930816" target="_blank" rel="noopener noreferrer">
-                            <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faTwitter} />
+                        <Link href="https://www.linkedin.com/in/daffavcd/" target="_blank" rel="noopener noreferrer">
+                            <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faLinkedin} />
                         </Link>
                         <Link href="https://github.com/daffavcd" target="_blank" rel="noopener noreferrer">
                             <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faGithub} />

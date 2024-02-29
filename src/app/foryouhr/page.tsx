@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/20/solid';
 
+import TextTransition, { presets } from 'react-text-transition';
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -23,7 +25,7 @@ import {
     faCode,
     faLightbulb,
 } from '@fortawesome/free-solid-svg-icons';
-import { faTwitter, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { faLinkedin, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 library.add(
     faFileInvoiceDollar,
     faGraduationCap,
@@ -274,6 +276,18 @@ export default function Foryouhr() {
         }
     }
 
+    const TEXTS = ['COLORLESS', 'MEDIOCRE', 'ORDINARY'];
+
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+        const intervalId = setInterval(
+            () => setIndex((index) => index + 1),
+            3000, // every 3 seconds
+        );
+        return () => clearTimeout(intervalId);
+    }, []);
+
     return (
         <>
             <main className='bg-black overflow-x-hidden'>
@@ -283,9 +297,11 @@ export default function Foryouhr() {
                             src="/images/blur-home-2-compress.jpg"
                             title={`Background Landing`}
                             alt={`Background Landing`}
-                            objectFit='cover'
-                            objectPosition='center'
-                            layout='fill'
+                            fill
+                            style={{
+                                objectFit: 'cover',
+                                objectPosition: 'center',
+                            }}
                             className='z-0'
                             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
                             placeholder="blur"
@@ -302,18 +318,18 @@ export default function Foryouhr() {
                         </div>
                         <div className='absolute flex justify-cemter items-center gap-1 md:gap-8 left-[50%] -translate-x-[50%] top-16'>
                             <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium shadow text-white' href="#first-projects">
-                                <p className='text-base md:text-lg select-none'>PROJECTS</p>
+                                <p className='text-base md:text-lg select-none'>PROJECTS <sup>15</sup></p>
                             </a>
                             <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium shadow text-white' href="#poster-content">
                                 <p className='text-base md:text-lg select-none'>ABOUT</p>
                             </a>
                         </div>
-                        <div className='absolute grid grid-cols-12 gap-1 lg:gap-2 left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%] text-4xl md:text-5xl lg:text-8xl font-semibold lg:font-medium shadow select-none text-white'>
+                        <div className='absolute grid grid-cols-12 transition-all ease-in-out duration-300 gap-1 lg:gap-2 left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%] text-5xl md:text-6xl xl:text-8xl font-semibold lg:font-medium shadow select-none text-white'>
                             <div className='col-span-12 flex items-end justify-center'>
                                 <p className='shadow'>ULTRA-</p>
                             </div>
                             <div className='col-span-12 flex items-center justify-center'>
-                                <p className='shadow'>COLORLESS</p>
+                                <TextTransition className='flex items-center justify-center shadow' springConfig={presets.gentle}>{TEXTS[index % TEXTS.length]}</TextTransition>
                             </div>
                             <div className='col-span-12 md:col-span-6 flex items-start justify-center md:justify-end'>
                                 <p className='shadow'>DEV</p>
@@ -327,7 +343,7 @@ export default function Foryouhr() {
                                         700,
                                         `Be it in a genre of system, an app, or a website, I'd be down for it;`,
                                         1000,
-                                        `Well, don't worry about it if you don't understand,`,
+                                        `Well, don't worry about it if you don't get it,`,
                                         1000,
                                         `I will lead the dance for you.`,
                                         1000,
@@ -767,11 +783,11 @@ export default function Foryouhr() {
                             />
                         </div>
                         <div className='col-span-2 flex justify-end items-center gap-4'>
-                            <Link href="https://mail.google.com/mail/?fs=1&to=daffavcd@gmail.com&tf=cm" target="_blank" rel="noopener noreferrer">
+                            <Link href="mailto:daffavcd@gmail.com" target="_blank" rel="noopener noreferrer">
                                 <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faGoogle} />
                             </Link>
-                            <Link href="https://twitter.com/messages/compose?recipient_id=813202528816930816" target="_blank" rel="noopener noreferrer">
-                                <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faTwitter} />
+                            <Link href="https://www.linkedin.com/in/daffavcd/" target="_blank" rel="noopener noreferrer">
+                                <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faLinkedin} />
                             </Link>
                             <Link href="https://github.com/daffavcd" target="_blank" rel="noopener noreferrer">
                                 <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faGithub} />
