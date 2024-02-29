@@ -323,8 +323,8 @@ export default function Foryouhr() {
                             <p className='text-sm lg:text-lg font-semibold shadow select-none' style={{ color: "#BA9C99" }}>IDN | GMT+7</p>
                         </div>
                         <div className='absolute flex justify-cemter items-center gap-1 md:gap-8 left-[50%] -translate-x-[50%] top-16'>
-                            <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium text-white' href="#first-projects">
-                                <p className='text-lg md:text-lg select-none'>PROJECTS <sup className='hidden sm:inline'>15</sup></p>
+                            <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium text-white ' href="#first-projects">
+                                <p className='text-lg md:text-lg select-none whitespace-nowrap'>PROJECTS <sup>15</sup></p>
                             </a>
                             <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium text-white' href="#poster-content">
                                 <p className='text-lg md:text-lg select-none'>ABOUT</p>
