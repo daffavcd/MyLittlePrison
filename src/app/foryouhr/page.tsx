@@ -280,12 +280,18 @@ export default function Foryouhr() {
 
     const [index, setIndex] = useState(0);
 
+    const [isFullyRendered, setIsFullyRendered] = useState(false);
+
     useEffect(() => {
         const intervalId = setInterval(
             () => setIndex((index) => index + 1),
             3000, // every 3 seconds
         );
         return () => clearTimeout(intervalId);
+    }, []);
+
+    useEffect(() => {
+        setIsFullyRendered(true);
     }, []);
 
     return (
@@ -317,10 +323,10 @@ export default function Foryouhr() {
                             <p className='text-sm lg:text-lg font-semibold shadow select-none' style={{ color: "#BA9C99" }}>IDN | GMT+7</p>
                         </div>
                         <div className='absolute flex justify-cemter items-center gap-1 md:gap-8 left-[50%] -translate-x-[50%] top-16'>
-                            <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium shadow text-white' href="#first-projects">
+                            <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium text-white' href="#first-projects">
                                 <p className='text-lg md:text-lg select-none'>PROJECTS <sup className='hidden sm:inline'>15</sup></p>
                             </a>
-                            <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium shadow text-white' href="#poster-content">
+                            <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium text-white' href="#poster-content">
                                 <p className='text-lg md:text-lg select-none'>ABOUT</p>
                             </a>
                         </div>
@@ -329,6 +335,7 @@ export default function Foryouhr() {
                                 <p className='shadow'>ULTRA-</p>
                             </div>
                             <div className='col-span-12 flex items-center justify-center'>
+                                <p className={`shadow absolute ${isFullyRendered ? 'hidden' : ''}`}>COLORLESS</p>
                                 <TextTransition className='flex items-center justify-center shadow' springConfig={presets.gentle}>{TEXTS[index % TEXTS.length]}</TextTransition>
                             </div>
                             <div className='col-span-12 md:col-span-6 flex items-start justify-center md:justify-end'>
