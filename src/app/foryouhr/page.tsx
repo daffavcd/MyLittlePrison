@@ -276,7 +276,7 @@ export default function Foryouhr() {
         }
     }
 
-    const TEXTS = ['COLORLESS', 'MEDIOCRE', 'ORDINARY'];
+    const TEXTS = ['COLORFULL', 'BRILLIANT', 'CONTRARIAN'];
 
     const [index, setIndex] = useState(0);
 
@@ -313,16 +313,16 @@ export default function Foryouhr() {
                             placeholder="blur"
                         />
                         <div className='dark-overlay'></div>
-                        <a href="#first-content">
+                        <a href="#first-content" className='z-50'>
                             <div className='absolute left-[50%] -translate-x-[50%] bottom-10 text-2xl rounded-lg rotate-45 p-2 bg-blood-90 text-white cursor-pointer z-20 shadow-lg'>
                                 <div className='absolute -m-2 w-full h-full rounded-lg border-2 border-white animate-ping-mlp-2' />
                                 <ChevronRightIcon className="h-9 w-9 rotate-45" aria-hidden="true" />
                             </div>
                         </a>
                         <div className='absolute left-7 top-[50%] hidden md:block' style={{ transform: "rotate(270deg)" }}>
-                            <p className='text-sm lg:text-lg font-semibold shadow select-none' style={{ color: "#BA9C99" }}>IDN | GMT+7</p>
+                            <p className='text-sm lg:text-lg font-semibold select-none' style={{ color: "#BA9C99" }}>IDN | GMT+7</p>
                         </div>
-                        <div className='absolute flex justify-cemter items-center gap-1 md:gap-8 left-[50%] -translate-x-[50%] top-16'>
+                        <div className='absolute z-50 flex justify-cemter items-center gap-1 md:gap-8 left-[50%] -translate-x-[50%] top-16'>
                             <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium text-white ' href="#first-projects">
                                 <p className='text-lg md:text-lg select-none whitespace-nowrap'>PROJECTS <sup>15</sup></p>
                             </a>
@@ -330,35 +330,70 @@ export default function Foryouhr() {
                                 <p className='text-lg md:text-lg select-none'>ABOUT</p>
                             </a>
                         </div>
-                        <div className='absolute grid grid-cols-12 transition-all ease-in-out duration-300 gap-1 lg:gap-2 left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%] text-5xl md:text-6xl xl:text-8xl font-semibold lg:font-medium shadow select-none text-white'>
-                            <div className='col-span-12 flex items-end justify-center'>
-                                <p className='shadow'>ULTRA-</p>
+                        <div className='absolute flex items-center justify-center w-full h-full'>
+                            <div className='absolute grid grid-cols-12 transition-all ease-in-out duration-300 gap-1 lg:gap-2 left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%] text-5xl md:text-6xl xl:text-8xl font-semibold xl:font-medium select-none text-white'>
+                                <div className='col-span-12 flex items-center justify-center'>
+                                    <p className=''>ULTRA-</p>
+                                </div>
+                                <div className='col-span-12 flex items-center justify-center'>
+                                    <p className={` absolute ${isFullyRendered ? 'hidden' : ''}`}>COLORLESS</p>
+                                    <TextTransition className='flex items-center justify-center ' springConfig={presets.gentle}>{TEXTS[index % TEXTS.length]}</TextTransition>
+                                </div>
+                                <div className='col-span-12 md:col-span-6 flex items-center justify-center md:justify-end'>
+                                    <p className=''>DEV</p>
+                                </div>
+                                <div className='col-span-6 hidden md:flex items-center justify-start text-xs lg:text-base xl:text-xl'>
+                                    <TypeAnimation
+                                        sequence={[
+                                            `Hello, how's it going?`,
+                                            500,
+                                            `You lookin' for a dance partner?`,
+                                            700,
+                                            `Be it in a genre of system, an app, or a website, I'd be down for it;`,
+                                            1000,
+                                            `Well, don't worry about it if you don't get it,`,
+                                            1000,
+                                            `I will lead the dance for you.`,
+                                            1000,
+                                        ]}
+                                        speed={85}
+                                        className='select-none'
+                                        repeat={Infinity}
+                                    />
+                                </div>
                             </div>
-                            <div className='col-span-12 flex items-center justify-center'>
-                                <p className={`shadow absolute ${isFullyRendered ? 'hidden' : ''}`}>COLORLESS</p>
-                                <TextTransition className='flex items-center justify-center shadow' springConfig={presets.gentle}>{TEXTS[index % TEXTS.length]}</TextTransition>
-                            </div>
-                            <div className='col-span-12 md:col-span-6 flex items-start justify-center md:justify-end'>
-                                <p className='shadow'>DEV</p>
-                            </div>
-                            <div className='col-span-6 hidden md:flex items-center justify-start text-xs lg:text-xl'>
-                                <TypeAnimation
-                                    sequence={[
-                                        `Hello, how's it going?`,
-                                        500,
-                                        `You lookin' for a dance partner?`,
-                                        700,
-                                        `Be it in a genre of system, an app, or a website, I'd be down for it;`,
-                                        1000,
-                                        `Well, don't worry about it if you don't get it,`,
-                                        1000,
-                                        `I will lead the dance for you.`,
-                                        1000,
-                                    ]}
-                                    speed={85}
-                                    className='shadow select-none'
-                                    repeat={Infinity}
-                                />
+                        </div>
+                        <div className='absolute flex items-center justify-center w-full h-full layer-mask'>
+                            <div className='absolute grid grid-cols-12 transition-all ease-in-out duration-300 gap-1 lg:gap-2 left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%] text-5xl md:text-6xl xl:text-8xl font-semibold xl:font-medium select-none' style={{ color: "#a00000" }}>
+                                <div className='col-span-12 flex items-center justify-center'>
+                                    <p className=''>ULTRA-</p>
+                                </div>
+                                <div className='col-span-12 flex items-center justify-center'>
+                                    <p className={` absolute ${isFullyRendered ? 'hidden' : ''}`}>COLORLESS</p>
+                                    <TextTransition className='flex items-center justify-center ' springConfig={presets.gentle}>{TEXTS[index % TEXTS.length]}</TextTransition>
+                                </div>
+                                <div className='col-span-12 md:col-span-6 flex items-center justify-center md:justify-end'>
+                                    <p className=''>DEV</p>
+                                </div>
+                                <div className='col-span-6 hidden md:flex items-center justify-start text-xs lg:text-base xl:text-xl'>
+                                    <TypeAnimation
+                                        sequence={[
+                                            `Hello, how's it going?`,
+                                            500,
+                                            `You lookin' for a dance partner?`,
+                                            700,
+                                            `Be it in a genre of system, an app, or a website, I'd be down for it;`,
+                                            1000,
+                                            `Well, don't worry about it if you don't get it,`,
+                                            1000,
+                                            `I will lead the dance for you.`,
+                                            1000,
+                                        ]}
+                                        speed={85}
+                                        className='select-none'
+                                        repeat={Infinity}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </div>

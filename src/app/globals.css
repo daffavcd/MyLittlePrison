@@ -26,6 +26,32 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.layer-mask {
+  background-color: white;
+  mask: url(/images/mask-rectangle.svg);
+  -webkit-mask: url(/images/mask-rectangle.svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  mask-size: 100% 50%;
+  -webkit-mask-size: 100% 50%;
+}
+
+@media screen and (min-width: 1280px) {
+  .layer-mask {
+    background-color: white;
+    mask: url(/images/mask-rectangle.svg);
+    -webkit-mask: url(/images/mask-rectangle.svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    mask-size: auto;
+    -webkit-mask-size: auto;
+  }
+}
+
 .dark-overlay {
   position: absolute;
   top: 0;
