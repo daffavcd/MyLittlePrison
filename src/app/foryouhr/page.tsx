@@ -336,7 +336,7 @@ export default function Foryouhr() {
                                     <p className=''>ULTRA-</p>
                                 </div>
                                 <div className='col-span-12 flex items-center justify-center'>
-                                    <p className={` absolute ${isFullyRendered ? 'hidden' : ''}`}>COLORLESS</p>
+                                    <p className={` absolute ${isFullyRendered ? 'hidden' : ''}`}>COLORFULL</p>
                                     <TextTransition className='flex items-center justify-center ' springConfig={presets.gentle}>{TEXTS[index % TEXTS.length]}</TextTransition>
                                 </div>
                                 <div className='col-span-12 md:col-span-6 flex items-center justify-center md:justify-end'>
@@ -369,7 +369,7 @@ export default function Foryouhr() {
                                     <p className=''>ULTRA-</p>
                                 </div>
                                 <div className='col-span-12 flex items-center justify-center'>
-                                    <p className={` absolute ${isFullyRendered ? 'hidden' : ''}`}>COLORLESS</p>
+                                    <p className={` absolute ${isFullyRendered ? 'hidden' : ''}`}>COLORFULL</p>
                                     <TextTransition className='flex items-center justify-center ' springConfig={presets.gentle}>{TEXTS[index % TEXTS.length]}</TextTransition>
                                 </div>
                                 <div className='col-span-12 md:col-span-6 flex items-center justify-center md:justify-end'>
