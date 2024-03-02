@@ -298,23 +298,73 @@ export default function Foryouhr() {
 
     useEffect(() => {
         const handleMouseMove = (event: MouseEvent) => {
-            const layerMask = document.querySelector('.layer-mask');
-
-            if (layerMask && layerMask.contains(event.target as Node)) {
-                // setMousePosition({ x: event.clientX, y: event.clientY });
+            const mainContent = document.getElementById('main-content');
+            if (mainContent && mainContent.contains(event.target as Node)) {
                 const invertedX = window.innerWidth - event.clientX;
                 const invertedY = window.innerHeight - event.clientY;
 
                 const mouseXPercentage = (invertedX / window.innerWidth) * 100;
                 const mouseYPercentage = (invertedY / window.innerHeight) * 100;
 
-                // Clamp mouse position within the range of 47% to 53%
-                const clampedXPercentage = Math.max(48, Math.min(52, mouseXPercentage));
-                const clampedYPercentage = Math.max(45, Math.min(55, mouseYPercentage));
+                const clampPercentage = (percentage: number) => {
+                    if (percentage >= 85) return 3;
+                    if (percentage >= 75) return 2;
+                    if (percentage >= 65) return 1;
+                    if (percentage <= 15) return -3;
+                    if (percentage <= 25) return -2;
+                    if (percentage <= 35) return -1;
+                    return 0;
+                };
 
-                // Set CSS variable for cursor position
-                document.documentElement.style.setProperty('--cursor-x', `${clampedXPercentage}%`);
-                document.documentElement.style.setProperty('--cursor-y', `${clampedYPercentage}%`);
+                const clampPercentageMiddle = (percentage: number) => {
+                    if (percentage >= 85) return 9;
+                    if (percentage >= 75) return 6;
+                    if (percentage >= 65) return 3;
+                    if (percentage <= 15) return -9;
+                    if (percentage <= 25) return -6;
+                    if (percentage <= 35) return -3;
+                    return 0;
+                };
+
+                const adjustPercentage = (currentValue: number, percentage: number) => {
+                    const adjustment = clampPercentage(percentage);
+                    return currentValue + adjustment;
+                };
+
+                const adjustPercentageMiddle = (currentValue: number, percentage: number) => {
+                    const adjustment = clampPercentageMiddle(percentage);
+                    return currentValue + adjustment;
+                };
+
+                console.log(`mouseXPercentage: ${mouseXPercentage}, mouseYPercentage: ${mouseYPercentage}`)
+
+                document.documentElement.style.setProperty('--polygon-1-x', `${adjustPercentage(56, mouseXPercentage)}%`);
+                document.documentElement.style.setProperty('--polygon-1-y', `${adjustPercentage(22, mouseYPercentage)}%`);
+
+                if (mouseXPercentage < 50) {
+                    document.documentElement.style.setProperty('--polygon-2-x', `${adjustPercentageMiddle(42, mouseXPercentage)}%`);
+                } else {
+                    document.documentElement.style.setProperty('--polygon-2-x', `42%`);
+                }
+
+                document.documentElement.style.setProperty('--polygon-2-y', `${adjustPercentageMiddle(58, mouseYPercentage)}%`);
+
+                document.documentElement.style.setProperty('--polygon-3-x', `${adjustPercentage(35, mouseXPercentage)}%`);
+                document.documentElement.style.setProperty('--polygon-3-y', `${adjustPercentage(82, mouseYPercentage)}%`);
+
+                document.documentElement.style.setProperty('--polygon-4-x', `${adjustPercentage(40, mouseXPercentage)}%`);
+                document.documentElement.style.setProperty('--polygon-4-y', `${adjustPercentage(79, mouseYPercentage)}%`);
+
+                if (mouseXPercentage > 50) {
+                    document.documentElement.style.setProperty('--polygon-5-x', `${adjustPercentageMiddle(48, mouseXPercentage)}%`);
+                } else {
+                    document.documentElement.style.setProperty('--polygon-5-x', `48%`);
+                }
+                
+                document.documentElement.style.setProperty('--polygon-5-y', `${adjustPercentageMiddle(52, mouseYPercentage)}%`);
+
+                document.documentElement.style.setProperty('--polygon-6-x', `${adjustPercentage(58, mouseXPercentage)}%`);
+                document.documentElement.style.setProperty('--polygon-6-y', `${adjustPercentage(26, mouseYPercentage)}%`);
             }
         };
 
