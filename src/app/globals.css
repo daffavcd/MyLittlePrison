@@ -35,12 +35,12 @@ body {
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: var(--cursor-x) var(--cursor-y);
-  mask-position: (--cursor-x) (--cursor-y);
+  mask-position: var(--cursor-x) var(--cursor-y);
   mask-size: 100% 50%;
   -webkit-mask-size: 100% 50%;
   transition-duration: 300ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-property: mask-position;
+  transition-property: -webkit-mask-position, mask-position;
 }
 
 @media screen and (min-width: 1280px) {
@@ -51,12 +51,12 @@ body {
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
     -webkit-mask-position: var(--cursor-x) var(--cursor-y);
-    mask-position: (--cursor-x) (--cursor-y);
+    mask-position: var(--cursor-x) var(--cursor-y);
     mask-size: auto;
     -webkit-mask-size: auto;
     transition-duration: 300ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-property: mask-position;
+    transition-property: -webkit-mask-position, mask-position;
   }
 }
 

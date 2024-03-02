@@ -298,17 +298,21 @@ export default function Foryouhr() {
 
     useEffect(() => {
         const handleMouseMove = (event: MouseEvent) => {
-            // setMousePosition({ x: event.clientX, y: event.clientY });
-            const mouseXPercentage = (event.clientX / window.innerWidth) * 100;
-            const mouseYPercentage = (event.clientY / window.innerHeight) * 100;
+            const layerMask = document.querySelector('.layer-mask');
 
-            // Clamp mouse position within the range of 47% to 53%
-            const clampedXPercentage = Math.max(47, Math.min(53, mouseXPercentage));
-            const clampedYPercentage = Math.max(45, Math.min(55, mouseYPercentage));
+            if (layerMask && layerMask.contains(event.target as Node)) {
+                // setMousePosition({ x: event.clientX, y: event.clientY });
+                const mouseXPercentage = (event.clientX / window.innerWidth) * 100;
+                const mouseYPercentage = (event.clientY / window.innerHeight) * 100;
 
-            // Set CSS variable for cursor position
-            document.documentElement.style.setProperty('--cursor-x', `${clampedXPercentage}%`);
-            document.documentElement.style.setProperty('--cursor-y', `${clampedYPercentage}%`);
+                // Clamp mouse position within the range of 47% to 53%
+                const clampedXPercentage = Math.max(48, Math.min(52, mouseXPercentage));
+                const clampedYPercentage = Math.max(45, Math.min(55, mouseYPercentage));
+
+                // Set CSS variable for cursor position
+                document.documentElement.style.setProperty('--cursor-x', `${clampedXPercentage}%`);
+                document.documentElement.style.setProperty('--cursor-y', `${clampedYPercentage}%`);
+            }
         };
 
         window.addEventListener('mousemove', handleMouseMove);
