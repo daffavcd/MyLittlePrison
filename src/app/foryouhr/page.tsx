@@ -302,8 +302,11 @@ export default function Foryouhr() {
 
             if (layerMask && layerMask.contains(event.target as Node)) {
                 // setMousePosition({ x: event.clientX, y: event.clientY });
-                const mouseXPercentage = (event.clientX / window.innerWidth) * 100;
-                const mouseYPercentage = (event.clientY / window.innerHeight) * 100;
+                const invertedX = window.innerWidth - event.clientX;
+                const invertedY = window.innerHeight - event.clientY;
+
+                const mouseXPercentage = (invertedX / window.innerWidth) * 100;
+                const mouseYPercentage = (invertedY / window.innerHeight) * 100;
 
                 // Clamp mouse position within the range of 47% to 53%
                 const clampedXPercentage = Math.max(48, Math.min(52, mouseXPercentage));
