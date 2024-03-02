@@ -38,7 +38,7 @@ body {
   mask-position: var(--cursor-x) var(--cursor-y);
   mask-size: 100% 50%;
   -webkit-mask-size: 100% 50%;
-  transition-duration: 300ms;
+  transition-duration: 100ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-property: -webkit-mask-position, mask-position;
 }
@@ -54,7 +54,7 @@ body {
     mask-position: var(--cursor-x) var(--cursor-y);
     mask-size: auto;
     -webkit-mask-size: auto;
-    transition-duration: 300ms;
+    transition-duration: 100ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-property: -webkit-mask-position, mask-position;
   }
