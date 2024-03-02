@@ -294,6 +294,30 @@ export default function Foryouhr() {
         setIsFullyRendered(true);
     }, []);
 
+    // MOUSE TRACKER FOR MASK SVG
+
+    useEffect(() => {
+        const handleMouseMove = (event: MouseEvent) => {
+            // setMousePosition({ x: event.clientX, y: event.clientY });
+            const mouseXPercentage = (event.clientX / window.innerWidth) * 100;
+            const mouseYPercentage = (event.clientY / window.innerHeight) * 100;
+
+            // Clamp mouse position within the range of 47% to 53%
+            const clampedXPercentage = Math.max(47, Math.min(53, mouseXPercentage));
+            const clampedYPercentage = Math.max(45, Math.min(55, mouseYPercentage));
+
+            // Set CSS variable for cursor position
+            document.documentElement.style.setProperty('--cursor-x', `${clampedXPercentage}%`);
+            document.documentElement.style.setProperty('--cursor-y', `${clampedYPercentage}%`);
+        };
+
+        window.addEventListener('mousemove', handleMouseMove);
+
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, []);
+
     return (
         <>
             <main className='bg-black overflow-x-hidden'>
@@ -363,7 +387,7 @@ export default function Foryouhr() {
                                 </div>
                             </div>
                         </div>
-                        <div className='absolute flex items-center justify-center w-full h-full layer-mask'>
+                        <div className='absolute flex items-center justify-center w-full h-full layer-mask' >
                             <div className='absolute grid grid-cols-12 transition-all ease-in-out duration-300 gap-1 lg:gap-2 left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%] text-5xl md:text-6xl xl:text-8xl font-semibold xl:font-medium select-none' style={{ color: "#a00000" }}>
                                 <div className='col-span-12 flex items-center justify-center'>
                                     <p className=''>ULTRA-</p>
@@ -376,7 +400,7 @@ export default function Foryouhr() {
                                     <p className=''>DEV</p>
                                 </div>
                                 <div className='col-span-6 hidden md:flex items-center justify-start text-xs lg:text-base xl:text-xl'>
-                                    <TypeAnimation
+                                    {/* <TypeAnimation
                                         sequence={[
                                             `Hello, how's it going?`,
                                             500,
@@ -392,7 +416,7 @@ export default function Foryouhr() {
                                         speed={85}
                                         className='select-none'
                                         repeat={Infinity}
-                                    />
+                                    /> */}
                                 </div>
                             </div>
                         </div>
