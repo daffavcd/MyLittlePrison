@@ -43,14 +43,14 @@ body {
 .layer-mask {
   background-color: white;
   /* clip-path: polygon(58% 20%, 60% 25%, 42% 84%, 39% 83%); */
-  clip-path: polygon(53% 22%, 39% 58%, 32% 82%, 43% 79%, 50% 52%, 61% 26%);
+  clip-path: polygon(55% 27%, 39% 58%, 32% 76%, 43% 73%, 50% 52%, 63% 32%);
   -webkit-clip-path: polygon(
-    53% 22%,
+    55% 27%,
     39% 58%,
-    32% 82%,
-    43% 79%,
+    32% 76%,
+    43% 73%,
     50% 52%,
-    61% 26%
+    63% 32%
   );
   transition-duration: 500ms;
   transition-timing-function: ease;
