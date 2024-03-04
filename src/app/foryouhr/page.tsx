@@ -299,34 +299,34 @@ export default function Foryouhr() {
         const mouseYPercentage = (invertedY / window.innerHeight) * 100;
 
         let shapeDot = {
-            polygon_1_x: ["--polygon-1-x", 56],
-            polygon_1_y: ["--polygon-1-y", 22],
-            polygon_2_x: ["--polygon-2-x", 42],
-            polygon_2_y: ["--polygon-2-y", 58],
-            polygon_3_x: ["--polygon-3-x", 35],
+            polygon_1_x: ["--polygon-1-x", 59],
+            polygon_1_y: ["--polygon-1-y", 21],
+            polygon_2_x: ["--polygon-2-x", 46],
+            polygon_2_y: ["--polygon-2-y", 47],
+            polygon_3_x: ["--polygon-3-x", 36],
             polygon_3_y: ["--polygon-3-y", 82],
-            polygon_4_x: ["--polygon-4-x", 40],
-            polygon_4_y: ["--polygon-4-y", 79],
-            polygon_5_x: ["--polygon-5-x", 48],
-            polygon_5_y: ["--polygon-5-y", 52],
-            polygon_6_x: ["--polygon-6-x", 58],
-            polygon_6_y: ["--polygon-6-y", 26],
+            polygon_4_x: ["--polygon-4-x", 48],
+            polygon_4_y: ["--polygon-4-y", 58],
+            polygon_5_x: ["--polygon-5-x", 51],
+            polygon_5_y: ["--polygon-5-y", 46],
+            polygon_6_x: ["--polygon-6-x", 55],
+            polygon_6_y: ["--polygon-6-y", 34],
         };
 
         if (!isDesktop) {
             shapeDot = {
-                polygon_1_x: ["--polygon-1-x-mobile", 55],
-                polygon_1_y: ["--polygon-1-y-mobile", 27],
-                polygon_2_x: ["--polygon-2-x-mobile", 39],
-                polygon_2_y: ["--polygon-2-y-mobile", 58],
-                polygon_3_x: ["--polygon-3-x-mobile", 32],
-                polygon_3_y: ["--polygon-3-y-mobile", 76],
-                polygon_4_x: ["--polygon-4-x-mobile", 43],
-                polygon_4_y: ["--polygon-4-y-mobile", 73],
-                polygon_5_x: ["--polygon-5-x-mobile", 50],
-                polygon_5_y: ["--polygon-5-y-mobile", 52],
-                polygon_6_x: ["--polygon-6-x-mobile", 63],
-                polygon_6_y: ["--polygon-6-y-mobile", 32],
+                polygon_1_x: ["--polygon-1-x-mobile", 57],
+                polygon_1_y: ["--polygon-1-y-mobile", 28],
+                polygon_2_x: ["--polygon-2-x-mobile", 44],
+                polygon_2_y: ["--polygon-2-y-mobile", 47],
+                polygon_3_x: ["--polygon-3-x-mobile", 36],
+                polygon_3_y: ["--polygon-3-y-mobile", 75],
+                polygon_4_x: ["--polygon-4-x-mobile", 49],
+                polygon_4_y: ["--polygon-4-y-mobile", 58],
+                polygon_5_x: ["--polygon-5-x-mobile", 52],
+                polygon_5_y: ["--polygon-5-y-mobile", 46],
+                polygon_6_x: ["--polygon-6-x-mobile", 56],
+                polygon_6_y: ["--polygon-6-y-mobile", 34],
             };
         }
 
@@ -341,12 +341,12 @@ export default function Foryouhr() {
         };
 
         const clampPercentageMiddle = (percentage: number) => {
-            if (percentage >= 85) return 9;
-            if (percentage >= 75) return 6;
-            if (percentage >= 65) return 3;
-            if (percentage <= 15) return -9;
-            if (percentage <= 25) return -6;
-            if (percentage <= 35) return -3;
+            if (percentage >= 85) return 6;
+            if (percentage >= 75) return 4;
+            if (percentage >= 65) return 2;
+            if (percentage <= 15) return -6;
+            if (percentage <= 25) return -4;
+            if (percentage <= 35) return -2;
             return 0;
         };
 
@@ -364,7 +364,7 @@ export default function Foryouhr() {
         console.log("oyeahh2", mouseXPercentage, mouseYPercentage);
 
 
-        document.documentElement.style.setProperty(`${shapeDot.polygon_1_x[0]}`, `${adjustPercentage(shapeDot.polygon_1_x[1] as number, mouseXPercentage)}%`);
+        document.documentElement.style.setProperty(`${shapeDot.polygon_1_x[0]}`, `${shapeDot.polygon_1_x[1]}%`);
         document.documentElement.style.setProperty(`${shapeDot.polygon_1_y[0]}`, `${adjustPercentage(shapeDot.polygon_1_y[1] as number, mouseYPercentage)}%`);
 
         if (mouseXPercentage < 50) {
@@ -373,23 +373,26 @@ export default function Foryouhr() {
             document.documentElement.style.setProperty(`${shapeDot.polygon_2_x[0]}`, `${shapeDot.polygon_2_x[1]}%`);
         }
 
-        document.documentElement.style.setProperty(`${shapeDot.polygon_2_y[0]}`, `${adjustPercentageMiddle(shapeDot.polygon_2_y[1] as number, mouseYPercentage)}%`);
+        document.documentElement.style.setProperty(`${shapeDot.polygon_2_y[0]}`, `${adjustPercentage(shapeDot.polygon_2_y[1] as number, mouseYPercentage)}%`);
 
-        document.documentElement.style.setProperty(`${shapeDot.polygon_3_x[0]}`, `${adjustPercentage(shapeDot.polygon_3_x[1] as number, mouseXPercentage)}%`);
+        document.documentElement.style.setProperty(`${shapeDot.polygon_3_x[0]}`, `${shapeDot.polygon_3_x[1]}%`);
         document.documentElement.style.setProperty(`${shapeDot.polygon_3_y[0]}`, `${adjustPercentage(shapeDot.polygon_3_y[1] as number, mouseYPercentage)}%`);
 
-        document.documentElement.style.setProperty(`${shapeDot.polygon_4_x[0]}`, `${adjustPercentage(shapeDot.polygon_4_x[1] as number, mouseXPercentage)}%`);
-        document.documentElement.style.setProperty(`${shapeDot.polygon_4_y[0]}`, `${adjustPercentage(shapeDot.polygon_4_y[1] as number, mouseYPercentage)}%`);
 
         if (mouseXPercentage > 50) {
+            document.documentElement.style.setProperty(`${shapeDot.polygon_4_x[0]}`, `${adjustPercentageMiddle(shapeDot.polygon_4_x[1] as number, mouseXPercentage)}%`);
             document.documentElement.style.setProperty(`${shapeDot.polygon_5_x[0]}`, `${adjustPercentageMiddle(shapeDot.polygon_5_x[1] as number, mouseXPercentage)}%`);
+            document.documentElement.style.setProperty(`${shapeDot.polygon_6_x[0]}`, `${adjustPercentageMiddle(shapeDot.polygon_6_x[1] as number, mouseXPercentage)}%`);
         } else {
+            document.documentElement.style.setProperty(`${shapeDot.polygon_4_x[0]}`, `${shapeDot.polygon_4_x[1]}%`);
             document.documentElement.style.setProperty(`${shapeDot.polygon_5_x[0]}`, `${shapeDot.polygon_5_x[1]}%`);
+            document.documentElement.style.setProperty(`${shapeDot.polygon_6_x[0]}`, `${shapeDot.polygon_6_x[1]}%`);
         }
 
-        document.documentElement.style.setProperty(`${shapeDot.polygon_5_y[0]}`, `${adjustPercentageMiddle(shapeDot.polygon_5_y[1] as number, mouseYPercentage)}%`);
+        document.documentElement.style.setProperty(`${shapeDot.polygon_4_y[0]}`, `${adjustPercentage(shapeDot.polygon_4_y[1] as number, mouseYPercentage)}%`);
 
-        document.documentElement.style.setProperty(`${shapeDot.polygon_6_x[0]}`, `${adjustPercentage(shapeDot.polygon_6_x[1] as number, mouseXPercentage)}%`);
+        document.documentElement.style.setProperty(`${shapeDot.polygon_5_y[0]}`, `${adjustPercentage(shapeDot.polygon_5_y[1] as number, mouseYPercentage)}%`);
+
         document.documentElement.style.setProperty(`${shapeDot.polygon_6_y[0]}`, `${adjustPercentage(shapeDot.polygon_6_y[1] as number, mouseYPercentage)}%`);
     }, [isDesktop]);
 
