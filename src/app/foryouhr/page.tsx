@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Image from 'next/image';
 import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/20/solid';
 
@@ -294,6 +294,105 @@ export default function Foryouhr() {
         setIsFullyRendered(true);
     }, []);
 
+    const updatePolygonStyles = useCallback((invertedX: number, invertedY: number) => {
+        const mouseXPercentage = (invertedX / window.innerWidth) * 100;
+        const mouseYPercentage = (invertedY / window.innerHeight) * 100;
+
+        let shapeDot = {
+            polygon_1_x: ["--polygon-1-x", 56],
+            polygon_1_y: ["--polygon-1-y", 22],
+            polygon_2_x: ["--polygon-2-x", 42],
+            polygon_2_y: ["--polygon-2-y", 58],
+            polygon_3_x: ["--polygon-3-x", 35],
+            polygon_3_y: ["--polygon-3-y", 82],
+            polygon_4_x: ["--polygon-4-x", 40],
+            polygon_4_y: ["--polygon-4-y", 79],
+            polygon_5_x: ["--polygon-5-x", 48],
+            polygon_5_y: ["--polygon-5-y", 52],
+            polygon_6_x: ["--polygon-6-x", 58],
+            polygon_6_y: ["--polygon-6-y", 26],
+        };
+
+        if (!isDesktop) {
+            shapeDot = {
+                polygon_1_x: ["--polygon-1-x-mobile", 55],
+                polygon_1_y: ["--polygon-1-y-mobile", 27],
+                polygon_2_x: ["--polygon-2-x-mobile", 39],
+                polygon_2_y: ["--polygon-2-y-mobile", 58],
+                polygon_3_x: ["--polygon-3-x-mobile", 32],
+                polygon_3_y: ["--polygon-3-y-mobile", 76],
+                polygon_4_x: ["--polygon-4-x-mobile", 43],
+                polygon_4_y: ["--polygon-4-y-mobile", 73],
+                polygon_5_x: ["--polygon-5-x-mobile", 50],
+                polygon_5_y: ["--polygon-5-y-mobile", 52],
+                polygon_6_x: ["--polygon-6-x-mobile", 63],
+                polygon_6_y: ["--polygon-6-y-mobile", 32],
+            };
+        }
+
+        const clampPercentage = (percentage: number) => {
+            if (percentage >= 85) return 3;
+            if (percentage >= 75) return 2;
+            if (percentage >= 65) return 1;
+            if (percentage <= 15) return -3;
+            if (percentage <= 25) return -2;
+            if (percentage <= 35) return -1;
+            return 0;
+        };
+
+        const clampPercentageMiddle = (percentage: number) => {
+            if (percentage >= 85) return 9;
+            if (percentage >= 75) return 6;
+            if (percentage >= 65) return 3;
+            if (percentage <= 15) return -9;
+            if (percentage <= 25) return -6;
+            if (percentage <= 35) return -3;
+            return 0;
+        };
+
+        const adjustPercentage = (currentValue: number, percentage: number) => {
+            const adjustment = clampPercentage(percentage);
+            return currentValue + adjustment;
+        };
+
+        const adjustPercentageMiddle = (currentValue: number, percentage: number) => {
+            const adjustment = clampPercentageMiddle(percentage);
+            return currentValue + adjustment;
+        };
+
+        console.log(`mouseXPercentage: ${mouseXPercentage}, mouseYPercentage: ${mouseYPercentage}`);
+        console.log("oyeahh2", mouseXPercentage, mouseYPercentage);
+
+
+        document.documentElement.style.setProperty(`${shapeDot.polygon_1_x[0]}`, `${adjustPercentage(shapeDot.polygon_1_x[1] as number, mouseXPercentage)}%`);
+        document.documentElement.style.setProperty(`${shapeDot.polygon_1_y[0]}`, `${adjustPercentage(shapeDot.polygon_1_y[1] as number, mouseYPercentage)}%`);
+
+        if (mouseXPercentage < 50) {
+            document.documentElement.style.setProperty(`${shapeDot.polygon_2_x[0]}`, `${adjustPercentageMiddle(shapeDot.polygon_2_x[1] as number, mouseXPercentage)}%`);
+        } else {
+            document.documentElement.style.setProperty(`${shapeDot.polygon_2_x[0]}`, `${shapeDot.polygon_2_x[1]}%`);
+        }
+
+        document.documentElement.style.setProperty(`${shapeDot.polygon_2_y[0]}`, `${adjustPercentageMiddle(shapeDot.polygon_2_y[1] as number, mouseYPercentage)}%`);
+
+        document.documentElement.style.setProperty(`${shapeDot.polygon_3_x[0]}`, `${adjustPercentage(shapeDot.polygon_3_x[1] as number, mouseXPercentage)}%`);
+        document.documentElement.style.setProperty(`${shapeDot.polygon_3_y[0]}`, `${adjustPercentage(shapeDot.polygon_3_y[1] as number, mouseYPercentage)}%`);
+
+        document.documentElement.style.setProperty(`${shapeDot.polygon_4_x[0]}`, `${adjustPercentage(shapeDot.polygon_4_x[1] as number, mouseXPercentage)}%`);
+        document.documentElement.style.setProperty(`${shapeDot.polygon_4_y[0]}`, `${adjustPercentage(shapeDot.polygon_4_y[1] as number, mouseYPercentage)}%`);
+
+        if (mouseXPercentage > 50) {
+            document.documentElement.style.setProperty(`${shapeDot.polygon_5_x[0]}`, `${adjustPercentageMiddle(shapeDot.polygon_5_x[1] as number, mouseXPercentage)}%`);
+        } else {
+            document.documentElement.style.setProperty(`${shapeDot.polygon_5_x[0]}`, `${shapeDot.polygon_5_x[1]}%`);
+        }
+
+        document.documentElement.style.setProperty(`${shapeDot.polygon_5_y[0]}`, `${adjustPercentageMiddle(shapeDot.polygon_5_y[1] as number, mouseYPercentage)}%`);
+
+        document.documentElement.style.setProperty(`${shapeDot.polygon_6_x[0]}`, `${adjustPercentage(shapeDot.polygon_6_x[1] as number, mouseXPercentage)}%`);
+        document.documentElement.style.setProperty(`${shapeDot.polygon_6_y[0]}`, `${adjustPercentage(shapeDot.polygon_6_y[1] as number, mouseYPercentage)}%`);
+    }, [isDesktop]);
+
     // MOUSE TRACKER FOR MASK SVG
 
     useEffect(() => {
@@ -302,69 +401,7 @@ export default function Foryouhr() {
             if (mainContent && mainContent.contains(event.target as Node)) {
                 const invertedX = window.innerWidth - event.clientX;
                 const invertedY = window.innerHeight - event.clientY;
-
-                const mouseXPercentage = (invertedX / window.innerWidth) * 100;
-                const mouseYPercentage = (invertedY / window.innerHeight) * 100;
-
-                const clampPercentage = (percentage: number) => {
-                    if (percentage >= 85) return 3;
-                    if (percentage >= 75) return 2;
-                    if (percentage >= 65) return 1;
-                    if (percentage <= 15) return -3;
-                    if (percentage <= 25) return -2;
-                    if (percentage <= 35) return -1;
-                    return 0;
-                };
-
-                const clampPercentageMiddle = (percentage: number) => {
-                    if (percentage >= 85) return 9;
-                    if (percentage >= 75) return 6;
-                    if (percentage >= 65) return 3;
-                    if (percentage <= 15) return -9;
-                    if (percentage <= 25) return -6;
-                    if (percentage <= 35) return -3;
-                    return 0;
-                };
-
-                const adjustPercentage = (currentValue: number, percentage: number) => {
-                    const adjustment = clampPercentage(percentage);
-                    return currentValue + adjustment;
-                };
-
-                const adjustPercentageMiddle = (currentValue: number, percentage: number) => {
-                    const adjustment = clampPercentageMiddle(percentage);
-                    return currentValue + adjustment;
-                };
-
-                console.log(`mouseXPercentage: ${mouseXPercentage}, mouseYPercentage: ${mouseYPercentage}`)
-
-                document.documentElement.style.setProperty('--polygon-1-x', `${adjustPercentage(56, mouseXPercentage)}%`);
-                document.documentElement.style.setProperty('--polygon-1-y', `${adjustPercentage(22, mouseYPercentage)}%`);
-
-                if (mouseXPercentage < 50) {
-                    document.documentElement.style.setProperty('--polygon-2-x', `${adjustPercentageMiddle(42, mouseXPercentage)}%`);
-                } else {
-                    document.documentElement.style.setProperty('--polygon-2-x', `42%`);
-                }
-
-                document.documentElement.style.setProperty('--polygon-2-y', `${adjustPercentageMiddle(58, mouseYPercentage)}%`);
-
-                document.documentElement.style.setProperty('--polygon-3-x', `${adjustPercentage(35, mouseXPercentage)}%`);
-                document.documentElement.style.setProperty('--polygon-3-y', `${adjustPercentage(82, mouseYPercentage)}%`);
-
-                document.documentElement.style.setProperty('--polygon-4-x', `${adjustPercentage(40, mouseXPercentage)}%`);
-                document.documentElement.style.setProperty('--polygon-4-y', `${adjustPercentage(79, mouseYPercentage)}%`);
-
-                if (mouseXPercentage > 50) {
-                    document.documentElement.style.setProperty('--polygon-5-x', `${adjustPercentageMiddle(48, mouseXPercentage)}%`);
-                } else {
-                    document.documentElement.style.setProperty('--polygon-5-x', `48%`);
-                }
-                
-                document.documentElement.style.setProperty('--polygon-5-y', `${adjustPercentageMiddle(52, mouseYPercentage)}%`);
-
-                document.documentElement.style.setProperty('--polygon-6-x', `${adjustPercentage(58, mouseXPercentage)}%`);
-                document.documentElement.style.setProperty('--polygon-6-y', `${adjustPercentage(26, mouseYPercentage)}%`);
+                updatePolygonStyles(invertedX, invertedY);
             }
         };
 
@@ -373,7 +410,25 @@ export default function Foryouhr() {
         return () => {
             window.removeEventListener('mousemove', handleMouseMove);
         };
-    }, []);
+    }, [updatePolygonStyles]);
+
+    useEffect(() => {
+        const simulateMouseMove = () => {
+            const clientX = Math.random() * window.innerWidth;
+            const clientY = Math.random() * window.innerHeight;
+
+            updatePolygonStyles(clientX, clientY);
+        };
+
+        let mobileMouseMoveInterval: NodeJS.Timeout;
+        if (!isDesktop) {
+            mobileMouseMoveInterval = setInterval(simulateMouseMove, 1500);
+        }
+
+        return () => {
+            clearInterval(mobileMouseMoveInterval);
+        };
+    }, [updatePolygonStyles, isDesktop]);
 
     return (
         <>
@@ -457,23 +512,7 @@ export default function Foryouhr() {
                                     <p className=''>DEV</p>
                                 </div>
                                 <div className='col-span-6 hidden md:flex items-center justify-start text-xs lg:text-base xl:text-xl'>
-                                    {/* <TypeAnimation
-                                        sequence={[
-                                            `Hello, how's it going?`,
-                                            500,
-                                            `You lookin' for a dance partner?`,
-                                            700,
-                                            `Be it in a genre of system, an app, or a website, I'd be down for it;`,
-                                            1000,
-                                            `Well, don't worry about it if you don't get it,`,
-                                            1000,
-                                            `I will lead the dance for you.`,
-                                            1000,
-                                        ]}
-                                        speed={85}
-                                        className='select-none'
-                                        repeat={Infinity}
-                                    /> */}
+                                    <p>^_^</p>
                                 </div>
                             </div>
                         </div>
