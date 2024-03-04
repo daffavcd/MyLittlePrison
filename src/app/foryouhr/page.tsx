@@ -382,7 +382,7 @@ export default function Foryouhr() {
         if (mouseXPercentage > 50) {
             document.documentElement.style.setProperty(`${shapeDot.polygon_4_x[0]}`, `${adjustPercentageMiddle(shapeDot.polygon_4_x[1] as number, mouseXPercentage)}%`);
             document.documentElement.style.setProperty(`${shapeDot.polygon_5_x[0]}`, `${adjustPercentageMiddle(shapeDot.polygon_5_x[1] as number, mouseXPercentage)}%`);
-            document.documentElement.style.setProperty(`${shapeDot.polygon_6_x[0]}`, `${adjustPercentageMiddle(shapeDot.polygon_6_x[1] as number, mouseXPercentage)}%`);
+            document.documentElement.style.setProperty(`${shapeDot.polygon_6_x[0]}`, `${adjustPercentage(shapeDot.polygon_6_x[1] as number, mouseXPercentage)}%`);
         } else {
             document.documentElement.style.setProperty(`${shapeDot.polygon_4_x[0]}`, `${shapeDot.polygon_4_x[1]}%`);
             document.documentElement.style.setProperty(`${shapeDot.polygon_5_x[0]}`, `${shapeDot.polygon_5_x[1]}%`);
