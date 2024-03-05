@@ -500,7 +500,7 @@ export default function Foryouhr() {
                                         repeat={Infinity}
                                     />
                                 </div>
-                                <div className='col-span-12 -mx-3 mt-5 flex md:hidden text-center items-center justify-center text-xl'>
+                                <div className='col-span-12 -mx-5 mt-5 flex md:hidden text-center items-center justify-center text-xl'>
                                     {`I appreciate first the effort you have invested`}
                                 </div>
                             </div>
@@ -520,7 +520,7 @@ export default function Foryouhr() {
                                 <div className='col-span-6 hidden md:flex items-center justify-start text-xs lg:text-base xl:text-xl'>
                                     <p>^_^</p>
                                 </div>
-                                <div className='col-span-12 -mx-3 mt-5 flex md:hidden text-center items-center justify-center text-xl'>
+                                <div className='col-span-12 -mx-5 mt-5 flex md:hidden text-center items-center justify-center text-xl'>
                                     {`I appreciate first the effort you have invested`}
                                 </div>
                             </div>
