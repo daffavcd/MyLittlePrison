@@ -285,7 +285,7 @@ export default function Foryouhr() {
     useEffect(() => {
         const intervalId = setInterval(
             () => setIndex((index) => index + 1),
-            3000, // every 3 seconds
+            3100, // every 3 seconds
         );
         return () => clearTimeout(intervalId);
     }, []);
@@ -315,17 +315,17 @@ export default function Foryouhr() {
 
         if (!isDesktop) {
             shapeDot = {
-                polygon_1_x: ["--polygon-1-x-mobile", 57],
+                polygon_1_x: ["--polygon-1-x-mobile", 60],
                 polygon_1_y: ["--polygon-1-y-mobile", 23],
-                polygon_2_x: ["--polygon-2-x-mobile", 44],
+                polygon_2_x: ["--polygon-2-x-mobile", 47],
                 polygon_2_y: ["--polygon-2-y-mobile", 42],
-                polygon_3_x: ["--polygon-3-x-mobile", 36],
+                polygon_3_x: ["--polygon-3-x-mobile", 39],
                 polygon_3_y: ["--polygon-3-y-mobile", 70],
-                polygon_4_x: ["--polygon-4-x-mobile", 49],
+                polygon_4_x: ["--polygon-4-x-mobile", 52],
                 polygon_4_y: ["--polygon-4-y-mobile", 53],
-                polygon_5_x: ["--polygon-5-x-mobile", 52],
+                polygon_5_x: ["--polygon-5-x-mobile", 55],
                 polygon_5_y: ["--polygon-5-y-mobile", 41],
-                polygon_6_x: ["--polygon-6-x-mobile", 56],
+                polygon_6_x: ["--polygon-6-x-mobile", 59],
                 polygon_6_y: ["--polygon-6-y-mobile", 29],
             };
         }
@@ -425,7 +425,7 @@ export default function Foryouhr() {
 
         let mobileMouseMoveInterval: NodeJS.Timeout;
         if (!isDesktop) {
-            mobileMouseMoveInterval = setInterval(simulateMouseMove, 1500);
+            mobileMouseMoveInterval = setInterval(simulateMouseMove, 1700);
         }
 
         return () => {
@@ -501,7 +501,7 @@ export default function Foryouhr() {
                                     />
                                 </div>
                                 <div className='col-span-12 mt-5 flex md:hidden text-center items-center justify-center text-xl'>
-                                   Do not get it the wrong way
+                                    I started off with chanting the poetry
                                 </div>
                             </div>
                         </div>
@@ -521,7 +521,7 @@ export default function Foryouhr() {
                                     <p>^_^</p>
                                 </div>
                                 <div className='col-span-12 mt-5 flex md:hidden text-center items-center justify-center text-xl'>
-                                   Do not get it the wrong way
+                                    I started off with chanting the poetry
                                 </div>
                             </div>
                         </div>
