@@ -316,17 +316,17 @@ export default function Foryouhr() {
         if (!isDesktop) {
             shapeDot = {
                 polygon_1_x: ["--polygon-1-x-mobile", 57],
-                polygon_1_y: ["--polygon-1-y-mobile", 28],
+                polygon_1_y: ["--polygon-1-y-mobile", 23],
                 polygon_2_x: ["--polygon-2-x-mobile", 44],
-                polygon_2_y: ["--polygon-2-y-mobile", 47],
+                polygon_2_y: ["--polygon-2-y-mobile", 42],
                 polygon_3_x: ["--polygon-3-x-mobile", 36],
-                polygon_3_y: ["--polygon-3-y-mobile", 75],
+                polygon_3_y: ["--polygon-3-y-mobile", 70],
                 polygon_4_x: ["--polygon-4-x-mobile", 49],
-                polygon_4_y: ["--polygon-4-y-mobile", 58],
+                polygon_4_y: ["--polygon-4-y-mobile", 53],
                 polygon_5_x: ["--polygon-5-x-mobile", 52],
-                polygon_5_y: ["--polygon-5-y-mobile", 46],
+                polygon_5_y: ["--polygon-5-y-mobile", 41],
                 polygon_6_x: ["--polygon-6-x-mobile", 56],
-                polygon_6_y: ["--polygon-6-y-mobile", 34],
+                polygon_6_y: ["--polygon-6-y-mobile", 29],
             };
         }
 
@@ -500,6 +500,9 @@ export default function Foryouhr() {
                                         repeat={Infinity}
                                     />
                                 </div>
+                                <div className='col-span-12 mt-5 flex md:hidden text-center items-center justify-center text-xl'>
+                                   Do not get it the wrong way
+                                </div>
                             </div>
                         </div>
                         <div className='absolute flex items-center justify-center w-full h-full layer-mask' >
@@ -516,6 +519,9 @@ export default function Foryouhr() {
                                 </div>
                                 <div className='col-span-6 hidden md:flex items-center justify-start text-xs lg:text-base xl:text-xl'>
                                     <p>^_^</p>
+                                </div>
+                                <div className='col-span-12 mt-5 flex md:hidden text-center items-center justify-center text-xl'>
+                                   Do not get it the wrong way
                                 </div>
                             </div>
                         </div>
