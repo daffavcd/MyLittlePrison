@@ -24,6 +24,7 @@ import {
     faFaceAngry,
     faCode,
     faLightbulb,
+    faArrowUpRightFromSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
 library.add(
@@ -43,6 +44,7 @@ library.add(
     faFaceAngry,
     faCode,
     faLightbulb,
+    faArrowUpRightFromSquare,
 )
 
 import { Player } from '@lottiefiles/react-lottie-player';
@@ -742,11 +744,17 @@ export default function Foryouhr() {
                             <div className='col-span-12 text-white font-semibold text-2xl flex justify-start items-end sm:px-5'>
                                 {`MY DESIRED UTOPIAS`}
                             </div>
-                            <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5'>
+                            <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5 flex-col gap-5'>
                                 <ul className="list-disc text-left">
                                     <li className='mt-2'>{`My Desired Utopias is the culmination of my Dicoding "Becoming a Web Front- End Developer Expert" certification journey.`}</li>
                                     <li className='mt-2'>{`Featuring a Progressive Web App (PWA) that fetches Dicoding API's using Hapi, Webpack, and vanilla CSS/JS.`}</li>
                                 </ul>
+                                <a href="https://desiredutopias.netlify.app" target="_blank" rel="noopener noreferrer" className='z-50'>
+                                    <div className='rounded-xl font-medium inline-flex items-center justify-center gap-2 py-2 px-4 bg-blood drop-shadow-2xl w-fit text-black hover:scale-110 transition-transform ease-in-out duration-150'>
+                                        Visit live site
+                                        <FontAwesomeIcon className='cursor-pointer' icon={faArrowUpRightFromSquare} />
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
