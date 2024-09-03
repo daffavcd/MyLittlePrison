@@ -190,7 +190,6 @@ export default function Foryouhr() {
         translationX = translationX - (columnDifference * translationXValue);
         translationY = translationY - (rowDifference * translationYValue);
 
-        // console.log(`headingPoster: ${headingPoster}, currentActivePoster: ${currentActivePoster}, translationX: ${translationX}, translationY: ${translationY}`);
         setTranslationPosterContainer({
             ...translationPosterContainer,
             translateX: translationX,
@@ -362,9 +361,6 @@ export default function Foryouhr() {
             return currentValue + adjustment;
         };
 
-        console.log(`mouseXPercentage: ${mouseXPercentage}, mouseYPercentage: ${mouseYPercentage}`);
-        console.log("oyeahh2", mouseXPercentage, mouseYPercentage);
-
 
         document.documentElement.style.setProperty(`${shapeDot.polygon_1_x[0]}`, `${shapeDot.polygon_1_x[1]}%`);
         document.documentElement.style.setProperty(`${shapeDot.polygon_1_y[0]}`, `${adjustPercentage(shapeDot.polygon_1_y[1] as number, mouseYPercentage)}%`);
@@ -486,15 +482,15 @@ export default function Foryouhr() {
                                 <div className='col-span-6 hidden md:flex items-center justify-start text-xs lg:text-base xl:text-xl'>
                                     <TypeAnimation
                                         sequence={[
-                                            `Hello, how's it going?`,
+                                            `Hello, how are you?`,
                                             500,
-                                            `You lookin' for a dance partner?`,
+                                            `Are you looking for a dance partner?`,
                                             700,
-                                            `Be it in a genre of system, an app, or a website, I'd be down for it;`,
+                                            `Any dance moves, I'd be down for it;`,
                                             1000,
-                                            `Well, don't worry about it if you don't get it,`,
+                                            `Well, don't worry if you don't get it,`,
                                             1000,
-                                            `I will lead the dance for you.`,
+                                            `I shall lead the dance for you.`,
                                             1000,
                                         ]}
                                         speed={85}
@@ -750,9 +746,9 @@ export default function Foryouhr() {
                                     <li className='mt-2'>{`Featuring a Progressive Web App (PWA) that fetches Dicoding API's using Hapi, Webpack, and vanilla CSS/JS.`}</li>
                                 </ul>
                                 <a href="https://desiredutopias.netlify.app" target="_blank" rel="noopener noreferrer" className='z-50'>
-                                    <div className='rounded-xl font-medium inline-flex items-center justify-center gap-2 py-2 px-4 bg-blood drop-shadow-2xl w-fit text-black hover:scale-110 transition-transform ease-in-out duration-150'>
+                                    <div className='rounded-xl font-medium inline-flex min-w-[150px] items-center justify-center gap-2 py-2 px-4 bg-blood drop-shadow-2xl w-fit text-black hover:scale-110 transition-transform ease-in-out duration-150'>
                                         Visit live site
-                                        <FontAwesomeIcon className='cursor-pointer' icon={faArrowUpRightFromSquare} />
+                                        <FontAwesomeIcon className='cursor-pointer h-5' icon={faArrowUpRightFromSquare} />
                                     </div>
                                 </a>
                             </div>
@@ -936,7 +932,7 @@ export default function Foryouhr() {
                                 }
                             }}
                         >
-                            {`Does that mean I'm limited to the listed area?`}
+                            {`Does that mean I'm limited to the outlined area?`}
                         </motion.div>
                         <motion.div className='col-span-12 text-white text-xl font-normal sm:text-2xl flex justify-center items-center select-none gap-20 pt-5 pb-5 z-10'
                             initial={{ opacity: 0, scale: 0.5 }}
@@ -949,7 +945,7 @@ export default function Foryouhr() {
                                 }
                             }}
                         >
-                            {`Of course not;`}<br /> {`My Curiosity, Imagination, and Adaptability are shamelessly always dancing along.`}
+                            {`No,`}<br /> {`If you have a completely different idea, then I would shamelessly like to hear about it.`}
                         </motion.div>
                     </div>
                     <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
@@ -978,7 +974,7 @@ export default function Foryouhr() {
                             <Link href={`/game`} className='hover:text-red-600 underline'>
                                 {`Try Game Mode`}
                             </Link>
-                            <br />{`Experience my works through a mini-game.`}
+                            <br />{`This entire project was created without using any CMS,`}<br />{`the code and implementation are purely handmade.`}
                         </div>
                         <div className='col-span-12 mb-3 sm:mb-0 sm:col-span-3'>
                             <div className='w-full'>
