@@ -6,7 +6,7 @@ const poppins = Poppins({ weight: ['400', '500', '600', '700', '800', '900'], su
 
 export const metadata: Metadata = {
   title: "My Little Prison",
-  description: "Created out of my boredom, explore Daffa Athalla's codes showcased in a mini-game experience..",
+  description: "Created out of my boredom, explore Daffa Athalla's codes showcased in a mini-game experience.",
   authors: [{ name: "The Promised Desire" }],
   keywords: ["Daffa Athallah", "Daffa'Athallah", "Muhammad Daffa Athallah' Rifqi", "My Little Prison Daffa", "My Little Prison"],
   creator: "Daffa' Athallah",
