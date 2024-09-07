@@ -450,8 +450,8 @@ export default function Foryouhr() {
                             placeholder="blur"
                         />
                         <div className='dark-overlay'></div>
-                        <a href="#first-content" className='z-50'>
-                            <div className='absolute left-[50%] -translate-x-[50%] bottom-10 text-2xl rounded-lg rotate-45 p-2 bg-blood-90 text-white cursor-pointer z-20 shadow-lg'>
+                        <a href="#first-content" className='absolute left-[50%] -translate-x-[50%] bottom-10 z-50'>
+                            <div className='text-2xl rounded-lg rotate-45 p-2 bg-blood-90 text-white cursor-pointer z-20 shadow-lg'>
                                 <div className='absolute -m-2 w-full h-full rounded-lg border-2 border-white animate-ping-mlp-2' />
                                 <ChevronRightIcon className="h-9 w-9 rotate-45" aria-hidden="true" />
                             </div>
@@ -498,8 +498,8 @@ export default function Foryouhr() {
                                         repeat={Infinity}
                                     />
                                 </div>
-                                <div className='col-span-12 -mx-6 mt-5 flex md:hidden text-center items-center justify-center text-lg'>
-                                    {`I appreciate first the effort you have invested`}
+                                <div className='col-span-12 -mx-6 mt-5 flex md:hidden text-center items-center justify-center text-lg font-light'>
+                                    {`Any dance moves, I'd be down for it`}
                                 </div>
                             </div>
                         </div>
@@ -518,54 +518,78 @@ export default function Foryouhr() {
                                 <div className='col-span-6 hidden md:flex items-center justify-start text-xs lg:text-base xl:text-xl'>
                                     <p>^_^</p>
                                 </div>
-                                <div className='col-span-12 -mx-6 mt-5 flex md:hidden text-center items-center justify-center text-lg'>
-                                    {`I appreciate first the effort you have invested`}
+                                <div className='col-span-12 -mx-6 mt-5 flex md:hidden text-center items-center justify-center text-lg font-light'>
+                                    {`Any dance moves, I'd be down for it`}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <motion.div className='grid grid-cols-12 py-28 lg:py-52 pl-6 pr-6 lg:pl-24 lg:pr-24'
-                        initial="offscreen"
-                        whileInView="onscreen"
-                        viewport={{ once: true, amount: 0.5 }}
-                        id='first-content'>
-                        <motion.div className='col-span-12 lg:col-span-7 text-white font-normal text-xl sm:text-2xl text-left' variants={textLeftVariants}>
-                            {`For those of you who are able to appreciate code, I'd like to recommend experiencing my works through a `}
-                            <Link href={`/game`} className='hover:text-red-600 underline'
-                                onMouseEnter={() => setHoveredLinkGame(true)}
-                                onMouseLeave={() => setHoveredLinkGame(false)}>
-                                {`mini-game here.`}
-                            </Link>
-                        </motion.div>
-                        <div className='hidden lg:col-span-5 justify-center items-center sm:flex px-28'>
-                            <div className={`absolute scale-0 ${hoveredLinkGame && 'scale-100'} transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-auto h-auto rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
-                                id='thumbnail-portfolio=hover'
-                                style={{ zIndex: 70 }}
-                            >
-                                <div className="col-span-12">
-                                    <Image
-                                        src="/images/game-mode.png"
-                                        title={`Blur`}
-                                        alt={`Blur`}
-                                        height={500}
-                                        width={350}
-                                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
-                                        placeholder="blur"
-                                        style={{
-                                            objectFit: 'cover',
-                                            height: '100%',
-                                            width: '100%',
-                                            maxWidth: '500px',
-                                            maxHeight: '350px'
-                                        }}
-                                    />
-                                    <div className='dark-overlay'></div>
-                                </div>
+                    <div className='flex poster-shadow-banner relative z-10' />
+                    {/* PORTFOLIO SECTION */}
+                    <div className='grid grid-cols-12 pt-24 lg:pt-32 pb-14 lg:pb-24 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
+                        <div className='col-span-12 lg:col-span-7'>
+                            <div className="relative flex justify-center items-center w-full min-h-[565px] lg:min-h-[580px]" >
+                                <Image
+                                    src={resto2Blur}
+                                    className='z-30 absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    placeholder="blur"
+                                    id='first-content'
+                                    alt="MNE"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'rotate(41deg) translate(40px, -57px);',
+                                        maxWidth: '550px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(41deg) translate(40px, -57px) scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(41deg) translate(40px, -57px) scale(1)'}
+                                />
+                                <Image
+                                    src={resto3Blur}
+                                    className='z-20  absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    placeholder="blur"
+                                    alt="MNE"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'rotate(349deg) translate(-115px, 77px);',
+                                        maxWidth: '550px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(349deg) translate(-115px, 77px) scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(349deg) translate(-115px, 77px) scale(1)'}
+                                />
+                                <Image
+                                    src={resto1Blur}
+                                    className='z-10  absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    placeholder="blur"
+                                    alt="MNE"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'rotate(0deg) translate(-164px, -89px);',
+                                        maxWidth: '550px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(0deg) translate(-164px, -89px)   scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(0deg) translate(-164px, -89px)  scale(1)'}
+                                />
                             </div>
                         </div>
-                    </motion.div>
-                    {/* PORTFOLIO SECTION */}
-                    <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-0 lg:pb-72 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
+                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'>
+                            <div className='col-span-12 text-white font-semibold text-2xl flex justify-start items-end sm:px-5'>
+                                {`MY DESIRED UTOPIAS`}
+                            </div>
+                            <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5 flex-col gap-5'>
+                                <ul className="list-disc text-left">
+                                    <li className='mt-2'>{`My Desired Utopias is the culmination of my Dicoding "Becoming a Web Front- End Developer Expert" certification journey.`}</li>
+                                    <li className='mt-2'>{`Featuring a Progressive Web App (PWA) that fetches Dicoding API's using Hapi, Webpack, and vanilla CSS/JS.`}</li>
+                                </ul>
+                                <a href="https://desiredutopias.netlify.app" target="_blank" rel="noopener noreferrer" className='z-50'>
+                                    <div className='rounded-xl font-medium inline-flex min-w-[150px] items-center justify-center gap-2 py-2 px-4 bg-blood drop-shadow-2xl w-fit text-black hover:scale-105 transition-transform ease-in-out duration-150'>
+                                        Visit live site
+                                        <FontAwesomeIcon className='cursor-pointer h-5' icon={faArrowUpRightFromSquare} />
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='grid grid-cols-12 pt-0 lg:pt-52 pb-0 lg:pb-72 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
                         <div className='col-span-12 lg:col-span-7'>
                             <div className="relative flex justify-center items-center w-full min-h-[690px] lg:min-h-[230px]" >
                                 <Image
@@ -692,79 +716,48 @@ export default function Foryouhr() {
                             </div>
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 pt-0 lg:pt-32 pb-24 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
-                        <div className='col-span-12 lg:col-span-7'>
-                            <div className="relative flex justify-center items-center w-full min-h-[565px] lg:min-h-[580px]" >
-                                <Image
-                                    src={resto2Blur}
-                                    className='z-30 absolute hover:z-50 transition-transform ease-in-out duration-300'
-                                    placeholder="blur"
-                                    alt="MNE"
-                                    style={{
-                                        objectFit: 'cover',
-                                        transform: 'rotate(41deg) translate(40px, -57px);',
-                                        maxWidth: '550px',
-                                    }}
-                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(41deg) translate(40px, -57px) scale(1.15)'}
-                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(41deg) translate(40px, -57px) scale(1)'}
-                                />
-                                <Image
-                                    src={resto3Blur}
-                                    className='z-20  absolute hover:z-50 transition-transform ease-in-out duration-300'
-                                    placeholder="blur"
-                                    alt="MNE"
-                                    style={{
-                                        objectFit: 'cover',
-                                        transform: 'rotate(349deg) translate(-115px, 77px);',
-                                        maxWidth: '550px',
-                                    }}
-                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(349deg) translate(-115px, 77px) scale(1.15)'}
-                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(349deg) translate(-115px, 77px) scale(1)'}
-                                />
-                                <Image
-                                    src={resto1Blur}
-                                    className='z-10  absolute hover:z-50 transition-transform ease-in-out duration-300'
-                                    placeholder="blur"
-                                    alt="MNE"
-                                    style={{
-                                        objectFit: 'cover',
-                                        transform: 'rotate(0deg) translate(-164px, -89px);',
-                                        maxWidth: '550px',
-                                    }}
-                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(0deg) translate(-164px, -89px)   scale(1.15)'}
-                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(0deg) translate(-164px, -89px)  scale(1)'}
-                                />
-                            </div>
-                        </div>
-                        <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'>
-                            <div className='col-span-12 text-white font-semibold text-2xl flex justify-start items-end sm:px-5'>
-                                {`MY DESIRED UTOPIAS`}
-                            </div>
-                            <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5 flex-col gap-5'>
-                                <ul className="list-disc text-left">
-                                    <li className='mt-2'>{`My Desired Utopias is the culmination of my Dicoding "Becoming a Web Front- End Developer Expert" certification journey.`}</li>
-                                    <li className='mt-2'>{`Featuring a Progressive Web App (PWA) that fetches Dicoding API's using Hapi, Webpack, and vanilla CSS/JS.`}</li>
-                                </ul>
-                                <a href="https://desiredutopias.netlify.app" target="_blank" rel="noopener noreferrer" className='z-50'>
-                                    <div className='rounded-xl font-medium inline-flex min-w-[150px] items-center justify-center gap-2 py-2 px-4 bg-blood drop-shadow-2xl w-fit text-black hover:scale-110 transition-transform ease-in-out duration-150'>
-                                        Visit live site
-                                        <FontAwesomeIcon className='cursor-pointer h-5' icon={faArrowUpRightFromSquare} />
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='grid grid-cols-12 pt-0 lg:pt-0 pb-32 pl-6 pr-6 lg:pl-24 lg:pr-24 poster-shadow relative z-10'>
-                        <div className='col-span-12 flex justify-center items-center'>
-                            <Link href={`/game`}>
-                                <div className='inline-flex justify-center items-center p-4 bg-btn-explore text-white text-lg drop-shadow-xl max-h-16 sm:max-h-12 rounded-xl cursor-pointer text-bloo hover:scale-110 transition-transform ease-in-out duration-150'>
-                                    <div className='absolute -m-2 w-full h-full rounded-md border-2 border-btn-explore animate-ping-mlp-3' />
-                                    <span className="font-medium text-xl text-center" >{`Explore more in Game Mode `}<sup>12</sup></span>
+                    <motion.div className='grid grid-cols-12 pb-28 pt-9 lg:pb-52 lg:pt-52 pl-6 pr-6 lg:pl-24 lg:pr-24 poster-shadow relative z-10'
+                        initial="offscreen"
+                        whileInView="onscreen"
+                        viewport={{ once: true, amount: 0.5 }}
+                    >
+                        <motion.div className='col-span-12 lg:col-span-7 text-white font-normal text-xl sm:text-2xl text-left flex justify-start items-center' variants={textLeftVariants}>
+                            <p>{`Feel free to explore more samples of my projects in a four-directional `}
+                                <Link href={`/game`} className='hover:text-red-600 justify-start items-center inline'
+                                    onMouseEnter={() => setHoveredLinkGame(true)}
+                                    onMouseLeave={() => setHoveredLinkGame(false)}>
+                                    <span className='underline'>{`mini game.`}</span>
+                                    <sup className='no-underline'>12</sup>
+                                </Link>
+                            </p>
+                        </motion.div>
+                        <div className='hidden lg:col-span-5 justify-center items-center sm:flex px-28'>
+                            <div className={`absolute scale-0 ${hoveredLinkGame && 'scale-100'} transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-auto h-auto rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
+                                id='thumbnail-portfolio=hover'
+                                style={{ zIndex: 70 }}
+                            >
+                                <div className="col-span-12">
+                                    <Image
+                                        src="/images/game-mode.png"
+                                        title={`Blur`}
+                                        alt={`Blur`}
+                                        height={500}
+                                        width={350}
+                                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
+                                        placeholder="blur"
+                                        style={{
+                                            objectFit: 'cover',
+                                            height: '100%',
+                                            width: '100%',
+                                            maxWidth: '500px',
+                                            maxHeight: '350px'
+                                        }}
+                                    />
+                                    <div className='dark-overlay'></div>
                                 </div>
-                            </Link>
-
+                            </div>
                         </div>
-                    </div>
+                    </motion.div>
                     {/* END OF PORTFOLIO SECTION */}
                     <div className='relative h-[720px] lg:h-[670px] flex justify-center items-center overflow-hidden' id="poster-content">
                         <div className='absolute top-[40%] scale-100 transition-transform ease-in-out duration-150 cursor-pointer text-poster hover:scale-110 left-0 bg-header-poster p-3 z-40 max-w-lg mh shadow-black' onClick={prevPoster}>
@@ -876,7 +869,6 @@ export default function Foryouhr() {
 
                             </div>
                         </Slider>
-
                     </div>
                     <div className='grid grid-cols-12 pt-20 pb-0 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
                         <div className='col-span-12 sm:col-span-6 flex justify-center overflow-hidden'>
@@ -932,7 +924,7 @@ export default function Foryouhr() {
                                 }
                             }}
                         >
-                            {`Does that mean I'm limited to the outlined area?`}
+                            {`Does that mean my scope is restricted to the outlined area?`}
                         </motion.div>
                         <motion.div className='col-span-12 text-white text-xl font-normal sm:text-2xl flex justify-center items-center select-none gap-20 pt-5 pb-5 z-10'
                             initial={{ opacity: 0, scale: 0.5 }}
@@ -945,7 +937,7 @@ export default function Foryouhr() {
                                 }
                             }}
                         >
-                            {`No,`}<br /> {`If you have a completely different idea, then I would shamelessly like to hear about it.`}
+                            {`No,`}<br /> {`If you have a completely different proposal, I would really love to hear about it.`}
                         </motion.div>
                     </div>
                     <div className='grid grid-cols-12 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
@@ -970,28 +962,30 @@ export default function Foryouhr() {
                         </div>
                     </div>
                     <div className='grid grid-cols-12 gap-4 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
-                        <div className='col-span-12 sm:col-span-6 text-center sm:text-left text-base'>
+                        <div className='col-span-12 sm:col-span-4 text-left sm:text-left text-base'>
                             <Link href={`/game`} className='hover:text-red-600 underline'>
                                 {`Try Game Mode`}
                             </Link>
-                            <br />{`This entire project was created without using any CMS,`}<br />{`the code and implementation are purely handmade.`}
+                            <br />{`The entire project was created without using any CMS, code and implementation are purely handmade.`}
                         </div>
-                        <div className='col-span-12 mb-3 sm:mb-0 sm:col-span-3'>
-                            <div className='w-full'>
-                                <AudioPlayer
-                                    loop={false}
-                                    preload={`none`}
-                                    customVolumeControls={[]}
-                                    showJumpControls={false}
-                                    customAdditionalControls={[]}
-                                    layout='horizontal'
-                                    src="/super_boring.aac"
-                                    onPlay={e => console.log("onPlay")}
-                                />
+                        <div className="col-span-12 grid grid-cols-12 sm:col-span-8">
+                            <div className='col-span-12 mb-3 sm:mb-0 sm:col-span-8 flex justify-center sm:justify-end items-center'>
+                                <div className='w-[200px]'>
+                                    <AudioPlayer
+                                        loop={false}
+                                        preload={`none`}
+                                        customVolumeControls={[]}
+                                        showJumpControls={false}
+                                        customAdditionalControls={[]}
+                                        layout='horizontal'
+                                        src="/super_boring.aac"
+                                        onPlay={e => console.log("onPlay")}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                        <div className='col-span-12 mb-3 sm:mb-0 text-center sm:col-span-3 sm:text-right text-lg'>
-                            {`© 2024`}<br />{`thePromisedDesires`}
+                            <div className='col-span-12 mb-3 sm:mb-0 text-center sm:col-span-4 flex justify-center sm:justify-end items-center sm:text-right text-lg'>
+                                {`© 2024`}<br />{`thePromisedDesires`}
+                            </div>
                         </div>
                     </div>
                 </div >

@@ -207,6 +207,12 @@ body {
   margin-right: calc(50% - 50vw);
 }
 
+.poster-shadow-banner{
+  box-shadow: rgba(0, 0, 0, 0.95) 0px -4px 73px 45px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
 .-translate-y-double-full {
   --tw-translate-y: -200%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y))
