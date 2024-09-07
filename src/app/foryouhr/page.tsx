@@ -449,7 +449,7 @@ export default function Foryouhr() {
                             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
                             placeholder="blur"
                         />
-                        <div className='dark-overlay'></div>
+                        <div className='dark-overlay' />
                         <a href="#first-content" className='absolute left-[50%] -translate-x-[50%] bottom-10 z-50'>
                             <div className='text-2xl rounded-lg rotate-45 p-2 bg-blood-90 text-white cursor-pointer z-20 shadow-lg'>
                                 <div className='absolute -m-2 w-full h-full rounded-lg border-2 border-white animate-ping-mlp-2' />
@@ -753,7 +753,7 @@ export default function Foryouhr() {
                                             maxHeight: '350px'
                                         }}
                                     />
-                                    <div className='dark-overlay'></div>
+                                    <div className='dark-overlay-2' />
                                 </div>
                             </div>
                         </div>
@@ -912,7 +912,7 @@ export default function Foryouhr() {
                     }}
 
                     >
-                        <div className="dark-overlay"></div>
+                        <div className='dark-overlay' />
                         <motion.div className='col-span-12 text-white font-medium text-2xl sm:text-4xl text-left pt-5 pb-5 z-10 select-none'
                             initial={{ opacity: 0, scale: 0.5 }}
                             viewport={{ once: true, amount: 0.1 }}
@@ -970,7 +970,7 @@ export default function Foryouhr() {
                         </div>
                         <div className="col-span-12 grid grid-cols-12 sm:col-span-8">
                             <div className='col-span-12 mb-3 sm:mb-0 sm:col-span-8 flex justify-center sm:justify-end items-center'>
-                                <div className='w-[200px]'>
+                                <div className='w-[300px]'>
                                     <AudioPlayer
                                         loop={false}
                                         preload={`none`}
