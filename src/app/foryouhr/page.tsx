@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/20/solid';
 
@@ -48,7 +48,6 @@ library.add(
 )
 
 import { Player } from '@lottiefiles/react-lottie-player';
-import Link from 'next/link';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { TypeAnimation } from 'react-type-animation';
@@ -461,7 +460,7 @@ export default function Foryouhr() {
                             <p className='text-sm lg:text-lg font-semibold select-none' style={{ color: "#BA9C99" }}>IDN | GMT+7</p>
                         </div>
                         <div className='absolute z-50 flex justify-cemter items-center gap-1 md:gap-8 left-[50%] -translate-x-[50%] top-16'>
-                            <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium text-white ' href="#first-projects">
+                            <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium text-white ' href="#first-content">
                                 <p className='text-lg md:text-lg select-none whitespace-nowrap'>PROJECTS <sup>15</sup></p>
                             </a>
                             <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium text-white' href="#poster-content">
@@ -634,7 +633,6 @@ export default function Foryouhr() {
                                 />
                                 <Image
                                     src={mne3Blur}
-                                    id='first-projects'
                                     className='z-0 absolute hover:z-50 transition-transform ease-in-out duration-300'
                                     placeholder="blur"
                                     alt="Picture of SR-APP"
@@ -737,14 +735,14 @@ export default function Foryouhr() {
                     >
                         <motion.div className='col-span-12 lg:col-span-7 text-white font-normal text-xl sm:text-2xl text-left flex justify-start items-center' variants={textLeftVariants}>
                             <p>{`Feel free to explore more samples of my projects in a four-directional `}
-                                <Link href={`/game`} className='hover:text-red-600 justify-start items-center inline'
+                                <a href={`/game`} className='hover:text-red-600 justify-start items-center inline'
                                     onMouseEnter={() => setHoveredLinkGame(true)}
                                     onMouseLeave={() => setHoveredLinkGame(false)}
-                                    prefetch={false}
+
                                 >
                                     <span className='underline'>{`mini game.`}</span>
                                     <sup className='no-underline'>12</sup>
-                                </Link>
+                                </a>
                             </p>
                         </motion.div>
                         <div className='hidden lg:col-span-5 justify-center items-center sm:flex px-28'>
@@ -966,22 +964,22 @@ export default function Foryouhr() {
                             />
                         </div>
                         <div className='col-span-2 flex justify-end items-center gap-4'>
-                            <Link href="mailto:daffavcd@gmail.com" target="_blank" rel="noopener noreferrer">
+                            <a href="mailto:daffavcd@gmail.com" target="_blank" rel="noopener noreferrer">
                                 <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faGoogle} />
-                            </Link>
-                            <Link href="https://www.linkedin.com/in/daffavcd/" target="_blank" rel="noopener noreferrer">
+                            </a>
+                            <a href="https://www.linkedin.com/in/daffavcd/" target="_blank" rel="noopener noreferrer">
                                 <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faLinkedin} />
-                            </Link>
-                            <Link href="https://github.com/daffavcd" target="_blank" rel="noopener noreferrer">
+                            </a>
+                            <a href="https://github.com/daffavcd" target="_blank" rel="noopener noreferrer">
                                 <FontAwesomeIcon className='h-8 w-8 sm:w-10 sm:h-10 text-blood hover:text-white cursor-pointer' icon={faGithub} />
-                            </Link>
+                            </a>
                         </div>
                     </div>
                     <div className='grid grid-cols-12 gap-4 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
                         <div className='col-span-12 sm:col-span-4 text-left sm:text-left text-base'>
-                            <Link href={`/game`} className='hover:text-red-600 underline' prefetch={false}>
+                            <a href={`/game`} className='hover:text-red-600 underline'>
                                 {`Try Game Mode`}
-                            </Link>
+                            </a>
                             <br />{`The entire project was created without using any CMS, code and implementation are purely handmade.`}
                         </div>
                         <div className="col-span-12 grid grid-cols-12 sm:col-span-8">
