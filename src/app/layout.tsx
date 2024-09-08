@@ -2,7 +2,11 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 
-const poppins = Poppins({ weight: ['400', '500', '600', '700', '800', '900'], subsets: ['latin'] })
+const poppins = Poppins({
+  weight: ['400', '500', '600', '700', '800', '900'],
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: "My Little Prison",
@@ -20,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className='scroll-smooth no-scrollbar' style={{ height: "100%" }}>
-      <body className={poppins.className} style={{ backgroundColor: "black" }}>{children}</body>
+    <html lang="en" className={`scroll-smooth no-scrollbar ${poppins.className}`} style={{ height: "100%" }}>
+      <body style={{ backgroundColor: "black" }}>{children}</body>
     </html>
   )
 }

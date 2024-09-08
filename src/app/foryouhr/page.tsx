@@ -586,12 +586,21 @@ export default function Foryouhr() {
                         </div>
                         <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'>
                             <div className='col-span-12 text-white font-semibold text-2xl flex justify-start items-end sm:px-5'>
-                                {`DaChess`}
+                                <span className='flex justify-start items-center'>
+                                    {`DaChess`}
+                                    <span className='font-extralight text-sm flex justify-start items-center ml-3'>
+                                        <span className="relative flex h-[10px] w-[10px] mr-1">
+                                            <span className="animate-ping-development absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                                            <span className="relative inline-flex rounded-full h-[10px] w-[10px] bg-amber-500"></span>
+                                        </span>
+                                        {`Under Development`}
+                                    </span>
+                                </span>
                             </div>
                             <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5 flex-col gap-5'>
                                 <ul className="list-disc text-left">
-                                    <li className='mt-2'>{`My Desired Utopias is the culmination of my Dicoding "Becoming a Web Front- End Developer Expert" certification journey.`}</li>
-                                    <li className='mt-2'>{`Featuring a Progressive Web App (PWA) that fetches Dicoding API's using Hapi, Webpack, and vanilla CSS/JS.`}</li>
+                                    <li className='mt-2'>{`Play chess online instantly with your friends on DaChess, no sign in required.`}</li>
+                                    <li className='mt-2'>{`Evaluate your games using the most powerful chess engine, Stockfish, for free.`}</li>
                                 </ul>
                                 <a href="https://dachess.vercel.app" target="_blank" rel="noopener noreferrer" className='z-50'>
                                     <div className='rounded-xl font-medium inline-flex min-w-[150px] items-center justify-center gap-2 py-2 px-4 bg-blood drop-shadow-2xl w-fit text-black hover:scale-105 transition-transform ease-in-out duration-150'>
@@ -652,8 +661,8 @@ export default function Foryouhr() {
                             </div>
                             <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5'>
                                 <ul className="list-disc text-left">
-                                    <li className='mt-2'>{`I developed SR-APP, the 1st Corporate Social Responsibility microservices app in Indonesia as the main front end developer.`}</li>
-                                    <li className='mt-2'>{`Implemented using React and Laravel in a Single Page Application, the app manages to monitor every CSR progress effectively.`}</li>
+                                    <li className='mt-2'>{`Effectively track and monitor your corporate CSR needs.`}</li>
+                                    <li className='mt-2'>{`Organize your CSR records for improved reporting and evaluation.`}</li>
                                 </ul>
                             </div>
                         </div>
@@ -722,8 +731,8 @@ export default function Foryouhr() {
                             </div>
                             <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5'>
                                 <ul className="list-disc text-left">
-                                    <li className='mt-2'>{`I designed and developed a Mobile focus golf web application as the 1st Indonesian Golf Management app using Laravel.`}</li>
-                                    <li className='mt-2'>{`J-Golf primarily manages subscription packages for courses training, golf event creation, scoring, and rankings.`}</li>
+                                    <li className='mt-2'>{`Rank your golf game with your friends to make it more competitive.`}</li>
+                                    <li className='mt-2'>{`Reserve golf training courses and compare yourself with other players.`}</li>
                                 </ul>
                             </div>
                         </div>
