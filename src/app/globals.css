@@ -101,7 +101,7 @@ body {
   }
 }
 
-.dark-overlay-2 {
+.dark-overlay-1 {
   position: absolute;
   top: 0;
   left: 0;
@@ -111,7 +111,7 @@ body {
     0,
     0,
     0,
-    0.2
+    0.1
   ); /* Adjust the alpha value to control darkness */
 }
 

@@ -63,9 +63,10 @@ import jgolf1Blur from '../../../public/images/portfolios/jgolf_1_blur.png'
 import jgolf2Blur from '../../../public/images/portfolios/jgolf_2_blur.png'
 import jgolf3Blur from '../../../public/images/portfolios/jgolf_3_blur.png'
 import jgolf4Blur from '../../../public/images/portfolios/jgolf_4_blur.png'
-import resto1Blur from '../../../public/images/portfolios/resto_1_blur.png'
-import resto2Blur from '../../../public/images/portfolios/resto_2_blur.png'
-import resto3Blur from '../../../public/images/portfolios/resto_3_blur.png'
+import dachess1Blur from '../../../public/images/portfolios/dachess_1_blur.png'
+import dachess2Blur from '../../../public/images/portfolios/dachess_2_blur.png'
+import dachess3Blur from '../../../public/images/portfolios/dachess_3_blur.png'
+import dachess4Blur from '../../../public/images/portfolios/dachess_4_blur.png'
 
 import mangtas from '../../../public/images/certificates/mangtas.png'
 import merdeka from '../../../public/images/certificates/merdeka.png'
@@ -482,13 +483,13 @@ export default function Foryouhr() {
                                 <div className='col-span-6 hidden md:flex items-center justify-start text-xs lg:text-base xl:text-xl'>
                                     <TypeAnimation
                                         sequence={[
-                                            `Hello, how are you?`,
+                                            `Hi, how are you doing?`,
                                             500,
                                             `Are you looking for a dance partner?`,
                                             700,
                                             `Any dance moves, I'd be down for it;`,
                                             1000,
-                                            `Well, don't worry if you don't get it,`,
+                                            `Well, don't worry if you didn't get it,`,
                                             1000,
                                             `I shall lead the dance for you.`,
                                             1000,
@@ -530,73 +531,86 @@ export default function Foryouhr() {
                         <div className='col-span-12 lg:col-span-7'>
                             <div className="relative flex justify-center items-center w-full min-h-[565px] lg:min-h-[580px]" >
                                 <Image
-                                    src={resto2Blur}
-                                    className='z-30 absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    src={dachess4Blur}
+                                    className='z-[31] absolute hover:z-50 transition-transform ease-in-out duration-300'
                                     placeholder="blur"
                                     id='first-content'
-                                    alt="MNE"
+                                    alt="Picture of DaChess"
                                     style={{
                                         objectFit: 'cover',
-                                        transform: 'rotate(41deg) translate(40px, -57px);',
-                                        maxWidth: '550px',
+                                        transform: 'rotate(-27deg) translate(-30px, -45px);',
+                                        maxWidth: '800px',
                                     }}
-                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(41deg) translate(40px, -57px) scale(1.15)'}
-                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(41deg) translate(40px, -57px) scale(1)'}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(-27deg) translate(-30px, -45px) scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(-27deg) translate(-30px, -45px) scale(1)'}
                                 />
                                 <Image
-                                    src={resto3Blur}
-                                    className='z-20  absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    src={dachess3Blur}
+                                    className='z-[32]  absolute hover:z-50 transition-transform ease-in-out duration-300'
                                     placeholder="blur"
-                                    alt="MNE"
+                                    alt="Picture of DaChess"
                                     style={{
                                         objectFit: 'cover',
-                                        transform: 'rotate(349deg) translate(-115px, 77px);',
-                                        maxWidth: '550px',
+                                        transform: 'rotate(0deg) translate(0px, -65px);',
+                                        maxWidth: '350px',
                                     }}
-                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(349deg) translate(-115px, 77px) scale(1.15)'}
-                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(349deg) translate(-115px, 77px) scale(1)'}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(0deg) translate(0px, -65px)   scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(0deg) translate(0px, -65px)  scale(1)'}
                                 />
                                 <Image
-                                    src={resto1Blur}
-                                    className='z-10  absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    src={dachess2Blur}
+                                    className='z-[33]  absolute hover:z-50 transition-transform ease-in-out duration-300'
                                     placeholder="blur"
-                                    alt="MNE"
+                                    alt="Picture of DaChess"
                                     style={{
                                         objectFit: 'cover',
-                                        transform: 'rotate(0deg) translate(-164px, -89px);',
-                                        maxWidth: '550px',
+                                        transform: 'rotate(28deg) translate(130px, -70px);',
+                                        maxWidth: '350px',
                                     }}
-                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(0deg) translate(-164px, -89px)   scale(1.15)'}
-                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(0deg) translate(-164px, -89px)  scale(1)'}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(28deg) translate(130px, -70px)   scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(28deg) translate(130px, -70px)  scale(1)'}
+                                />
+                                <Image
+                                    src={dachess1Blur}
+                                    className='z-[34]  absolute hover:z-50 transition-transform ease-in-out duration-300'
+                                    placeholder="blur"
+                                    alt="Picture of DaChess"
+                                    style={{
+                                        objectFit: 'cover',
+                                        transform: 'rotate(-28deg) translate(-130px, -70px);',
+                                        maxWidth: '350px',
+                                    }}
+                                    onMouseEnter={(e) => e.currentTarget.style.transform = 'rotate(-28deg) translate(-130px, -70px)   scale(1.15)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.transform = 'rotate(-28deg) translate(-130px, -70px)  scale(1)'}
                                 />
                             </div>
                         </div>
                         <div className='col-span-12 lg:col-span-5 grid-cols-12 p-3 grid'>
                             <div className='col-span-12 text-white font-semibold text-2xl flex justify-start items-end sm:px-5'>
-                                {`MY DESIRED UTOPIAS`}
+                                {`DaChess`}
                             </div>
                             <div className='col-span-12 text-white font-normal text-xl flex justify-start items-start sm:px-5 flex-col gap-5'>
                                 <ul className="list-disc text-left">
                                     <li className='mt-2'>{`My Desired Utopias is the culmination of my Dicoding "Becoming a Web Front- End Developer Expert" certification journey.`}</li>
                                     <li className='mt-2'>{`Featuring a Progressive Web App (PWA) that fetches Dicoding API's using Hapi, Webpack, and vanilla CSS/JS.`}</li>
                                 </ul>
-                                <a href="https://desiredutopias.netlify.app" target="_blank" rel="noopener noreferrer" className='z-50'>
+                                <a href="https://dachess.vercel.app" target="_blank" rel="noopener noreferrer" className='z-50'>
                                     <div className='rounded-xl font-medium inline-flex min-w-[150px] items-center justify-center gap-2 py-2 px-4 bg-blood drop-shadow-2xl w-fit text-black hover:scale-105 transition-transform ease-in-out duration-150'>
-                                        Visit live site
+                                        Live site
                                         <FontAwesomeIcon className='cursor-pointer h-5' icon={faArrowUpRightFromSquare} />
                                     </div>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div className='grid grid-cols-12 pt-0 lg:pt-52 pb-0 lg:pb-72 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
+                    <div className='grid grid-cols-12 pt-0 lg:pt-56 pb-0 lg:pb-72 pl-6 pr-6 lg:pl-24 lg:pr-24 overflow-hidden lg:overflow-visible'>
                         <div className='col-span-12 lg:col-span-7'>
                             <div className="relative flex justify-center items-center w-full min-h-[690px] lg:min-h-[230px]" >
                                 <Image
                                     src={mne1Blur}
                                     className='z-20 absolute hover:z-50 transition-transform ease-in-out duration-300'
                                     placeholder="blur"
-                                    alt="MNE"
+                                    alt="Picture of SR-APP"
                                     style={{
                                         objectFit: 'cover',
                                         transform: 'rotate(67deg) translate(-5px, 106px);',
@@ -609,7 +623,7 @@ export default function Foryouhr() {
                                     src={mne2Blur}
                                     className='z-10 absolute hover:z-50 transition-transform ease-in-out duration-300'
                                     placeholder="blur"
-                                    alt="MNE"
+                                    alt="Picture of SR-APP"
                                     style={{
                                         objectFit: 'cover',
                                         transform: 'rotate(328deg) translate(48px, 80px);',
@@ -623,7 +637,7 @@ export default function Foryouhr() {
                                     id='first-projects'
                                     className='z-0 absolute hover:z-50 transition-transform ease-in-out duration-300'
                                     placeholder="blur"
-                                    alt="MNE"
+                                    alt="Picture of SR-APP"
                                     style={{
                                         objectFit: 'cover',
                                         transform: 'translate(0px, -150px);',
@@ -653,7 +667,7 @@ export default function Foryouhr() {
                                     src={jgolf1Blur}
                                     className='z-30  absolute hover:z-50 transition-transform ease-in-out duration-300'
                                     placeholder="blur"
-                                    alt="MNE"
+                                    alt="Picture of JGolf"
                                     style={{
                                         objectFit: 'cover',
                                         transform: 'rotate(315deg) translate(-172px, 179px);',
@@ -666,7 +680,7 @@ export default function Foryouhr() {
                                     src={jgolf3Blur}
                                     className='z-20 absolute hover:z-50 transition-transform ease-in-out duration-300'
                                     placeholder="blur"
-                                    alt="MNE"
+                                    alt="Picture of JGolf"
                                     style={{
                                         objectFit: 'cover',
                                         transform: 'rotate(0deg) translate(-227px, 118px );',
@@ -679,7 +693,7 @@ export default function Foryouhr() {
                                     src={jgolf4Blur}
                                     className='z-10 absolute hover:z-50 transition-transform ease-in-out duration-300'
                                     placeholder="blur"
-                                    alt="MNE"
+                                    alt="Picture of JGolf"
                                     style={{
                                         objectFit: 'cover',
                                         transform: 'rotate(349deg) translate(121px, 150px) ;',
@@ -692,7 +706,7 @@ export default function Foryouhr() {
                                     src={jgolf2Blur}
                                     className='z-0 absolute hover:z-50 transition-transform ease-in-out duration-300'
                                     placeholder="blur"
-                                    alt="MNE"
+                                    alt="Picture of JGolf"
                                     style={{
                                         objectFit: 'cover',
                                         transform: 'rotate(12deg) translate(-32px, -24px );',
@@ -725,14 +739,16 @@ export default function Foryouhr() {
                             <p>{`Feel free to explore more samples of my projects in a four-directional `}
                                 <Link href={`/game`} className='hover:text-red-600 justify-start items-center inline'
                                     onMouseEnter={() => setHoveredLinkGame(true)}
-                                    onMouseLeave={() => setHoveredLinkGame(false)}>
+                                    onMouseLeave={() => setHoveredLinkGame(false)}
+                                    prefetch={false}
+                                >
                                     <span className='underline'>{`mini game.`}</span>
                                     <sup className='no-underline'>12</sup>
                                 </Link>
                             </p>
                         </motion.div>
                         <div className='hidden lg:col-span-5 justify-center items-center sm:flex px-28'>
-                            <div className={`absolute scale-0 ${hoveredLinkGame && 'scale-100'} transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-auto h-auto rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
+                            <div className={`absolute scale-0 ${hoveredLinkGame && 'scale-100'} min-w-[350px] transition-transform ease-in-out duration-300 grid grid-cols-12 py-4 px-2 w-auto h-auto rounded bg-modal-mlp border-modal-mlp shadow-sm z-50`}
                                 id='thumbnail-portfolio=hover'
                                 style={{ zIndex: 70 }}
                             >
@@ -740,7 +756,7 @@ export default function Foryouhr() {
                                     <Image
                                         src="/images/game-mode.png"
                                         title={`Blur`}
-                                        alt={`Blur`}
+                                        alt="Picture of mini game spoiler"
                                         height={500}
                                         width={350}
                                         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN0Z2T8DwACKgFKDPXbYwAAAABJRU5ErkJggg=="
@@ -753,7 +769,7 @@ export default function Foryouhr() {
                                             maxHeight: '350px'
                                         }}
                                     />
-                                    <div className='dark-overlay-2' />
+                                    <div className='dark-overlay-1' />
                                 </div>
                             </div>
                         </div>
@@ -963,7 +979,7 @@ export default function Foryouhr() {
                     </div>
                     <div className='grid grid-cols-12 gap-4 pt-14 pb-14 pl-6 pr-6 md:pl-32 md:pr-32 text-white'>
                         <div className='col-span-12 sm:col-span-4 text-left sm:text-left text-base'>
-                            <Link href={`/game`} className='hover:text-red-600 underline'>
+                            <Link href={`/game`} className='hover:text-red-600 underline' prefetch={false}>
                                 {`Try Game Mode`}
                             </Link>
                             <br />{`The entire project was created without using any CMS, code and implementation are purely handmade.`}
