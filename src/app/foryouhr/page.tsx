@@ -503,7 +503,7 @@ export default function Foryouhr() {
                         <div className='absolute flex items-center justify-center w-full h-full layer-mask' >
                             <div className='absolute grid grid-cols-12 transition-all ease-in-out duration-300 gap-1 lg:gap-2 left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%] text-5xl md:text-6xl xl:text-8xl font-semibold xl:font-medium select-none' style={{ color: "#a00000" }}>
                                 <div className='col-span-12 flex items-center justify-center'>
-                                    <p className=''>ULTRA-</p>
+                                    <p className=''>HEAVY-</p>
                                 </div>
                                 <div className='col-span-12 flex items-center justify-center'>
                                     <p className={` absolute ${isFullyRendered ? 'hidden' : ''}`}>COLORFULL</p>
@@ -600,7 +600,7 @@ export default function Foryouhr() {
                                     <li className='mt-2'>{`Evaluate yourself using the most powerful chess engine, Stockfish, for free.`}</li>
                                 </ul>
                                 <a href="https://dachess.vercel.app" target="_blank" rel="noopener noreferrer" className='z-50'>
-                                    <div className='rounded-xl font-medium inline-flex min-w-[150px] items-center justify-center gap-2 py-2 px-4 bg-blood drop-shadow-2xl w-fit text-black hover:text-white hover:scale-105 transition-transform ease-in-out duration-150'>
+                                    <div className='rounded-xl font-medium inline-flex min-w-[150px] items-center justify-center gap-2 py-[6px] px-4 bg-blood drop-shadow-2xl w-fit text-black hover:text-white hover:scale-105 transition-transform ease-in-out duration-150'>
                                         Live site
                                         <FontAwesomeIcon className='cursor-pointer h-5' icon={faArrowUpRightFromSquare} />
                                     </div>
