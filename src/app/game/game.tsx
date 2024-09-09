@@ -97,7 +97,7 @@ export default function Game() {
                 />
                 <div className='dark-overlay'></div>
                 <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                    <div className='flex shadow-sm items-center justify-center text-base leading-normal font-semibold p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'>
+                    <div className='flex shadow-sm items-center justify-center text-base leading-normal font-medium p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer hover:text-white'>
                         {`Show`}
                     </div>
                 </div>
@@ -728,7 +728,7 @@ export default function Game() {
                         />
                         <div className='dark-overlay'></div>
                         <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                            <div className='flex shadow-sm items-center justify-center text-base leading-normal font-semibold p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'
+                            <div className='flex shadow-sm items-center justify-center text-base leading-normal font-medium p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer hover:text-white'
                                 onClick={() => clickPortfolio(characterPosition.colCell)}
                             >
                                 {`Show`}
@@ -1007,7 +1007,7 @@ export default function Game() {
                                                         />
                                                         <div className='dark-overlay'></div>
                                                         <div className='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                                                            <div className='flex shadow-sm items-center justify-center text-base leading-normal font-semibold p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer'>
+                                                            <div className='flex shadow-sm items-center justify-center text-base leading-normal font-medium p-4 text-black text-center h-16 w-16 rounded-full bg-blood-80 hover:scale-125 transition-transform ease-in-out duration-300 cursor-pointer hover:text-white'>
                                                                 {`Show`}
                                                             </div>
                                                         </div>

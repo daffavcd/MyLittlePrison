@@ -34,6 +34,10 @@
  --polygon-6-y-mobile: 29%;
 }
 
+html {
+ font-family: var(--font-poppins);
+}
+
 @media (prefers-color-scheme: dark) {
  :root {
   --foreground-rgb: 255, 255, 255;

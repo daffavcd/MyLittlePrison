@@ -456,9 +456,6 @@ export default function Foryouhr() {
                                 <ChevronRightIcon className="h-9 w-9 rotate-45" aria-hidden="true" />
                             </div>
                         </a>
-                        <div className='absolute left-7 top-[50%] hidden md:block' style={{ transform: "rotate(270deg)" }}>
-                            <p className='text-sm lg:text-lg font-semibold select-none' style={{ color: "#BA9C99" }}>IDN | GMT+7</p>
-                        </div>
                         <div className='absolute z-50 flex justify-cemter items-center gap-1 md:gap-8 left-[50%] -translate-x-[50%] top-16'>
                             <a className='py-1 px-3 transition-colors ease-in-out duration-300 rounded-full hover:bg-slate-50 hover:text-black font-medium text-white ' href="#first-content">
                                 <p className='text-lg md:text-lg select-none whitespace-nowrap'>PROJECTS <sup>15</sup></p>
@@ -589,9 +586,9 @@ export default function Foryouhr() {
                                 <span className='flex justify-start items-center'>
                                     {`DaChess`}
                                     <span className='font-extralight text-sm flex justify-start items-center ml-3'>
-                                        <span className="relative flex h-[9px] w-[9px] mr-1">
+                                        <span className="relative flex h-[8px] w-[8px] mr-1">
                                             <span className="animate-ping-development absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                                            <span className="relative inline-flex rounded-full h-[9px] w-[9px] bg-amber-500"></span>
+                                            <span className="relative inline-flex rounded-full h-[8px] w-[8px] bg-amber-500"></span>
                                         </span>
                                         {`Under Development`}
                                     </span>

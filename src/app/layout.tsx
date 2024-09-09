@@ -3,8 +3,9 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 
 const poppins = Poppins({
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['200', '300', '400', '500', '600', '700'],
   subsets: ['latin'],
+  variable: '--font-poppins',
   display: 'swap',
 })
 
@@ -24,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`scroll-smooth no-scrollbar ${poppins.className}`} style={{ height: "100%" }}>
+    <html lang="en" className={`scroll-smooth no-scrollbar ${poppins.variable}`} style={{ height: "100%" }}>
       <body style={{ backgroundColor: "black" }}>{children}</body>
     </html>
   )
