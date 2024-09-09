@@ -470,7 +470,7 @@ export default function Foryouhr() {
                         <div className='absolute flex items-center justify-center w-full h-full'>
                             <div className='absolute grid grid-cols-12 transition-all ease-in-out duration-300 gap-1 lg:gap-2 left-[50%] -translate-x-[50%] top-[50%] -translate-y-[50%] text-5xl md:text-6xl xl:text-8xl font-semibold xl:font-medium select-none text-white'>
                                 <div className='col-span-12 flex items-center justify-center'>
-                                    <p className=''>ULTRA-</p>
+                                    <p className=''>HEAVY-</p>
                                 </div>
                                 <div className='col-span-12 flex items-center justify-center'>
                                     <p className={` absolute ${isFullyRendered ? 'hidden' : ''}`}>COLORFULL</p>

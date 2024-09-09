@@ -38,7 +38,7 @@ export default function Content() {
     return (
         <>
             <div className="col-span-12">
-                <div className={`flex flex-col h-screen ${scrolledAbout ? 'blur-sm' : 'blur-none'}`} id='main-content' style={{ marginTop: "-95px" }}>
+                <div className={`flex flex-col relative h-screen ${scrolledAbout ? 'blur-sm' : 'blur-none'}`} id='main-content' style={{ marginTop: "-95px" }}>
                     <Image
                         alt="Background Image"
                         src="/images/ruffy.jpg"
@@ -48,6 +48,7 @@ export default function Content() {
                         sizes="100vw"
                         style={{
                             objectFit: 'cover',
+                            objectPosition: 'center',
                         }}
                     />
                     <div className='dark-overlay'></div>
