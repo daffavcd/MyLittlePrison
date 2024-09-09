@@ -95,7 +95,7 @@ export const poster: Poster[] = [
     {
         colCell: 15,
         title: "Languages",
-        desc: 'I speak well at these languages: PHP, Java, Python, Flutter, SQL (MySQL), JavaScript, Typescript, and HTML/CSS. For the others, just give me a bit of time and I will be decent at it.',
+        desc: 'I speak decently at these languages: PHP, Java, Python, Flutter, SQL (MySQL), JavaScript, Typescript, and HTML/CSS. For the others, just give me a bit of time and I will be decent at it.',
         iconImage: 'laptop-code',
     },
 
@@ -133,7 +133,7 @@ export const poster: Poster[] = [
     {
         colCell: 21,
         title: "Playground",
-        desc: `I also get along well with: Laravel, CodeIgniter, React, Next.js, Node.js, Express.js, Tailwind, WordPress, PWA, OOP, JSON, REST API, Arduino, Linux, Git, Docker, AWS, and Digital Ocean.`,
+        desc: `I also get acquainted well with them: Laravel, CodeIgniter, React, Next.js, Node.js, Express.js, Tailwind, WordPress, PWA, OOP, JSON, REST API, Arduino, Linux, Git, Docker, AWS, and Digital Ocean.`,
         iconImage: 'microchip',
     },
     {

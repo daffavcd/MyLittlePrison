@@ -906,7 +906,7 @@ export default function Foryouhr() {
                         <div className='col-span-12 sm:col-span-6 flex flex-col justify-center text-xl font-normal text-left text-white select-none'
                         >
                             <span className='text-2xl sm:text-3xl font-semibold mb-4'>{`Full Stack Engineer`}</span>
-                            {`In my opinion, front end and back git add .end are the embodiment of our dress and tongue, respectively.`}
+                            {`In my opinion, front end and back end are the embodiment of our dress and tongue, respectively.`}
                         </div>
                     </div>
                     <div className='grid grid-cols-12 pt-0 pb-32 pl-6 pr-6 lg:pl-36 lg:pr-36 bg-black gap-5'>
